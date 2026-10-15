@@ -61,20 +61,21 @@ def pick_issue(news, history):
 최근 이미 게시한 주제(중복 금지):
 {done or '(없음)'}
 
-이 중 일반 대중이 가장 관심 가질 이슈 1개를 골라 인스타 카드뉴스 문구를 쓰세요.
+이 중 일반 대중이 가장 관심 가질 이슈 1개를 골라 매거진 스타일(아이즈매거진, 디에디트 같은 에디토리얼 톤) 카드 문구를 쓰세요.
 규칙:
 - 헤드라인에 있는 사실만 사용. 추측·과장·특정인 비방 금지. 사건사고 피해자 조롱 금지.
 - 정치 이슈는 중립적으로. 사망·참사 이슈는 고르지 말 것.
-- 스크롤을 멈추게 할 만큼 짧고 강하게. 해요체 또는 명사형.
+- 유치한 감탄·밈 표현 금지. 짧고 단단한 문장, 잡지 헤드라인처럼 위트 있게.
+- 제목과 한줄 코멘트는 서로 다른 내용이어야 함(반복 금지).
 
 아래 JSON만 출력:
 {{"category": "경제|사회|IT|생활|국제|스포츠|연예 중 하나",
- "hook": "제목 위 작은 후킹 문구, 12자 이내 (예: 이거 모르면 손해)",
- "headline": "큰 제목, 18자 이내",
- "highlight": "headline 안에서 강조색으로 칠할 핵심 단어(headline에 그대로 포함된 문자열)",
+ "kicker": "제목 위 작은 머리말, 14자 이내 (예: 숫자로 보는 오늘)",
+ "headline": "큰 제목, 16자 이내, 두 줄로 나뉘기 좋게",
+ "big_number": "이슈를 대표하는 숫자나 짧은 키워드 1개, 6자 이내 (예: 88, 1,400원, 0.1%p). 숫자가 없으면 핵심 단어",
+ "big_label": "big_number 설명, 14자 이내 (예: 주 연속 상승)",
  "points": ["핵심 1, 22자 이내", "핵심 2, 22자 이내", "핵심 3, 22자 이내"],
- "oneliner": "한줄 정리, 24자 이내",
- "emojis": ["주제를 상징하는 이모지 3개 (사물 위주, 사람·국기 제외)"],
+ "oneliner": "에디터 코멘트 한 문장, 26자 이내, 제목과 다른 관점",
  "image_query": "사진 검색용 영어 키워드 2~3단어 (사람 얼굴 없는 사물·풍경)",
  "caption": "인스타 본문 3~4문장, 마지막에 저장/공유 유도 한 문장",
  "hashtags": ["#태그", "... 8개"],
@@ -190,110 +191,117 @@ def draw_highlight_line(dr, x, y, line, hl, f, fg, accent):
         dr.text((x, y), line, font=f, fill=fg)
 
 
-# ---------- 카드 렌더링 ----------
+# ---------- 카드 렌더링 (에디토리얼 스타일) ----------
+SERIF = "/usr/share/fonts/opentype/noto/NotoSerifCJK-Bold.ttc"
+SERIF_BLACK = "/usr/share/fonts/opentype/noto/NotoSerifCJK-Black.ttc"
+if not os.path.exists(SERIF_BLACK):
+    SERIF_BLACK = SERIF
+SANS_B = "/usr/share/fonts/opentype/noto/NotoSansCJK-Bold.ttc"
+SANS_R = "/usr/share/fonts/opentype/noto/NotoSansCJK-Regular.ttc"
+CAT_EN = {"경제": "ECONOMY", "사회": "SOCIETY", "IT": "TECH", "생활": "LIFE",
+          "국제": "WORLD", "스포츠": "SPORTS", "연예": "CULTURE"}
+# (배경, 본문, 보조, 포인트)
+ED_THEMES = [
+    ("#F3F0EA", "#141414", "#8A857C", "#D93A1E"),   # 페이퍼 + 레드
+    ("#121212", "#F3F0EA", "#7D7A74", "#E8FF3A"),   # 블랙 + 라임
+    ("#1F2A44", "#F3F0EA", "#8C95A8", "#FF8A5B"),   # 네이비 + 코랄
+]
+
+
+def tracked(dr, xy, text, f, fill, spacing=4):
+    x, y = xy
+    for ch in text:
+        dr.text((x, y), ch, font=f, fill=fill)
+        x += dr.textlength(ch, font=f) + spacing
+    return x
+
+
+def fit_font(path, text, max_w, start, minimum, dr):
+    size = start
+    while size > minimum:
+        f = font(path, size)
+        if dr.textlength(text, font=f) <= max_w:
+            return f
+        size -= 4
+    return font(path, minimum)
+
+
 def render_card(d, path, theme_idx=0, photo=None):
-    top, bottom, accent, fg = THEMES[theme_idx % len(THEMES)]
-    img = vgradient(top, bottom).convert("RGBA")
-    VIS_H = 640  # 상단 비주얼 영역 높이
-
-    if photo is not None:
-        # 사진: 상단을 꽉 채우고 아래로 갈수록 배경색에 녹아들게
-        ph = photo.copy()
-        scale = max(W / ph.width, (VIS_H + 200) / ph.height)
-        ph = ph.resize((int(ph.width * scale), int(ph.height * scale)), Image.LANCZOS)
-        ph = ph.crop(((ph.width - W) // 2, 0, (ph.width - W) // 2 + W, VIS_H + 200)).convert("RGBA")
-        mask = Image.new("L", ph.size, 255)
-        md = ImageDraw.Draw(mask)
-        for y in range(ph.height):
-            k = max(0, (y - (VIS_H - 240)) / 440)
-            md.line((0, y, W, y), fill=int(255 * max(0, 1 - k)))
-        img.paste(ph, (0, 0), mask)
-        shade = Image.new("RGBA", (W, 260), (0, 0, 0, 0))
-        sd = ImageDraw.Draw(shade)
-        for y in range(260):
-            sd.line((0, y, W, y), fill=(0, 0, 0, int(150 * (1 - y / 260))))
-        img.alpha_composite(shade)
-    else:
-        # 3D 아이콘: 빛 번짐 + 큰 메인 아이콘 + 보조 아이콘 2개
-        icons = [i for i in (emoji_img(e) for e in d.get("emojis", [])) if i]
-        glow(img, (620, 360), 300, accent, 120)
-        glow(img, (250, 520), 160, "#FFFFFF", 60)
-        # 장식 링
-        ring = ImageDraw.Draw(img)
-        ring.ellipse((380, 150, 860, 630), outline=hex2rgb(fg) + (70,), width=3)
-        if icons:
-            paste_icon(img, icons[0], (620, 370), 470)
-        if len(icons) > 1:
-            paste_icon(img, icons[1], (210, 470), 230, angle=14)
-        if len(icons) > 2:
-            paste_icon(img, icons[2], (935, 265), 180, angle=-16)
-
+    bg, fg, sub, accent = ED_THEMES[theme_idx % len(ED_THEMES)]
+    img = Image.new("RGB", (W, H), bg)
     dr = ImageDraw.Draw(img)
-    M = 80
-    f_small = font(FONT_REG, 30)
-    f_tag = font(FONT_BLACK, 36)
-
-    # 상단: 카테고리 + 날짜 + 화제 스티커
+    M = 72
     today = datetime.datetime.now(datetime.timezone(datetime.timedelta(hours=9)))
-    tag = d["category"]
-    tw = dr.textlength(tag, font=f_tag)
-    dr.rounded_rectangle((M, 70, M + tw + 48, 132), radius=31, fill=accent)
-    dr.text((M + 24, 76), tag, font=f_tag, fill=bottom)
-    dr.text((M + tw + 70, 84), today.strftime("%m.%d") + " 오늘의 이슈", font=f_small, fill=fg)
-    f_handle = font(FONT_BLACK, 30)
-    dr.text((W - M - dr.textlength(HANDLE, font=f_handle), 84), HANDLE, font=f_handle, fill=fg)
+    issue_no = d.get("issue_no", 1)
 
-    # 후킹 문구 (기울어진 스티커)
-    hook = d.get("hook", "")
-    if hook:
-        f_hook = font(FONT_BLACK, 40)
-        hw = int(dr.textlength(hook, font=f_hook)) + 56
-        st = Image.new("RGBA", (hw, 76), (0, 0, 0, 0))
-        sd = ImageDraw.Draw(st)
-        sd.rounded_rectangle((0, 0, hw - 1, 75), radius=14, fill=fg)
-        sd.text((28, 6), hook, font=f_hook, fill=bottom)
-        st = st.rotate(-4, resample=Image.BICUBIC, expand=True)
-        img.alpha_composite(st, (M - 6, VIS_H - 60))
+    # 마스트헤드
+    f_mast = font(SANS_B, 26)
+    tracked(dr, (M, 62), "DAILY JJIP", f_mast, fg, 6)
+    right = f"No.{issue_no:03d}   {today.strftime('%Y.%m.%d')}"
+    dr.text((W - M - dr.textlength(right, font=font(SANS_R, 24)), 64), right, font=font(SANS_R, 24), fill=sub)
+    dr.line((M, 112, W - M, 112), fill=fg, width=3)
+
+    # 카테고리 키커
+    f_cat = font(SANS_B, 24)
+    x = tracked(dr, (M, 140), CAT_EN.get(d["category"], "ISSUE"), f_cat, accent, 5)
+    dr.text((x + 14, 140), "— " + d.get("kicker", d["category"]), font=font(SANS_R, 24), fill=sub)
+
+    y = 210
+    if photo is not None:
+        # 흑백 고대비 사진 블록
+        ph = photo.convert("L")
+        ph = Image.eval(ph, lambda v: max(0, min(255, int((v - 128) * 1.25 + 128))))
+        bw, bh = W - 2 * M, 420
+        sc = max(bw / ph.width, bh / ph.height)
+        ph = ph.resize((int(ph.width * sc), int(ph.height * sc)), Image.LANCZOS)
+        ph = ph.crop(((ph.width - bw) // 2, (ph.height - bh) // 2, (ph.width - bw) // 2 + bw, (ph.height - bh) // 2 + bh))
+        img.paste(ph.convert("RGB"), (M, y))
         dr = ImageDraw.Draw(img)
+        y += bh + 40
+        head_size = 92
+    else:
+        # 대형 숫자/키워드 타이포
+        num = d.get("big_number", "")
+        f_num = fit_font(SERIF_BLACK, num, W - 2 * M, 300, 120, dr)
+        bb = dr.textbbox((0, 0), num, font=f_num)
+        dr.text((M - bb[0], y - bb[1]), num, font=f_num, fill=accent)
+        y += (bb[3] - bb[1]) + 26
+        dr.text((M, y), d.get("big_label", ""), font=font(SANS_B, 34), fill=fg)
+        y += 80
+        head_size = 100
 
-    # 큰 제목 (강조 단어 컬러)
-    f_head = font(FONT_BLACK, 100)
-    y = VIS_H + 40
+    # 헤드라인 (세리프)
+    f_head = font(SERIF_BLACK, head_size)
     for ln in wrap(d["headline"], f_head, dr, W - 2 * M)[:2]:
-        draw_highlight_line(dr, M, y, ln, d.get("highlight"), f_head, fg, accent)
-        y += 122
-    y += 26
+        dr.text((M, y), ln, font=f_head, fill=fg)
+        y += int(head_size * 1.22)
+    y += 18
 
-    # 핵심 포인트 (반투명 박스 안)
-    f_pt = font(FONT_REG, 40)
-    f_chk = font(FONT_BLACK, 40)
-    pts = d["points"][:3]
-    box_h = len(pts) * 66 + 40
-    layer = Image.new("RGBA", img.size, (0, 0, 0, 0))
-    ImageDraw.Draw(layer).rounded_rectangle((M - 16, y, W - M + 16, y + box_h), radius=24,
-                                            fill=(255, 255, 255, 34))
-    img.alpha_composite(layer)
-    dr = ImageDraw.Draw(img)
-    py = y + 22
-    for p in pts:
-        cx, cy = M + 34, py + 30  # 체크 아이콘 직접 그리기
-        dr.ellipse((cx - 22, cy - 22, cx + 22, cy + 22), fill=accent)
-        dr.line((cx - 11, cy, cx - 3, cy + 9, cx + 12, cy - 9), fill=bottom, width=6, joint="curve")
-        dr.text((M + 74, py), wrap(p, f_pt, dr, W - 2 * M - 90)[0], font=f_pt, fill=fg)
-        py += 66
+    # 포인트: 번호 + 얇은 구분선
+    f_pt = font(SANS_R, 34)
+    f_no = font(SANS_B, 26)
+    for i, p in enumerate(d["points"][:3], 1):
+        dr.line((M, y, W - M, y), fill=sub, width=1)
+        y += 22
+        dr.text((M, y + 4), f"0{i}", font=f_no, fill=accent)
+        dr.text((M + 70, y), wrap(p, f_pt, dr, W - 2 * M - 70)[0], font=f_pt, fill=fg)
+        y += 66
+    dr.line((M, y, W - M, y), fill=sub, width=1)
 
-    # 하단 한줄 정리 띠
-    f_one = font(FONT_BLACK, 44)
-    bar_y = H - 150
-    dr.rectangle((0, bar_y, W, bar_y + 96), fill=accent)
-    one = wrap(d["oneliner"], f_one, dr, W - 2 * M)[0]
-    dr.text(((W - dr.textlength(one, font=f_one)) / 2, bar_y + 18), one, font=f_one, fill=bottom)
+    # 에디터 코멘트
+    f_one = font(SERIF, 34)
+    one = wrap(d["oneliner"], f_one, dr, W - 2 * M - 40)[0]
+    dr.text((M, H - 176), "“", font=font(SERIF_BLACK, 60), fill=accent)
+    dr.text((M + 40, H - 168), one, font=f_one, fill=fg)
+
+    # 푸터
+    dr.line((M, H - 96, W - M, H - 96), fill=fg, width=2)
     credit = "출처: 언론 보도 종합" + (" · Photo: Pexels" if photo is not None else "")
-    dr.text((M, H - 44), credit, font=font(FONT_REG, 24), fill=fg)
-    tail = f"매일 콕 찝어주는 {HANDLE}"
-    dr.text((W - M - dr.textlength(tail, font=f_small), H - 48), tail, font=f_small, fill=accent)
+    dr.text((M, H - 74), credit, font=font(SANS_R, 22), fill=sub)
+    h = "@daily.jjip"
+    dr.text((W - M - dr.textlength(h, font=font(SANS_B, 24)), H - 76), h, font=font(SANS_B, 24), fill=fg)
 
-    img.convert("RGB").save(path, "JPEG", quality=93)
+    img.save(path, "JPEG", quality=94)
 
 
 # ---------- 인스타 게시 ----------
@@ -318,6 +326,7 @@ def generate():
     d = pick_issue(fetch_news(), history)
     stamp = datetime.datetime.utcnow().strftime("%Y%m%d_%H%M")
     d["image"], d["stamp"] = f"{stamp}.jpg", stamp
+    d["issue_no"] = len(history) + 1
     photo = pexels_photo(d.get("image_query", ""))
     render_card(d, os.path.join(OUT_DIR, d["image"]), theme_idx=len(history), photo=photo)
     json.dump(d, open(PENDING, "w", encoding="utf-8"), ensure_ascii=False, indent=2)
