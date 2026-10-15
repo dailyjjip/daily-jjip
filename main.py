@@ -403,13 +403,22 @@ def render_follow(d, path, theme_idx):
     dr.line((M, 112, W - M, 112), fill=fg, width=3)
     # 큰 문구
     y = 330
-    tracked(dr, (M, y), "SEE YOU TOMORROW", font(SANS_B, 26), accent, 6)
+    variants = [
+        ("DON'T READ IT ALL", ["길게 읽지 마세요.", "찝어드릴게요."]),
+        ("JUST THE POINT", ["뉴스는 많고,", "핵심은 하나."]),
+        ("3 TIMES A DAY", ["세상 돌아가는 일,", "딱 찝어서."]),
+    ]
+    kick, lines = variants[(d.get("issue_no", 1) - 1) % len(variants)]
+    tracked(dr, (M, y), kick, font(SANS_B, 26), accent, 6)
     y += 70
-    for ln in ["내일도,", "이 시간에."]:
-        dr.text((M, y), ln, font=font(SERIF_BLACK, 150), fill=fg)
-        y += 180
+    size = 150
+    while size > 90 and max(dr.textlength(l, font=font(SERIF_BLACK, size)) for l in lines) > W - 2 * M:
+        size -= 6
+    for ln in lines:
+        dr.text((M, y), ln, font=font(SERIF_BLACK, size), fill=fg)
+        y += int(size * 1.2)
     y += 40
-    dr.text((M, y), "바쁜 하루, 세상 돌아가는 흐름만 콕 찝어드려요.", font=font(SANS_R, 36), fill=fg)
+    dr.text((M, y), "오늘 꼭 알아야 할 이슈만 골라 정리합니다.", font=font(SANS_R, 36), fill=fg)
     y += 56
     dr.text((M, y), "아침 8시 · 점심 12시 · 저녁 7시", font=font(SANS_R, 36), fill=sub)
     y += 110
