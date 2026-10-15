@@ -85,6 +85,7 @@ def pick_issue(news, history):
 - 검색으로 확인한 사실만 사용. 확인 안 된 수치는 쓰지 말 것. 추측·과장·특정인 비방 금지.
 - 정치 이슈는 중립적으로. 사망·참사 이슈는 고르지 말 것.
 - 유치한 감탄·밈 표현 금지. 짧고 단단한 문장, 잡지 헤드라인처럼 위트 있게.
+- 토론 질문은 양쪽 모두 합리적인 선택지로. 특정 집단·정당·인물 비난을 유도하거나 혐오를 부추기는 질문 금지.
 - 같은 문장을 여러 장에서 반복하지 말 것. 글자 수 제한을 반드시 지킬 것.
 
 마지막에 아래 JSON만 출력(코드블록 없이):
@@ -98,7 +99,8 @@ def pick_issue(news, history):
  "numbers": [{{"value": "수치, 7자 이내", "label": "설명, 16자 이내"}}, "... 3개"],
  "watch": [{{"head": "주목할 포인트 제목, 14자 이내", "body": "설명, 40자 이내"}}, "... 3개"],
  "oneliner": "에디터 코멘트 한 문장, 26자 이내, 제목과 다른 관점",
- "image_query": "사진 검색용 영어 키워드 2~3단어 (사람 얼굴 없는 사물·풍경)",
+ "debate": {{"question": "댓글 토론을 부르는 질문, 24자 이내. 찬반이 실제로 갈리는 생활 밀착형 질문", "a": "선택지 A, 12자 이내", "b": "선택지 B, 12자 이내"}},
+ "image_queries": ["표지용 사진 검색 영어 키워드 2~4단어 (이슈를 한눈에 보여주는 실사 장면, 예: seoul apartment buildings)", "본문용 사진 검색 영어 키워드 2~4단어 (표지와 다른 장면)"],
  "caption": "인스타 본문 3~4문장, 마지막에 저장/공유 유도 한 문장",
  "hashtags": ["#태그", "... 8개"],
  "sources": ["참고한 언론사명 2~3개"],
@@ -126,22 +128,31 @@ def emoji_img(ch):
     return None
 
 
-def pexels_photo(query):
-    """Pexels 무료 사진(상업적 이용 가능). 키가 없거나 실패하면 None."""
-    if not PEXELS_KEY:
+def pexels_photo(query, orientation="portrait", skip_ids=()):
+    """Pexels 무료 사진(상업적 이용 가능, 출처 표기 권장). 실패하면 None.
+    반환: (PIL 이미지, 사진작가 이름, 사진 id)"""
+    if not PEXELS_KEY or not query:
         return None
     try:
         r = requests.get("https://api.pexels.com/v1/search",
-                         params={"query": query, "orientation": "landscape", "per_page": 5},
+                         params={"query": query, "orientation": orientation, "per_page": 10},
                          headers={"Authorization": PEXELS_KEY}, timeout=20).json()
-        photos = r.get("photos") or []
+        photos = [p for p in (r.get("photos") or []) if p["id"] not in skip_ids]
         if not photos:
             return None
-        url = random.choice(photos)["src"]["large2x"]
-        return Image.open(io.BytesIO(requests.get(url, timeout=30).content)).convert("RGB")
+        p = random.choice(photos[:5])
+        img = Image.open(io.BytesIO(requests.get(p["src"]["large2x"], timeout=30).content)).convert("RGB")
+        return img, p.get("photographer", ""), p["id"]
     except Exception as e:
-        print("사진 가져오기 실패, 3D 아이콘으로 대체:", e)
+        print("사진 가져오기 실패, 글자 디자인으로 대체:", e)
         return None
+
+
+def cover_crop(ph, w, h):
+    sc = max(w / ph.width, h / ph.height)
+    ph = ph.resize((int(ph.width * sc) + 1, int(ph.height * sc) + 1), Image.LANCZOS)
+    x, y = (ph.width - w) // 2, (ph.height - h) // 2
+    return ph.crop((x, y, x + w, y + h))
 
 
 # ---------- 그리기 도우미 ----------
@@ -339,6 +350,83 @@ def render_card(d, path, theme_idx=0, photo=None, cover=False):
     img.save(path, "JPEG", quality=94)
 
 
+def render_photo_cover(d, path, theme_idx, photo, credit):
+    """실사 표지: 사진을 꽉 채우고 아래쪽을 어둡게 깔아 큰 제목을 얹는다."""
+    _, _, _, accent = ED_THEMES[theme_idx % len(ED_THEMES)]
+    img = cover_crop(photo, W, H).convert("RGBA")
+    shade = Image.new("RGBA", (W, H), (0, 0, 0, 0))
+    sd = ImageDraw.Draw(shade)
+    for y in range(H):
+        top = max(0, 1 - y / 260) * 150                 # 위쪽 살짝
+        bottom = max(0, (y - H * 0.35) / (H * 0.65)) * 235  # 아래쪽 진하게
+        sd.line((0, y, W, y), fill=(0, 0, 0, int(min(240, top + bottom))))
+    img.alpha_composite(shade)
+    img = img.convert("RGB")
+    dr = ImageDraw.Draw(img)
+    M, white = 72, "#FFFFFF"
+    today = datetime.datetime.now(datetime.timezone(datetime.timedelta(hours=9)))
+    tracked(dr, (M, 62), "DAILY JJIP", font(SANS_B, 26), white, 6)
+    right = f"No.{d.get('issue_no', 1):03d}   {today.strftime('%Y.%m.%d')}"
+    dr.text((W - M - dr.textlength(right, font=font(SANS_R, 24)), 64), right, font=font(SANS_R, 24), fill=white)
+    dr.line((M, 112, W - M, 112), fill=white, width=3)
+    x = tracked(dr, (M, 140), CAT_EN.get(d["category"], "ISSUE"), font(SANS_B, 24), accent, 5)
+    dr.text((x + 14, 140), "— " + d.get("kicker", ""), font=font(SANS_R, 24), fill=white)
+
+    # 아래에서 위로 쌓기: 제목 → 숫자
+    f_head = font(SERIF_BLACK, 112)
+    lines = wrap(d["headline"], f_head, dr, W - 2 * M)[:2]
+    y = H - 150 - len(lines) * 136
+    num = d.get("big_number", "")
+    if num:
+        f_num = fit_font(SERIF_BLACK, num, W - 2 * M, 150, 80, dr)
+        bb = dr.textbbox((0, 0), num, font=f_num)
+        ny = y - (bb[3] - bb[1]) - 70
+        dr.text((M - bb[0], ny - bb[1]), num, font=f_num, fill=accent)
+        dr.text((M, ny + (bb[3] - bb[1]) + 14), d.get("big_label", ""), font=font(SANS_B, 32), fill=white)
+    for ln in lines:
+        dr.text((M, y), ln, font=f_head, fill=white)
+        y += 136
+    dr.line((M, H - 96, W - M, H - 96), fill=white, width=2)
+    dr.text((M, H - 74), f"Photo: {credit} / Pexels" if credit else "Photo: Pexels", font=font(SANS_R, 22), fill="#CCCCCC")
+    t = "SWIPE  →"
+    tracked(dr, (W - M - dr.textlength(t, font=font(SANS_B, 24)) - 30, H - 76), t, font(SANS_B, 24), accent, 3)
+    img.save(path, "JPEG", quality=94)
+
+
+def render_follow(d, path, theme_idx):
+    """마지막 장: 팔로우 요청"""
+    bg, fg, sub, accent = ED_THEMES[theme_idx % len(ED_THEMES)]
+    img = Image.new("RGB", (W, H), bg)
+    dr = ImageDraw.Draw(img)
+    M = 72
+    tracked(dr, (M, 62), "DAILY JJIP", font(SANS_B, 26), fg, 6)
+    dr.line((M, 112, W - M, 112), fill=fg, width=3)
+    # 큰 문구
+    y = 330
+    tracked(dr, (M, y), "SEE YOU TOMORROW", font(SANS_B, 26), accent, 6)
+    y += 70
+    for ln in ["내일도,", "이 시간에."]:
+        dr.text((M, y), ln, font=font(SERIF_BLACK, 150), fill=fg)
+        y += 180
+    y += 40
+    dr.text((M, y), "바쁜 하루, 세상 돌아가는 흐름만 콕 찝어드려요.", font=font(SANS_R, 36), fill=fg)
+    y += 56
+    dr.text((M, y), "아침 8시 · 점심 12시 · 저녁 7시", font=font(SANS_R, 36), fill=sub)
+    y += 110
+    # 팔로우 버튼
+    dr.rounded_rectangle((M, y, W - M, y + 120), radius=60, fill=accent)
+    t = "+ 팔로우  @daily.jjip"
+    f = font(SANS_B, 46)
+    dr.text(((W - dr.textlength(t, font=f)) / 2, y + 28), t, font=f, fill=bg)
+    y += 170
+    t2 = "저장해두고 다시 보기  ·  친구에게 공유하기"
+    dr.text(((W - dr.textlength(t2, font=font(SANS_R, 30))) / 2, y), t2, font=font(SANS_R, 30), fill=sub)
+    dr.line((M, H - 96, W - M, H - 96), fill=fg, width=2)
+    h = "@daily.jjip"
+    dr.text((W - M - dr.textlength(h, font=font(SANS_B, 24)), H - 76), h, font=font(SANS_B, 24), fill=fg)
+    img.save(path, "JPEG", quality=94)
+
+
 # ---------- 캐러셀 슬라이드 ----------
 def frame(d, theme_idx, page, total, section_en, section_ko):
     """공통 틀: 마스트헤드 + 섹션 제목 + 푸터. (img, dr, y시작, 색상) 반환"""
@@ -361,32 +449,43 @@ def frame(d, theme_idx, page, total, section_en, section_ko):
     return img, dr, 380, (bg, fg, sub, accent), M
 
 
-def render_slides(d, outdir, theme_idx=0, photo=None):
+def render_slides(d, outdir, theme_idx=0, photo=None, photo2=None):
     os.makedirs(outdir, exist_ok=True)
-    total = 6
+    total = 7
     paths = []
 
     # 1. 표지
     p = os.path.join(outdir, "01.jpg")
-    render_card(d, p, theme_idx, photo, cover=True)
-    img = Image.open(p)
-    dr = ImageDraw.Draw(img)
-    _, fg, sub, accent = ED_THEMES[theme_idx % len(ED_THEMES)]
-    t = "SWIPE  →"
-    f = font(SANS_B, 24)
-    tracked(dr, (W - 72 - dr.textlength(t, font=f) - 30, 142), t, f, accent, 3)
-    img.save(p, "JPEG", quality=94)
+    if photo is not None:
+        render_photo_cover(d, p, theme_idx, photo[0], photo[1])
+    else:
+        render_card(d, p, theme_idx, None, cover=True)
+        img = Image.open(p)
+        dr = ImageDraw.Draw(img)
+        accent = ED_THEMES[theme_idx % len(ED_THEMES)][3]
+        t, f = "SWIPE  →", font(SANS_B, 24)
+        tracked(dr, (W - 72 - dr.textlength(t, font=f) - 30, 142), t, f, accent, 3)
+        img.save(p, "JPEG", quality=94)
     paths.append(p)
 
-    # 2. 무슨 일이야
+    # 2. 무슨 일이야 (사진이 있으면 위쪽에 사진 띠)
     img, dr, y, (bg, fg, sub, accent), M = frame(d, theme_idx, 2, total, "WHAT HAPPENED", "무슨 일이야?")
-    f_b = font(SANS_R, 50)
+    if photo2 is not None:
+        band = cover_crop(photo2[0], W - 2 * M, 400)
+        img.paste(band, (M, 330))
+        dr = ImageDraw.Draw(img)
+        dr.rectangle((M, 330, W - M, 730), fill=None)
+        cap = f"Photo: {photo2[1]} / Pexels" if photo2[1] else "Photo: Pexels"
+        dr.text((M, 740), cap, font=font(SANS_R, 20), fill=sub)
+        y, f_b, lh, gap = 800, font(SANS_R, 40), 58, 30
+    else:
+        f_b, lh, gap = font(SANS_R, 50), 74, 70
     for i, sent in enumerate(d.get("what", [])[:3]):
-        dr.rectangle((M, y + 14, M + 8, y + 58), fill=accent if i == 0 else sub)
-        for ln in wrap(sent, f_b, dr, W - 2 * M - 36):
+        dr.rectangle((M, y + lh // 5, M + 8, y + lh - 14), fill=accent if i == 0 else sub)
+        for ln in wrap(sent, f_b, dr, W - 2 * M - 36)[:2]:
             dr.text((M + 36, y), ln, font=f_b, fill=fg)
-            y += 74
-        y += 70
+            y += lh
+        y += gap
     p = os.path.join(outdir, "02.jpg"); img.save(p, "JPEG", quality=94); paths.append(p)
 
     # 3. 핵심 요약
@@ -431,20 +530,41 @@ def render_slides(d, outdir, theme_idx=0, photo=None):
         y += 70
     p = os.path.join(outdir, "05.jpg"); img.save(p, "JPEG", quality=94); paths.append(p)
 
-    # 6. 에디터 코멘트 + 팔로우
+    # 6. 에디터 코멘트 + 댓글 토론 질문
     img, dr, y, (bg, fg, sub, accent), M = frame(d, theme_idx, 6, total, "EDITOR'S NOTE", "에디터의 한 줄")
-    y += 40
-    dr.text((M, y), "“", font=font(SERIF_BLACK, 180), fill=accent)
-    y += 170
-    f_q = font(SERIF_BLACK, 66)
-    for ln in wrap(d.get("oneliner", ""), f_q, dr, W - 2 * M)[:3]:
+    dr.text((M, y - 10), "“", font=font(SERIF_BLACK, 140), fill=accent)
+    y += 120
+    f_q = font(SERIF_BLACK, 58)
+    for ln in wrap(d.get("oneliner", ""), f_q, dr, W - 2 * M)[:2]:
         dr.text((M, y), ln, font=f_q, fill=fg)
-        y += 92
-    by = H - 330
-    dr.line((M, by, W - M, by), fill=sub, width=1)
-    dr.text((M, by + 34), "매일 아침·점심·저녁, 오늘의 이슈를 찝어드려요", font=font(SANS_R, 32), fill=fg)
-    tracked(dr, (M, by + 96), "FOLLOW  @daily.jjip", font(SANS_B, 36), accent, 4)
+        y += 80
+    deb = d.get("debate") or {}
+    if isinstance(deb, dict) and deb.get("question"):
+        by = 780
+        dr.line((M, by, W - M, by), fill=sub, width=1)
+        tracked(dr, (M, by + 34), "TALK  —  여러분 생각은?", font(SANS_B, 26), accent, 3)
+        qy = by + 84
+        for ln in wrap(deb["question"], font(SANS_B, 46), dr, W - 2 * M)[:2]:
+            dr.text((M, qy), ln, font=font(SANS_B, 46), fill=fg)
+            qy += 64
+        qy += 20
+        half = (W - 2 * M - 24) // 2
+        for i, (lab, txt) in enumerate((("A", deb.get("a", "")), ("B", deb.get("b", "")))):
+            x0 = M + i * (half + 24)
+            dr.rounded_rectangle((x0, qy, x0 + half, qy + 96), radius=48,
+                                 outline=accent if i == 0 else fg, width=3)
+            t = f"{lab}. {txt}"
+            f = fit_font(SANS_B, t, half - 40, 34, 22, dr)
+            dr.text((x0 + (half - dr.textlength(t, font=f)) / 2, qy + 28), t, font=f, fill=fg)
+        qy += 124
+        t = "댓글로 A 또는 B를 남겨주세요"
+        dr.text(((W - dr.textlength(t, font=font(SANS_R, 30))) / 2, qy), t, font=font(SANS_R, 30), fill=sub)
     p = os.path.join(outdir, "06.jpg"); img.save(p, "JPEG", quality=94); paths.append(p)
+
+    # 7. 팔로우 요청
+    p = os.path.join(outdir, "07.jpg")
+    render_follow(d, p, theme_idx)
+    paths.append(p)
     return paths
 
 
@@ -473,14 +593,18 @@ def ig_publish(image_urls, caption):
 
 
 def generate():
-    """1단계: 이슈 선정·취재 + 슬라이드 6장 생성"""
+    """1단계: 이슈 선정·취재 + 슬라이드 7장 생성"""
     os.makedirs(OUT_DIR, exist_ok=True)
     history = load_history()
     d = pick_issue(fetch_news(), history)
     stamp = datetime.datetime.utcnow().strftime("%Y%m%d_%H%M")
     d["stamp"], d["issue_no"] = stamp, len(history) + 1
-    photo = pexels_photo(d.get("image_query", ""))
-    paths = render_slides(d, os.path.join(OUT_DIR, stamp), theme_idx=len(history), photo=photo)
+    qs = d.get("image_queries") or [d.get("image_query", "")]
+    photo = pexels_photo(qs[0], "portrait")
+    photo2 = pexels_photo(qs[1] if len(qs) > 1 else qs[0], "landscape",
+                          skip_ids=(photo[2],) if photo else ())
+    paths = render_slides(d, os.path.join(OUT_DIR, stamp), theme_idx=len(history),
+                          photo=photo, photo2=photo2)
     d["images"] = [f"{stamp}/{os.path.basename(p)}" for p in paths]
     json.dump(d, open(PENDING, "w", encoding="utf-8"), ensure_ascii=False, indent=2)
     print(json.dumps(d, ensure_ascii=False, indent=2))
@@ -489,7 +613,10 @@ def generate():
 def publish():
     """2단계: 이미지가 공개 URL에 올라간 뒤 인스타 캐러셀 게시"""
     d = json.load(open(PENDING, encoding="utf-8"))
-    caption = f"{d['caption']}\n\n{' '.join(d['hashtags'])}"
+    deb = d.get("debate") or {}
+    talk = (f"\n\n💬 {deb['question']}\nA. {deb.get('a', '')}  vs  B. {deb.get('b', '')}\n댓글로 여러분 생각을 남겨주세요 👇"
+            if isinstance(deb, dict) and deb.get("question") else "")
+    caption = f"{d['caption']}{talk}\n\n📌 매일 아침·점심·저녁 이슈를 찝어드려요 → @daily.jjip\n\n{' '.join(d['hashtags'])}"
     if DRY_RUN:
         print("DRY_RUN=true → 게시 생략. posts 폴더의 이미지를 확인하세요.")
         post_id = None
