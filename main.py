@@ -109,12 +109,23 @@ def pick_issue(news, history):
  "sources": ["참고한 언론사명 2~3개"],
  "source_title": "근거로 쓴 헤드라인 원문"}}"""
     client = Anthropic()
-    msg = client.messages.create(
-        model=MODEL, max_tokens=4000,
-        tools=[{"type": "web_search_20250305", "name": "web_search", "max_uses": 3}],
-        messages=[{"role": "user", "content": prompt}])
-    text = "".join(b.text for b in msg.content if getattr(b, "type", "") == "text")
-    data = extract_json(text)
+    tools = [{"type": "web_search_20250305", "name": "web_search", "max_uses": 3}]
+    messages = [{"role": "user", "content": prompt}]
+    data = None
+    for _ in range(4):
+        msg = client.messages.create(model=MODEL, max_tokens=8000, tools=tools, messages=messages)
+        messages.append({"role": "assistant", "content": msg.content})
+        text = "".join(b.text for b in msg.content if getattr(b, "type", "") == "text")
+        try:
+            data = extract_json(text)
+            break
+        except ValueError:
+            pass
+        if msg.stop_reason == "pause_turn":
+            continue  # 검색 도중 멈춘 경우 이어서 진행
+        messages.append({"role": "user", "content": "지금까지 확인한 내용으로 위에서 요청한 JSON만 출력하세요. 다른 말은 쓰지 마세요."})
+    if data is None:
+        raise ValueError("여러 번 시도했지만 JSON을 받지 못했습니다")
     src = next((x for x in news if x["title"] == data.get("source_title")), None)
     data["source_link"] = src["link"] if src else ""
     return data
