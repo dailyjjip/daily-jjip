@@ -12,7 +12,8 @@ MODEL = "claude-sonnet-5-5"
 IG_USER_ID = os.getenv("IG_USER_ID")
 IG_TOKEN = os.getenv("IG_ACCESS_TOKEN")
 IMAGE_BASE_URL = os.getenv("IMAGE_BASE_URL")              # 예: https://raw.githubusercontent.com/아이디/저장소/main/posts
-PEXELS_KEY = os.getenv("PEXELS_API_KEY")                  # 있으면 무료 상업용 사진 사용, 없으면 3D 아이콘
+PEXELS_KEY = os.getenv("PEXELS_API_KEY")
+PIXABAY_KEY = os.getenv("PIXABAY_API_KEY")                # 무료 사진(상업적 이용 가능, 출처 표기 불필요)                  # 있으면 무료 상업용 사진 사용, 없으면 3D 아이콘
 DRY_RUN = os.getenv("DRY_RUN", "true").lower() == "true"  # true면 이미지만 만들고 게시 안 함
 EMOJI_DIR = os.getenv("EMOJI_DIR", "emoji/package/assets")  # Fluent 3D 이모지(MIT 라이선스)
 HISTORY, PENDING, OUT_DIR = "posted.json", "pending.json", "posts"
@@ -128,6 +129,31 @@ def emoji_img(ch):
     return None
 
 
+def pixabay_photo(query, orientation="portrait", skip_ids=()):
+    """Pixabay 무료 사진. 반환: (이미지, 출처 표기, 사진 id) 또는 None"""
+    if not PIXABAY_KEY or not query:
+        return None
+    try:
+        r = requests.get("https://pixabay.com/api/", params={
+            "key": PIXABAY_KEY, "q": query, "image_type": "photo", "safesearch": "true",
+            "orientation": "vertical" if orientation == "portrait" else "horizontal",
+            "per_page": 10, "order": "popular"}, timeout=20).json()
+        hits = [h for h in (r.get("hits") or []) if h["id"] not in skip_ids]
+        if not hits:
+            return None
+        h = random.choice(hits[:5])
+        img = Image.open(io.BytesIO(requests.get(h["largeImageURL"], timeout=30).content)).convert("RGB")
+        return img, f"{h.get('user', '')} / Pixabay", h["id"]
+    except Exception as e:
+        print("Pixabay 사진 실패:", e)
+        return None
+
+
+def get_photo(query, orientation="portrait", skip_ids=()):
+    """Pixabay → Pexels 순서로 시도"""
+    return pixabay_photo(query, orientation, skip_ids) or pexels_photo(query, orientation, skip_ids)
+
+
 def pexels_photo(query, orientation="portrait", skip_ids=()):
     """Pexels 무료 사진(상업적 이용 가능, 출처 표기 권장). 실패하면 None.
     반환: (PIL 이미지, 사진작가 이름, 사진 id)"""
@@ -142,7 +168,7 @@ def pexels_photo(query, orientation="portrait", skip_ids=()):
             return None
         p = random.choice(photos[:5])
         img = Image.open(io.BytesIO(requests.get(p["src"]["large2x"], timeout=30).content)).convert("RGB")
-        return img, p.get("photographer", ""), p["id"]
+        return img, f"{p.get('photographer', '')} / Pexels", p["id"]
     except Exception as e:
         print("사진 가져오기 실패, 글자 디자인으로 대체:", e)
         return None
@@ -387,7 +413,7 @@ def render_photo_cover(d, path, theme_idx, photo, credit):
         dr.text((M, y), ln, font=f_head, fill=white)
         y += 136
     dr.line((M, H - 96, W - M, H - 96), fill=white, width=2)
-    dr.text((M, H - 74), f"Photo: {credit} / Pexels" if credit else "Photo: Pexels", font=font(SANS_R, 22), fill="#CCCCCC")
+    dr.text((M, H - 74), f"Photo: {credit}", font=font(SANS_R, 22), fill="#CCCCCC")
     t = "SWIPE  →"
     tracked(dr, (W - M - dr.textlength(t, font=font(SANS_B, 24)) - 30, H - 76), t, font(SANS_B, 24), accent, 3)
     img.save(path, "JPEG", quality=94)
@@ -484,7 +510,7 @@ def render_slides(d, outdir, theme_idx=0, photo=None, photo2=None):
         img.paste(band, (M, 330))
         dr = ImageDraw.Draw(img)
         dr.rectangle((M, 330, W - M, 730), fill=None)
-        cap = f"Photo: {photo2[1]} / Pexels" if photo2[1] else "Photo: Pexels"
+        cap = f"Photo: {photo2[1]}"
         dr.text((M, 740), cap, font=font(SANS_R, 20), fill=sub)
         y, f_b, lh, gap = 800, font(SANS_R, 40), 58, 30
     else:
@@ -609,8 +635,8 @@ def generate():
     stamp = datetime.datetime.utcnow().strftime("%Y%m%d_%H%M")
     d["stamp"], d["issue_no"] = stamp, len(history) + 1
     qs = d.get("image_queries") or [d.get("image_query", "")]
-    photo = pexels_photo(qs[0], "portrait")
-    photo2 = pexels_photo(qs[1] if len(qs) > 1 else qs[0], "landscape",
+    photo = get_photo(qs[0], "portrait")
+    photo2 = get_photo(qs[1] if len(qs) > 1 else qs[0], "landscape",
                           skip_ids=(photo[2],) if photo else ())
     paths = render_slides(d, os.path.join(OUT_DIR, stamp), theme_idx=len(history),
                           photo=photo, photo2=photo2)
