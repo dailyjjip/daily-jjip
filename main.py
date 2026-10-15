@@ -82,7 +82,7 @@ def pick_issue(news, history):
     client = Anthropic()
     msg = client.messages.create(model=MODEL, max_tokens=1500,
                                  messages=[{"role": "user", "content": prompt}])
-    text = msg.content[0].text
+    text = "".join(b.text for b in msg.content if getattr(b, "type", "") == "text")
     data = json.loads(text[text.find("{"): text.rfind("}") + 1])
     src = next((x for x in news if x["title"] == data.get("source_title")), None)
     data["source_link"] = src["link"] if src else ""
