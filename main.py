@@ -668,4 +668,9 @@ def publish():
 
 if __name__ == "__main__":
     import sys
-    {"generate": generate, "publish": publish}[sys.argv[1]]()
+    import traceback
+    try:
+        {"generate": generate, "publish": publish}[sys.argv[1]]()
+    except Exception:
+        open("last_error.txt", "w", encoding="utf-8").write(traceback.format_exc())
+        raise
