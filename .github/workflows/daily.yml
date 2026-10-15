@@ -2,10 +2,14 @@ name: 오늘의 이슈 카드뉴스
 
 on:
   schedule:
-    # 한국시간 08:10 / 12:10 / 19:10 (UTC 기준으로 9시간 빼서 적음)
+    # 한국시간 (UTC 기준으로 9시간 빼서 적음)
+    # 기본 3회: 08:10 / 12:10 / 19:10
     - cron: "10 23 * * *"
     - cron: "10 3 * * *"
     - cron: "10 10 * * *"
+    # 추가 2회 (2026-11-15까지만): 10:10 / 16:10
+    - cron: "10 1 * * *"
+    - cron: "10 7 * * *"
   workflow_dispatch: {}   # 깃허브 화면에서 수동 실행 버튼
 
 permissions:
@@ -15,24 +19,40 @@ jobs:
   post:
     runs-on: ubuntu-latest
     steps:
+      - name: 추가 시간대 종료 여부 확인
+        id: gate
+        run: |
+          TODAY=$(TZ=Asia/Seoul date +%Y%m%d)
+          SCHED="${{ github.event.schedule }}"
+          if { [ "$SCHED" = "10 1 * * *" ] || [ "$SCHED" = "10 7 * * *" ]; } && [ "$TODAY" -gt 20261115 ]; then
+            echo "추가 시간대 운영 기간 종료 → 이번 실행은 건너뜁니다"
+            echo "skip=true" >> "$GITHUB_OUTPUT"
+          fi
+
       - uses: actions/checkout@v4
+        if: steps.gate.outputs.skip != 'true'
 
       - name: 한글 폰트 설치
+        if: steps.gate.outputs.skip != 'true'
         run: sudo apt-get update && sudo apt-get install -y fonts-noto-cjk fonts-noto-cjk-extra
 
       - name: 3D 아이콘 받기 (Fluent Emoji 3D, MIT 라이선스)
+        if: steps.gate.outputs.skip != 'true'
         run: |
           mkdir -p emoji && cd emoji
           npm pack @lobehub/fluent-emoji-3d --silent
           tar xzf *.tgz
 
       - uses: actions/setup-python@v5
+        if: steps.gate.outputs.skip != 'true'
         with:
           python-version: "3.12"
 
       - run: pip install -r requirements.txt
+        if: steps.gate.outputs.skip != 'true'
 
       - name: 1) 이슈 선정 + 카드 생성
+        if: steps.gate.outputs.skip != 'true'
         env:
           ANTHROPIC_API_KEY: ${{ secrets.ANTHROPIC_API_KEY }}
           PEXELS_API_KEY: ${{ secrets.PEXELS_API_KEY }}
@@ -40,6 +60,7 @@ jobs:
         run: python main.py generate
 
       - name: 이미지 업로드 (공개 URL 만들기)
+        if: steps.gate.outputs.skip != 'true'
         run: |
           git config user.name "cardnews-bot"
           git config user.email "bot@users.noreply.github.com"
@@ -49,6 +70,7 @@ jobs:
           sleep 20
 
       - name: 2) 인스타그램 게시
+        if: steps.gate.outputs.skip != 'true'
         env:
           IG_USER_ID: ${{ secrets.IG_USER_ID }}
           IG_ACCESS_TOKEN: ${{ secrets.IG_ACCESS_TOKEN }}
@@ -57,6 +79,7 @@ jobs:
         run: python main.py publish
 
       - name: 게시 기록 저장
+        if: steps.gate.outputs.skip != 'true'
         run: |
           git add -A
           git commit -m "posted" || true

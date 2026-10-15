@@ -442,7 +442,7 @@ def render_follow(d, path, theme_idx):
     dr.line((M, 112, W - M, 112), fill=fg, width=3)
     # 큰 문구
     y = 330
-    kick, lines = "3 TIMES A DAY", ["세상 돌아가는 일,", "딱 찝어서."]
+    kick, lines = "EVERY DAY", ["세상 돌아가는 일,", "딱 찝어서."]
     tracked(dr, (M, y), kick, font(SANS_B, 26), accent, 6)
     y += 70
     size = 150
@@ -454,7 +454,7 @@ def render_follow(d, path, theme_idx):
     y += 40
     dr.text((M, y), "오늘 꼭 알아야 할 이슈만 골라 정리합니다.", font=font(SANS_R, 36), fill=fg)
     y += 56
-    dr.text((M, y), "아침 8시 · 점심 12시 · 저녁 7시", font=font(SANS_R, 36), fill=sub)
+    dr.text((M, y), "매일 아침부터 저녁까지 업데이트", font=font(SANS_R, 36), fill=sub)
     y += 110
     # 팔로우 버튼
     dr.rounded_rectangle((M, y, W - M, y + 120), radius=60, fill=accent)
@@ -663,7 +663,7 @@ def publish():
     deb = d.get("debate") or {}
     talk = (f"\n\n💬 {deb['question']}\nA. {deb.get('a', '')}  vs  B. {deb.get('b', '')}\n댓글로 여러분 생각을 남겨주세요 👇"
             if isinstance(deb, dict) and deb.get("question") else "")
-    caption = f"{d['caption']}{talk}\n\n📌 매일 아침·점심·저녁 이슈를 찝어드려요 → @daily.jjip\n\n{' '.join(d['hashtags'])}"
+    caption = f"{d['caption']}{talk}\n\n📌 매일 오늘의 이슈를 찝어드려요 → @daily.jjip\n\n{' '.join(d['hashtags'])}"
     if DRY_RUN:
         print("DRY_RUN=true → 게시 생략. posts 폴더의 이미지를 확인하세요.")
         post_id = None
