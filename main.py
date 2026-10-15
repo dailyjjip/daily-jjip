@@ -620,7 +620,7 @@ def render_slides(d, outdir, theme_idx=0, photo=None, photo2=None):
 # ---------- 인스타 게시 ----------
 def ig_publish(image_urls, caption):
     """이미지 여러 장을 캐러셀(넘겨보기) 게시물로 올린다."""
-    base = f"https://graph.instagram.com/v21.0/{IG_USER_ID}"
+    base = f"https://graph.instagram.com/v21.0/{IG_USER_ID or 'me'}"
     children = []
     for u in image_urls:
         r = requests.post(f"{base}/media", data={
