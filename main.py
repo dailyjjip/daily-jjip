@@ -80,7 +80,8 @@ def pick_issue(news, history):
 
 1) 이 중 일반 대중이 가장 관심 가질 이슈 1개를 고르세요.
 2) web_search로 그 이슈의 최신 기사 2~3개를 확인해 구체적인 사실과 수치를 모으세요.
-3) 매거진 스타일(아이즈매거진, 디에디트 같은 에디토리얼 톤) 인스타 캐러셀 6장 문구를 쓰세요.
+3) 매거진 스타일(아이즈매거진, 디에디트 같은 에디토리얼 톤) 인스타 캐러셀 문구를 쓰세요.
+   순서: 표지 → 무슨 일이야 → 세부 내용 → 요약 및 앞으로 주목할 포인트 → 에디터 한 줄 + 토론 질문 → 팔로우
 
 규칙:
 - 검색으로 확인한 사실만 사용. 확인 안 된 수치는 쓰지 말 것. 추측·과장·특정인 비방 금지.
@@ -96,9 +97,10 @@ def pick_issue(news, history):
  "big_number": "이슈를 대표하는 숫자나 짧은 키워드, 6자 이내",
  "big_label": "big_number 설명, 14자 이내",
  "what": ["무슨 일인지 설명하는 문장 3개, 각 38자 이내"],
- "points": ["핵심 요약 3개, 각 22자 이내"],
- "numbers": [{{"value": "수치, 7자 이내", "label": "설명, 16자 이내"}}, "... 3개"],
- "watch": [{{"head": "주목할 포인트 제목, 14자 이내", "body": "설명, 40자 이내"}}, "... 3개"],
+ "numbers": [{{"value": "핵심 수치, 7자 이내", "label": "설명, 12자 이내"}}, "... 3개"],
+ "details": [{{"head": "세부 내용 소제목, 14자 이내", "body": "배경·맥락·구체적 사실, 44자 이내"}}, "... 3개"],
+ "points": ["전체 요약 3개, 각 22자 이내"],
+ "watch": [{{"head": "앞으로 주목할 포인트, 14자 이내", "body": "예정된 일정·발표·변수 위주, 40자 이내"}}, "... 2개"],
  "oneliner": "에디터 코멘트 한 문장, 26자 이내, 제목과 다른 관점",
  "debate": {{"question": "댓글 토론을 부르는 질문, 24자 이내. 찬반이 실제로 갈리는 생활 밀착형 질문", "a": "선택지 A, 12자 이내", "b": "선택지 B, 12자 이내"}},
  "image_queries": ["표지용 사진 검색 영어 키워드 2~4단어 (이슈를 한눈에 보여주는 실사 장면, 예: seoul apartment buildings)", "본문용 사진 검색 영어 키워드 2~4단어 (표지와 다른 장면)"],
@@ -429,12 +431,7 @@ def render_follow(d, path, theme_idx):
     dr.line((M, 112, W - M, 112), fill=fg, width=3)
     # 큰 문구
     y = 330
-    variants = [
-        ("DON'T READ IT ALL", ["길게 읽지 마세요.", "찝어드릴게요."]),
-        ("JUST THE POINT", ["뉴스는 많고,", "핵심은 하나."]),
-        ("3 TIMES A DAY", ["세상 돌아가는 일,", "딱 찝어서."]),
-    ]
-    kick, lines = variants[(d.get("issue_no", 1) - 1) % len(variants)]
+    kick, lines = "3 TIMES A DAY", ["세상 돌아가는 일,", "딱 찝어서."]
     tracked(dr, (M, y), kick, font(SANS_B, 26), accent, 6)
     y += 70
     size = 150
@@ -486,7 +483,7 @@ def frame(d, theme_idx, page, total, section_en, section_ko):
 
 def render_slides(d, outdir, theme_idx=0, photo=None, photo2=None):
     os.makedirs(outdir, exist_ok=True)
-    total = 7
+    total = 6
     paths = []
 
     # 1. 표지
@@ -523,50 +520,54 @@ def render_slides(d, outdir, theme_idx=0, photo=None, photo2=None):
         y += gap
     p = os.path.join(outdir, "02.jpg"); img.save(p, "JPEG", quality=94); paths.append(p)
 
-    # 3. 핵심 요약
-    img, dr, y, (bg, fg, sub, accent), M = frame(d, theme_idx, 3, total, "IN SHORT", "세 줄 요약")
-    y += 10
-    for i, pt in enumerate(d.get("points", [])[:3], 1):
-        dr.text((M, y), f"0{i}", font=font(SERIF_BLACK, 140), fill=accent)
-        lines = wrap(pt, font(SANS_B, 52), dr, W - 2 * M - 230)
-        ty = y + 52 - (len(lines) - 1) * 34
-        for ln in lines[:2]:
-            dr.text((M + 230, ty), ln, font=font(SANS_B, 52), fill=fg)
-            ty += 68
-        y += 250
-        if i < 3:
-            dr.line((M, y - 30, W - M, y - 30), fill=sub, width=1)
+    # 3. 세부 내용 (숫자 3개 + 소제목 3개)
+    img, dr, y, (bg, fg, sub, accent), M = frame(d, theme_idx, 3, total, "DETAILS", "세부 내용")
+    nums = [n for n in d.get("numbers", []) if isinstance(n, dict)][:3]
+    if nums:
+        col = (W - 2 * M) // len(nums)
+        for i, n in enumerate(nums):
+            x0 = M + i * col
+            f_v = fit_font(SERIF_BLACK, n.get("value", ""), col - 24, 96, 44, dr)
+            dr.text((x0, y), n.get("value", ""), font=f_v, fill=accent)
+            dr.text((x0, y + 118), wrap(n.get("label", ""), font(SANS_R, 26), dr, col - 24)[0],
+                    font=font(SANS_R, 26), fill=sub)
+        y += 190
+        dr.line((M, y, W - M, y), fill=sub, width=1)
+        y += 40
+    for det in [x for x in d.get("details", []) if isinstance(x, dict)][:3]:
+        dr.rectangle((M, y + 10, M + 10, y + 52), fill=accent)
+        dr.text((M + 34, y), det.get("head", ""), font=font(SANS_B, 44), fill=fg)
+        y += 70
+        for ln in wrap(det.get("body", ""), font(SANS_R, 36), dr, W - 2 * M - 34)[:2]:
+            dr.text((M + 34, y), ln, font=font(SANS_R, 36), fill=sub)
+            y += 52
+        y += 40
     p = os.path.join(outdir, "03.jpg"); img.save(p, "JPEG", quality=94); paths.append(p)
 
-    # 4. 숫자로 보기
-    img, dr, y, (bg, fg, sub, accent), M = frame(d, theme_idx, 4, total, "BY THE NUMBERS", "숫자로 보기")
-    for n in d.get("numbers", [])[:3]:
-        if not isinstance(n, dict):
-            continue
-        f_v = fit_font(SERIF_BLACK, n.get("value", ""), W - 2 * M, 150, 80, dr)
-        bb = dr.textbbox((0, 0), n.get("value", ""), font=f_v)
-        dr.text((M - bb[0], y - bb[1]), n.get("value", ""), font=f_v, fill=accent)
-        y += (bb[3] - bb[1]) + 22
-        dr.text((M, y), n.get("label", ""), font=font(SANS_B, 38), fill=fg)
-        y += 110
+    # 4. 요약 + 앞으로 주목할 포인트
+    img, dr, y, (bg, fg, sub, accent), M = frame(d, theme_idx, 4, total, "SUMMARY & NEXT", "정리하면")
+    tracked(dr, (M, y), "SUMMARY", font(SANS_B, 24), accent, 5)
+    y += 50
+    for i, pt in enumerate(d.get("points", [])[:3], 1):
+        dr.text((M, y - 6), f"0{i}", font=font(SERIF_BLACK, 56), fill=accent)
+        dr.text((M + 96, y), wrap(pt, font(SANS_B, 42), dr, W - 2 * M - 96)[0], font=font(SANS_B, 42), fill=fg)
+        y += 84
+    y += 20
+    dr.line((M, y, W - M, y), fill=sub, width=1)
+    y += 40
+    tracked(dr, (M, y), "WATCH NEXT  —  앞으로 주목할 포인트", font(SANS_B, 24), accent, 3)
+    y += 60
+    for w in [x for x in d.get("watch", []) if isinstance(x, dict)][:2]:
+        dr.text((M, y), "→  " + w.get("head", ""), font=font(SANS_B, 42), fill=fg)
+        y += 64
+        for ln in wrap(w.get("body", ""), font(SANS_R, 34), dr, W - 2 * M - 56)[:2]:
+            dr.text((M + 56, y), ln, font=font(SANS_R, 34), fill=sub)
+            y += 50
+        y += 36
     p = os.path.join(outdir, "04.jpg"); img.save(p, "JPEG", quality=94); paths.append(p)
 
-    # 5. 주목할 포인트
-    img, dr, y, (bg, fg, sub, accent), M = frame(d, theme_idx, 5, total, "WATCH", "주목할 포인트")
-    for w in d.get("watch", [])[:3]:
-        if not isinstance(w, dict):
-            continue
-        dr.rectangle((M, y + 12, M + 10, y + 62), fill=accent)
-        dr.text((M + 36, y), w.get("head", ""), font=font(SANS_B, 52), fill=fg)
-        y += 88
-        for ln in wrap(w.get("body", ""), font(SANS_R, 40), dr, W - 2 * M - 36)[:2]:
-            dr.text((M + 36, y), ln, font=font(SANS_R, 40), fill=sub)
-            y += 60
-        y += 70
-    p = os.path.join(outdir, "05.jpg"); img.save(p, "JPEG", quality=94); paths.append(p)
-
     # 6. 에디터 코멘트 + 댓글 토론 질문
-    img, dr, y, (bg, fg, sub, accent), M = frame(d, theme_idx, 6, total, "EDITOR'S NOTE", "에디터의 한 줄")
+    img, dr, y, (bg, fg, sub, accent), M = frame(d, theme_idx, 5, total, "EDITOR'S NOTE", "에디터의 한 줄")
     dr.text((M, y - 10), "“", font=font(SERIF_BLACK, 140), fill=accent)
     y += 120
     f_q = font(SERIF_BLACK, 58)
@@ -594,10 +595,10 @@ def render_slides(d, outdir, theme_idx=0, photo=None, photo2=None):
         qy += 124
         t = "댓글로 A 또는 B를 남겨주세요"
         dr.text(((W - dr.textlength(t, font=font(SANS_R, 30))) / 2, qy), t, font=font(SANS_R, 30), fill=sub)
-    p = os.path.join(outdir, "06.jpg"); img.save(p, "JPEG", quality=94); paths.append(p)
+    p = os.path.join(outdir, "05.jpg"); img.save(p, "JPEG", quality=94); paths.append(p)
 
-    # 7. 팔로우 요청
-    p = os.path.join(outdir, "07.jpg")
+    # 6. 팔로우 요청
+    p = os.path.join(outdir, "06.jpg")
     render_follow(d, p, theme_idx)
     paths.append(p)
     return paths
@@ -628,7 +629,7 @@ def ig_publish(image_urls, caption):
 
 
 def generate():
-    """1단계: 이슈 선정·취재 + 슬라이드 7장 생성"""
+    """1단계: 이슈 선정·취재 + 슬라이드 6장 생성"""
     os.makedirs(OUT_DIR, exist_ok=True)
     history = load_history()
     d = pick_issue(fetch_news(), history)
