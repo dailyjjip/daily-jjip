@@ -527,7 +527,7 @@ def render_slides(d, outdir, theme_idx=0, photo=None, photo2=None):
         col = (W - 2 * M) // len(nums)
         for i, n in enumerate(nums):
             x0 = M + i * col
-            f_v = fit_font(SERIF_BLACK, n.get("value", ""), col - 24, 96, 44, dr)
+            f_v = fit_font(SERIF_BLACK, n.get("value", ""), col - 48, 96, 40, dr)
             dr.text((x0, y), n.get("value", ""), font=f_v, fill=accent)
             dr.text((x0, y + 118), wrap(n.get("label", ""), font(SANS_R, 26), dr, col - 24)[0],
                     font=font(SANS_R, 26), fill=sub)
