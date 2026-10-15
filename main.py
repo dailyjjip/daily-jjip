@@ -50,8 +50,24 @@ def fetch_news(n=30):
     return [{"title": e.title, "link": e.link} for e in feed.entries[:n]]
 
 
+def extract_json(text):
+    """응답 글 속에서 headline이 들어있는 마지막 JSON 객체를 찾아낸다."""
+    dec, found = json.JSONDecoder(), None
+    for i, ch in enumerate(text):
+        if ch == "{":
+            try:
+                obj, _ = dec.raw_decode(text[i:])
+                if isinstance(obj, dict) and "headline" in obj:
+                    found = obj
+            except ValueError:
+                pass
+    if found is None:
+        raise ValueError("응답에서 JSON을 찾지 못했습니다:\n" + text[-800:])
+    return found
+
+
 def pick_issue(news, history):
-    """Claude가 아직 안 다룬 이슈 1개를 골라 카드 문구와 비주얼 키워드를 만든다."""
+    """Claude가 이슈 1개를 고르고, 웹 검색으로 사실을 확인해 슬라이드 6장 분량의 문구를 만든다."""
     from anthropic import Anthropic
     done = "\n".join(h["headline"] for h in history[-30:])
     items = "\n".join(f"- {x['title']}" for x in news)
@@ -61,30 +77,39 @@ def pick_issue(news, history):
 최근 이미 게시한 주제(중복 금지):
 {done or '(없음)'}
 
-이 중 일반 대중이 가장 관심 가질 이슈 1개를 골라 매거진 스타일(아이즈매거진, 디에디트 같은 에디토리얼 톤) 카드 문구를 쓰세요.
+1) 이 중 일반 대중이 가장 관심 가질 이슈 1개를 고르세요.
+2) web_search로 그 이슈의 최신 기사 2~3개를 확인해 구체적인 사실과 수치를 모으세요.
+3) 매거진 스타일(아이즈매거진, 디에디트 같은 에디토리얼 톤) 인스타 캐러셀 6장 문구를 쓰세요.
+
 규칙:
-- 헤드라인에 있는 사실만 사용. 추측·과장·특정인 비방 금지. 사건사고 피해자 조롱 금지.
+- 검색으로 확인한 사실만 사용. 확인 안 된 수치는 쓰지 말 것. 추측·과장·특정인 비방 금지.
 - 정치 이슈는 중립적으로. 사망·참사 이슈는 고르지 말 것.
 - 유치한 감탄·밈 표현 금지. 짧고 단단한 문장, 잡지 헤드라인처럼 위트 있게.
-- 제목과 한줄 코멘트는 서로 다른 내용이어야 함(반복 금지).
+- 같은 문장을 여러 장에서 반복하지 말 것. 글자 수 제한을 반드시 지킬 것.
 
-아래 JSON만 출력:
+마지막에 아래 JSON만 출력(코드블록 없이):
 {{"category": "경제|사회|IT|생활|국제|스포츠|연예 중 하나",
- "kicker": "제목 위 작은 머리말, 14자 이내 (예: 숫자로 보는 오늘)",
- "headline": "큰 제목, 16자 이내, 두 줄로 나뉘기 좋게",
- "big_number": "이슈를 대표하는 숫자나 짧은 키워드 1개, 6자 이내 (예: 88, 1,400원, 0.1%p). 숫자가 없으면 핵심 단어",
- "big_label": "big_number 설명, 14자 이내 (예: 주 연속 상승)",
- "points": ["핵심 1, 22자 이내", "핵심 2, 22자 이내", "핵심 3, 22자 이내"],
+ "kicker": "표지 머리말, 14자 이내",
+ "headline": "표지 큰 제목, 16자 이내",
+ "big_number": "이슈를 대표하는 숫자나 짧은 키워드, 6자 이내",
+ "big_label": "big_number 설명, 14자 이내",
+ "what": ["무슨 일인지 설명하는 문장 3개, 각 38자 이내"],
+ "points": ["핵심 요약 3개, 각 22자 이내"],
+ "numbers": [{{"value": "수치, 7자 이내", "label": "설명, 16자 이내"}}, "... 3개"],
+ "watch": [{{"head": "주목할 포인트 제목, 14자 이내", "body": "설명, 40자 이내"}}, "... 3개"],
  "oneliner": "에디터 코멘트 한 문장, 26자 이내, 제목과 다른 관점",
  "image_query": "사진 검색용 영어 키워드 2~3단어 (사람 얼굴 없는 사물·풍경)",
  "caption": "인스타 본문 3~4문장, 마지막에 저장/공유 유도 한 문장",
  "hashtags": ["#태그", "... 8개"],
+ "sources": ["참고한 언론사명 2~3개"],
  "source_title": "근거로 쓴 헤드라인 원문"}}"""
     client = Anthropic()
-    msg = client.messages.create(model=MODEL, max_tokens=1500,
-                                 messages=[{"role": "user", "content": prompt}])
+    msg = client.messages.create(
+        model=MODEL, max_tokens=4000,
+        tools=[{"type": "web_search_20250305", "name": "web_search", "max_uses": 3}],
+        messages=[{"role": "user", "content": prompt}])
     text = "".join(b.text for b in msg.content if getattr(b, "type", "") == "text")
-    data = json.loads(text[text.find("{"): text.rfind("}") + 1])
+    data = extract_json(text)
     src = next((x for x in news if x["title"] == data.get("source_title")), None)
     data["source_link"] = src["link"] if src else ""
     return data
@@ -226,7 +251,7 @@ def fit_font(path, text, max_w, start, minimum, dr):
     return font(path, minimum)
 
 
-def render_card(d, path, theme_idx=0, photo=None):
+def render_card(d, path, theme_idx=0, photo=None, cover=False):
     bg, fg, sub, accent = ED_THEMES[theme_idx % len(ED_THEMES)]
     img = Image.new("RGB", (W, H), bg)
     dr = ImageDraw.Draw(img)
@@ -269,6 +294,9 @@ def render_card(d, path, theme_idx=0, photo=None):
         dr.text((M, y), d.get("big_label", ""), font=font(SANS_B, 34), fill=fg)
         y += 80
         head_size = 100
+    if cover:
+        head_size = 124 if photo is None else 104
+        y += 20
 
     # 헤드라인 (세리프)
     f_head = font(SERIF_BLACK, head_size)
@@ -276,6 +304,13 @@ def render_card(d, path, theme_idx=0, photo=None):
         dr.text((M, y), ln, font=f_head, fill=fg)
         y += int(head_size * 1.22)
     y += 18
+    if cover:
+        dr.line((M, H - 96, W - M, H - 96), fill=fg, width=2)
+        dr.text((M, H - 74), "오늘의 이슈를 찝어드립니다", font=font(SANS_R, 22), fill=sub)
+        h = "@daily.jjip"
+        dr.text((W - M - dr.textlength(h, font=font(SANS_B, 24)), H - 76), h, font=font(SANS_B, 24), fill=fg)
+        img.save(path, "JPEG", quality=94)
+        return
 
     # 포인트: 번호 + 얇은 구분선
     f_pt = font(SANS_R, 34)
@@ -304,14 +339,132 @@ def render_card(d, path, theme_idx=0, photo=None):
     img.save(path, "JPEG", quality=94)
 
 
+# ---------- 캐러셀 슬라이드 ----------
+def frame(d, theme_idx, page, total, section_en, section_ko):
+    """공통 틀: 마스트헤드 + 섹션 제목 + 푸터. (img, dr, y시작, 색상) 반환"""
+    bg, fg, sub, accent = ED_THEMES[theme_idx % len(ED_THEMES)]
+    img = Image.new("RGB", (W, H), bg)
+    dr = ImageDraw.Draw(img)
+    M = 72
+    tracked(dr, (M, 62), "DAILY JJIP", font(SANS_B, 26), fg, 6)
+    pg = f"{page:02d} / {total:02d}"
+    dr.text((W - M - dr.textlength(pg, font=font(SANS_R, 24)), 64), pg, font=font(SANS_R, 24), fill=sub)
+    dr.line((M, 112, W - M, 112), fill=fg, width=3)
+    x = tracked(dr, (M, 140), section_en, font(SANS_B, 24), accent, 5)
+    dr.text((x + 14, 140), "— " + d["headline"], font=font(SANS_R, 24), fill=sub)
+    dr.text((M, 200), section_ko, font=font(SERIF_BLACK, 84), fill=fg)
+    dr.line((W - M - 40, H - 96, W - M, H - 96), fill=fg, width=2)
+    dr.line((M, H - 96, W - M, H - 96), fill=fg, width=2)
+    dr.text((M, H - 74), "출처: " + ", ".join(d.get("sources", [])[:3] or ["언론 보도 종합"]), font=font(SANS_R, 22), fill=sub)
+    h = "@daily.jjip"
+    dr.text((W - M - dr.textlength(h, font=font(SANS_B, 24)), H - 76), h, font=font(SANS_B, 24), fill=fg)
+    return img, dr, 380, (bg, fg, sub, accent), M
+
+
+def render_slides(d, outdir, theme_idx=0, photo=None):
+    os.makedirs(outdir, exist_ok=True)
+    total = 6
+    paths = []
+
+    # 1. 표지
+    p = os.path.join(outdir, "01.jpg")
+    render_card(d, p, theme_idx, photo, cover=True)
+    img = Image.open(p)
+    dr = ImageDraw.Draw(img)
+    _, fg, sub, accent = ED_THEMES[theme_idx % len(ED_THEMES)]
+    t = "SWIPE  →"
+    f = font(SANS_B, 24)
+    tracked(dr, (W - 72 - dr.textlength(t, font=f) - 30, 142), t, f, accent, 3)
+    img.save(p, "JPEG", quality=94)
+    paths.append(p)
+
+    # 2. 무슨 일이야
+    img, dr, y, (bg, fg, sub, accent), M = frame(d, theme_idx, 2, total, "WHAT HAPPENED", "무슨 일이야?")
+    f_b = font(SANS_R, 50)
+    for i, sent in enumerate(d.get("what", [])[:3]):
+        dr.rectangle((M, y + 14, M + 8, y + 58), fill=accent if i == 0 else sub)
+        for ln in wrap(sent, f_b, dr, W - 2 * M - 36):
+            dr.text((M + 36, y), ln, font=f_b, fill=fg)
+            y += 74
+        y += 70
+    p = os.path.join(outdir, "02.jpg"); img.save(p, "JPEG", quality=94); paths.append(p)
+
+    # 3. 핵심 요약
+    img, dr, y, (bg, fg, sub, accent), M = frame(d, theme_idx, 3, total, "IN SHORT", "세 줄 요약")
+    y += 10
+    for i, pt in enumerate(d.get("points", [])[:3], 1):
+        dr.text((M, y), f"0{i}", font=font(SERIF_BLACK, 140), fill=accent)
+        lines = wrap(pt, font(SANS_B, 52), dr, W - 2 * M - 230)
+        ty = y + 52 - (len(lines) - 1) * 34
+        for ln in lines[:2]:
+            dr.text((M + 230, ty), ln, font=font(SANS_B, 52), fill=fg)
+            ty += 68
+        y += 250
+        if i < 3:
+            dr.line((M, y - 30, W - M, y - 30), fill=sub, width=1)
+    p = os.path.join(outdir, "03.jpg"); img.save(p, "JPEG", quality=94); paths.append(p)
+
+    # 4. 숫자로 보기
+    img, dr, y, (bg, fg, sub, accent), M = frame(d, theme_idx, 4, total, "BY THE NUMBERS", "숫자로 보기")
+    for n in d.get("numbers", [])[:3]:
+        if not isinstance(n, dict):
+            continue
+        f_v = fit_font(SERIF_BLACK, n.get("value", ""), W - 2 * M, 150, 80, dr)
+        bb = dr.textbbox((0, 0), n.get("value", ""), font=f_v)
+        dr.text((M - bb[0], y - bb[1]), n.get("value", ""), font=f_v, fill=accent)
+        y += (bb[3] - bb[1]) + 22
+        dr.text((M, y), n.get("label", ""), font=font(SANS_B, 38), fill=fg)
+        y += 110
+    p = os.path.join(outdir, "04.jpg"); img.save(p, "JPEG", quality=94); paths.append(p)
+
+    # 5. 주목할 포인트
+    img, dr, y, (bg, fg, sub, accent), M = frame(d, theme_idx, 5, total, "WATCH", "주목할 포인트")
+    for w in d.get("watch", [])[:3]:
+        if not isinstance(w, dict):
+            continue
+        dr.rectangle((M, y + 12, M + 10, y + 62), fill=accent)
+        dr.text((M + 36, y), w.get("head", ""), font=font(SANS_B, 52), fill=fg)
+        y += 88
+        for ln in wrap(w.get("body", ""), font(SANS_R, 40), dr, W - 2 * M - 36)[:2]:
+            dr.text((M + 36, y), ln, font=font(SANS_R, 40), fill=sub)
+            y += 60
+        y += 70
+    p = os.path.join(outdir, "05.jpg"); img.save(p, "JPEG", quality=94); paths.append(p)
+
+    # 6. 에디터 코멘트 + 팔로우
+    img, dr, y, (bg, fg, sub, accent), M = frame(d, theme_idx, 6, total, "EDITOR'S NOTE", "에디터의 한 줄")
+    y += 40
+    dr.text((M, y), "“", font=font(SERIF_BLACK, 180), fill=accent)
+    y += 170
+    f_q = font(SERIF_BLACK, 66)
+    for ln in wrap(d.get("oneliner", ""), f_q, dr, W - 2 * M)[:3]:
+        dr.text((M, y), ln, font=f_q, fill=fg)
+        y += 92
+    by = H - 330
+    dr.line((M, by, W - M, by), fill=sub, width=1)
+    dr.text((M, by + 34), "매일 아침·점심·저녁, 오늘의 이슈를 찝어드려요", font=font(SANS_R, 32), fill=fg)
+    tracked(dr, (M, by + 96), "FOLLOW  @daily.jjip", font(SANS_B, 36), accent, 4)
+    p = os.path.join(outdir, "06.jpg"); img.save(p, "JPEG", quality=94); paths.append(p)
+    return paths
+
+
 # ---------- 인스타 게시 ----------
-def ig_publish(image_url, caption):
+def ig_publish(image_urls, caption):
+    """이미지 여러 장을 캐러셀(넘겨보기) 게시물로 올린다."""
     base = f"https://graph.instagram.com/v21.0/{IG_USER_ID}"
+    children = []
+    for u in image_urls:
+        r = requests.post(f"{base}/media", data={
+            "image_url": u, "is_carousel_item": "true", "access_token": IG_TOKEN}).json()
+        if "id" not in r:
+            raise RuntimeError(f"슬라이드 업로드 실패: {u} {r}")
+        children.append(r["id"])
     r = requests.post(f"{base}/media", data={
-        "image_url": image_url, "caption": caption, "access_token": IG_TOKEN}).json()
+        "media_type": "CAROUSEL", "children": ",".join(children),
+        "caption": caption, "access_token": IG_TOKEN}).json()
     if "id" not in r:
-        raise RuntimeError(f"컨테이너 생성 실패: {r}")
-    time.sleep(10)  # 인스타 쪽 이미지 처리 대기
+        raise RuntimeError(f"캐러셀 생성 실패: {r}")
+    time.sleep(20)  # 인스타 쪽 처리 대기
     r2 = requests.post(f"{base}/media_publish", data={
         "creation_id": r["id"], "access_token": IG_TOKEN}).json()
     if "id" not in r2:
@@ -320,32 +473,32 @@ def ig_publish(image_url, caption):
 
 
 def generate():
-    """1단계: 이슈 선정 + 카드 이미지 생성"""
+    """1단계: 이슈 선정·취재 + 슬라이드 6장 생성"""
     os.makedirs(OUT_DIR, exist_ok=True)
     history = load_history()
     d = pick_issue(fetch_news(), history)
     stamp = datetime.datetime.utcnow().strftime("%Y%m%d_%H%M")
-    d["image"], d["stamp"] = f"{stamp}.jpg", stamp
-    d["issue_no"] = len(history) + 1
+    d["stamp"], d["issue_no"] = stamp, len(history) + 1
     photo = pexels_photo(d.get("image_query", ""))
-    render_card(d, os.path.join(OUT_DIR, d["image"]), theme_idx=len(history), photo=photo)
+    paths = render_slides(d, os.path.join(OUT_DIR, stamp), theme_idx=len(history), photo=photo)
+    d["images"] = [f"{stamp}/{os.path.basename(p)}" for p in paths]
     json.dump(d, open(PENDING, "w", encoding="utf-8"), ensure_ascii=False, indent=2)
     print(json.dumps(d, ensure_ascii=False, indent=2))
 
 
 def publish():
-    """2단계: 이미지가 공개 URL에 올라간 뒤 인스타 게시"""
+    """2단계: 이미지가 공개 URL에 올라간 뒤 인스타 캐러셀 게시"""
     d = json.load(open(PENDING, encoding="utf-8"))
     caption = f"{d['caption']}\n\n{' '.join(d['hashtags'])}"
     if DRY_RUN:
         print("DRY_RUN=true → 게시 생략. posts 폴더의 이미지를 확인하세요.")
         post_id = None
     else:
-        post_id = ig_publish(f"{IMAGE_BASE_URL}/{d['image']}", caption)
+        post_id = ig_publish([f"{IMAGE_BASE_URL}/{p}" for p in d["images"]], caption)
         print("게시 완료:", post_id)
     history = load_history()
     history.append({"date": d["stamp"], "headline": d["headline"],
-                    "source": d.get("source_link"), "image": d["image"], "post_id": post_id})
+                    "source": d.get("source_link"), "images": d["images"], "post_id": post_id})
     json.dump(history, open(HISTORY, "w", encoding="utf-8"), ensure_ascii=False, indent=2)
     os.remove(PENDING)
 
