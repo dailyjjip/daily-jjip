@@ -1,0 +1,34 @@
+{
+ "collected_at": "2026-10-16T11:05:03.882144+09:00",
+ "account": {
+  "username": "daily.jjip",
+  "followers_count": 0,
+  "follows_count": 25,
+  "media_count": 2,
+  "id": "29613051654948170"
+ },
+ "media": [
+  {
+   "id": "18348502507252973",
+   "caption": "코스피가 급락하자 국민연금 평가액이 줄었다는 글이 퍼졌습니다. 7월 말 적립금은 1684조 원으로 6월 말보다 크게 줄었지만, 누적 운용수익률은",
+   "timestamp": "2026-10-16T00:57:00+0000",
+   "like_count": 1,
+   "comments_count": 0,
+   "permalink": "https://www.instagram.com/p/DeiS_WInSzS/",
+   "media_type": "CAROUSEL_ALBUM",
+   "reach": 0,
+   "saved": 0,
+   "shares": 0,
+   "views": 0
+  },
+  {
+   "id": "18122730905512463",
+   "timestamp": "2026-10-15T16:30:17+0000",
+   "like_count": 0,
+   "comments_count": 0,
+   "permalink": "https://www.instagram.com/p/DehZCxXicVd/",
+   "media_type": "IMAGE",
+   "caption": ""
+  }
+ ]
+}
