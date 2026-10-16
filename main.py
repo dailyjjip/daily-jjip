@@ -106,8 +106,8 @@ def pick_issue(news, history):
  "oneliner": "에디터 코멘트 한 문장, 26자 이내, 제목과 다른 관점",
  "debate": {{"question": "댓글 토론을 부르는 질문, 24자 이내. 찬반이 실제로 갈리는 생활 밀착형 질문", "a": "선택지 A, 12자 이내", "b": "선택지 B, 12자 이내"}},
  "image_queries": ["표지용 사진 검색 영어 키워드 2~4단어 (이슈를 한눈에 보여주는 실사 장면, 예: seoul apartment buildings)", "본문용 사진 검색 영어 키워드 2~4단어 (표지와 다른 장면)"],
- "caption": "인스타 본문 3~4문장, 마지막에 저장/공유 유도 한 문장",
- "hashtags": ["#태그", "... 8개"],
+ "caption": "첫 문장에 사람들이 검색할 핵심 키워드(예: 코스피 급락 이유)를 자연스럽게 넣고, 인스타 본문 3~4문장, 마지막에 저장/공유 유도 한 문장",
+ "hashtags": ["#태그", "... 4개 (검색량 많은 핵심어 위주)"],
  "sources": ["참고한 언론사명 2~3개"],
  "source_title": "근거로 쓴 헤드라인 원문"}}"""
     client = Anthropic()
@@ -623,6 +623,69 @@ def render_slides(d, outdir, theme_idx=0, photo=None, photo2=None):
 
 
 # ---------- 인스타 게시 ----------
+def make_reel(slide_paths, out_path, sec=2.2):
+    """카드 6장을 9:16 세로 영상(릴스)으로: 검정 배경 가운데 카드, 장마다 sec초 + 짧은 페이드"""
+    import subprocess, tempfile
+    tmp = tempfile.mkdtemp()
+    frames = []
+    for i, p in enumerate(slide_paths):
+        bg = Image.new("RGB", (1080, 1920), ED_THEMES[0][0])
+        card = Image.open(p).convert("RGB")
+        bg.paste(card, (0, (1920 - 1350) // 2))
+        dr = ImageDraw.Draw(bg)
+        if i == 0:
+            hint = "끝까지 보면 정리 끝 →"
+            dr.text((72, 1920 - 230), hint, font=font(SANS_B, 38), fill=ED_THEMES[0][3])
+        h = "@daily.jjip"
+        dr.text((1080 - 72 - dr.textlength(h, font=font(SANS_B, 34)), 1920 - 230), h, font=font(SANS_B, 34), fill=ED_THEMES[0][1])
+        f = os.path.join(tmp, f"{i:02d}.png")
+        bg.save(f)
+        frames.append(f)
+    n = len(frames)
+    inputs = []
+    for f in frames:
+        inputs += ["-loop", "1", "-t", str(sec + 0.4), "-i", f]
+    # 장 사이 0.4초 페이드로 이어붙이기
+    filt, last = [], "[0:v]"
+    for i in range(1, n):
+        off = round(i * sec, 2)
+        out = f"[v{i}]"
+        filt.append(f"{last}[{i}:v]xfade=transition=fade:duration=0.4:offset={off}{out}")
+        last = out
+    cmd = ["ffmpeg", "-y", "-loglevel", "error", *inputs, "-f", "lavfi", "-t", str(n * sec + 0.4),
+           "-i", "anullsrc=channel_layout=stereo:sample_rate=44100",
+           "-filter_complex", ";".join(filt) + f";{last}format=yuv420p[vout]",
+           "-map", "[vout]", "-map", f"{n}:a", "-c:v", "libx264", "-preset", "medium", "-crf", "20",
+           "-r", "30", "-c:a", "aac", "-shortest", "-movflags", "+faststart", out_path]
+    subprocess.run(cmd, check=True)
+    return out_path
+
+
+def ig_publish_reel(video_url, caption, cover_url=None):
+    """릴스 게시. 피드 그리드는 캐러셀로 통일하기 위해 share_to_feed=false (릴스 탭·추천에만 노출)"""
+    base = f"https://graph.instagram.com/v21.0/{IG_USER_ID or 'me'}"
+    data = {"media_type": "REELS", "video_url": video_url, "caption": caption,
+            "share_to_feed": "false", "access_token": IG_TOKEN}
+    if cover_url:
+        data["cover_url"] = cover_url
+    r = requests.post(f"{base}/media", data=data).json()
+    if "id" not in r:
+        raise RuntimeError(f"릴스 컨테이너 실패: {r}")
+    cid = r["id"]
+    for _ in range(40):  # 영상 처리 대기 (최대 약 6~7분)
+        time.sleep(10)
+        st = requests.get(f"https://graph.instagram.com/v21.0/{cid}",
+                          params={"fields": "status_code,status", "access_token": IG_TOKEN}).json()
+        if st.get("status_code") == "FINISHED":
+            break
+        if st.get("status_code") == "ERROR":
+            raise RuntimeError(f"릴스 처리 실패: {st}")
+    r2 = requests.post(f"{base}/media_publish", data={"creation_id": cid, "access_token": IG_TOKEN}).json()
+    if "id" not in r2:
+        raise RuntimeError(f"릴스 게시 실패: {r2}")
+    return r2["id"]
+
+
 def ig_publish(image_urls, caption):
     """이미지 여러 장을 캐러셀(넘겨보기) 게시물로 올린다."""
     base = f"https://graph.instagram.com/v21.0/{IG_USER_ID or 'me'}"
@@ -661,9 +724,21 @@ def generate():
     paths = render_slides(d, os.path.join(OUT_DIR, stamp), theme_idx=len(history),
                           photo=photo, photo2=photo2)
     d["images"] = [f"{stamp}/{os.path.basename(p)}" for p in paths]
+    try:
+        make_reel(paths, os.path.join(OUT_DIR, stamp, "reel.mp4"))
+        d["reel"] = f"{stamp}/reel.mp4"
+    except Exception as e:
+        print("릴스 영상 만들기 실패(캐러셀은 정상 진행):", e)
     json.dump(d, open(os.path.join(OUT_DIR, stamp, "data.json"), "w", encoding="utf-8"), ensure_ascii=False, indent=1)  # 나중에 다시 그릴 수 있게 보관
     json.dump(d, open(PENDING, "w", encoding="utf-8"), ensure_ascii=False, indent=2)
     print(json.dumps(d, ensure_ascii=False, indent=2))
+
+
+def build_caption(d):
+    deb = d.get("debate") or {}
+    talk = (f"\n\n💬 {deb['question']}\nA. {deb.get('a', '')}  vs  B. {deb.get('b', '')}\n댓글로 여러분 생각을 남겨주세요 👇"
+            if isinstance(deb, dict) and deb.get("question") else "")
+    return f"{d['caption']}{talk}\n\n📌 매일 오늘의 이슈를 찝어드려요 → @daily.jjip\n\n{' '.join(d['hashtags'])}"
 
 
 def publish():
@@ -679,9 +754,17 @@ def publish():
     else:
         post_id = ig_publish([f"{IMAGE_BASE_URL}/{p}" for p in d["images"]], caption)
         print("게시 완료:", post_id)
+        if d.get("reel"):
+            try:
+                rid = ig_publish_reel(f"{IMAGE_BASE_URL}/{d['reel']}", caption, f"{IMAGE_BASE_URL}/{d['images'][0]}")
+                d["reel_id"] = rid
+                print("릴스 게시 완료:", rid)
+            except Exception as e:
+                print("릴스 게시 실패(캐러셀은 게시됨):", e)
     history = load_history()
     history.append({"date": d["stamp"], "headline": d["headline"],
-                    "source": d.get("source_link"), "images": d["images"], "post_id": post_id})
+                    "source": d.get("source_link"), "images": d["images"], "post_id": post_id,
+                    "reel_id": d.get("reel_id")})
     json.dump(history, open(HISTORY, "w", encoding="utf-8"), ensure_ascii=False, indent=2)
     os.remove(PENDING)
 
@@ -740,11 +823,21 @@ def repost():
             time.sleep(600)
 
 
+def reel_for(dirname):
+    """이미 올린 게시물 폴더로 릴스만 만들어 게시 (테스트·보충용)"""
+    d = os.path.join(OUT_DIR, dirname)
+    slides = sorted(os.path.join(d, f) for f in os.listdir(d) if f.endswith(".jpg"))
+    make_reel(slides, os.path.join(d, "reel.mp4"))
+    return d
+
+
 if __name__ == "__main__":
     import sys
     import traceback
     try:
-        {"generate": generate, "publish": publish, "stats": stats, "repost": repost}[sys.argv[1]]()
+        {"generate": generate, "publish": publish, "stats": stats, "repost": repost,
+         "reel_make": lambda: reel_for(sys.argv[2]),
+         "reel_post": lambda: print("릴스 게시 완료:", ig_publish_reel(f"{IMAGE_BASE_URL}/{sys.argv[2]}/reel.mp4", build_caption(json.load(open(f"{OUT_DIR}/{sys.argv[2]}/data.json", encoding="utf-8"))), f"{IMAGE_BASE_URL}/{sys.argv[2]}/01.jpg"))}[sys.argv[1]]()
     except Exception:
         open("last_error.txt", "w", encoding="utf-8").write(traceback.format_exc())
         raise

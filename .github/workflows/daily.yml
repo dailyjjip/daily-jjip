@@ -43,7 +43,7 @@ jobs:
 
       - name: 한글 폰트 설치
         if: steps.gate.outputs.skip != 'true'
-        run: sudo apt-get update && sudo apt-get install -y fonts-noto-cjk fonts-noto-cjk-extra
+        run: sudo apt-get update && sudo apt-get install -y fonts-noto-cjk fonts-noto-cjk-extra ffmpeg
 
       - name: 3D 아이콘 받기 (Fluent Emoji 3D, MIT 라이선스)
         if: steps.gate.outputs.skip != 'true'
