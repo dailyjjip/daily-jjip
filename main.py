@@ -725,6 +725,8 @@ def generate():
                           photo=photo, photo2=photo2)
     d["images"] = [f"{stamp}/{os.path.basename(p)}" for p in paths]
     try:
+        if os.getenv("POST_REELS", "false") != "true":
+            raise RuntimeError("릴스 자동 생성 꺼짐")
         make_reel(paths, os.path.join(OUT_DIR, stamp, "reel.mp4"))
         d["reel"] = f"{stamp}/reel.mp4"
     except Exception as e:
@@ -754,7 +756,7 @@ def publish():
     else:
         post_id = ig_publish([f"{IMAGE_BASE_URL}/{p}" for p in d["images"]], caption)
         print("게시 완료:", post_id)
-        if d.get("reel"):
+        if d.get("reel") and os.getenv("POST_REELS", "false") == "true":  # 운영자 요청으로 릴스 자동 게시 끔 (피드 중복 방지)
             try:
                 rid = ig_publish_reel(f"{IMAGE_BASE_URL}/{d['reel']}", caption, f"{IMAGE_BASE_URL}/{d['images'][0]}")
                 d["reel_id"] = rid
