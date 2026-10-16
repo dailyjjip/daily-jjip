@@ -1,0 +1,50 @@
+name: 새로 만들어 연속 게시 (10분 간격)
+
+on:
+  workflow_dispatch:
+    inputs:
+      count:
+        description: "몇 개 올릴지"
+        default: "5"
+
+permissions:
+  contents: write
+
+jobs:
+  burst:
+    runs-on: ubuntu-latest
+    timeout-minutes: 150
+    steps:
+      - uses: actions/checkout@v4
+      - name: 한글 폰트 설치
+        run: sudo apt-get update && sudo apt-get install -y fonts-noto-cjk fonts-noto-cjk-extra
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+      - run: pip install -r requirements.txt
+      - name: 만들고 올리기 반복
+        env:
+          ANTHROPIC_API_KEY: ${{ secrets.ANTHROPIC_API_KEY }}
+          PEXELS_API_KEY: ${{ secrets.PEXELS_API_KEY }}
+          PIXABAY_API_KEY: ${{ secrets.PIXABAY_API_KEY }}
+          IG_USER_ID: ${{ secrets.IG_USER_ID }}
+          IG_ACCESS_TOKEN: ${{ secrets.IG_ACCESS_TOKEN }}
+          IMAGE_BASE_URL: https://raw.githubusercontent.com/${{ github.repository }}/main/posts
+          DRY_RUN: "false"
+        run: |
+          git config user.name "cardnews-bot"
+          git config user.email "bot@users.noreply.github.com"
+          N=${{ github.event.inputs.count }}
+          for i in $(seq 1 $N); do
+            echo "===== $i / $N ====="
+            if python main.py generate; then
+              git add -A && git commit -qm "card burst $i" && git pull -q --rebase && git push -q
+              sleep 20
+              python main.py publish || echo "게시 실패 $i"
+              git add -A && git commit -qm "posted burst $i" || true
+              git pull -q --rebase && git push -q
+            else
+              echo "생성 실패 $i"; rm -f pending.json
+            fi
+            [ $i -lt $N ] && sleep 540
+          done
