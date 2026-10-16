@@ -708,11 +708,36 @@ def stats():
     print(json.dumps(acct, ensure_ascii=False), "게시물", len(media))
 
 
+def repost():
+    """manual_queue.json 에 있는 이미 만든 세트를 10분 간격으로 하나씩 게시"""
+    q = json.load(open("manual_queue.json", encoding="utf-8"))
+    history = load_history()
+    for i, item in enumerate(q):
+        if item.get("post_id"):
+            continue
+        d = os.path.join(OUT_DIR, item["dir"])
+        files = sorted(f for f in os.listdir(d) if f.endswith(".jpg"))
+        urls = [f"{IMAGE_BASE_URL}/{item['dir']}/{f}" for f in files]
+        try:
+            item["post_id"] = ig_publish(urls, item["caption"])
+            print("게시 완료:", item["headline"], item["post_id"])
+        except Exception as e:
+            item["error"] = str(e)[:300]
+            print("게시 실패:", item["headline"], e)
+        for h in history:
+            if h.get("date") == item["dir"]:
+                h["post_id"] = item.get("post_id")
+        json.dump(q, open("manual_queue.json", "w", encoding="utf-8"), ensure_ascii=False, indent=1)
+        json.dump(history, open(HISTORY, "w", encoding="utf-8"), ensure_ascii=False, indent=2)
+        if any(not x.get("post_id") and not x.get("error") for x in q[i + 1:]):
+            time.sleep(600)
+
+
 if __name__ == "__main__":
     import sys
     import traceback
     try:
-        {"generate": generate, "publish": publish, "stats": stats}[sys.argv[1]]()
+        {"generate": generate, "publish": publish, "stats": stats, "repost": repost}[sys.argv[1]]()
     except Exception:
         open("last_error.txt", "w", encoding="utf-8").write(traceback.format_exc())
         raise
