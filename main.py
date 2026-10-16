@@ -679,11 +679,40 @@ def publish():
     os.remove(PENDING)
 
 
+def stats():
+    """인스타 계정·게시물 성과를 모아 stats/ 폴더에 날짜별로 저장 (주간 보고용)"""
+    base = "https://graph.instagram.com/v21.0"
+    tok = {"access_token": IG_TOKEN}
+    acct = requests.get(f"{base}/me", params={**tok, "fields": "username,followers_count,follows_count,media_count"}, timeout=30).json()
+    media, url = [], f"{base}/me/media"
+    params = {**tok, "fields": "id,caption,timestamp,like_count,comments_count,permalink,media_type", "limit": 50}
+    while url and len(media) < 300:
+        r = requests.get(url, params=params, timeout=30).json()
+        if "error" in r:
+            raise RuntimeError(f"게시물 조회 실패: {r}")
+        media += r.get("data", [])
+        url, params = (r.get("paging") or {}).get("next"), None
+    # 저장·도달 수치는 insights 권한이 있을 때만 수집 (없으면 건너뜀)
+    for m in media:
+        try:
+            ins = requests.get(f"{base}/{m['id']}/insights", params={**tok, "metric": "reach,saved,shares,views"}, timeout=30).json()
+            for it in ins.get("data", []):
+                m[it["name"]] = (it.get("values") or [{}])[0].get("value", it.get("total_value", {}).get("value"))
+        except Exception:
+            pass
+        m["caption"] = (m.get("caption") or "").split("\n")[0][:80]
+    now = datetime.datetime.now(datetime.timezone(datetime.timedelta(hours=9)))
+    snap = {"collected_at": now.isoformat(), "account": acct, "media": media}
+    os.makedirs("stats", exist_ok=True)
+    json.dump(snap, open(f"stats/{now.strftime('%Y%m%d')}.json", "w", encoding="utf-8"), ensure_ascii=False, indent=1)
+    print(json.dumps(acct, ensure_ascii=False), "게시물", len(media))
+
+
 if __name__ == "__main__":
     import sys
     import traceback
     try:
-        {"generate": generate, "publish": publish}[sys.argv[1]]()
+        {"generate": generate, "publish": publish, "stats": stats}[sys.argv[1]]()
     except Exception:
         open("last_error.txt", "w", encoding="utf-8").write(traceback.format_exc())
         raise
