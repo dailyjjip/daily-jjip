@@ -1,0 +1,32 @@
+name: 릴스 전용 주제 만들기 (게시 안 함)
+
+on:
+  workflow_dispatch: {}
+
+permissions:
+  contents: write
+
+jobs:
+  make:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - name: 한글 폰트·ffmpeg 설치
+        run: sudo apt-get update && sudo apt-get install -y fonts-noto-cjk fonts-noto-cjk-extra ffmpeg
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+      - run: pip install -r requirements.txt
+      - name: 만들기
+        env:
+          ANTHROPIC_API_KEY: ${{ secrets.ANTHROPIC_API_KEY }}
+          PEXELS_API_KEY: ${{ secrets.PEXELS_API_KEY }}
+          PIXABAY_API_KEY: ${{ secrets.PIXABAY_API_KEY }}
+        run: python main.py reel_only
+      - name: 저장
+        run: |
+          git config user.name "cardnews-bot"
+          git config user.email "bot@users.noreply.github.com"
+          git add reels reels_history.json
+          git commit -qm "reel only $(date -u +%Y%m%d_%H%M)"
+          git pull -q --rebase && git push -q

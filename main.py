@@ -833,11 +833,32 @@ def reel_for(dirname):
     return d
 
 
+def reel_only():
+    """캐러셀로 올리지 않은 별도 주제로 릴스 영상만 만들기 (운영자가 앱에서 음악 붙여 직접 게시)"""
+    rh_path = "reels_history.json"
+    rh = json.load(open(rh_path, encoding="utf-8")) if os.path.exists(rh_path) else []
+    used = load_history() + rh  # 캐러셀·릴스에서 이미 다룬 주제 모두 제외
+    d = pick_issue(fetch_news(), used)
+    stamp = datetime.datetime.utcnow().strftime("%Y%m%d_%H%M")
+    d["stamp"], d["issue_no"] = stamp, len(load_history()) + 1
+    qs = d.get("image_queries") or [d.get("image_query", "")]
+    photo = get_photo(qs[0], "portrait")
+    photo2 = get_photo(qs[1] if len(qs) > 1 else qs[0], "landscape", skip_ids=(photo[2],) if photo else ()) or photo
+    out = os.path.join("reels", stamp)
+    paths = render_slides(d, out, photo=photo, photo2=photo2)
+    make_reel(paths, os.path.join(out, "reel.mp4"))
+    open(os.path.join(out, "caption.txt"), "w", encoding="utf-8").write(build_caption(d))
+    json.dump(d, open(os.path.join(out, "data.json"), "w", encoding="utf-8"), ensure_ascii=False, indent=1)
+    rh.append({"date": stamp, "headline": d["headline"]})
+    json.dump(rh, open(rh_path, "w", encoding="utf-8"), ensure_ascii=False, indent=1)
+    print("릴스 전용 완료:", out, d["headline"])
+
+
 if __name__ == "__main__":
     import sys
     import traceback
     try:
-        {"generate": generate, "publish": publish, "stats": stats, "repost": repost,
+        {"generate": generate, "publish": publish, "stats": stats, "repost": repost, "reel_only": reel_only,
          "reel_make": lambda: reel_for(sys.argv[2]),
          "reel_post": lambda: print("릴스 게시 완료:", ig_publish_reel(f"{IMAGE_BASE_URL}/{sys.argv[2]}/reel.mp4", build_caption(json.load(open(f"{OUT_DIR}/{sys.argv[2]}/data.json", encoding="utf-8"))), f"{IMAGE_BASE_URL}/{sys.argv[2]}/01.jpg"))}[sys.argv[1]]()
     except Exception:
