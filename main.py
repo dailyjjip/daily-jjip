@@ -278,10 +278,9 @@ SANS_R = "/usr/share/fonts/opentype/noto/NotoSansCJK-Regular.ttc"
 CAT_EN = {"경제": "ECONOMY", "사회": "SOCIETY", "IT": "TECH", "생활": "LIFE",
           "국제": "WORLD", "스포츠": "SPORTS", "연예": "CULTURE"}
 # (배경, 본문, 보조, 포인트)
+# 데일리찝 단일 브랜드 테마: 블랙 + 찝 옐로 (피드 통일)
 ED_THEMES = [
-    ("#F3F0EA", "#141414", "#8A857C", "#D93A1E"),   # 페이퍼 + 레드
-    ("#121212", "#F3F0EA", "#7D7A74", "#E8FF3A"),   # 블랙 + 라임
-    ("#1F2A44", "#F3F0EA", "#8C95A8", "#FF8A5B"),   # 네이비 + 코랄
+    ("#111111", "#F3F0EA", "#8A8780", "#FFE000"),
 ]
 
 
@@ -394,7 +393,12 @@ def render_card(d, path, theme_idx=0, photo=None, cover=False):
 def render_photo_cover(d, path, theme_idx, photo, credit):
     """실사 표지: 사진을 꽉 채우고 아래쪽을 어둡게 깔아 큰 제목을 얹는다."""
     _, _, _, accent = ED_THEMES[theme_idx % len(ED_THEMES)]
-    img = cover_crop(photo, W, H).convert("RGBA")
+    if photo is not None:
+        img = cover_crop(photo, W, H).convert("RGBA")
+    else:
+        # 사진을 못 구한 경우에도 같은 레이아웃: 어두운 배경 + 은은한 빛
+        img = vgradient("#2A2A2A", "#0A0A0A").convert("RGBA")
+        glow(img, (W - 180, 260), 380, accent, 45)
     shade = Image.new("RGBA", (W, H), (0, 0, 0, 0))
     sd = ImageDraw.Draw(shade)
     for y in range(H):
@@ -428,7 +432,8 @@ def render_photo_cover(d, path, theme_idx, photo, credit):
         dr.text((M, y), ln, font=f_head, fill=white)
         y += 136
     dr.line((M, H - 96, W - M, H - 96), fill=white, width=2)
-    dr.text((M, H - 74), f"Photo: {credit}", font=font(SANS_R, 22), fill="#CCCCCC")
+    if credit:
+        dr.text((M, H - 74), f"Photo: {credit}", font=font(SANS_R, 22), fill="#CCCCCC")
     t = "SWIPE  →"
     tracked(dr, (W - M - dr.textlength(t, font=font(SANS_B, 24)) - 30, H - 76), t, font(SANS_B, 24), accent, 3)
     img.save(path, "JPEG", quality=94)
@@ -501,8 +506,8 @@ def render_slides(d, outdir, theme_idx=0, photo=None, photo2=None):
 
     # 1. 표지
     p = os.path.join(outdir, "01.jpg")
-    if photo is not None:
-        render_photo_cover(d, p, theme_idx, photo[0], photo[1])
+    if True:  # 표지는 항상 같은 레이아웃
+        render_photo_cover(d, p, theme_idx, photo[0] if photo else None, photo[1] if photo else "")
     else:
         render_card(d, p, theme_idx, None, cover=True)
         img = Image.open(p)
@@ -652,9 +657,11 @@ def generate():
     photo = get_photo(qs[0], "portrait")
     photo2 = get_photo(qs[1] if len(qs) > 1 else qs[0], "landscape",
                           skip_ids=(photo[2],) if photo else ())
+    photo2 = photo2 or photo  # 2장 사진이 없으면 표지 사진 재사용 → 구성 통일
     paths = render_slides(d, os.path.join(OUT_DIR, stamp), theme_idx=len(history),
                           photo=photo, photo2=photo2)
     d["images"] = [f"{stamp}/{os.path.basename(p)}" for p in paths]
+    json.dump(d, open(os.path.join(OUT_DIR, stamp, "data.json"), "w", encoding="utf-8"), ensure_ascii=False, indent=1)  # 나중에 다시 그릴 수 있게 보관
     json.dump(d, open(PENDING, "w", encoding="utf-8"), ensure_ascii=False, indent=2)
     print(json.dumps(d, ensure_ascii=False, indent=2))
 
