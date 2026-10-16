@@ -2,8 +2,16 @@ name: 오늘의 이슈 카드뉴스
 
 on:
   schedule:
-    # 한국시간 08:10 / 12:10 / 19:10 (UTC 기준으로 9시간 빼서 적음)
+    # 한국시간 기준 (UTC = 한국시간 - 9시간)
+    # 항상: 08:10
     - cron: "10 23 * * *"
+    # 초반 집중 기간(~10/20): 11:10 / 14:10 / 17:10 / 20:10 / 23:10  → 08시부터 3시간 간격
+    - cron: "10 2 * * *"
+    - cron: "10 5 * * *"
+    - cron: "10 8 * * *"
+    - cron: "10 11 * * *"
+    - cron: "10 14 * * *"
+    # 10/21부터: 12:10 / 19:10  → 하루 3회
     - cron: "10 3 * * *"
     - cron: "10 10 * * *"
   workflow_dispatch: {}   # 깃허브 화면에서 수동 실행 버튼
@@ -15,24 +23,45 @@ jobs:
   post:
     runs-on: ubuntu-latest
     steps:
+      - name: 시간대별 실행 여부 확인
+        id: gate
+        run: |
+          TODAY=$(TZ=Asia/Seoul date +%Y%m%d)
+          S="${{ github.event.schedule }}"
+          SKIP=false
+          case "$S" in
+            "10 2 * * *"|"10 5 * * *"|"10 8 * * *"|"10 11 * * *"|"10 14 * * *")
+              [ "$TODAY" -gt 20261020 ] && SKIP=true ;;   # 집중 기간 끝나면 건너뜀
+            "10 3 * * *"|"10 10 * * *")
+              [ "$TODAY" -le 20261020 ] && SKIP=true ;;   # 집중 기간엔 3시간 간격 유지 위해 건너뜀
+          esac
+          echo "오늘=$TODAY 스케줄=$S 건너뜀=$SKIP"
+          echo "skip=$SKIP" >> "$GITHUB_OUTPUT"
+
       - uses: actions/checkout@v4
+        if: steps.gate.outputs.skip != 'true'
 
       - name: 한글 폰트 설치
+        if: steps.gate.outputs.skip != 'true'
         run: sudo apt-get update && sudo apt-get install -y fonts-noto-cjk fonts-noto-cjk-extra
 
       - name: 3D 아이콘 받기 (Fluent Emoji 3D, MIT 라이선스)
+        if: steps.gate.outputs.skip != 'true'
         run: |
           mkdir -p emoji && cd emoji
           npm pack @lobehub/fluent-emoji-3d --silent
           tar xzf *.tgz
 
       - uses: actions/setup-python@v5
+        if: steps.gate.outputs.skip != 'true'
         with:
           python-version: "3.12"
 
       - run: pip install -r requirements.txt
+        if: steps.gate.outputs.skip != 'true'
 
       - name: 1) 이슈 선정 + 카드 생성
+        if: steps.gate.outputs.skip != 'true'
         env:
           ANTHROPIC_API_KEY: ${{ secrets.ANTHROPIC_API_KEY }}
           PEXELS_API_KEY: ${{ secrets.PEXELS_API_KEY }}
@@ -40,6 +69,7 @@ jobs:
         run: python main.py generate
 
       - name: 이미지 업로드 (공개 URL 만들기)
+        if: steps.gate.outputs.skip != 'true'
         run: |
           git config user.name "cardnews-bot"
           git config user.email "bot@users.noreply.github.com"
@@ -49,6 +79,7 @@ jobs:
           sleep 20
 
       - name: 2) 인스타그램 게시
+        if: steps.gate.outputs.skip != 'true'
         env:
           IG_USER_ID: ${{ secrets.IG_USER_ID }}
           IG_ACCESS_TOKEN: ${{ secrets.IG_ACCESS_TOKEN }}
@@ -57,6 +88,7 @@ jobs:
         run: python main.py publish
 
       - name: 게시 기록 저장
+        if: steps.gate.outputs.skip != 'true'
         run: |
           git add -A
           git commit -m "posted" || true
