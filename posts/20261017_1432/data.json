@@ -1,0 +1,89 @@
+{
+ "category": "사회",
+ "kicker": "부산 북항 · 30일째",
+ "headline": "150만이 본 상어의 출구",
+ "big_number": "154만명",
+ "big_label": "북항친수공원 누적 방문객",
+ "what": [
+  "부산 북항친수공원 수로에 흑상어가 머뭅니다.",
+  "지난달 18일 첫 목격, 17일로 30일째입니다.",
+  "구경 인파는 150만을 넘었고 귀환은 숙제입니다."
+ ],
+ "numbers": [
+  {
+   "value": "154만명",
+   "label": "누적 방문객"
+  },
+  {
+   "value": "2000명",
+   "label": "평소 하루 방문객"
+  },
+  {
+   "value": "2회",
+   "label": "방류 시도, 모두 실패"
+  }
+ ],
+ "details": [
+  {
+   "head": "평소의 20배 넘는 하루",
+   "body": "17일 하루 4만2000명. 평소 약 2000명의 20배 수준입니다."
+  },
+  {
+   "head": "돌려보내기는 두 번 실패",
+   "body": "그물과 물대포로 유도했지만 수로 안으로 되돌아왔습니다."
+  },
+  {
+   "head": "겨울 수온이 변수",
+   "body": "수온과 건강 상태를 살펴 외해 복귀 시점을 정합니다."
+  }
+ ],
+ "points": [
+  "구경 열기는 한 달째 진행형",
+  "무리한 포획은 당분간 보류",
+  "관건은 수온과 귀환 타이밍"
+ ],
+ "watch": [
+  {
+   "head": "외해 복귀 시점",
+   "body": "부산시가 수온과 건강 상태를 보고 시점을 결정합니다."
+  },
+  {
+   "head": "혼잡 구간 안전",
+   "body": "수로변·보도교 등 혼잡 구간 모니터링이 이어집니다."
+  }
+ ],
+ "oneliner": "인기가 클수록 이별 준비는 정교해야 한다",
+ "debate": {
+  "question": "떠나기 전, 직접 보러 갈까?",
+  "a": "직접 보러 간다",
+  "b": "영상으로 충분"
+ },
+ "image_queries": [
+  "busan harbor waterfront park crowd",
+  "shark swimming underwater"
+ ],
+ "caption": "부캉이 북항 방문객 150만 돌파, 지금 무슨 일이 벌어지고 있을까요? 부산 북항친수공원 수로에 나타난 흑상어가 30일째 머무는 동안 누적 방문객은 154만명에 이르렀습니다. 평소 하루 약 2000명이던 공원이 지금은 하루 수만 명이 찾는 곳이 됐고, 두 차례 방류 시도는 모두 실패했습니다. 이제 관심은 수온과 건강 상태를 살피며 정할 외해 복귀 시점에 쏠립니다. 나중에 다시 보고 싶다면 저장하고, 함께 얘기할 친구에게 공유해 주세요.",
+ "hashtags": [
+  "#부캉이",
+  "#부산북항",
+  "#북항친수공원",
+  "#부산가볼만한곳"
+ ],
+ "sources": [
+  "경향신문",
+  "한국경제",
+  "헤럴드경제"
+ ],
+ "source_title": "식을 줄 모르는 ‘부캉이’ 인기…한 달 만에 북항 방문객 150만명 돌파 - 경향신문",
+ "source_link": "https://news.google.com/rss/articles/CBMiWkFVX3lxTE5UN29vVGNFZnlFYWVRNHhESUJ2VVY4OUdWcUlQZ3dMa1JyV0hOcHY3a2NMTENQRGd3OURUeUdDR2VtX2F3Rkd4ZkF6QkduZWplZ05sQzVpbjNad9IBX0FVX3lxTE9EUE9IMEZxZ3lHenhpTjN6dU5XZEZSZkEwSmxtejM2cTQ3bmlEMVU3bWpfUEFHMmg3SWRDNVpvUGFaSXRlYjZNQm9SVVI2TlpEb0xvZ2htd3BJeVVITTNF?oc=5",
+ "stamp": "20261017_1432",
+ "issue_no": 19,
+ "images": [
+  "20261017_1432/01.jpg",
+  "20261017_1432/02.jpg",
+  "20261017_1432/03.jpg",
+  "20261017_1432/04.jpg",
+  "20261017_1432/05.jpg",
+  "20261017_1432/06.jpg"
+ ]
+}
