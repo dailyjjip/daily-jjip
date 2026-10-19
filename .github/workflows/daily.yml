@@ -73,8 +73,8 @@ jobs:
         run: |
           git config user.name "cardnews-bot"
           git config user.email "bot@users.noreply.github.com"
-          git add posts pending.json topics.json health.json 2>/dev/null || true
-          git add posts topics.json health.json 2>/dev/null || true
+          git add posts pending.json topics.json health.json costs.json 2>/dev/null || true
+          git add posts topics.json health.json costs.json 2>/dev/null || true
           git commit -m "card: $(date -u +%Y%m%d_%H%M)" || true
           git push
           sleep 20

@@ -182,6 +182,7 @@ def pick_issue(news, history):
     data = None
     for _ in range(4):
         msg = client.messages.create(model=MODEL, max_tokens=8000, tools=tools, messages=messages)
+        log_cost(msg, "carousel")
         messages.append({"role": "assistant", "content": msg.content})
         text = "".join(b.text for b in msg.content if getattr(b, "type", "") == "text")
         try:
@@ -799,6 +800,33 @@ def ig_publish(image_urls, caption):
 
 
 HEALTH = "health.json"
+COSTS = "costs.json"
+KRW_PER_USD = 1450
+MONTHLY_BUDGET_KRW = int(os.getenv("MONTHLY_BUDGET_KRW", "45000"))  # 30일 예산 5만원 중 안전 여유 5천원
+# 추정 단가(USD): 실제 청구액은 Console 기준. 주간 보고에서 차이를 점검.
+PRICE_IN, PRICE_OUT, PRICE_SEARCH = 3 / 1e6, 15 / 1e6, 10 / 1000
+
+
+def log_cost(msg, purpose):
+    try:
+        u = msg.usage
+        searches = getattr(getattr(u, "server_tool_use", None), "web_search_requests", 0) or 0
+        usd = (u.input_tokens * PRICE_IN + u.output_tokens * PRICE_OUT + searches * PRICE_SEARCH
+               + (getattr(u, "cache_read_input_tokens", 0) or 0) * PRICE_IN * 0.1)
+        items = json.load(open(COSTS, encoding="utf-8")) if os.path.exists(COSTS) else []
+        items.append({"at": datetime.datetime.utcnow().isoformat(timespec="seconds"), "purpose": purpose,
+                      "usd": round(usd, 4), "krw": round(usd * KRW_PER_USD), "in": u.input_tokens,
+                      "out": u.output_tokens, "search": searches})
+        json.dump(items[-2000:], open(COSTS, "w", encoding="utf-8"), ensure_ascii=False, indent=0)
+    except Exception as e:
+        print("비용 기록 실패:", e)
+
+
+def spend_30d_krw():
+    if not os.path.exists(COSTS):
+        return 0
+    cut = (datetime.datetime.utcnow() - datetime.timedelta(days=30)).isoformat()
+    return sum(x["krw"] for x in json.load(open(COSTS, encoding="utf-8")) if x["at"] >= cut)
 DAILY_CAP = int(os.getenv("DAILY_CAP", "3"))  # 하루 최대 생성 수 (비용 안전장치)
 
 
@@ -817,6 +845,11 @@ def health_event(kind, detail=""):
 def guard_ok():
     """비용이 드는 생성 전에 안전장치 확인: 일시정지 상태 / 하루 생성 한도"""
     h = load_health()
+    spent = spend_30d_krw()
+    if spent >= MONTHLY_BUDGET_KRW:
+        print(f"[안전장치] 최근 30일 추정 지출 {spent:,}원 ≥ 예산 {MONTHLY_BUDGET_KRW:,}원 → 생성 중단")
+        health_event("skip_budget", spent)
+        return False
     pu = h.get("paused_until")
     if pu and datetime.datetime.utcnow().isoformat() < pu:
         print(f"[안전장치] 일시정지 중 ({h.get('pause_reason')}) → {pu}까지 생성 건너뜀")
