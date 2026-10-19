@@ -1,0 +1,90 @@
+{
+  "category": "스포츠",
+  "kicker": "준PO 3차전 D-1",
+  "headline": "잠실의 마지막 경기?",
+  "big_number": "77.8%",
+  "big_label": "2연승 팀의 PO 진출률",
+  "what": [
+    "KIA가 준PO 1·2차전을 5-1, 6-3으로 잡았다.",
+    "3차전은 20일 오후 6시 30분 잠실에서 열린다.",
+    "LG가 지면 잠실야구장 마지막 프로야구 경기가 된다."
+  ],
+  "numbers": [
+    {
+      "value": "77.8%",
+      "label": "역대 2연승 팀 PO행"
+    },
+    {
+      "value": "7.71",
+      "label": "시라카와 LG전 ERA"
+    },
+    {
+      "value": "112승",
+      "label": "카라스코 MLB 통산"
+    }
+  ],
+  "details": [
+    {
+      "head": "확률은 KIA 쪽",
+      "body": "역대 5전 3선승제 9번 중 7번, 2연승 팀이 PO로 갔다."
+    },
+    {
+      "head": "시라카와의 첫 가을",
+      "body": "KBO 포스트시즌 첫 등판. LG전 2경기 평균자책 7.71."
+    },
+    {
+      "head": "카라스코의 84구",
+      "body": "14일 두산전 6이닝 1실점. 기세는 LG 쪽이 좋다."
+    }
+  ],
+  "points": [
+    "KIA 2연승, PO까지 1승",
+    "LG는 지면 시즌 종료",
+    "패하면 잠실 고별전"
+  ],
+  "watch": [
+    {
+      "head": "카라스코 4~6회",
+      "body": "피안타율 1~3회 0.195, 4~6회 0.275. 중반이 변수."
+    },
+    {
+      "head": "LG 3연승 시나리오",
+      "body": "3차전부터 3연승하면 뒤집기. 이기면 4차전으로 간다."
+    }
+  ],
+  "oneliner": "지는 팀이 잠실의 마지막을 쓴다",
+  "debate": {
+    "question": "철거 앞둔 잠실, 마지막 직관 갈까?",
+    "a": "표 구해서 간다",
+    "b": "집에서 본다"
+  },
+  "image_queries": [
+    "jamsil baseball stadium",
+    "baseball pitcher mound night"
+  ],
+  "caption": "준플레이오프 3차전 KIA LG, 20일 잠실에서 열립니다. KIA가 2연승으로 PO 진출 확률 77.8%를 쥐었지만, LG가 패하면 철거를 앞둔 잠실구장의 마지막 프로야구 경기로 남습니다. 시라카와는 포스트시즌 첫 등판이고, 카라스코는 MLB 112승 경력으로 벼랑 끝에서 맞섭니다. 경기 전에 저장해 두고 결과와 비교해 보세요.",
+  "hashtags": [
+    "#준플레이오프",
+    "#KIA타이거즈",
+    "#LG트윈스",
+    "#KBO포스트시즌"
+  ],
+  "sources": [
+    "뉴스핌",
+    "뉴스1",
+    "뉴시스"
+  ],
+  "topic_key": "KIA LG 준PO 3차전",
+  "source_title": "호랑이의 끝내기냐, 쌍둥이의 반격이냐…준PO 3차전 시라카와 vs 카라스코 - 한겨레",
+  "source_link": "https://news.google.com/rss/articles/CBMiZ0FVX3lxTE16NmJ5eXJGd0xQT1VLbG9iUEg1YWJwc1IzRFo5UG9tMTFDVVF6X2ZfYU9fTldjNVVVWDJEMGJsY1YzOHg0TXB0QTlaclFDV2tVTEhZRFlJNmdDVFA5VWI3ZlNwM3hrUlE?oc=5",
+  "stamp": "20261019_1138",
+  "issue_no": 23,
+  "images": [
+    "20261019_1138/01.jpg",
+    "20261019_1138/02.jpg",
+    "20261019_1138/03.jpg",
+    "20261019_1138/04.jpg",
+    "20261019_1138/05.jpg",
+    "20261019_1138/06.jpg"
+  ]
+}
