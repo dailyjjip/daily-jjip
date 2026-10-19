@@ -69,17 +69,18 @@ jobs:
         run: python main.py generate
 
       - name: 이미지 업로드 (공개 URL 만들기)
-        if: steps.gate.outputs.skip != 'true'
+        if: steps.gate.outputs.skip != 'true' && hashFiles('pending.json') != ''
         run: |
           git config user.name "cardnews-bot"
           git config user.email "bot@users.noreply.github.com"
-          git add posts pending.json topics.json
-          git commit -m "card: $(date -u +%Y%m%d_%H%M)"
+          git add posts pending.json topics.json health.json 2>/dev/null || true
+          git add posts topics.json health.json 2>/dev/null || true
+          git commit -m "card: $(date -u +%Y%m%d_%H%M)" || true
           git push
           sleep 20
 
       - name: 2) 인스타그램 게시
-        if: steps.gate.outputs.skip != 'true'
+        if: steps.gate.outputs.skip != 'true' && hashFiles('pending.json') != ''
         env:
           IG_USER_ID: ${{ secrets.IG_USER_ID }}
           IG_ACCESS_TOKEN: ${{ secrets.IG_ACCESS_TOKEN }}
@@ -92,6 +93,7 @@ jobs:
         run: |
           git add -A
           git commit -m "posted" || true
+          git pull -q --rebase || true
           git push
 
       - name: 오류 기록 저장 (실패했을 때만)
@@ -99,6 +101,6 @@ jobs:
         run: |
           git config user.name "cardnews-bot"
           git config user.email "bot@users.noreply.github.com"
-          git add last_error.txt || true
+          git add last_error.txt health.json || true
           git commit -m "error log" || true
           git push || true

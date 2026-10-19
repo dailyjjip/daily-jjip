@@ -767,6 +767,7 @@ def ig_publish(image_urls, caption):
             ts = datetime.datetime.strptime(m["timestamp"][:19], "%Y-%m-%dT%H:%M:%S")
             if (datetime.datetime.utcnow() - ts).total_seconds() < 600:
                 print("게시 응답은 오류였지만 실제로 게시됨:", m["id"], r2)
+                health_event("blocked_warning", r2)
                 return m["id"]
         except Exception:
             pass
@@ -774,9 +775,51 @@ def ig_publish(image_urls, caption):
     return r2["id"]
 
 
+HEALTH = "health.json"
+DAILY_CAP = int(os.getenv("DAILY_CAP", "3"))  # 하루 최대 생성 수 (비용 안전장치)
+
+
+def load_health():
+    return json.load(open(HEALTH, encoding="utf-8")) if os.path.exists(HEALTH) else {"events": []}
+
+
+def health_event(kind, detail=""):
+    h = load_health()
+    h["events"] = (h.get("events", []) + [{"at": datetime.datetime.utcnow().isoformat(timespec="seconds"),
+                                           "kind": kind, "detail": str(detail)[:300]}])[-200:]
+    json.dump(h, open(HEALTH, "w", encoding="utf-8"), ensure_ascii=False, indent=1)
+    return h
+
+
+def guard_ok():
+    """비용이 드는 생성 전에 안전장치 확인: 일시정지 상태 / 하루 생성 한도"""
+    h = load_health()
+    pu = h.get("paused_until")
+    if pu and datetime.datetime.utcnow().isoformat() < pu:
+        print(f"[안전장치] 일시정지 중 ({h.get('pause_reason')}) → {pu}까지 생성 건너뜀")
+        health_event("skip_paused", h.get("pause_reason"))
+        return False
+    kst_today = (datetime.datetime.utcnow() + datetime.timedelta(hours=9)).strftime("%Y%m%d")
+    n = 0
+    for t in (json.load(open(TOPICS, encoding="utf-8")) if os.path.exists(TOPICS) else []):
+        try:
+            dt = datetime.datetime.strptime(t["date"], "%Y%m%d_%H%M") + datetime.timedelta(hours=9)
+            if t.get("kind", "carousel") == "carousel" and dt.strftime("%Y%m%d") == kst_today:
+                n += 1
+        except Exception:
+            pass
+    if n >= DAILY_CAP:
+        print(f"[안전장치] 오늘 이미 {n}건 생성 → 한도 {DAILY_CAP}건 도달, 건너뜀")
+        health_event("skip_cap", n)
+        return False
+    return True
+
+
 def generate():
     """1단계: 이슈 선정·취재 + 슬라이드 6장 생성"""
     os.makedirs(OUT_DIR, exist_ok=True)
+    if not guard_ok():
+        return
     history = load_history()
     d = pick_issue(fetch_news(), history)
     stamp = datetime.datetime.utcnow().strftime("%Y%m%d_%H%M")
@@ -820,7 +863,17 @@ def publish():
         print("DRY_RUN=true → 게시 생략. posts 폴더의 이미지를 확인하세요.")
         post_id = None
     else:
-        post_id = ig_publish([f"{IMAGE_BASE_URL}/{p}" for p in d["images"]], caption)
+        try:
+            post_id = ig_publish([f"{IMAGE_BASE_URL}/{p}" for p in d["images"]], caption)
+        except Exception as e:
+            h = health_event("publish_fail", e)
+            recent = [x for x in h["events"] if x["kind"] == "publish_fail" and
+                      x["at"] >= (datetime.datetime.utcnow() - datetime.timedelta(hours=24)).isoformat()]
+            if len(recent) >= 2:  # 하루 2번 실제 실패 → 24시간 자동 일시정지 (비용·계정 보호)
+                h["paused_until"] = (datetime.datetime.utcnow() + datetime.timedelta(hours=24)).isoformat(timespec="seconds")
+                h["pause_reason"] = f"24시간 내 게시 실패 {len(recent)}회: {str(e)[:120]}"
+                json.dump(h, open(HEALTH, "w", encoding="utf-8"), ensure_ascii=False, indent=1)
+            raise
         print("게시 완료:", post_id)
         if d.get("reel") and os.getenv("POST_REELS", "false") == "true":  # 운영자 요청으로 릴스 자동 게시 끔 (피드 중복 방지)
             try:
