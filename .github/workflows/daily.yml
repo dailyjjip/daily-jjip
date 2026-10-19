@@ -84,6 +84,7 @@ jobs:
         env:
           IG_USER_ID: ${{ secrets.IG_USER_ID }}
           IG_ACCESS_TOKEN: ${{ secrets.IG_ACCESS_TOKEN }}
+          IG_LOCATION_ID: ${{ vars.IG_LOCATION_ID }}
           IMAGE_BASE_URL: https://raw.githubusercontent.com/${{ github.repository }}/main/posts
           DRY_RUN: ${{ vars.DRY_RUN || 'false' }}
         run: python main.py publish

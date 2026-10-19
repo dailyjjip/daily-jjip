@@ -1,0 +1,50 @@
+name: 전용 릴스 (하루 1회)
+
+on:
+  schedule:
+    - cron: "40 3 * * *"   # 한국시간 12:40 (캐러셀 시간대 사이)
+  workflow_dispatch: {}
+
+permissions:
+  contents: write
+
+jobs:
+  reel:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - name: 한글 폰트·ffmpeg 설치
+        run: sudo apt-get update && sudo apt-get install -y fonts-noto-cjk fonts-noto-cjk-extra ffmpeg
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+      - run: pip install -r requirements.txt
+      - name: 1) 별도 주제 선정 + 릴스 영상 만들기 (안전장치·하루 1건 한도)
+        env:
+          ANTHROPIC_API_KEY: ${{ secrets.ANTHROPIC_API_KEY }}
+          PEXELS_API_KEY: ${{ secrets.PEXELS_API_KEY }}
+          PIXABAY_API_KEY: ${{ secrets.PIXABAY_API_KEY }}
+        run: python main.py reel_only
+      - name: 영상 업로드 (공개 URL)
+        run: |
+          git config user.name "cardnews-bot"
+          git config user.email "bot@users.noreply.github.com"
+          git add reels reels_history.json topics.json health.json costs.json 2>/dev/null || true
+          git commit -qm "reel: $(date -u +%Y%m%d_%H%M)" || true
+          git pull -q --rebase && git push -q
+          sleep 20
+      - name: 2) 릴스 게시 (피드 그리드 제외)
+        if: hashFiles('reel_pending.json') != ''
+        env:
+          IG_USER_ID: ${{ secrets.IG_USER_ID }}
+          IG_ACCESS_TOKEN: ${{ secrets.IG_ACCESS_TOKEN }}
+          IG_LOCATION_ID: ${{ vars.IG_LOCATION_ID }}
+          IMAGE_BASE_URL: https://raw.githubusercontent.com/${{ github.repository }}/main/posts
+          DRY_RUN: ${{ vars.DRY_RUN || 'false' }}
+        run: python main.py reel_publish
+      - name: 기록 저장
+        if: always()
+        run: |
+          git add reels_history.json health.json last_error.txt 2>/dev/null || true
+          git commit -qm "reel posted" || true
+          git pull -q --rebase && git push -q || true

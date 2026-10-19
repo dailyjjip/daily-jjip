@@ -70,8 +70,13 @@ def in_boost():
     return (datetime.datetime.utcnow() + datetime.timedelta(hours=9)).strftime("%Y%m%d") <= BOOST_UNTIL
 
 
+FOCUS_OVERRIDE = None  # 릴스 전용 등 특정 방향을 강제할 때
+
+
 def slot_focus():
     """게시 시간대별 주제 방향 (한국시간)"""
+    if FOCUS_OVERRIDE:
+        return FOCUS_OVERRIDE
     h = (datetime.datetime.utcnow() + datetime.timedelta(hours=9)).hour
     if in_boost():
         # 집중 기간: 연애·스포츠·경제·과학·사회, 참여도 우선 (정치 제외)
@@ -759,6 +764,20 @@ def make_reel(slide_paths, out_path, sec=2.2):
     return out_path
 
 
+LOCATION_ID = os.getenv("IG_LOCATION_ID", "").strip()  # 위치 태그(페이스북 장소 페이지 ID). 비어 있으면 태그 없이 게시
+
+
+def create_container(base, data):
+    """미디어 컨테이너 생성. 위치 태그로 오류가 나면 위치 없이 한 번 더 시도(게시는 반드시 진행)"""
+    if LOCATION_ID:
+        r = requests.post(f"{base}/media", data={**data, "location_id": LOCATION_ID}).json()
+        if "id" in r:
+            return r
+        health_event("location_fail", r)
+        print("위치 태그 실패 → 위치 없이 진행:", r)
+    return requests.post(f"{base}/media", data=data).json()
+
+
 def ig_publish_reel(video_url, caption, cover_url=None):
     """릴스 게시. 피드 그리드는 캐러셀로 통일하기 위해 share_to_feed=false (릴스 탭·추천에만 노출)"""
     base = f"https://graph.instagram.com/v21.0/{IG_USER_ID or 'me'}"
@@ -766,7 +785,7 @@ def ig_publish_reel(video_url, caption, cover_url=None):
             "share_to_feed": "false", "access_token": IG_TOKEN}
     if cover_url:
         data["cover_url"] = cover_url
-    r = requests.post(f"{base}/media", data=data).json()
+    r = create_container(base, data)
     if "id" not in r:
         raise RuntimeError(f"릴스 컨테이너 실패: {r}")
     cid = r["id"]
@@ -794,9 +813,9 @@ def ig_publish(image_urls, caption):
         if "id" not in r:
             raise RuntimeError(f"슬라이드 업로드 실패: {u} {r}")
         children.append(r["id"])
-    r = requests.post(f"{base}/media", data={
+    r = create_container(base, {
         "media_type": "CAROUSEL", "children": ",".join(children),
-        "caption": caption, "access_token": IG_TOKEN}).json()
+        "caption": caption, "access_token": IG_TOKEN})
     if "id" not in r:
         raise RuntimeError(f"캐러셀 생성 실패: {r}")
     time.sleep(20)  # 인스타 쪽 처리 대기
@@ -863,8 +882,11 @@ def health_event(kind, detail=""):
     return h
 
 
-def guard_ok():
-    """비용이 드는 생성 전에 안전장치 확인: 일시정지 상태 / 하루 생성 한도"""
+REEL_DAILY_CAP = int(os.getenv("REEL_DAILY_CAP", "1"))  # 전용 릴스 하루 최대 1건
+
+
+def guard_ok(kind="carousel"):
+    """비용이 드는 생성 전에 안전장치 확인: 예산 / 경고 휴식 / 일시정지 / 하루 생성 한도(종류별)"""
     h = load_health()
     spent = spend_30d_krw()
     if spent >= MONTHLY_BUDGET_KRW:
@@ -888,12 +910,13 @@ def guard_ok():
     for t in (json.load(open(TOPICS, encoding="utf-8")) if os.path.exists(TOPICS) else []):
         try:
             dt = datetime.datetime.strptime(t["date"], "%Y%m%d_%H%M") + datetime.timedelta(hours=9)
-            if t.get("kind", "carousel") == "carousel" and dt.strftime("%Y%m%d") == kst_today:
+            if t.get("kind", "carousel") == kind and dt.strftime("%Y%m%d") == kst_today:
                 n += 1
         except Exception:
             pass
-    if n >= DAILY_CAP:
-        print(f"[안전장치] 오늘 이미 {n}건 생성 → 한도 {DAILY_CAP}건 도달, 건너뜀")
+    cap = REEL_DAILY_CAP if kind == "reel" else DAILY_CAP
+    if n >= cap:
+        print(f"[안전장치] 오늘 {kind} 이미 {n}건 생성 → 한도 {cap}건 도달, 건너뜀")
         health_event("skip_cap", n)
         return False
     return True
@@ -1037,7 +1060,12 @@ def reel_for(dirname):
 
 
 def reel_only():
-    """캐러셀로 올리지 않은 별도 주제로 릴스 영상만 만들기 (운영자가 앱에서 음악 붙여 직접 게시)"""
+    """캐러셀로 올리지 않은 별도 주제로 전용 릴스 만들기 (하루 1건, 피드 그리드엔 안 뜸)"""
+    global FOCUS_OVERRIDE
+    if not guard_ok("reel"):
+        return
+    FOCUS_OVERRIDE = ("릴스 전용(가볍게 보고 공유하는 화제): 연애·관계·스포츠·과학 중 '진짜?' 소리가 나는 반전·숫자가 있는 이야기. "
+                      "오늘 캐러셀에서 다룬 주제와 겹치면 안 됨")
     rh_path = "reels_history.json"
     rh = json.load(open(rh_path, encoding="utf-8")) if os.path.exists(rh_path) else []
     used = load_history() + rh  # 캐러셀·릴스에서 이미 다룬 주제 모두 제외
@@ -1055,14 +1083,44 @@ def reel_only():
     rh.append({"date": stamp, "headline": d["headline"], "topic_key": d.get("topic_key", "")})
     record_topic(d, "reel")
     json.dump(rh, open(rh_path, "w", encoding="utf-8"), ensure_ascii=False, indent=1)
+    json.dump({"stamp": stamp}, open("reel_pending.json", "w", encoding="utf-8"))
     print("릴스 전용 완료:", out, d["headline"])
+
+
+def reel_publish():
+    """전용 릴스 게시 (영상이 공개 URL에 올라간 뒤). 실패는 캐러셀과 같은 실패 카운트로 관리"""
+    stamp = json.load(open("reel_pending.json", encoding="utf-8"))["stamp"]
+    base_url = IMAGE_BASE_URL.rsplit("/posts", 1)[0] + "/reels"
+    d = json.load(open(f"reels/{stamp}/data.json", encoding="utf-8"))
+    if DRY_RUN:
+        print("DRY_RUN=true → 릴스 게시 생략")
+    else:
+        try:
+            rid = ig_publish_reel(f"{base_url}/{stamp}/reel.mp4", build_caption(d), f"{base_url}/{stamp}/01.jpg")
+        except Exception as e:
+            h = health_event("publish_fail", f"reel {e}")
+            recent = [x for x in h["events"] if x["kind"] == "publish_fail" and
+                      x["at"] >= (datetime.datetime.utcnow() - datetime.timedelta(hours=24)).isoformat()]
+            if len(recent) >= 2:
+                h["paused_until"] = (datetime.datetime.utcnow() + datetime.timedelta(hours=24)).isoformat(timespec="seconds")
+                h["pause_reason"] = f"24시간 내 게시 실패 {len(recent)}회: {str(e)[:120]}"
+                json.dump(h, open(HEALTH, "w", encoding="utf-8"), ensure_ascii=False, indent=1)
+            os.remove("reel_pending.json")
+            raise
+        print("전용 릴스 게시 완료:", rid)
+        rh = json.load(open("reels_history.json", encoding="utf-8"))
+        for x in rh:
+            if x.get("date") == stamp:
+                x["reel_id"] = rid
+        json.dump(rh, open("reels_history.json", "w", encoding="utf-8"), ensure_ascii=False, indent=1)
+    os.remove("reel_pending.json")
 
 
 if __name__ == "__main__":
     import sys
     import traceback
     try:
-        {"generate": generate, "publish": publish, "stats": stats, "repost": repost, "reel_only": reel_only,
+        {"generate": generate, "publish": publish, "stats": stats, "repost": repost, "reel_only": reel_only, "reel_publish": reel_publish,
          "reel_make": lambda: reel_for(sys.argv[2]),
          "reel_post": lambda: print("릴스 게시 완료:", ig_publish_reel(f"{IMAGE_BASE_URL}/{sys.argv[2]}/reel.mp4", build_caption(json.load(open(f"{OUT_DIR}/{sys.argv[2]}/data.json", encoding="utf-8"))), f"{IMAGE_BASE_URL}/{sys.argv[2]}/01.jpg"))}[sys.argv[1]]()
     except Exception:
