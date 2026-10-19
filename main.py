@@ -1144,7 +1144,21 @@ def reel_only():
     rh.append({"date": stamp, "headline": d["headline"], "topic_key": d.get("topic_key", "")})
     record_topic(d, "reel")
     json.dump(rh, open(rh_path, "w", encoding="utf-8"), ensure_ascii=False, indent=1)
-    json.dump({"stamp": stamp}, open("reel_pending.json", "w", encoding="utf-8"))
+    if os.getenv("REEL_AUTOPUBLISH", "false") == "true":
+        json.dump({"stamp": stamp}, open("reel_pending.json", "w", encoding="utf-8"))
+    # 운영자가 폰에서 받아 음악 붙여 직접 올리도록: 고정 주소(reels/latest.mp4) + 안내 페이지(reels/README.md)
+    import shutil
+    shutil.copy(os.path.join(out, "reel.mp4"), os.path.join("reels", "latest.mp4"))
+    shutil.copy(os.path.join(out, "01.jpg"), os.path.join("reels", "latest_cover.jpg"))
+    repo = os.getenv("GITHUB_REPOSITORY", "dailyjjip/daily-jjip")
+    kst = (datetime.datetime.utcnow() + datetime.timedelta(hours=9)).strftime("%m/%d %H:%M")
+    open(os.path.join("reels", "README.md"), "w", encoding="utf-8").write(
+        f"# 오늘의 전용 릴스 ({kst} 생성)\n\n"
+        f"**{d['headline']}**\n\n"
+        f"1. [영상 받기](https://raw.githubusercontent.com/{repo}/main/reels/latest.mp4) → 길게 눌러 저장\n"
+        f"2. 인스타 앱 → 릴스 → 영상 선택 → 음악(추천곡) 지정\n"
+        f"3. 아래 캡션 복사해서 붙여넣기 → 공유\n\n"
+        f"![표지](latest_cover.jpg)\n\n## 캡션\n\n```\n{build_caption(d)}\n```\n")
     print("릴스 전용 완료:", out, d["headline"])
 
 

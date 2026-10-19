@@ -1,8 +1,8 @@
-name: 전용 릴스 (하루 1회)
+name: 전용 릴스 제작 (하루 1회, 운영자가 음악 붙여 게시)
 
 on:
   schedule:
-    - cron: "40 3 * * *"   # 한국시간 12:40 (캐러셀 시간대 사이)
+    - cron: "40 2 * * *"   # 한국시간 11:40 → 점심때 받아서 올리기
   workflow_dispatch: {}
 
 permissions:
@@ -25,7 +25,7 @@ jobs:
           PEXELS_API_KEY: ${{ secrets.PEXELS_API_KEY }}
           PIXABAY_API_KEY: ${{ secrets.PIXABAY_API_KEY }}
         run: python main.py reel_only
-      - name: 영상 업로드 (공개 URL)
+      - name: 영상·캡션 저장 (reels/README.md)
         run: |
           git config user.name "cardnews-bot"
           git config user.email "bot@users.noreply.github.com"
@@ -33,7 +33,7 @@ jobs:
           git commit -qm "reel: $(date -u +%Y%m%d_%H%M)" || true
           git pull -q --rebase && git push -q
           sleep 20
-      - name: 2) 릴스 게시 (피드 그리드 제외)
+      - name: 2) 릴스 자동 게시 (REEL_AUTOPUBLISH=true일 때만)
         if: hashFiles('reel_pending.json') != ''
         env:
           IG_USER_ID: ${{ secrets.IG_USER_ID }}
