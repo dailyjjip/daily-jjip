@@ -1,0 +1,43 @@
+name: 입찰 공고 알리미 (엔바이록스 검증용)
+
+on:
+  schedule:
+    - cron: "30 22 * * 0-4"   # 한국시간 평일(월~금) 07:30
+  workflow_dispatch: {}
+
+permissions:
+  contents: write
+  issues: write
+
+jobs:
+  bids:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+      - run: pip install anthropic requests
+      - name: 공고 수집·필터·평가
+        env:
+          DATA_GO_KR_KEY: ${{ secrets.DATA_GO_KR_KEY }}
+          ANTHROPIC_API_KEY: ${{ secrets.ANTHROPIC_API_KEY }}
+        run: python bids/bid_alert.py
+      - name: 알림 (GitHub 이슈 → 메일)
+        if: hashFiles('bids/issue.md') != ''
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: |
+          if [ -s bids/issue.md ]; then
+            gh issue create -R "${{ github.repository }}" --title "입찰 공고 $(TZ=Asia/Seoul date +%m/%d) — $(grep -c '^### ' bids/issue.md)건" --body-file bids/issue.md
+          fi
+          rm -f bids/issue.md
+      - name: 기록 저장
+        if: always()
+        run: |
+          git config user.name "cardnews-bot"
+          git config user.email "bot@users.noreply.github.com"
+          rm -f bids/issue.md
+          git add bids costs.json 2>/dev/null || true
+          git commit -qm "bids: $(date -u +%Y%m%d)" || true
+          git pull -q --rebase && git push -q || true
