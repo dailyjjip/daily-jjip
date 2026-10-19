@@ -778,6 +778,67 @@ def create_container(base, data):
     return requests.post(f"{base}/media", data=data).json()
 
 
+FB_TOKEN = os.getenv("FB_ACCESS_TOKEN", "").strip()  # 페이스북 로그인 토큰(있을 때만 인스타 추천 음악 사용)
+FB_API = "https://graph.facebook.com/v22.0"
+
+
+def fb_ig_user_id():
+    """페이스북 로그인 쪽 인스타 비즈니스 계정 ID (연결된 페이지에서 자동 조회)"""
+    if os.getenv("FB_IG_USER_ID"):
+        return os.getenv("FB_IG_USER_ID")
+    r = requests.get(f"{FB_API}/me/accounts", params={"fields": "instagram_business_account",
+                                                       "access_token": FB_TOKEN}, timeout=30).json()
+    for pg in r.get("data", []):
+        if pg.get("instagram_business_account"):
+            return pg["instagram_business_account"]["id"]
+    raise RuntimeError(f"페이스북 페이지에 연결된 인스타 계정을 못 찾음: {r}")
+
+
+def pick_trending_audio(uid):
+    """인스타 추천(트렌딩) 음악 중 최근 14일간 안 쓴 곡 하나. 3자 사용 허가된 음악만 반환됨"""
+    r = requests.get(f"{FB_API}/ig_audio", params={"audio_type": "music", "user_id": uid,
+                                                    "access_token": FB_TOKEN}, timeout=30).json()
+    used = set()
+    if os.path.exists("reels_history.json"):
+        cut = (datetime.datetime.utcnow() - datetime.timedelta(days=14)).strftime("%Y%m%d_%H%M")
+        used = {x.get("audio_id") for x in json.load(open("reels_history.json", encoding="utf-8")) if x.get("date", "") >= cut}
+    for a in r.get("data", []):
+        if a.get("id") and a["id"] not in used:
+            return a
+    raise RuntimeError(f"추천 음악 없음: {str(r)[:200]}")
+
+
+def ig_publish_reel_music(video_url, caption, cover_url=None):
+    """추천 음악을 붙여 릴스 게시(페이스북 로그인 API). 반환: (게시 ID, 음악 정보)"""
+    uid = fb_ig_user_id()
+    audio = pick_trending_audio(uid)
+    data = {"media_type": "REELS", "video_url": video_url, "caption": caption, "share_to_feed": "false",
+            "audio_configuration": json.dumps({"audio_id": audio["id"], "audio_volume": 100, "video_volume": 1}),
+            "access_token": FB_TOKEN}
+    if cover_url:
+        data["cover_url"] = cover_url
+    if LOCATION_ID:
+        data["location_id"] = LOCATION_ID
+    r = requests.post(f"{FB_API}/{uid}/media", data=data).json()
+    if "id" not in r and LOCATION_ID:
+        health_event("location_fail", r)
+        data.pop("location_id")
+        r = requests.post(f"{FB_API}/{uid}/media", data=data).json()
+    if "id" not in r:
+        raise RuntimeError(f"음악 릴스 컨테이너 실패: {r}")
+    for _ in range(40):
+        time.sleep(10)
+        st = requests.get(f"{FB_API}/{r['id']}", params={"fields": "status_code,status", "access_token": FB_TOKEN}).json()
+        if st.get("status_code") == "FINISHED":
+            break
+        if st.get("status_code") == "ERROR":
+            raise RuntimeError(f"음악 릴스 처리 실패: {st}")
+    r2 = requests.post(f"{FB_API}/{uid}/media_publish", data={"creation_id": r["id"], "access_token": FB_TOKEN}).json()
+    if "id" not in r2:
+        raise RuntimeError(f"음악 릴스 게시 실패: {r2}")
+    return r2["id"], audio
+
+
 def ig_publish_reel(video_url, caption, cover_url=None):
     """릴스 게시. 피드 그리드는 캐러셀로 통일하기 위해 share_to_feed=false (릴스 탭·추천에만 노출)"""
     base = f"https://graph.instagram.com/v21.0/{IG_USER_ID or 'me'}"
@@ -1095,8 +1156,16 @@ def reel_publish():
     if DRY_RUN:
         print("DRY_RUN=true → 릴스 게시 생략")
     else:
+        audio = None
         try:
-            rid = ig_publish_reel(f"{base_url}/{stamp}/reel.mp4", build_caption(d), f"{base_url}/{stamp}/01.jpg")
+            if FB_TOKEN:  # 추천 음악 우선, 실패하면 음악 없이 기존 방식으로 게시
+                try:
+                    rid, audio = ig_publish_reel_music(f"{base_url}/{stamp}/reel.mp4", build_caption(d), f"{base_url}/{stamp}/01.jpg")
+                except Exception as me:
+                    health_event("music_fail", me)
+                    print("추천 음악 실패 → 음악 없이 게시:", me)
+            if not audio:
+                rid = ig_publish_reel(f"{base_url}/{stamp}/reel.mp4", build_caption(d), f"{base_url}/{stamp}/01.jpg")
         except Exception as e:
             h = health_event("publish_fail", f"reel {e}")
             recent = [x for x in h["events"] if x["kind"] == "publish_fail" and
@@ -1112,6 +1181,8 @@ def reel_publish():
         for x in rh:
             if x.get("date") == stamp:
                 x["reel_id"] = rid
+                if audio:
+                    x["audio_id"], x["audio_title"] = audio["id"], f"{audio.get('artist_name', '')} - {audio.get('title', '')}"
         json.dump(rh, open("reels_history.json", "w", encoding="utf-8"), ensure_ascii=False, indent=1)
     os.remove("reel_pending.json")
 
