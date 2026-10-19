@@ -46,9 +46,31 @@ def load_history():
     return []
 
 
+SECTIONS = ["BUSINESS", "NATION", "ENTERTAINMENT", "SPORTS", "TECHNOLOGY"]
+
+
 def fetch_news(n=30):
-    feed = feedparser.parse(RSS_URL)
-    return [{"title": e.title, "link": e.link} for e in feed.entries[:n]]
+    """주요 뉴스 + 분야별(경제·사회·연예·스포츠·IT) 헤드라인 (무료 RSS)"""
+    urls = [RSS_URL] + [f"https://news.google.com/rss/headlines/section/topic/{s}?hl=ko&gl=KR&ceid=KR:ko" for s in SECTIONS]
+    seen, out = set(), []
+    for i, u in enumerate(urls):
+        try:
+            for e in feedparser.parse(u).entries[: (n if i == 0 else 12)]:
+                if e.title not in seen:
+                    seen.add(e.title); out.append({"title": e.title, "link": e.link})
+        except Exception:
+            pass
+    return out
+
+
+def slot_focus():
+    """게시 시간대별 주제 방향 (한국시간)"""
+    h = (datetime.datetime.utcnow() + datetime.timedelta(hours=9)).hour
+    if h < 10:
+        return "오늘의 중대 이슈: 경제·사회·국제 중 오늘 한국인이 가장 많이 이야기할 큰 뉴스"
+    if h < 16:
+        return "생활 밀착 이슈: 부동산·주식·재테크·물가·월급·취업·세금·IT 신제품처럼 내 돈과 생활에 직접 닿는 뉴스"
+    return "재밌는 화제: 연예·스포츠·트렌드·온라인 화제처럼 퇴근길에 가볍게 보고 공유하고 싶은 뉴스(사망·사건사고 제외)"
 
 
 def extract_json(text):
@@ -120,7 +142,8 @@ def pick_issue(news, history):
 최근 4일간 이미 다룬 주제 [주제 키] 제목 — 같은 사건·같은 이슈는 각도를 바꿔도 금지(예: 같은 폭우를 강수량·침수·출근길로 나눠 다시 쓰기 금지):
 {done or '(없음)'}
 
-1) 이 중 일반 대중이 가장 관심 가질 이슈 1개를 고르세요.
+1) 이번 게시 방향은 [{slot_focus()}] 입니다. 이 방향에 맞으면서 한국인의 관심(검색·공유·댓글)이 가장 클 이슈 1개를 고르세요.
+   우선순위: 오늘 실시간으로 화제인 것 > 많은 사람의 돈·생활에 영향 > 의견이 갈려 댓글이 달릴 만한 것. 소수만 관심 가질 전문 뉴스는 피하세요.
 2) web_search로 그 이슈의 최신 기사 2~3개를 확인해 구체적인 사실과 수치를 모으세요.
 3) 매거진 스타일(아이즈매거진, 디에디트 같은 에디토리얼 톤) 인스타 캐러셀 문구를 쓰세요.
    순서: 표지 → 무슨 일이야 → 세부 내용 → 요약 및 앞으로 주목할 포인트 → 에디터 한 줄 + 토론 질문 → 팔로우
