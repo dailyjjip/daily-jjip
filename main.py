@@ -67,15 +67,57 @@ def extract_json(text):
     return found
 
 
+TOPICS = "topics.json"
+
+
+def recent_topics(hours=96):
+    """최근 생성한 모든 주제(캐러셀·릴스, 게시 성공 여부 무관)"""
+    items = json.load(open(TOPICS, encoding="utf-8")) if os.path.exists(TOPICS) else []
+    for path in (HISTORY, "reels_history.json"):
+        if os.path.exists(path):
+            for h in json.load(open(path, encoding="utf-8")):
+                items.append({"date": h.get("date", ""), "headline": h.get("headline", ""), "topic_key": h.get("topic_key", "")})
+    cutoff = (datetime.datetime.utcnow() - datetime.timedelta(hours=hours)).strftime("%Y%m%d_%H%M")
+    seen, out = set(), []
+    for t in items:
+        k = (t.get("headline"), t.get("topic_key"))
+        if t.get("date", "") >= cutoff and k not in seen:
+            seen.add(k); out.append(t)
+    return out
+
+
+def record_topic(d, kind="carousel"):
+    items = json.load(open(TOPICS, encoding="utf-8")) if os.path.exists(TOPICS) else []
+    items.append({"date": d["stamp"], "kind": kind, "headline": d["headline"],
+                  "topic_key": d.get("topic_key", ""), "category": d.get("category", "")})
+    json.dump(items[-300:], open(TOPICS, "w", encoding="utf-8"), ensure_ascii=False, indent=1)
+
+
+def _words(t):
+    import re
+    return {w for w in re.findall(r"[가-힣A-Za-z0-9]{2,}", t or "")}
+
+
+def is_duplicate(d, recents):
+    """같은 사건 판정: 주제 키워드가 2개 이상 겹치면 중복"""
+    new = _words(d.get("topic_key", "")) | _words(d.get("headline", ""))
+    for t in recents:
+        old = _words(t.get("topic_key", "")) | _words(t.get("headline", ""))
+        if len(new & old) >= 2 or (d.get("topic_key") and d.get("topic_key") == t.get("topic_key")):
+            return t
+    return None
+
+
 def pick_issue(news, history):
     """Claude가 이슈 1개를 고르고, 웹 검색으로 사실을 확인해 슬라이드 6장 분량의 문구를 만든다."""
     from anthropic import Anthropic
-    done = "\n".join(h["headline"] for h in history[-30:])
+    recents = recent_topics()
+    done = "\n".join(f"- [{t.get('topic_key') or '-'}] {t['headline']}" for t in recents[-60:])
     items = "\n".join(f"- {x['title']}" for x in news)
     prompt = f"""오늘 한국 뉴스 헤드라인 목록입니다:
 {items}
 
-최근 이미 게시한 주제(중복 금지):
+최근 4일간 이미 다룬 주제 [주제 키] 제목 — 같은 사건·같은 이슈는 각도를 바꿔도 금지(예: 같은 폭우를 강수량·침수·출근길로 나눠 다시 쓰기 금지):
 {done or '(없음)'}
 
 1) 이 중 일반 대중이 가장 관심 가질 이슈 1개를 고르세요.
@@ -109,6 +151,7 @@ def pick_issue(news, history):
  "caption": "첫 문장에 사람들이 검색할 핵심 키워드(예: 코스피 급락 이유)를 자연스럽게 넣고, 인스타 본문 3~4문장, 마지막에 저장/공유 유도 한 문장",
  "hashtags": ["#태그", "... 4개 (검색량 많은 핵심어 위주)"],
  "sources": ["참고한 언론사명 2~3개"],
+ "topic_key": "이 이슈를 대표하는 핵심 사건 2~3단어 (예: 서울 가을 폭우, 한은 기준금리, 코스피 반대매매)",
  "source_title": "근거로 쓴 헤드라인 원문"}}"""
     client = Anthropic()
     tools = [{"type": "web_search_20250305", "name": "web_search", "max_uses": 3}]
@@ -128,6 +171,16 @@ def pick_issue(news, history):
         messages.append({"role": "user", "content": "지금까지 확인한 내용으로 위에서 요청한 JSON만 출력하세요. 다른 말은 쓰지 마세요."})
     if data is None:
         raise ValueError("여러 번 시도했지만 JSON을 받지 못했습니다")
+    dup = is_duplicate(data, recents)
+    if dup and not getattr(pick_issue, "_retry", False):
+        print("중복 주제 감지 → 다른 주제로 다시 선정:", data.get("topic_key"), "≈", dup.get("headline"))
+        banned = _words(dup.get("topic_key", "")) | _words(data.get("topic_key", ""))
+        news2 = [x for x in news if len(_words(x["title"]) & banned) < 2]
+        pick_issue._retry = True
+        try:
+            return pick_issue(news2, history)
+        finally:
+            pick_issue._retry = False
     src = next((x for x in news if x["title"] == data.get("source_title")), None)
     data["source_link"] = src["link"] if src else ""
     return data
@@ -705,6 +758,18 @@ def ig_publish(image_urls, caption):
     r2 = requests.post(f"{base}/media_publish", data={
         "creation_id": r["id"], "access_token": IG_TOKEN}).json()
     if "id" not in r2:
+        # 인스타가 오류를 돌려줘도 실제로는 올라간 경우가 있음 → 최근 게시물로 확인
+        time.sleep(15)
+        latest = requests.get(f"https://graph.instagram.com/v21.0/me/media",
+                              params={"fields": "id,timestamp", "limit": 1, "access_token": IG_TOKEN}).json()
+        try:
+            m = latest["data"][0]
+            ts = datetime.datetime.strptime(m["timestamp"][:19], "%Y-%m-%dT%H:%M:%S")
+            if (datetime.datetime.utcnow() - ts).total_seconds() < 600:
+                print("게시 응답은 오류였지만 실제로 게시됨:", m["id"], r2)
+                return m["id"]
+        except Exception:
+            pass
         raise RuntimeError(f"게시 실패: {r2}")
     return r2["id"]
 
@@ -716,6 +781,7 @@ def generate():
     d = pick_issue(fetch_news(), history)
     stamp = datetime.datetime.utcnow().strftime("%Y%m%d_%H%M")
     d["stamp"], d["issue_no"] = stamp, len(history) + 1
+    record_topic(d)  # 게시 성공 여부와 무관하게 주제를 먼저 기록 → 중복 방지
     qs = d.get("image_queries") or [d.get("image_query", "")]
     photo = get_photo(qs[0], "portrait")
     photo2 = get_photo(qs[1] if len(qs) > 1 else qs[0], "landscape",
@@ -849,7 +915,8 @@ def reel_only():
     make_reel(paths, os.path.join(out, "reel.mp4"))
     open(os.path.join(out, "caption.txt"), "w", encoding="utf-8").write(build_caption(d))
     json.dump(d, open(os.path.join(out, "data.json"), "w", encoding="utf-8"), ensure_ascii=False, indent=1)
-    rh.append({"date": stamp, "headline": d["headline"]})
+    rh.append({"date": stamp, "headline": d["headline"], "topic_key": d.get("topic_key", "")})
+    record_topic(d, "reel")
     json.dump(rh, open(rh_path, "w", encoding="utf-8"), ensure_ascii=False, indent=1)
     print("릴스 전용 완료:", out, d["headline"])
 
