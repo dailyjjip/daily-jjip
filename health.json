@@ -1,0 +1,9 @@
+{
+ "events": [
+  {
+   "at": "2026-10-19T03:42:53",
+   "kind": "publish_fail",
+   "detail": "슬라이드 업로드 실패: https://raw.githubusercontent.com/dailyjjip/daily-jjip/main/posts/20261019_0342/01.jpg {'error': {'message': 'Only photo or video can be accepted as media type.', 'type': 'OAuthException', 'code': 9004, 'error_subcode': 2207052, 'is_transient': False, 'error_user_title': \"Media download"
+  }
+ ]
+}
