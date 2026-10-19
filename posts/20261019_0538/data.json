@@ -1,0 +1,90 @@
+{
+ "category": "IT",
+ "kicker": "PS6 원가 유출설",
+ "headline": "램값이 PS5값 넘었다?",
+ "big_number": "$680",
+ "big_label": "램·SSD만의 추정 원가",
+ "what": [
+  "유출자 케플러가 PS6의 램·낸드만 680달러라 주장했다.",
+  "약 97만 원이며, 프로세서와 냉각장치 비용은 빠진 값이다.",
+  "소니는 사양·가격·출시일을 공식 발표하지 않았다."
+ ],
+ "numbers": [
+  {
+   "value": "$680+",
+   "label": "램·낸드 추정 원가"
+  },
+  {
+   "value": "$649.99",
+   "label": "미국 PS5 현재가"
+  },
+  {
+   "value": "$20~23",
+   "label": "GDDR7 GB당 추정"
+  }
+ ],
+ "details": [
+  {
+   "head": "원가 추정치 계속 상승",
+   "body": "3월 부품 원가 760달러 추정, 이후 960달러로 상향했다."
+  },
+  {
+   "head": "PS5 판매가와 비교",
+   "body": "현재 미국 PS5 판매가 649.99달러보다 램·낸드 추정치가 높다."
+  },
+  {
+   "head": "범인은 AI 수요",
+   "body": "AI 데이터센터 수요로 DRAM·낸드 값이 뛰었다는 설명이다."
+  }
+ ],
+ "points": [
+  "680달러는 램·낸드만의 추정치",
+  "소니의 공식 확인은 아직 없다",
+  "원인은 AI발 메모리 가격 급등"
+ ],
+ "watch": [
+  {
+   "head": "소니 공식 발표",
+   "body": "사양·가격·출시 일정이 나오면 추정치와 대조된다."
+  },
+  {
+   "head": "메모리 값 흐름",
+   "body": "램·낸드 가격이 내려가지 않으면 가격 부담이 이어진다."
+  }
+ ],
+ "oneliner": "콘솔 값을 정하는 건 이제 메모리 시세",
+ "debate": {
+  "question": "콘솔이 100만 원이면 산다?",
+  "a": "나온다면 산다",
+  "b": "가격 내릴 때까지"
+ },
+ "image_queries": [
+  "game console controller",
+  "computer memory chips"
+ ],
+ "caption": "PS6 가격 전망이 벌써 화제입니다. 유출자 케플러는 PS6의 램과 낸드만 680달러가 넘는다고 주장했습니다. 다만 소니는 가격도 사양도 발표하지 않았고, 이 수치는 검증되지 않은 추정입니다. 현재 PS5 가격과 나란히 놓고 보면 메모리 시세가 콘솔 가격을 좌우하는 시대라는 점이 눈에 들어옵니다. 나중에 비교해 볼 수 있게 저장해 두고, 게임 친구에게 공유해 보세요.",
+ "hashtags": [
+  "#PS6",
+  "#플레이스테이션6",
+  "#메모리가격",
+  "#콘솔가격"
+ ],
+ "sources": [
+  "ZDNet Korea",
+  "TechPowerUp",
+  "Digital Trends"
+ ],
+ "topic_key": "PS6 원가 논란",
+ "source_title": "플레이스테이션6 가격 폭탄 맞나…램·저장장치만 680달러↑ - 지디넷코리아",
+ "source_link": "https://news.google.com/rss/articles/CBMiVkFVX3lxTE9rc2h2WjdrbjJuejA3WFJHUk5vUDhVWGtyQXo3OWY4MUtTb1JWdGF6THBEaHdzaHkzZzdYUjBhZl9abzhWRS1BZHhudjlLVEFWamRNeW1R?oc=5",
+ "stamp": "20261019_0538",
+ "issue_no": 20,
+ "images": [
+  "20261019_0538/01.jpg",
+  "20261019_0538/02.jpg",
+  "20261019_0538/03.jpg",
+  "20261019_0538/04.jpg",
+  "20261019_0538/05.jpg",
+  "20261019_0538/06.jpg"
+ ]
+}
