@@ -7,8 +7,11 @@ on:
         description: "posts 아래 폴더 이름"
         required: true
       cmd:
-        description: "review_dir 또는 pick_dir"
+        description: "review_dir / pick_dir / rebuild_dir"
         default: review_dir
+
+permissions:
+  contents: write
 
 jobs:
   review:
@@ -24,3 +27,11 @@ jobs:
           PIXABAY_API_KEY: ${{ secrets.PIXABAY_API_KEY }}
           PEXELS_API_KEY: ${{ secrets.PEXELS_API_KEY }}
         run: python main.py ${{ github.event.inputs.cmd }} ${{ github.event.inputs.dir }} > out.txt && echo "::notice::$(grep '결과\|선택' out.txt | tr '\n' ' ')" || { echo "::error::$(tail -c 900 last_error.txt | tr "\n" " ")"; exit 1; }
+      - name: 시험 결과 저장
+        if: always()
+        run: |
+          git config user.name "cardnews-bot"
+          git config user.email "bot@users.noreply.github.com"
+          git add tests costs.json 2>/dev/null || true
+          git commit -qm "test: ${{ github.event.inputs.dir }}" || true
+          git pull -q --rebase && git push -q || true

@@ -169,13 +169,13 @@ def pick_issue(news, history):
 
 1) 이번 게시 방향은 [{slot_focus()}] 입니다. 이 방향에 맞으면서 한국인의 관심(검색·공유·댓글)이 가장 클 이슈 1개를 고르세요.
    우선순위: 오늘 실시간으로 화제인 것 > 쇼킹하거나 반전이 있어 공유하고 싶은 것 > 의견이 갈려 댓글이 달릴 만한 것 > 많은 사람의 돈·생활에 영향. 소수만 관심 가질 전문 뉴스는 피하세요.
-   제목은 사실에 기반해 자극적으로: 충격적인 숫자, 반전, 대비(예: "월급은 3% 올랐는데 집값은 30%")를 앞세워 스크롤을 멈추게 쓰세요. 단 사실 과장·확인 안 된 내용 단정·낚시성 허위는 금지.
+   제목은 사실에 기반해 자극적으로: 충격적인 숫자, 반전, 대비(예: "월급은 3% 올랐는데 집값은 30%")를 앞세워 스크롤을 멈추게 쓰세요. 표현은 과감하게 과장·자극해도 됩니다(운영자 방침). 단 사실 자체(무엇이 일어났는지·숫자·대상)를 틀리게 만들거나 확인 안 된 일을 사실처럼 단정하면 안 됩니다.
 2) web_search로 그 이슈의 최신 기사 2~3개를 확인해 구체적인 사실과 수치를 모으세요.
 3) 매거진 스타일(아이즈매거진, 디에디트 같은 에디토리얼 톤) 인스타 캐러셀 문구를 쓰세요.
    순서: 표지 → 무슨 일이야 → 세부 내용 → 요약 및 앞으로 주목할 포인트 → 에디터 한 줄 + 토론 질문 → 팔로우
 
 규칙:
-- 검색으로 확인한 사실만 사용. 확인 안 된 수치는 쓰지 말 것. 추측·과장·특정인 비방 금지.
+- 검색으로 확인한 사실만 사용. 확인 안 된 수치는 쓰지 말 것. 추측·특정인 비방 금지(표현의 과장·자극은 허용).
 - 정치 주제(정당·선거·정치인·정치 공방)는 고르지 말 것(별도 채널 예정). 사망·참사 이슈도 고르지 말 것. 토론 질문은 생활 속 찬반이 갈리는 질문으로.
 - 유치한 감탄·밈 표현 금지. 짧고 단단한 문장, 잡지 헤드라인처럼 위트 있게.
 - 데일리찝의 색깔: "남들이 놓친 한 지점을 콕 찝는다". 단순 요약이 아니라, 이 뉴스에서 독자가 진짜 궁금해할 관점 하나를 골라 그 관점으로 전체를 엮을 것.
@@ -1110,8 +1110,9 @@ def review_post(d, out_dir):
 엄격하게 판정하세요. 애매하면 불합격입니다.
 1) cover_ok: 표지 사진이 기사 내용을 실제로 보여주거나 자연스럽게 연상시키는가? 기사 상황과 다른 사진(예: 원격수술 기사에 게임기), 기사와 관계없는 상표가 크게 보이는 사진, 엉뚱한 인물 사진은 false. 기사 주제가 그 제품·브랜드라면 상표가 보여도 괜찮음. 사진 없이 어두운 배경이면 true.
 2) body_ok: 2장 사진도 같은 기준. 주제와 상관없는 일반 스톡 인물 사진(웃는 모델 등)도 false.
-3) text_ok: 제목·표지만 보면 사실과 다르게 오해할 수 있는가(예: 동물 실험인데 사람 수술처럼 보임)? 제목·숫자가 본문과 모순되거나 과장인가? (수치의 진위는 앞 단계에서 웹 검색으로 확인했으니 출처 표기가 없다는 이유만으로 불합격 주지 말 것) 사망·참사·정치 주제인가? 토론 질문이 혐오·조롱을 유도하는가? 글자가 잘리거나 겹쳐 보이는가? 문제 있으면 false.
-JSON만 출력: {{"cover_ok":true,"body_ok":true,"text_ok":true,"issues":["문제를 한 줄씩"]}}"""
+3) text_ok: 제목·표지만 보면 사실과 다르게 오해할 수 있는가(예: 동물 실험인데 사람 수술처럼 보임)? 제목·숫자가 본문과 모순되는가? 확인 안 된 일을 사실처럼 단정했는가? (표현의 과장·자극은 운영자 방침상 허용 — 과장만으로는 불합격 주지 말 것) (수치의 진위는 앞 단계에서 웹 검색으로 확인했으니 출처 표기가 없다는 이유만으로 불합격 주지 말 것) 사망·참사·정치 주제인가? 토론 질문이 혐오·조롱을 유도하는가? 글자가 잘리거나 겹쳐 보이는가? 문제 있으면 false.
+banned: 사망·참사·정치 주제라서 고쳐도 올릴 수 없으면 true.
+JSON만 출력: {{"cover_ok":true,"body_ok":true,"text_ok":true,"banned":false,"issues":["문제를 한 줄씩"]}}"""
     msg = Anthropic().messages.create(model=REVIEW_MODEL, max_tokens=6000,
                                       messages=[{"role": "user", "content": imgs + [{"type": "text", "text": prompt}]}])
     log_cost(msg, "review")
@@ -1121,9 +1122,34 @@ JSON만 출력: {{"cover_ok":true,"body_ok":true,"text_ok":true,"issues":["문�
     return json.loads(txt[txt.index("{"): txt.rindex("}") + 1])
 
 
+TEXT_KEYS = ("kicker", "headline", "big_number", "big_label", "what", "numbers", "details", "points", "watch",
+             "oneliner", "debate", "caption")
+
+
+def fix_text(d, issues):
+    """검수에서 지적된 문구를 고친다(올리지 않는 대신 수정해서 올림). 자극적인 톤은 유지·강화."""
+    from anthropic import Anthropic
+    cur = json.dumps({k: d.get(k) for k in TEXT_KEYS}, ensure_ascii=False)
+    prompt = f"""인스타 뉴스 카드 '데일리찝'의 문구를 고치세요.
+검수 지적: {json.dumps(issues, ensure_ascii=False)}
+현재 문구(JSON): {cur}
+규칙: 지적된 오해 소지·모순·미확인 단정만 바로잡고, 제목은 오히려 더 자극적으로(숫자·반전·대비). 과장된 표현은 괜찮지만 사실(무슨 일·숫자·대상)은 정확하게.
+글자 수는 현재와 비슷하게(카드 레이아웃 유지). 같은 키 구조의 JSON만 출력."""
+    msg = Anthropic().messages.create(model=REVIEW_MODEL, max_tokens=8000, messages=[{"role": "user", "content": prompt}])
+    log_cost(msg, "fix_text")
+    txt = "".join(b.text for b in msg.content if getattr(b, "type", "") == "text")
+    new = json.loads(txt[txt.index("{"): txt.rindex("}") + 1])
+    for k in TEXT_KEYS:
+        if k in new and isinstance(new[k], type(d.get(k))) and new[k]:
+            d[k] = new[k]
+    print("문구 수정:", d["headline"])
+
+
 def build_checked(d, out_dir, theme_idx=0):
-    """사진 고르기 → 렌더 → 검수. 사진이 안 맞으면 다른 사진으로 1회 재시도, 그래도 안 맞으면 사진 없이(어두운 배경).
-    문구 불합격이거나 검수 자체가 실패하면 None(게시 안 함)."""
+    """사진 고르기(AI, 기사 상황 기준) → 렌더 → 검수.
+    사진 불합격: 다른 후보 1회 → 그래도 안 맞으면 사진 없이(어두운 배경).
+    문구 불합격: 지적대로 고쳐서 다시 검수(최대 2회), 그래도 남으면 수정본으로 게시.
+    사망·참사·정치(banned)이거나 검수 자체가 실패하면 None(게시 안 함)."""
     used = set()
     try:
         photo, photo2 = choose_photos(d)
@@ -1144,9 +1170,25 @@ def build_checked(d, out_dir, theme_idx=0):
             return None
         print(f"검수 {attempt + 1}차:", rv)
         d.setdefault("review", []).append(rv)
-        if not rv.get("text_ok", False):
+        if rv.get("banned"):  # 사망·참사·정치 → 고쳐도 올리지 않음
             health_event("review_reject", f"{d['headline']} / {rv.get('issues')}")
             return None
+        if not rv.get("text_ok", False):
+            if attempt < 2:  # 운영자 방침: 버리지 말고 고쳐서 올림
+                try:
+                    fix_text(d, rv.get("issues", []))
+                except Exception as e:
+                    print("문구 수정 실패:", e)
+            else:
+                health_event("review_text_unfixed", f"{d['headline']} / {rv.get('issues')}")
+                return paths  # 두 번 고쳐도 지적이 남으면 마지막 수정본으로 게시(금지 주제는 위에서 이미 걸러짐)
+            if attempt >= 1:  # 사진도 계속 불합격이면 사진 없이
+                if not rv.get("cover_ok"):
+                    photo = None
+                if not rv.get("body_ok") or photo is None:
+                    photo2 = photo
+            if attempt >= 1 or (rv.get("cover_ok") and rv.get("body_ok")):
+                continue  # 고친 문구로 다시 렌더·검수 (사진 재선택은 1차에서만)
         if rv.get("cover_ok") and rv.get("body_ok"):
             return paths
         if attempt == 0:  # 검수에서 지적된 사진만 다른 후보로 다시 고름
@@ -1167,7 +1209,8 @@ def build_checked(d, out_dir, theme_idx=0):
             if not rv.get("body_ok") or photo is None:
                 photo2 = photo
             health_event("review_photo_drop", d["headline"])
-    return paths
+    # 마지막 회차에서 정한 사진(또는 어두운 배경)·문구로 최종 렌더
+    return render_slides(d, out_dir, theme_idx=theme_idx, photo=photo, photo2=photo2)
 
 
 def generate():
@@ -1392,6 +1435,8 @@ if __name__ == "__main__":
     import traceback
     try:
         {"generate": generate, "publish": publish, "stats": stats, "repost": repost, "reel_only": reel_only, "reel_publish": reel_publish,
+         "rebuild_dir": lambda: print("재제작 결과:", (lambda d: (build_checked(d, f"tests/{sys.argv[2]}") and d["headline"], d.get("review")))(
+             {k: v for k, v in json.load(open(f"{OUT_DIR}/{sys.argv[2]}/data.json", encoding="utf-8")).items() if k != "review"})),
          "pick_dir": lambda: print("사진 선택 결과:", [(x[1], x[2]) if x else None for x in choose_photos(json.load(open(f"{OUT_DIR}/{sys.argv[2]}/data.json", encoding="utf-8")))]),
          "review_dir": lambda: print("검수 결과:", review_post(json.load(open(f"{OUT_DIR}/{sys.argv[2]}/data.json", encoding="utf-8")), f"{OUT_DIR}/{sys.argv[2]}")),
          "reel_make": lambda: reel_for(sys.argv[2]),
