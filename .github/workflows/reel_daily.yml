@@ -25,6 +25,11 @@ jobs:
           PEXELS_API_KEY: ${{ secrets.PEXELS_API_KEY }}
           PIXABAY_API_KEY: ${{ secrets.PIXABAY_API_KEY }}
         run: python main.py reel_only
+      - name: 댓글용 한 줄 3개 (운영자가 남의 인기 게시물에 직접 붙여넣기)
+        continue-on-error: true
+        env:
+          ANTHROPIC_API_KEY: ${{ secrets.ANTHROPIC_API_KEY }}
+        run: python main.py comment_lines
       - name: 영상·캡션 저장 (reels/README.md)
         run: |
           git config user.name "cardnews-bot"

@@ -1396,6 +1396,43 @@ def reel_only():
     print("릴스 전용 완료:", out, d["headline"])
 
 
+def comment_lines():
+    """홍보용 '댓글용 한 줄' 3개 (운영자가 남의 인기 게시물에 직접 붙여넣기용, 운영자 지시 10/20).
+    최근 24시간 데일리찝이 다룬 주제의 data.json에서 정확한 숫자·맥락 한 줄. reels/README.md 하단에 갱신."""
+    from anthropic import Anthropic
+    cut = (datetime.datetime.utcnow() - datetime.timedelta(hours=24)).strftime("%Y%m%d_%H%M")
+    items = []
+    for base in (OUT_DIR, "reels"):
+        for dname in sorted(os.listdir(base)) if os.path.isdir(base) else []:
+            path = os.path.join(base, dname, "data.json")
+            if dname >= cut and os.path.exists(path):
+                d = json.load(open(path, encoding="utf-8"))
+                items.append({k: d.get(k) for k in ("headline", "kicker", "what", "numbers", "details", "points")})
+    if not items:
+        return
+    prompt = f"""데일리찝(@daily.jjip) 운영자가 다른 대형 뉴스·정보 계정의 같은 주제 인기 게시물에 직접 달 댓글을 3개 써주세요.
+최근 다룬 주제(사실 확인 완료): {json.dumps(items[-8:], ensure_ascii=False)}
+
+조건:
+- 화제성 큰 주제 3개를 골라 주제별 1개. 그 게시물 본문엔 없을 법한 정확한 숫자·맥락 한 가지를 담아 "오 이건 몰랐네" 소리가 나게.
+- 웃기면서도 진중하게(가벼운 위트 한 스푼 + 정확한 정보). 1~2문장, 70자 안팎. 실제 사람이 쓴 댓글처럼 자연스럽게.
+- 금지: 홍보("팔로우", "우리 계정", "@daily.jjip"), 링크, 해시태그, 이모지 2개 이상, 비하·조롱, 정치, 사실이 아닌 내용.
+JSON만: [{{"topic": "주제 한 줄", "comment": "댓글"}}]"""
+    msg = Anthropic().messages.create(model=REVIEW_MODEL, max_tokens=6000, messages=[{"role": "user", "content": prompt}])
+    log_cost(msg, "comment_lines")
+    txt = "".join(b.text for b in msg.content if getattr(b, "type", "") == "text")
+    lines = json.loads(txt[txt.index("["): txt.rindex("]") + 1])
+    readme = os.path.join("reels", "README.md")
+    body = open(readme, encoding="utf-8").read() if os.path.exists(readme) else ""
+    body = body.split("\n## 댓글용 한 줄")[0].rstrip()
+    kst = (datetime.datetime.utcnow() + datetime.timedelta(hours=9)).strftime("%m/%d")
+    sec = [f"\n\n## 댓글용 한 줄 ({kst})", "같은 주제의 인기 게시물(대형 뉴스·정보 계정)이 올라온 직후 30분 안에 붙여넣기. 하루 3~5개, 서로 다른 계정에.\n"]
+    for x in lines[:3]:
+        sec += [f"**{x.get('topic', '')}**", "```", x.get("comment", ""), "```", ""]
+    open(readme, "w", encoding="utf-8").write(body + "\n".join(sec))
+    print("댓글용 한 줄:", [x.get("comment") for x in lines[:3]])
+
+
 def reel_publish():
     """전용 릴스 게시 (영상이 공개 URL에 올라간 뒤). 실패는 캐러셀과 같은 실패 카운트로 관리"""
     stamp = json.load(open("reel_pending.json", encoding="utf-8"))["stamp"]
@@ -1439,7 +1476,7 @@ if __name__ == "__main__":
     import sys
     import traceback
     try:
-        {"generate": generate, "publish": publish, "stats": stats, "repost": repost, "reel_only": reel_only, "reel_publish": reel_publish,
+        {"generate": generate, "publish": publish, "stats": stats, "repost": repost, "reel_only": reel_only, "reel_publish": reel_publish, "comment_lines": comment_lines,
          "rebuild_dir": lambda: print("재제작 결과:", (lambda d: (build_checked(d, f"tests/{sys.argv[2]}") and d["headline"], d.get("review")))(
              {k: v for k, v in json.load(open(f"{OUT_DIR}/{sys.argv[2]}/data.json", encoding="utf-8")).items() if k != "review"})),
          "pick_dir": lambda: print("사진 선택 결과:", [(x[1], x[2]) if x else None for x in choose_photos(json.load(open(f"{OUT_DIR}/{sys.argv[2]}/data.json", encoding="utf-8")))]),
