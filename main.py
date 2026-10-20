@@ -1042,6 +1042,8 @@ JSON만 출력: {{"cover_ok":true,"body_ok":true,"text_ok":true,"issues":["문�
                                       messages=[{"role": "user", "content": imgs + [{"type": "text", "text": prompt}]}])
     log_cost(msg, "review")
     txt = "".join(b.text for b in msg.content if getattr(b, "type", "") == "text")
+    if "{" not in txt:
+        raise ValueError(f"검수 응답에 JSON 없음 (stop={msg.stop_reason}, blocks={[b.type for b in msg.content]}): {txt[:300]}")
     return json.loads(txt[txt.index("{"): txt.rindex("}") + 1])
 
 
