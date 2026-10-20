@@ -3,7 +3,11 @@ name: 질문 댓글 답글 (하루 최대 3개)
 on:
   schedule:
     - cron: "40 1,4,9,13 * * *"   # 한국시간 10:40 / 13:40 / 18:40 / 22:40
-  workflow_dispatch: {}
+  workflow_dispatch:
+    inputs:
+      dry:
+        description: "true면 초안만 보기"
+        default: "false"
 
 permissions:
   contents: write
@@ -22,6 +26,7 @@ jobs:
           ANTHROPIC_API_KEY: ${{ secrets.ANTHROPIC_API_KEY }}
           IG_ACCESS_TOKEN: ${{ secrets.IG_ACCESS_TOKEN }}
           IG_USER_ID: ${{ secrets.IG_USER_ID }}
+          REPLY_DRY: ${{ github.event.inputs.dry || 'false' }}
         run: python comment_reply.py
       - name: 기록 저장
         if: always()

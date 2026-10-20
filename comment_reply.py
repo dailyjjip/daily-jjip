@@ -17,6 +17,7 @@ import main as M
 
 STATE = "comments.json"
 DAILY_MAX = int(os.getenv("REPLY_DAILY_MAX", "3"))
+DRY = os.getenv("REPLY_DRY", "false") == "true"  # true면 댓글·답글 초안만 출력(게시·기록 안 함)
 API = "https://graph.instagram.com/v21.0"
 KST = datetime.timedelta(hours=9)
 
@@ -102,6 +103,11 @@ def run():
     if not new:
         print("새 댓글 없음"); return
     verdict = judge(new[:20])
+    if DRY:
+        for it in new[:20]:
+            v = verdict.get(it["id"], {})
+            print(f"::notice::댓글 [{it['post'].get('headline')}] @{it['username']}: {it['text']} → {'답글: ' + v.get('text', '') if v.get('reply') else '답 안 함'}")
+        return
     left = DAILY_MAX - len(done_today)
     for it in new[:20]:
         seen.add(it["id"])
