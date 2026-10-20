@@ -97,5 +97,50 @@
 "in": 37697,
 "out": 4537,
 "search": 2
+},
+{
+"at": "2026-10-20T11:37:49",
+"purpose": "carousel",
+"usd": 0.253,
+"krw": 367,
+"in": 47343,
+"out": 5396,
+"search": 3
+},
+{
+"at": "2026-10-20T11:38:01",
+"purpose": "photo_pick",
+"usd": 0.0175,
+"krw": 25,
+"in": 1772,
+"out": 814,
+"search": 0
+},
+{
+"at": "2026-10-20T11:38:11",
+"purpose": "review",
+"usd": 0.0407,
+"krw": 59,
+"in": 6029,
+"out": 1508,
+"search": 0
+},
+{
+"at": "2026-10-20T11:38:18",
+"purpose": "photo_pick",
+"usd": 0.0147,
+"krw": 21,
+"in": 1748,
+"out": 632,
+"search": 0
+},
+{
+"at": "2026-10-20T11:38:28",
+"purpose": "review",
+"usd": 0.046,
+"krw": 67,
+"in": 6029,
+"out": 1862,
+"search": 0
 }
 ]
