@@ -1,0 +1,90 @@
+{
+ "category": "경제",
+ "kicker": "서울 임대차 역전",
+ "headline": "월세가 이긴 게 아니다",
+ "big_number": "51%",
+ "big_label": "서울 아파트 월세 비중",
+ "what": [
+  "1~9월 서울 아파트 월세 비중이 51%, 첫 과반이다",
+  "월세 8만7740건, 전세 8만4287건으로 순서가 바뀌었다",
+  "원인은 월세 증가가 아니라 전세 거래의 급감이다"
+ ],
+ "numbers": [
+  {
+   "value": "-27.5%",
+   "label": "전세 거래 감소율"
+  },
+  {
+   "value": "-2.8%",
+   "label": "월세 거래 감소율"
+  },
+  {
+   "value": "4→13곳",
+   "label": "월세 우위 자치구"
+  }
+ ],
+ "details": [
+  {
+   "head": "전세가 10배 더 빠졌다",
+   "body": "월세는 2.8% 줄었고 전세는 27.5% 줄었다. 감소폭이 약 10배다."
+  },
+  {
+   "head": "강남도 월세 우위",
+   "body": "강남구 월세 8406건, 전세 7170건. 비중은 48.6%에서 54.0%로 올랐다."
+  },
+  {
+   "head": "월세 값도 올랐다",
+   "body": "9월 평균 월세 166만원, 1년 새 21만8천원 올랐다."
+  }
+ ],
+ "points": [
+  "월세 비중 51%, 첫 과반",
+  "월세 계약은 2.8% 감소에 그침",
+  "전세 거래는 27.5% 급감"
+ ],
+ "watch": [
+  {
+   "head": "연간 50% 돌파?",
+   "body": "추세가 이어지면 올해가 연간 월세 과반의 첫해가 된다"
+  },
+  {
+   "head": "집계 수정 가능성",
+   "body": "계약일 기준 신고 자료라 향후 신고·해제에 따라 달라질 수 있다"
+  }
+ ],
+ "oneliner": "월세는 선택보다 남은 길에 가깝다",
+ "debate": {
+  "question": "다음 집, 전세 vs 월세?",
+  "a": "전세 고수",
+  "b": "월세 선택"
+ },
+ "image_queries": [
+  "seoul apartment complex",
+  "korean apartment rent contract"
+ ],
+ "caption": "서울 아파트 월세 비중이 처음으로 51%를 넘었습니다. 월세 계약이 폭증한 게 아니라 월세는 2.8% 줄어드는 동안 전세 거래가 27.5% 급감해 순서가 뒤집힌 결과입니다. 월세가 전세를 앞선 자치구는 1년 새 4곳에서 13곳으로 늘었고, 9월 평균 월세는 166만원입니다. 다음 이사를 준비 중이라면 저장해 두고, 친구에게도 공유해 보세요.",
+ "hashtags": [
+  "#서울월세",
+  "#전세",
+  "#아파트월세",
+  "#부동산뉴스"
+ ],
+ "sources": [
+  "연합뉴스",
+  "시사저널",
+  "서울경제TV"
+ ],
+ "topic_key": "서울 월세 비중",
+ "source_title": "올해 1~9월 서울 아파트 월세 거래량 50% 돌파… 처음으로 전세 넘었다 - 조선비즈 - Chosunbiz",
+ "source_link": "https://news.google.com/rss/articles/CBMimAFBVV95cUxNbG5Obl9IUUhNaDdTZlU2R2lfMzloQ2VHbXFnd0p6WjlrSEd2UThPczZUNERrTEZEQnhnWW9fTE1fWnBrem9VSFdvalg2RTdyZUZadU1ZTXFUZWVoRjBsNVkxclFvV3Q1NGZtcDBnT281X1gxV3BSM29yNGFpQzR1WktLZ0NIMzJyaFF1SGxweXFfcHAxSXRYR9IBrAFBVV95cUxNWlVZX3B0Vl9wTGt1eFRIZkpUbEpZRk1DV09lNnhJSFBNdlJPRll3RmpqdTJtZTFhZjAxV2lhTFotaVNKWm90amxfbzlVd041THZUQmQ5NFdCU2xRMGhCTXRZR1N4VDNDZVdrejZGLWhCcmdxemRtZDRZdFZiOTQwUXBYbHNNYjRFdEcxN2pJcWRpWXNFV3gtWk5iNDRzOXFvR19HZHpvOV9pR3Bv?oc=5",
+ "stamp": "20261020_0538",
+ "issue_no": 27,
+ "images": [
+  "20261020_0538/01.jpg",
+  "20261020_0538/02.jpg",
+  "20261020_0538/03.jpg",
+  "20261020_0538/04.jpg",
+  "20261020_0538/05.jpg",
+  "20261020_0538/06.jpg"
+ ]
+}
