@@ -33,17 +33,36 @@ def today_kst():
     return (datetime.datetime.utcnow() + KST).strftime("%Y%m%d")
 
 
+KEYS = ("headline", "kicker", "what", "numbers", "details", "points", "watch", "sources")
+
+
 def post_info():
-    """최근 4일 게시물: post_id → data.json 요약"""
-    out = {}
-    cut = (datetime.datetime.utcnow() - datetime.timedelta(days=4)).strftime("%Y%m%d_%H%M")
+    """최근 게시물 20개(운영자가 직접 올린 릴스 포함, 댓글 있는 것만): media id → 게시물 정보"""
+    by_id, by_cap = {}, {}
     for p in json.load(open(M.HISTORY, encoding="utf-8")):
-        if p.get("post_id") and p.get("date", "") >= cut:
-            path = os.path.join(M.OUT_DIR, p["date"], "data.json")
+        path = os.path.join(M.OUT_DIR, p.get("date", ""), "data.json")
+        if p.get("post_id") and os.path.exists(path):
+            by_id[str(p["post_id"])] = path
+    for base in (M.OUT_DIR, "reels"):  # 캡션 첫 부분으로도 찾기 (직접 올린 릴스)
+        for dname in os.listdir(base) if os.path.isdir(base) else []:
+            path = os.path.join(base, dname, "data.json")
             if os.path.exists(path):
-                d = json.load(open(path, encoding="utf-8"))
-                out[str(p["post_id"])] = {k: d.get(k) for k in ("headline", "kicker", "what", "numbers", "details",
-                                                                 "points", "watch", "sources")}
+                try:
+                    by_cap[json.load(open(path, encoding="utf-8")).get("caption", "")[:30]] = path
+                except Exception:
+                    pass
+    r = requests.get(f"{API}/me/media", params={"fields": "id,caption,comments_count,timestamp", "limit": 20,
+                                               "access_token": M.IG_TOKEN}, timeout=30).json()
+    out = {}
+    for m in r.get("data", []):
+        if not m.get("comments_count"):
+            continue
+        cap = m.get("caption") or ""
+        path = by_id.get(m["id"]) or by_cap.get(cap[:30])
+        out[m["id"]] = ({k: json.load(open(path, encoding="utf-8")).get(k) for k in KEYS} if path
+                        else {"headline": cap.split("\n")[0][:80], "caption": cap[:1200]})
+    if DRY:
+        print(f"::notice::댓글 있는 게시물 {len(out)}개 (조회 응답: {str(r)[:150] if 'error' in r else 'ok'})")
     return out
 
 
@@ -93,7 +112,10 @@ def run():
                 if not any(x.get("kind") == "comments_perm" for x in h.get("events", [])[-30:]):
                     M.health_event("comments_perm", e.get("message", ""))
                 print("댓글 권한 없음(instagram_business_manage_comments 필요) → 건너뜀"); return
-            print("댓글 조회 오류:", e); continue
+            print("댓글 조회 오류:", e)
+            if DRY:
+                print(f"::notice::댓글 조회 오류: {str(e)[:200]}")
+            continue
         for c in r.get("data", []):
             if c["id"] in seen or c.get("username") == "daily.jjip":
                 continue
@@ -101,7 +123,7 @@ def run():
                 seen.add(c["id"]); continue
             new.append({"id": c["id"], "username": c.get("username", ""), "text": c.get("text", ""), "post": info})
     if not new:
-        print("새 댓글 없음"); return
+        print("::notice::새 댓글 없음" if DRY else "새 댓글 없음"); return
     verdict = judge(new[:20])
     if DRY:
         for it in new[:20]:
