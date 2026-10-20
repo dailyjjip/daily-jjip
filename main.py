@@ -2,7 +2,7 @@
 매일 이슈 카드뉴스 자동 생성 + 인스타그램 게시
 흐름: 구글뉴스 RSS 수집 → Claude로 이슈 선정·문구 작성 → 비주얼(사진 또는 3D 아이콘) 합성 → 카드 이미지 → 인스타 게시
 """
-import os, io, json, datetime, time, random
+import os, io, json, datetime, time, random, re
 import feedparser, requests
 from PIL import Image, ImageDraw, ImageFont, ImageFilter
 
@@ -196,7 +196,7 @@ def pick_issue(news, history):
  "watch": [{{"head": "앞으로 주목할 포인트, 14자 이내", "body": "예정된 일정·발표·변수 위주, 40자 이내"}}, "... 2개"],
  "oneliner": "에디터 코멘트 한 문장, 26자 이내, 제목과 다른 관점",
  "debate": {{"question": "댓글 토론을 부르는 질문, 24자 이내. 찬반이 실제로 갈리는 생활 밀착형 질문", "a": "선택지 A, 12자 이내", "b": "선택지 B, 12자 이내"}},
- "image_queries": ["표지용 사진 검색 영어 키워드 2~4단어 (이슈를 한눈에 보여주는 실사 장면, 예: seoul apartment buildings)", "본문용 사진 검색 영어 키워드 2~4단어 (표지와 다른 장면)"],
+ "image_queries": ["표지용 사진 검색 영어 키워드 2~4단어 (이슈를 한눈에 보여주는 실사 장면, 예: seoul apartment buildings). 뜻이 여러 개인 단어(console, mouse, bat, crane, apple 등)·상표명 금지, 구체적 명사 위주(예: surgical robot operating room)", "본문용 사진 검색 영어 키워드 2~4단어 (표지와 다른 장면, 같은 규칙)"],
  "caption": "첫 문장에 사람들이 검색할 핵심 키워드(예: 코스피 급락 이유)를 자연스럽게 넣고, 인스타 본문 3~4문장, 마지막에 저장/공유 유도 한 문장",
  "hashtags": ["#태그", "... 4개 (검색량 많은 핵심어 위주)"],
  "sources": ["참고한 언론사명 2~3개"],
@@ -247,6 +247,26 @@ def emoji_img(ch):
     return None
 
 
+BRAND_TAGS = {"xbox", "playstation", "nintendo", "sony", "microsoft", "apple", "iphone", "ipad", "samsung", "google",
+              "logo", "brand", "coca", "cola", "nike", "adidas", "starbucks", "mcdonalds", "lego", "disney", "tesla",
+              "bmw", "mercedes", "audi", "ferrari", "porsche", "facebook", "instagram", "youtube", "netflix", "game",
+              "gaming", "video game", "controller", "gamepad", "cartoon", "illustration", "3d"}
+STOP = {"a", "an", "the", "of", "in", "on", "and", "with", "for", "at", "to", "korea", "korean", "seoul"}
+
+
+def photo_fit(query, tags):
+    """사진 태그가 검색어와 얼마나 맞는지. 상표·게임·일러스트 태그면 -1(사용 금지).
+    예) 'robotic surgery console' 검색에 Xbox 사진(태그 console 1개만 겹침) → 탈락"""
+    tagset = {t.strip().lower() for t in re.split(r"[,]", tags or "") if t.strip()}
+    words = set(re.findall(r"[a-z]+", " ".join(tagset)))
+    if tagset & BRAND_TAGS or words & BRAND_TAGS:
+        return -1
+    q = [w for w in re.findall(r"[a-z]+", query.lower()) if w not in STOP]
+    hit = sum(1 for w in q if w in words or any(t.startswith(w[:5]) for t in words if len(w) >= 5))
+    need = min(2, len(q))
+    return hit if hit >= need else 0
+
+
 def pixabay_photo(query, orientation="portrait", skip_ids=()):
     """Pixabay 무료 사진. 반환: (이미지, 출처 표기, 사진 id) 또는 None"""
     if not PIXABAY_KEY or not query:
@@ -256,10 +276,13 @@ def pixabay_photo(query, orientation="portrait", skip_ids=()):
             "key": PIXABAY_KEY, "q": query, "image_type": "photo", "safesearch": "true",
             "orientation": "vertical" if orientation == "portrait" else "horizontal",
             "per_page": 10, "order": "popular"}, timeout=20).json()
-        hits = [h for h in (r.get("hits") or []) if h["id"] not in skip_ids]
+        hits = [(photo_fit(query, h.get("tags", "")), h) for h in (r.get("hits") or []) if h["id"] not in skip_ids]
+        hits = [x for x in hits if x[0] > 0]  # 검색어와 안 맞거나 상표 사진은 버림 → 없으면 다음 검색어/어두운 배경
         if not hits:
+            print("맞는 사진 없음:", query)
             return None
-        h = random.choice(hits[:5])
+        best = max(x[0] for x in hits)
+        h = random.choice([x[1] for x in hits if x[0] == best][:3])
         img = Image.open(io.BytesIO(requests.get(h["largeImageURL"], timeout=30).content)).convert("RGB")
         return img, f"{h.get('user', '')} / Pixabay", h["id"]
     except Exception as e:
@@ -267,9 +290,13 @@ def pixabay_photo(query, orientation="portrait", skip_ids=()):
         return None
 
 
-def get_photo(query, orientation="portrait", skip_ids=()):
-    """Pixabay → Pexels 순서로 시도"""
-    return pixabay_photo(query, orientation, skip_ids) or pexels_photo(query, orientation, skip_ids)
+def get_photo(query, orientation="portrait", skip_ids=(), alt=None):
+    """Pixabay → Pexels 순서로 시도. 안 맞으면 다른 검색어(alt)로 한 번 더, 그래도 없으면 None(어두운 배경)"""
+    for q in [query] + ([alt] if alt and alt != query else []):
+        ph = pixabay_photo(q, orientation, skip_ids) or pexels_photo(q, orientation, skip_ids)
+        if ph:
+            return ph
+    return None
 
 
 def pexels_photo(query, orientation="portrait", skip_ids=()):
@@ -281,10 +308,12 @@ def pexels_photo(query, orientation="portrait", skip_ids=()):
         r = requests.get("https://api.pexels.com/v1/search",
                          params={"query": query, "orientation": orientation, "per_page": 10},
                          headers={"Authorization": PEXELS_KEY}, timeout=20).json()
-        photos = [p for p in (r.get("photos") or []) if p["id"] not in skip_ids]
+        photos = [(photo_fit(query, (p.get("alt") or "").replace(" ", ",")), p) for p in (r.get("photos") or []) if p["id"] not in skip_ids]
+        photos = [x for x in photos if x[0] > 0]
         if not photos:
             return None
-        p = random.choice(photos[:5])
+        best = max(x[0] for x in photos)
+        p = random.choice([x[1] for x in photos if x[0] == best][:3])
         img = Image.open(io.BytesIO(requests.get(p["src"]["large2x"], timeout=30).content)).convert("RGB")
         return img, f"{p.get('photographer', '')} / Pexels", p["id"]
     except Exception as e:
@@ -994,7 +1023,7 @@ def generate():
     d["stamp"], d["issue_no"] = stamp, len(history) + 1
     record_topic(d)  # 게시 성공 여부와 무관하게 주제를 먼저 기록 → 중복 방지
     qs = d.get("image_queries") or [d.get("image_query", "")]
-    photo = get_photo(qs[0], "portrait")
+    photo = get_photo(qs[0], "portrait", alt=qs[1] if len(qs) > 1 else None)
     photo2 = get_photo(qs[1] if len(qs) > 1 else qs[0], "landscape",
                           skip_ids=(photo[2],) if photo else ())
     photo2 = photo2 or photo  # 2장 사진이 없으면 표지 사진 재사용 → 구성 통일
@@ -1134,7 +1163,7 @@ def reel_only():
     stamp = datetime.datetime.utcnow().strftime("%Y%m%d_%H%M")
     d["stamp"], d["issue_no"] = stamp, len(load_history()) + 1
     qs = d.get("image_queries") or [d.get("image_query", "")]
-    photo = get_photo(qs[0], "portrait")
+    photo = get_photo(qs[0], "portrait", alt=qs[1] if len(qs) > 1 else None)
     photo2 = get_photo(qs[1] if len(qs) > 1 else qs[0], "landscape", skip_ids=(photo[2],) if photo else ()) or photo
     out = os.path.join("reels", stamp)
     paths = render_slides(d, out, photo=photo, photo2=photo2)
