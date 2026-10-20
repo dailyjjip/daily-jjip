@@ -1038,7 +1038,7 @@ def review_post(d, out_dir):
 2) body_ok: 2장 사진도 같은 기준.
 3) text_ok: 제목·숫자가 본문 내용과 모순되거나 과장(미확인 단정, 낚시)인가? 사망·참사·정치 주제인가? 토론 질문이 혐오·조롱을 유도하는가? 글자가 잘리거나 겹쳐 보이는가? 문제 있으면 false.
 JSON만 출력: {{"cover_ok":true,"body_ok":true,"text_ok":true,"issues":["문제를 한 줄씩"]}}"""
-    msg = Anthropic().messages.create(model=REVIEW_MODEL, max_tokens=600,
+    msg = Anthropic().messages.create(model=REVIEW_MODEL, max_tokens=6000,
                                       messages=[{"role": "user", "content": imgs + [{"type": "text", "text": prompt}]}])
     log_cost(msg, "review")
     txt = "".join(b.text for b in msg.content if getattr(b, "type", "") == "text")

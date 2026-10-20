@@ -120,7 +120,7 @@ JSON 배열만 출력: [{{"i":0,"score":4,"why":"...","caution":"..."}}]
 
 {rows}"""
     try:
-        msg = Anthropic().messages.create(model=MODEL, max_tokens=3000, messages=[{"role": "user", "content": prompt}])
+        msg = Anthropic().messages.create(model=MODEL, max_tokens=8000, messages=[{"role": "user", "content": prompt}])
         txt = "".join(b.text for b in msg.content if getattr(b, "type", "") == "text")
         u = msg.usage
         usd = u.input_tokens * 1e-6 + u.output_tokens * 5e-6  # Haiku 추정 단가
