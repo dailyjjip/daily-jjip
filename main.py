@@ -196,7 +196,7 @@ def pick_issue(news, history):
  "watch": [{{"head": "앞으로 주목할 포인트, 14자 이내", "body": "예정된 일정·발표·변수 위주, 40자 이내"}}, "... 2개"],
  "oneliner": "에디터 코멘트 한 문장, 26자 이내, 제목과 다른 관점",
  "debate": {{"question": "댓글 토론을 부르는 질문, 24자 이내. 찬반이 실제로 갈리는 생활 밀착형 질문", "a": "선택지 A, 12자 이내", "b": "선택지 B, 12자 이내"}},
- "image_queries": ["표지용 사진 검색 영어 키워드 2~4단어 (이슈를 한눈에 보여주는 실사 장면, 예: seoul apartment buildings). 뜻이 여러 개인 단어(console, mouse, bat, crane, apple 등)·상표명 금지, 구체적 명사 위주(예: surgical robot operating room)", "본문용 사진 검색 영어 키워드 2~4단어 (표지와 다른 장면, 같은 규칙)"],
+ "image_queries": ["표지용 사진 검색 영어 키워드 2~4단어 (이슈를 한눈에 보여주는 실사 장면, 예: seoul apartment buildings). 기사 속 실제 장면을 묘사하는 구체적 표현(예: surgical robot operating room). 뜻이 여러 개라 엉뚱한 사진이 나올 단어 하나만 쓰지 말 것", "본문용 사진 검색 영어 키워드 2~4단어 (표지와 다른 장면, 같은 규칙)"],
  "caption": "첫 문장에 사람들이 검색할 핵심 키워드(예: 코스피 급락 이유)를 자연스럽게 넣고, 인스타 본문 3~4문장, 마지막에 저장/공유 유도 한 문장",
  "hashtags": ["#태그", "... 4개 (검색량 많은 핵심어 위주)"],
  "sources": ["참고한 언론사명 2~3개"],
@@ -247,20 +247,13 @@ def emoji_img(ch):
     return None
 
 
-BRAND_TAGS = {"xbox", "playstation", "nintendo", "sony", "microsoft", "apple", "iphone", "ipad", "samsung", "google",
-              "logo", "brand", "coca", "cola", "nike", "adidas", "starbucks", "mcdonalds", "lego", "disney", "tesla",
-              "bmw", "mercedes", "audi", "ferrari", "porsche", "facebook", "instagram", "youtube", "netflix", "game",
-              "gaming", "video game", "controller", "gamepad", "cartoon", "illustration", "3d"}
 STOP = {"a", "an", "the", "of", "in", "on", "and", "with", "for", "at", "to", "korea", "korean", "seoul"}
 
 
 def photo_fit(query, tags):
-    """사진 태그가 검색어와 얼마나 맞는지. 상표·게임·일러스트 태그면 -1(사용 금지).
-    예) 'robotic surgery console' 검색에 Xbox 사진(태그 console 1개만 겹침) → 탈락"""
+    """사진 태그가 검색어와 얼마나 맞는지(보조 경로용). 주 경로는 AI가 기사 상황을 보고 고르는 choose_photos."""
     tagset = {t.strip().lower() for t in re.split(r"[,]", tags or "") if t.strip()}
     words = set(re.findall(r"[a-z]+", " ".join(tagset)))
-    if tagset & BRAND_TAGS or words & BRAND_TAGS:
-        return -1
     q = [w for w in re.findall(r"[a-z]+", query.lower()) if w not in STOP]
     hit = sum(1 for w in q if w in words or any(t.startswith(w[:5]) for t in words if len(w) >= 5))
     need = min(2, len(q))
@@ -288,6 +281,87 @@ def pixabay_photo(query, orientation="portrait", skip_ids=()):
     except Exception as e:
         print("Pixabay 사진 실패:", e)
         return None
+
+
+def photo_candidates(query, orientation, n=6, exclude=()):
+    """검색어로 사진 후보 목록(미리보기 URL 포함). Pixabay 우선, 부족하면 Pexels."""
+    out = []
+    try:
+        if PIXABAY_KEY and query:
+            r = requests.get("https://pixabay.com/api/", params={
+                "key": PIXABAY_KEY, "q": query, "image_type": "photo", "safesearch": "true",
+                "orientation": "vertical" if orientation == "portrait" else "horizontal",
+                "per_page": 20, "order": "popular"}, timeout=20).json()
+            for h in r.get("hits") or []:
+                if h["id"] not in exclude:
+                    out.append({"id": h["id"], "small": h.get("webformatURL"), "large": h["largeImageURL"],
+                                "credit": f"{h.get('user', '')} / Pixabay", "tags": h.get("tags", "")})
+    except Exception as e:
+        print("Pixabay 후보 실패:", e)
+    try:
+        if PEXELS_KEY and query and len(out) < n:
+            r = requests.get("https://api.pexels.com/v1/search", params={"query": query, "orientation": orientation,
+                             "per_page": 10}, headers={"Authorization": PEXELS_KEY}, timeout=20).json()
+            for p in r.get("photos") or []:
+                if p["id"] not in exclude:
+                    out.append({"id": p["id"], "small": p["src"]["medium"], "large": p["src"]["large2x"],
+                                "credit": f"{p.get('photographer', '')} / Pexels", "tags": p.get("alt", "")})
+    except Exception as e:
+        print("Pexels 후보 실패:", e)
+    return out[:n]
+
+
+def choose_photos(d, exclude=(), need_cover=True, need_body=True):
+    """기사 상황에 맞는 사진을 AI가 직접 보고 고른다(금지 목록 방식 아님).
+    반환 (표지 사진, 본문 사진) — 각각 (PIL 이미지, 출처, id) 또는 None(맞는 게 없음 → 어두운 배경)"""
+    import base64
+    from anthropic import Anthropic
+    qs = d.get("image_queries") or [d.get("image_query", "")]
+    q2 = qs[1] if len(qs) > 1 else qs[0]
+    sets = {}
+    if need_cover:
+        c = photo_candidates(qs[0], "portrait", 4, exclude)
+        c += photo_candidates(q2, "portrait", 2, set(exclude) | {x["id"] for x in c})
+        sets["C"] = c
+    if need_body:
+        b = photo_candidates(q2, "landscape", 4, exclude)
+        b += photo_candidates(qs[0], "landscape", 2, set(exclude) | {x["id"] for x in b})
+        sets["B"] = b
+    content = []
+    for key, lst in sets.items():
+        for i, c in enumerate(lst):
+            try:
+                im = Image.open(io.BytesIO(requests.get(c["small"], timeout=20).content)).convert("RGB")
+                im.thumbnail((320, 320))
+                buf = io.BytesIO(); im.save(buf, "JPEG", quality=75)
+                content += [{"type": "text", "text": f"{key}{i}"},
+                            {"type": "image", "source": {"type": "base64", "media_type": "image/jpeg",
+                                                         "data": base64.b64encode(buf.getvalue()).decode()}}]
+            except Exception:
+                pass
+    if not content:
+        return None, None
+    brief = json.dumps({k: d.get(k) for k in ("category", "kicker", "headline", "what")}, ensure_ascii=False)
+    content.append({"type": "text", "text": f"""매거진형 뉴스 카드의 사진 편집자로서 고르세요. 기사: {brief}
+C번호=표지(세로) 후보, B번호=본문 가로 사진 후보.
+기준: 이 기사의 상황·장면을 실제로 보여주거나 독자가 바로 연결할 수 있는 사진. 단어만 같고 상황이 다른 사진(예: 원격수술 기사에 게임기, 동물 실험 기사에 사람 환자)은 안 됨.
+기사 주제와 관계없는 상표가 크게 보이면 피하고, 기사 주제가 그 제품·브랜드라면 괜찮음. 표지와 본문은 서로 다른 사진.
+맞는 사진이 없으면 -1 (억지로 고르지 말 것 — 사진 없이 어두운 배경이 낫다).
+JSON만: {{"cover": 0, "body": 2, "why": "한 줄"}}"""})
+    msg = Anthropic().messages.create(model=REVIEW_MODEL, max_tokens=6000, messages=[{"role": "user", "content": content}])
+    log_cost(msg, "photo_pick")
+    txt = "".join(b.text for b in msg.content if getattr(b, "type", "") == "text")
+    pick = json.loads(txt[txt.index("{"): txt.rindex("}") + 1])
+    print("사진 선택:", pick)
+
+    def load(lst, i):
+        if i is None or int(i) < 0 or int(i) >= len(lst):
+            return None
+        c = lst[int(i)]
+        img = Image.open(io.BytesIO(requests.get(c["large"], timeout=30).content)).convert("RGB")
+        return img, c["credit"], c["id"]
+    return (load(sets.get("C", []), pick.get("cover")) if need_cover else None,
+            load(sets.get("B", []), pick.get("body")) if need_body else None)
 
 
 def get_photo(query, orientation="portrait", skip_ids=(), alt=None):
@@ -1034,7 +1108,7 @@ def review_post(d, out_dir):
 게시물 문구(JSON): {text}
 
 엄격하게 판정하세요. 애매하면 불합격입니다.
-1) cover_ok: 표지 사진이 기사 내용을 실제로 보여주거나 자연스럽게 연상시키는가? 무관한 사물(예: 원격수술 기사에 게임기), 상표·로고가 크게 보이는 사진, 엉뚱한 인물 사진은 false. 사진 없이 어두운 배경이면 true.
+1) cover_ok: 표지 사진이 기사 내용을 실제로 보여주거나 자연스럽게 연상시키는가? 기사 상황과 다른 사진(예: 원격수술 기사에 게임기), 기사와 관계없는 상표가 크게 보이는 사진, 엉뚱한 인물 사진은 false. 기사 주제가 그 제품·브랜드라면 상표가 보여도 괜찮음. 사진 없이 어두운 배경이면 true.
 2) body_ok: 2장 사진도 같은 기준. 주제와 상관없는 일반 스톡 인물 사진(웃는 모델 등)도 false.
 3) text_ok: 제목·표지만 보면 사실과 다르게 오해할 수 있는가(예: 동물 실험인데 사람 수술처럼 보임)? 제목·숫자가 본문과 모순되거나 과장인가? (수치의 진위는 앞 단계에서 웹 검색으로 확인했으니 출처 표기가 없다는 이유만으로 불합격 주지 말 것) 사망·참사·정치 주제인가? 토론 질문이 혐오·조롱을 유도하는가? 글자가 잘리거나 겹쳐 보이는가? 문제 있으면 false.
 JSON만 출력: {{"cover_ok":true,"body_ok":true,"text_ok":true,"issues":["문제를 한 줄씩"]}}"""
@@ -1050,11 +1124,13 @@ JSON만 출력: {{"cover_ok":true,"body_ok":true,"text_ok":true,"issues":["문�
 def build_checked(d, out_dir, theme_idx=0):
     """사진 고르기 → 렌더 → 검수. 사진이 안 맞으면 다른 사진으로 1회 재시도, 그래도 안 맞으면 사진 없이(어두운 배경).
     문구 불합격이거나 검수 자체가 실패하면 None(게시 안 함)."""
-    qs = d.get("image_queries") or [d.get("image_query", "")]
-    q2 = qs[1] if len(qs) > 1 else qs[0]
     used = set()
-    photo = get_photo(qs[0], "portrait", alt=q2)
-    photo2 = get_photo(q2, "landscape", skip_ids=(photo[2],) if photo else ()) or photo
+    try:
+        photo, photo2 = choose_photos(d)
+    except Exception as e:
+        print("사진 선택 실패 → 사진 없이 진행:", e)
+        photo, photo2 = None, None
+    photo2 = photo2 or photo
     for attempt in range(3):
         for ph in (photo, photo2):
             if ph:
@@ -1073,11 +1149,18 @@ def build_checked(d, out_dir, theme_idx=0):
             return None
         if rv.get("cover_ok") and rv.get("body_ok"):
             return paths
-        if attempt == 0:  # 다른 사진으로 재시도
+        if attempt == 0:  # 검수에서 지적된 사진만 다른 후보로 다시 고름
+            try:
+                nc, nb = choose_photos(d, exclude=tuple(used), need_cover=not rv.get("cover_ok"),
+                                       need_body=not rv.get("body_ok"))
+            except Exception as e:
+                print("재선택 실패:", e)
+                nc = nb = None
             if not rv.get("cover_ok"):
-                photo = get_photo(qs[0], "portrait", skip_ids=tuple(used), alt=q2)
-            if not rv.get("body_ok") or not rv.get("cover_ok"):
-                photo2 = get_photo(q2, "landscape", skip_ids=tuple(used | ({photo[2]} if photo else set()))) or photo
+                photo = nc
+            if not rv.get("body_ok"):
+                photo2 = nb
+            photo2 = photo2 or photo
         else:  # 그래도 안 맞으면 사진 없이 (원칙: 엉뚱한 사진보다 어두운 배경)
             if not rv.get("cover_ok"):
                 photo = None
@@ -1309,6 +1392,7 @@ if __name__ == "__main__":
     import traceback
     try:
         {"generate": generate, "publish": publish, "stats": stats, "repost": repost, "reel_only": reel_only, "reel_publish": reel_publish,
+         "pick_dir": lambda: print("사진 선택 결과:", [(x[1], x[2]) if x else None for x in choose_photos(json.load(open(f"{OUT_DIR}/{sys.argv[2]}/data.json", encoding="utf-8")))]),
          "review_dir": lambda: print("검수 결과:", review_post(json.load(open(f"{OUT_DIR}/{sys.argv[2]}/data.json", encoding="utf-8")), f"{OUT_DIR}/{sys.argv[2]}")),
          "reel_make": lambda: reel_for(sys.argv[2]),
          "reel_post": lambda: print("릴스 게시 완료:", ig_publish_reel(f"{IMAGE_BASE_URL}/{sys.argv[2]}/reel.mp4", build_caption(json.load(open(f"{OUT_DIR}/{sys.argv[2]}/data.json", encoding="utf-8"))), f"{IMAGE_BASE_URL}/{sys.argv[2]}/01.jpg"))}[sys.argv[1]]()

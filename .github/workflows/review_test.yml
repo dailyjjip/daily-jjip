@@ -6,6 +6,9 @@ on:
       dir:
         description: "posts 아래 폴더 이름"
         required: true
+      cmd:
+        description: "review_dir 또는 pick_dir"
+        default: review_dir
 
 jobs:
   review:
@@ -18,4 +21,6 @@ jobs:
       - run: pip install -r requirements.txt
       - env:
           ANTHROPIC_API_KEY: ${{ secrets.ANTHROPIC_API_KEY }}
-        run: python main.py review_dir ${{ github.event.inputs.dir }} > out.txt && echo "::notice::$(grep 검수 out.txt)" || { echo "::error::$(tail -c 900 last_error.txt | tr "\n" " ")"; exit 1; }
+          PIXABAY_API_KEY: ${{ secrets.PIXABAY_API_KEY }}
+          PEXELS_API_KEY: ${{ secrets.PEXELS_API_KEY }}
+        run: python main.py ${{ github.event.inputs.cmd }} ${{ github.event.inputs.dir }} > out.txt && echo "::notice::$(grep '결과\|선택' out.txt | tr '\n' ' ')" || { echo "::error::$(tail -c 900 last_error.txt | tr "\n" " ")"; exit 1; }
