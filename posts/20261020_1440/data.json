@@ -1,0 +1,119 @@
+{
+ "category": "사회",
+ "kicker": "23년 만의 입양 승계",
+ "headline": "신입사원이 아들이 됐다",
+ "big_number": "23년",
+ "big_label": "신입사원에서 양자까지",
+ "what": [
+  "세라젬 이환성 회장이 이경수 대표를 양자로 입양했다.",
+  "2003년 신입사원이던 직원이 후계자가 됐다.",
+  "올해 지분 10%를 증여하고 증여세 신고도 마쳤다."
+ ],
+ "numbers": [
+  {
+   "value": "10%",
+   "label": "올해 1차 증여 지분"
+  },
+  {
+   "value": "17세",
+   "label": "회장과 대표의 나이 차"
+  },
+  {
+   "value": "5498억",
+   "label": "2025년 연결 매출"
+  }
+ ],
+ "details": [
+  {
+   "head": "딸 대신 직원",
+   "body": "회장에겐 딸이 있지만 경영에는 관심이 없는 것으로 알려졌다."
+  },
+  {
+   "head": "세금 혜택은 없다",
+   "body": "3년 평균 매출이 5000억을 넘어 가업승계 특례 대상이 아니다."
+  },
+  {
+   "head": "지분은 아직 절반",
+   "body": "회장 지분은 60.5%에서 50%대 초반으로 낮아졌고 후속 일정은 미정."
+  }
+ ],
+ "points": [
+  "직원 입양으로 소유권 승계",
+  "특례 없이 증여세 신고 완료",
+  "남은 지분 승계는 미정"
+ ],
+ "watch": [
+  {
+   "head": "추가 지분 증여",
+   "body": "이 대표가 최대 주주가 되도록 이어갈 계획이나 시기는 미정"
+  },
+  {
+   "head": "자사주 31.8%",
+   "body": "작년 말 공시 기준 자사주 비중도 눈여겨볼 대목"
+  }
+ ],
+ "oneliner": "핏줄 대신 23년 근속에 지분을 걸었다",
+ "debate": {
+  "question": "회사를 직원에게 물려줘도 될까?",
+  "a": "된다, 능력이 우선",
+  "b": "안 된다, 가족 몫"
+ },
+ "image_queries": [
+  "korean executives handshake office",
+  "home healthcare massage chair showroom"
+ ],
+ "caption": "세라젬 양자 승계 소식이 화제입니다. 창업주 이환성 회장이 2003년 신입사원으로 들어온 이경수 대표를 성인 양자로 입양하고, 올해 지분 10%를 증여했습니다. 매출이 5000억을 넘어 가업승계 특례도 받지 못하는 구조라, 세금 혜택을 노린 승계로 보기 어렵다는 점이 눈에 띕니다. 혈연이 아닌 직원에게 회사를 넘기는 방식, 여러분은 어떻게 보시나요? 저장해 두고 친구와 의견을 나눠보세요.",
+ "hashtags": [
+  "#세라젬",
+  "#양자승계",
+  "#가업승계",
+  "#성인입양"
+ ],
+ "sources": [
+  "한국경제",
+  "헤럴드경제",
+  "법률방송뉴스"
+ ],
+ "topic_key": "세라젬 양자 승계",
+ "source_title": "20여년 직원을 양자로 입양... 세라젬 창업주, 전문경영인에 회사 넘긴다 - 조선일보",
+ "source_link": "https://news.google.com/rss/articles/CBMijwFBVV95cUxOaFVoT21XNkJfRldPdzh0SmdEbElkY3k0aGFuSU94aGE0Y0NSQkJDeUk0M2dsanpKd0N4R0VNXy1zREZIYTRsaHVIVzBZeDBwWGVndGd1a2hIb2lMWjZFbHJsbzF6b1VaOFJ0VU9GMXJCanlxVVlnZGRwVEVRQlhiSG9SNVJYQ0hJY1RQRDBvSQ?oc=5",
+ "stamp": "20261020_1440",
+ "issue_no": 30,
+ "review": [
+  {
+   "cover_ok": false,
+   "body_ok": false,
+   "text_ok": true,
+   "banned": false,
+   "issues": [
+    "표지 사진은 기사와 무관한 스톡 모델 인물인데, 표지 제목('신입사원이 아들이 됐다')과 함께 보면 이 사람이 기사 속 당사자처럼 보여 오인 소지가 있음",
+    "본문 2장 사진은 회의 중 악수하는 일반 스톡 사진으로, 세라젬이나 이환성·이경수와 관련 없는 장면이므로 주제와 연결되지 않음"
+   ]
+  },
+  {
+   "cover_ok": false,
+   "body_ok": true,
+   "text_ok": true,
+   "banned": false,
+   "issues": [
+    "표지 사진은 회의실에서 웃으며 악수하는 일반 스톡 인물 사진이라, 세라젬 지분·양자 승계 기사와 직접 연결되지 않는다. 기사 내용을 보여주거나 자연스럽게 연상시키는 사진으로 보기 어렵다.",
+    "본문 2장 사진은 빈 임원실 인테리어로 경영권 주제와 맞닿아 있어 허용 범위로 판단했다."
+   ]
+  },
+  {
+   "cover_ok": true,
+   "body_ok": true,
+   "text_ok": true,
+   "banned": false,
+   "issues": []
+  }
+ ],
+ "images": [
+  "20261020_1440/01.jpg",
+  "20261020_1440/02.jpg",
+  "20261020_1440/03.jpg",
+  "20261020_1440/04.jpg",
+  "20261020_1440/05.jpg",
+  "20261020_1440/06.jpg"
+ ]
+}
