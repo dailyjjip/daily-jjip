@@ -33,6 +33,8 @@ jobs:
         run: |
           git config user.name "cardnews-bot"
           git config user.email "bot@users.noreply.github.com"
+          git checkout -- health.json 2>/dev/null || true   # 시험 기록은 실제 점검 기록에 섞지 않음
+          rm -f out.txt last_error.txt
           git add tests costs.json 2>/dev/null || true
           git commit -qm "test: ${{ github.event.inputs.dir }}" || true
           git pull -q --rebase && git push -q || true

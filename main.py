@@ -624,9 +624,14 @@ def render_photo_cover(d, path, theme_idx, photo, credit):
     dr.text((x + 14, 140), "— " + d.get("kicker", ""), font=font(SANS_R, 24), fill=white)
 
     # 아래에서 위로 쌓기: 제목 → 숫자
-    f_head = font(SERIF_BLACK, 112)
-    lines = wrap(d["headline"], f_head, dr, W - 2 * M)[:2]
-    y = H - 150 - len(lines) * 136
+    # 제목이 길면 잘라내지 않고 글자를 줄여 2줄(최소 크기에선 3줄) 안에 전부 넣는다
+    for size in (112, 104, 96, 88, 80, 72):
+        f_head = font(SERIF_BLACK, size)
+        lines = wrap(d["headline"], f_head, dr, W - 2 * M)
+        if len(lines) <= 2:
+            break
+    lh = int(size * 1.21)
+    y = H - 150 - len(lines) * lh
     num = d.get("big_number", "")
     if num:
         f_num = fit_font(SERIF_BLACK, num, W - 2 * M, 150, 80, dr)
@@ -636,7 +641,7 @@ def render_photo_cover(d, path, theme_idx, photo, credit):
         dr.text((M, ny + (bb[3] - bb[1]) + 14), d.get("big_label", ""), font=font(SANS_B, 32), fill=white)
     for ln in lines:
         dr.text((M, y), ln, font=f_head, fill=white)
-        y += 136
+        y += lh
     dr.line((M, H - 96, W - M, H - 96), fill=white, width=2)
     if credit:
         dr.text((M, H - 74), f"Photo: {credit}", font=font(SANS_R, 22), fill="#CCCCCC")
@@ -1095,7 +1100,7 @@ def review_post(d, out_dir):
     import base64
     from anthropic import Anthropic
     imgs = []
-    for name in ("01.jpg", "02.jpg"):
+    for name in ("01.jpg", "02.jpg", "03.jpg", "04.jpg", "05.jpg"):
         im = Image.open(os.path.join(out_dir, name)).convert("RGB")
         im.thumbnail((720, 900))
         buf = io.BytesIO(); im.save(buf, "JPEG", quality=80)
@@ -1104,13 +1109,13 @@ def review_post(d, out_dir):
     text = json.dumps({k: d.get(k) for k in ("category", "kicker", "headline", "big_number", "big_label", "what",
                                               "numbers", "details", "points", "watch", "oneliner", "debate", "caption")},
                       ensure_ascii=False)
-    prompt = f"""당신은 매거진형 인스타 뉴스 계정 '데일리찝'의 깐깐한 데스크(최종 검수자)입니다. 첫 이미지는 표지, 둘째는 2장(본문 사진)입니다.
+    prompt = f"""당신은 매거진형 인스타 뉴스 계정 '데일리찝'의 깐깐한 데스크(최종 검수자)입니다. 이미지는 순서대로 1~5장입니다(1=표지, 2=본문 사진 장, 3=세부 내용, 4=정리, 5=에디터 한 줄·토론 질문).
 게시물 문구(JSON): {text}
 
 엄격하게 판정하세요. 애매하면 불합격입니다.
 1) cover_ok: 표지 사진이 기사 내용을 실제로 보여주거나 자연스럽게 연상시키는가? 기사 상황과 다른 사진(예: 원격수술 기사에 게임기), 기사와 관계없는 상표가 크게 보이는 사진, 엉뚱한 인물 사진은 false. 기사 주제가 그 제품·브랜드라면 상표가 보여도 괜찮음. 사진 없이 어두운 배경이면 true.
 2) body_ok: 2장 사진도 같은 기준. 주제와 상관없는 일반 스톡 인물 사진(웃는 모델 등)도 false.
-3) text_ok: 제목·표지만 보면 사실과 다르게 오해할 수 있는가(예: 동물 실험인데 사람 수술처럼 보임)? 제목·숫자가 본문과 모순되는가? 확인 안 된 일을 사실처럼 단정했는가? (표현의 과장·자극은 운영자 방침상 허용 — 과장만으로는 불합격 주지 말 것) (수치의 진위는 앞 단계에서 웹 검색으로 확인했으니 출처 표기가 없다는 이유만으로 불합격 주지 말 것) 사망·참사·정치 주제인가? 토론 질문이 혐오·조롱을 유도하는가? 글자가 잘리거나 겹쳐 보이는가? 문제 있으면 false.
+3) text_ok: 제목·표지만 보면 사실과 다르게 오해할 수 있는가(예: 동물 실험인데 사람 수술처럼 보임)? 제목·숫자가 본문과 모순되는가? 확인 안 된 일을 사실처럼 단정했는가? (표현의 과장·자극은 운영자 방침상 허용 — 과장만으로는 불합격 주지 말 것) (수치의 진위는 앞 단계에서 웹 검색으로 확인했으니 출처 표기가 없다는 이유만으로 불합격 주지 말 것) 사망·참사·정치 주제인가? 토론 질문이 혐오·조롱을 유도하는가? 어느 장이든 문장이 중간에 끊기거나(뒷부분이 안 보임) 글자가 겹쳐 보이는가? 문제 있으면 false.
 banned: 사망·참사·정치 주제라서 고쳐도 올릴 수 없으면 true.
 JSON만 출력: {{"cover_ok":true,"body_ok":true,"text_ok":true,"banned":false,"issues":["문제를 한 줄씩"]}}"""
     msg = Anthropic().messages.create(model=REVIEW_MODEL, max_tokens=6000,
