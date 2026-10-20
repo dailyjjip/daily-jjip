@@ -1012,8 +1012,81 @@ def guard_ok(kind="carousel"):
     return True
 
 
+REVIEW_MODEL = os.getenv("REVIEW_MODEL", "claude-haiku-5-5")
+
+
+def review_post(d, out_dir):
+    """게시 전 최종 검수: AI가 완성된 표지(01)·본문 사진(02) 이미지와 문구를 직접 보고 판정.
+    반환 {"cover_ok","body_ok","text_ok","issues":[...]}"""
+    import base64
+    from anthropic import Anthropic
+    imgs = []
+    for name in ("01.jpg", "02.jpg"):
+        im = Image.open(os.path.join(out_dir, name)).convert("RGB")
+        im.thumbnail((720, 900))
+        buf = io.BytesIO(); im.save(buf, "JPEG", quality=80)
+        imgs.append({"type": "image", "source": {"type": "base64", "media_type": "image/jpeg",
+                                                  "data": base64.b64encode(buf.getvalue()).decode()}})
+    text = json.dumps({k: d.get(k) for k in ("category", "kicker", "headline", "big_number", "big_label", "what",
+                                              "numbers", "details", "points", "watch", "oneliner", "debate", "caption")},
+                      ensure_ascii=False)
+    prompt = f"""당신은 매거진형 인스타 뉴스 계정 '데일리찝'의 깐깐한 데스크(최종 검수자)입니다. 첫 이미지는 표지, 둘째는 2장(본문 사진)입니다.
+게시물 문구(JSON): {text}
+
+엄격하게 판정하세요. 애매하면 불합격입니다.
+1) cover_ok: 표지 사진이 기사 내용을 실제로 보여주거나 자연스럽게 연상시키는가? 무관한 사물(예: 원격수술 기사에 게임기), 상표·로고가 크게 보이는 사진, 엉뚱한 인물 사진은 false. 사진 없이 어두운 배경이면 true.
+2) body_ok: 2장 사진도 같은 기준.
+3) text_ok: 제목·숫자가 본문 내용과 모순되거나 과장(미확인 단정, 낚시)인가? 사망·참사·정치 주제인가? 토론 질문이 혐오·조롱을 유도하는가? 글자가 잘리거나 겹쳐 보이는가? 문제 있으면 false.
+JSON만 출력: {{"cover_ok":true,"body_ok":true,"text_ok":true,"issues":["문제를 한 줄씩"]}}"""
+    msg = Anthropic().messages.create(model=REVIEW_MODEL, max_tokens=600,
+                                      messages=[{"role": "user", "content": imgs + [{"type": "text", "text": prompt}]}])
+    log_cost(msg, "review")
+    txt = "".join(b.text for b in msg.content if getattr(b, "type", "") == "text")
+    return json.loads(txt[txt.index("{"): txt.rindex("}") + 1])
+
+
+def build_checked(d, out_dir, theme_idx=0):
+    """사진 고르기 → 렌더 → 검수. 사진이 안 맞으면 다른 사진으로 1회 재시도, 그래도 안 맞으면 사진 없이(어두운 배경).
+    문구 불합격이거나 검수 자체가 실패하면 None(게시 안 함)."""
+    qs = d.get("image_queries") or [d.get("image_query", "")]
+    q2 = qs[1] if len(qs) > 1 else qs[0]
+    used = set()
+    photo = get_photo(qs[0], "portrait", alt=q2)
+    photo2 = get_photo(q2, "landscape", skip_ids=(photo[2],) if photo else ()) or photo
+    for attempt in range(3):
+        for ph in (photo, photo2):
+            if ph:
+                used.add(ph[2])
+        paths = render_slides(d, out_dir, theme_idx=theme_idx, photo=photo, photo2=photo2)
+        try:
+            rv = review_post(d, out_dir)
+        except Exception as e:
+            print("검수 실패 → 안전하게 게시 보류:", e)
+            health_event("review_error", e)
+            return None
+        print(f"검수 {attempt + 1}차:", rv)
+        d.setdefault("review", []).append(rv)
+        if not rv.get("text_ok", False):
+            health_event("review_reject", f"{d['headline']} / {rv.get('issues')}")
+            return None
+        if rv.get("cover_ok") and rv.get("body_ok"):
+            return paths
+        if attempt == 0:  # 다른 사진으로 재시도
+            if not rv.get("cover_ok"):
+                photo = get_photo(qs[0], "portrait", skip_ids=tuple(used), alt=q2)
+            if not rv.get("body_ok") or not rv.get("cover_ok"):
+                photo2 = get_photo(q2, "landscape", skip_ids=tuple(used | ({photo[2]} if photo else set()))) or photo
+        else:  # 그래도 안 맞으면 사진 없이 (원칙: 엉뚱한 사진보다 어두운 배경)
+            if not rv.get("cover_ok"):
+                photo = None
+            if not rv.get("body_ok") or photo is None:
+                photo2 = photo
+            health_event("review_photo_drop", d["headline"])
+    return paths
+
+
 def generate():
-    """1단계: 이슈 선정·취재 + 슬라이드 6장 생성"""
+    """1단계: 이슈 선정·취재 + 슬라이드 6장 생성 + 게시 전 검수"""
     os.makedirs(OUT_DIR, exist_ok=True)
     if not guard_ok():
         return
@@ -1022,13 +1095,11 @@ def generate():
     stamp = datetime.datetime.utcnow().strftime("%Y%m%d_%H%M")
     d["stamp"], d["issue_no"] = stamp, len(history) + 1
     record_topic(d)  # 게시 성공 여부와 무관하게 주제를 먼저 기록 → 중복 방지
-    qs = d.get("image_queries") or [d.get("image_query", "")]
-    photo = get_photo(qs[0], "portrait", alt=qs[1] if len(qs) > 1 else None)
-    photo2 = get_photo(qs[1] if len(qs) > 1 else qs[0], "landscape",
-                          skip_ids=(photo[2],) if photo else ())
-    photo2 = photo2 or photo  # 2장 사진이 없으면 표지 사진 재사용 → 구성 통일
-    paths = render_slides(d, os.path.join(OUT_DIR, stamp), theme_idx=len(history),
-                          photo=photo, photo2=photo2)
+    paths = build_checked(d, os.path.join(OUT_DIR, stamp), theme_idx=len(history))
+    if not paths:
+        print("검수 불합격 → 이번 회차는 게시하지 않음:", d["headline"])
+        json.dump(d, open(os.path.join(OUT_DIR, stamp, "data.json"), "w", encoding="utf-8"), ensure_ascii=False, indent=1)
+        return
     d["images"] = [f"{stamp}/{os.path.basename(p)}" for p in paths]
     try:
         if os.getenv("POST_REELS", "false") != "true":
@@ -1162,11 +1233,12 @@ def reel_only():
     d = pick_issue(fetch_news(), used)
     stamp = datetime.datetime.utcnow().strftime("%Y%m%d_%H%M")
     d["stamp"], d["issue_no"] = stamp, len(load_history()) + 1
-    qs = d.get("image_queries") or [d.get("image_query", "")]
-    photo = get_photo(qs[0], "portrait", alt=qs[1] if len(qs) > 1 else None)
-    photo2 = get_photo(qs[1] if len(qs) > 1 else qs[0], "landscape", skip_ids=(photo[2],) if photo else ()) or photo
     out = os.path.join("reels", stamp)
-    paths = render_slides(d, out, photo=photo, photo2=photo2)
+    paths = build_checked(d, out)
+    if not paths:
+        record_topic(d, "reel")  # 불합격 주제도 기록 → 다시 고르지 않음
+        print("릴스 검수 불합격 → 오늘 릴스 없음:", d["headline"])
+        return
     make_reel(paths, os.path.join(out, "reel.mp4"))
     open(os.path.join(out, "caption.txt"), "w", encoding="utf-8").write(build_caption(d))
     json.dump(d, open(os.path.join(out, "data.json"), "w", encoding="utf-8"), ensure_ascii=False, indent=1)
@@ -1235,6 +1307,7 @@ if __name__ == "__main__":
     import traceback
     try:
         {"generate": generate, "publish": publish, "stats": stats, "repost": repost, "reel_only": reel_only, "reel_publish": reel_publish,
+         "review_dir": lambda: print("검수 결과:", review_post(json.load(open(f"{OUT_DIR}/{sys.argv[2]}/data.json", encoding="utf-8")), f"{OUT_DIR}/{sys.argv[2]}")),
          "reel_make": lambda: reel_for(sys.argv[2]),
          "reel_post": lambda: print("릴스 게시 완료:", ig_publish_reel(f"{IMAGE_BASE_URL}/{sys.argv[2]}/reel.mp4", build_caption(json.load(open(f"{OUT_DIR}/{sys.argv[2]}/data.json", encoding="utf-8"))), f"{IMAGE_BASE_URL}/{sys.argv[2]}/01.jpg"))}[sys.argv[1]]()
     except Exception:

@@ -1,0 +1,21 @@
+name: 검수 시험 (기존 게시물)
+
+on:
+  workflow_dispatch:
+    inputs:
+      dir:
+        description: "posts 아래 폴더 이름"
+        required: true
+
+jobs:
+  review:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+      - run: pip install -r requirements.txt
+      - env:
+          ANTHROPIC_API_KEY: ${{ secrets.ANTHROPIC_API_KEY }}
+        run: python main.py review_dir ${{ github.event.inputs.dir }}
