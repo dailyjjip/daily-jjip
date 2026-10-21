@@ -1,0 +1,99 @@
+{
+  "category": "사회",
+  "kicker": "부산 북항 34일",
+  "headline": "34일, 상어는 아직 맴돈다",
+  "big_number": "34일",
+  "big_label": "수로에 머문 흑상어 부캉이",
+  "what": [
+    "9월 18일, 부산 북항 수로에 흑상어가 나타났다.",
+    "당국은 세 번 유도했고, 21일 3차에 성공했다.",
+    "1부두 앞 바다에서 계속 맴돌고 있다."
+  ],
+  "numbers": [
+    {
+      "value": "34일",
+      "label": "수로 체류 기간"
+    },
+    {
+      "value": "3차",
+      "label": "유도 작업 시도"
+    },
+    {
+      "value": "9시간",
+      "label": "3차 작업 소요"
+    }
+  ],
+  "details": [
+    {
+      "head": "두 번의 실패",
+      "body": "9월 29일 물줄기·선박, 10월 2일 그물 모두 실패"
+    },
+    {
+      "head": "3차 작전 변수",
+      "body": "출구 경로 변경, 잠시 재진입, 그물에 막혀 다시 바다로"
+    },
+    {
+      "head": "서두른 이유",
+      "body": "먹이 활동 미확인, 22일 기온 급강하 예보가 변수"
+    }
+  ],
+  "points": [
+    "34일 체류, 3차 만에 이동",
+    "나갔지만 근처에서 맴돈다",
+    "먹이·한파가 최대 변수"
+  ],
+  "watch": [
+    {
+      "head": "22일 오전 모니터링",
+      "body": "외해로 완전히 나갔는지 당국이 확인할 예정"
+    },
+    {
+      "head": "건강 상태 관찰",
+      "body": "건강 상태와 이동 경로를 계속 지켜본다"
+    }
+  ],
+  "oneliner": "가장 어려운 구조는 떠나게 하는 일",
+  "debate": {
+    "question": "도심 야생동물, 끝까지 구조해야?",
+    "a": "끝까지 구조",
+    "b": "자연에 맡김"
+  },
+  "image_queries": [
+    "black shark swimming water",
+    "busan harbor waterfront park"
+  ],
+  "caption": "부캉이 상어 34일 만에 수로 탈출, 이게 끝일까요? 부산 북항 수로에 머물던 흑상어 부캉이가 세 번째 유도 작업 끝에 21일 수로 밖으로 나갔습니다. 하지만 1부두 인근에서 계속 맴돌고 있어, 당국은 22일 오전 외해로 이동했는지 확인할 계획입니다. 먹이 활동이 확인되지 않은 데다 기온 급강하까지 예보돼 작업을 서둘렀습니다. 부캉이의 다음 소식이 궁금하다면 저장하고 친구에게 공유해 보세요.",
+  "hashtags": [
+    "#부캉이",
+    "#부산상어",
+    "#북항친수공원",
+    "#흑상어"
+  ],
+  "sources": [
+    "한국일보",
+    "부산일보",
+    "세계일보"
+  ],
+  "topic_key": "부캉이 흑상어",
+  "source_title": "[속보] “부캉이, 결국 가는구나 안녕”···한달여 만에 수로 밖으로 이동 - 경향신문",
+  "source_link": "https://news.google.com/rss/articles/CBMiWkFVX3lxTFBnZUxCYk1NYTdNQnZwZms1Tm9oNWlXLVVvTUx5WG1HR08tckxwQ3dkWlY3RUVGVXg3V3dES1ZJZHkydzVISlczcmtWV0s0Mi14bF9YeVFaWXBJZ9IBX0FVX3lxTE1sS1hqMmtWNWZaRGREWl9wZmVoZVZnaU10S2ZrZDdOVEhwR3RpaXZMVlFXVDltTXZOM1Z2NkZVNlQxR3NZVEFVbUtuQUlDOUpzUU5kSkU3bnA5UmgtMmpJ?oc=5",
+  "stamp": "20261021_1441",
+  "issue_no": 36,
+  "review": [
+    {
+      "cover_ok": true,
+      "body_ok": true,
+      "text_ok": true,
+      "banned": false,
+      "issues": []
+    }
+  ],
+  "images": [
+    "20261021_1441/01.jpg",
+    "20261021_1441/02.jpg",
+    "20261021_1441/03.jpg",
+    "20261021_1441/04.jpg",
+    "20261021_1441/05.jpg",
+    "20261021_1441/06.jpg"
+  ]
+}
