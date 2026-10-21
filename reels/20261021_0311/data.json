@@ -1,0 +1,91 @@
+{
+ "category": "스포츠",
+ "kicker": "전국체전 수영 반전",
+ "headline": "1위로 찍고 실격",
+ "big_number": "6→3관왕",
+ "big_label": "목표 6관왕, 현재 3관왕",
+ "what": [
+  "황선우가 개인혼영 200m에서 가장 먼저 터치패드를 찍었다.",
+  "평영 구간 발차기 위반으로 판독 끝에 실격 처리됐다.",
+  "금메달은 1분59초97을 기록한 양석현에게 돌아갔다."
+ ],
+ "numbers": [
+  {
+   "value": "1분59초04",
+   "label": "황선우 터치 기록"
+  },
+  {
+   "value": "4관왕",
+   "label": "전승 시 공식 최대"
+  },
+  {
+   "value": "5회",
+   "label": "MVP 타이 기회"
+  }
+ ],
+ "details": [
+  {
+   "head": "수중 카메라 판독",
+   "body": "수중 카메라로 문제 장면이 확인됐고 황선우도 판정을 인정했다."
+  },
+  {
+   "head": "환호가 먼저였다",
+   "body": "세리머니까지 했지만 판독 뒤 기록란엔 실격 표기만 남았다."
+  },
+  {
+   "head": "MVP 레이스도 흔들",
+   "body": "통산 5회째 MVP면 박태환과 타이였지만 가능성이 작아졌다."
+  }
+ ],
+ "points": [
+  "1위 터치보다 판정이 우선",
+  "6관왕은 무산, 3관왕은 확정",
+  "남은 건 혼계영 두 종목"
+ ],
+ "watch": [
+  {
+   "head": "21일 혼성혼계영",
+   "body": "400m는 시범 종목이라 공식 메달 집계에는 빠진다."
+  },
+  {
+   "head": "22일 혼계영 400m",
+   "body": "우승하면 공식 4관왕, MVP 경쟁도 이어진다."
+  }
+ ],
+ "oneliner": "수영은 기록보다 규정을 먼저 통과한다",
+ "debate": {
+  "question": "결과가 좋아도 규정 위반이면 무효?",
+  "a": "무효가 맞다",
+  "b": "경중을 따져야"
+ },
+ "image_queries": [
+  "swimmer breaststroke pool race",
+  "swimming pool underwater lane"
+ ],
+ "caption": "황선우 실격 소식, 가장 먼저 터치패드를 찍고도 기록이 사라진 이유가 화제입니다. 제107회 전국체전 개인혼영 200m에서 평영 구간 발차기 동작이 규정 위반으로 판정돼 6관왕 도전이 무산됐습니다. 현재 3관왕이고, 남은 혼계영 종목에서 MVP 경쟁이 이어집니다. 스포츠에서 1등과 인정받는 1등이 다른 순간, 저장해 두고 친구와 공유해 보세요.",
+ "hashtags": [
+  "#황선우",
+  "#전국체전",
+  "#수영",
+  "#개인혼영"
+ ],
+ "sources": [
+  "뉴스핌",
+  "머니투데이",
+  "강원도민일보"
+ ],
+ "topic_key": "황선우 개인혼영 실격",
+ "source_title": "[전국체전] '평영 발차기 반칙' 황선우, 개인혼영 200m 실격…6관왕 도전 무산 - 뉴스핌",
+ "source_link": "https://news.google.com/rss/articles/CBMiXEFVX3lxTFBZaGNwSG1rZkV1UzNDZWdtaFZsTWpDamVjMkl2UVRjd3pYZjNHTVdaM3dOaDFjSVd6UTJDdi1jSW9WempTTlRveXZjZzFzX1pocVF6ZVdsaVEwT1pJ?oc=5",
+ "stamp": "20261021_0311",
+ "issue_no": 33,
+ "review": [
+  {
+   "cover_ok": true,
+   "body_ok": true,
+   "text_ok": true,
+   "banned": false,
+   "issues": []
+  }
+ ]
+}
