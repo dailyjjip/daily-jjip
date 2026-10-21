@@ -1,0 +1,108 @@
+{
+ "category": "스포츠",
+ "kicker": "안세영 프랑스오픈",
+ "headline": "25분, 실점은 단 10점",
+ "big_number": "10점",
+ "big_label": "32강 한 경기 전체 실점",
+ "what": [
+  "안세영이 프랑스오픈 32강을 25분 만에 끝냈다.",
+  "스코어는 21-6, 21-4. 내준 점수는 합쳐 10점이다.",
+  "부상 우려가 컸지만 시즌 45연승을 이어갔다."
+ ],
+ "numbers": [
+  {
+   "value": "25분",
+   "label": "32강 경기 시간"
+  },
+  {
+   "value": "45연승",
+   "label": "이어지는 시즌 연승"
+  },
+  {
+   "value": "98.4%",
+   "label": "올해 승률"
+  }
+ ],
+ "details": [
+  {
+   "head": "슐츠 상대 완승",
+   "body": "45위 슐츠와 첫 대결. 15-5, 13-3에서 연속 득점으로 굳혔다."
+  },
+  {
+   "head": "부상 우려 속 출발",
+   "body": "부상 우려가 있었지만 첫 판 경기력은 흔들림이 없었다."
+  },
+  {
+   "head": "3연패·10번째 우승",
+   "body": "2024·2025년 우승자. 이번에 이기면 올 시즌 10번째 정상이다."
+  }
+ ],
+ "points": [
+  "25분, 실점 10점 완승",
+  "시즌 45연승 계속",
+  "3연패·10번째 우승 도전"
+ ],
+ "watch": [
+  {
+   "head": "16강 샤르마전",
+   "body": "상대는 24위 샤르마. 지난주 덴마크오픈 8강에선 2-0으로 이겼다."
+  },
+  {
+   "head": "시즌 10승 달성?",
+   "body": "우승하면 올 시즌 개인전 10번째 정상, 대회 3연패도 완성된다."
+  }
+ ],
+ "oneliner": "승패보다 러닝타임이 뉴스다.",
+ "debate": {
+  "question": "퇴근 후 보면 더 좋은 경기는?",
+  "a": "25분 압승",
+  "b": "3세트 접전"
+ },
+ "image_queries": [
+  "badminton women singles match",
+  "badminton court Paris arena"
+ ],
+ "caption": "안세영 프랑스오픈 25분 완승, 숫자만 봐도 압도적입니다. 32강에서 슐츠를 21-6, 21-4로 꺾었고 내준 점수는 두 게임 합쳐 10점뿐이었어요. 올해 62승 1패, 시즌 45연승을 이어가며 대회 3연패와 시즌 10번째 우승에 도전합니다. 16강 상대는 지난주 덴마크오픈에서 이겼던 샤르마예요. 저장해두고 다음 경기 결과와 비교해보세요.",
+ "hashtags": [
+  "#안세영",
+  "#프랑스오픈",
+  "#배드민턴",
+  "#안세영연승"
+ ],
+ "sources": [
+  "스포츠월드",
+  "뉴스핌",
+  "미디어펜"
+ ],
+ "topic_key": "안세영 프랑스오픈",
+ "source_title": "배드민턴: 안세영, 슐츠 물리치고 16강에서 샤르마와 격돌 - 프랑스오픈 2026 - Olympic Channel",
+ "source_link": "https://news.google.com/rss/articles/CBMiggFBVV95cUxPdVdMaEQxS3VtUTYtaW0wZFhDXzh2OUhVZklKdVMyV3pQUkFXU2FKNE44Ry0ycmxBR1dmUC1vaW5NNzA1U3pvSkk3QnVMYW15MEZKdkxQU1VMLTQ2SC1MckEybXpaeHhBS2xnbDl2akk3T0ZYN1ZmVzhNNnhTSTAtcjN3?oc=5",
+ "stamp": "20261021_1138",
+ "issue_no": 35,
+ "review": [
+  {
+   "cover_ok": false,
+   "body_ok": true,
+   "text_ok": true,
+   "banned": false,
+   "issues": [
+    "표지 인물은 안세영이 아닌 무명의 스톡 사진 속 배드민턴 선수인데, 키커에 '안세영 프랑스오픈'이 적혀 있어 해당 선수로 오해될 수 있음"
+   ]
+  },
+  {
+   "cover_ok": true,
+   "body_ok": true,
+   "text_ok": true,
+   "banned": false,
+   "issues": []
+  }
+ ],
+ "images": [
+  "20261021_1138/01.jpg",
+  "20261021_1138/02.jpg",
+  "20261021_1138/03.jpg",
+  "20261021_1138/04.jpg",
+  "20261021_1138/05.jpg",
+  "20261021_1138/06.jpg"
+ ]
+}
