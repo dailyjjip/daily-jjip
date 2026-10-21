@@ -278,5 +278,12 @@
   "headline": "수출 2배, 반도체는 3배",
   "topic_key": "10월 1~20일 수출",
   "category": "경제"
+ },
+ {
+  "date": "20261021_0842",
+  "kind": "carousel",
+  "headline": "로봇은 뛰는데 손이 못 쥔다",
+  "topic_key": "휴머노이드 로봇 손",
+  "category": "IT"
  }
 ]
