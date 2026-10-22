@@ -1422,10 +1422,17 @@ def comment_lines():
 - 웃기면서도 진중하게(가벼운 위트 한 스푼 + 정확한 정보). 1~2문장, 70자 안팎. 실제 사람이 쓴 댓글처럼 자연스럽게.
 - 금지: 홍보("팔로우", "우리 계정", "@daily.jjip"), 링크, 해시태그, 이모지 2개 이상, 비하·조롱, 정치, 사실이 아닌 내용.
 JSON만: [{{"topic": "주제 한 줄", "comment": "댓글"}}]"""
-    msg = Anthropic().messages.create(model=REVIEW_MODEL, max_tokens=6000, messages=[{"role": "user", "content": prompt}])
-    log_cost(msg, "comment_lines")
-    txt = "".join(b.text for b in msg.content if getattr(b, "type", "") == "text")
-    lines = json.loads(txt[txt.index("["): txt.rindex("]") + 1])
+    lines = None
+    for _ in range(2):  # 응답에 JSON이 없으면 한 번 더
+        msg = Anthropic().messages.create(model=REVIEW_MODEL, max_tokens=12000, messages=[{"role": "user", "content": prompt}])
+        log_cost(msg, "comment_lines")
+        txt = "".join(b.text for b in msg.content if getattr(b, "type", "") == "text")
+        if "[" in txt and "]" in txt:
+            lines = json.loads(txt[txt.index("["): txt.rindex("]") + 1])
+            break
+        print("댓글용 한 줄 응답에 JSON 없음:", msg.stop_reason, txt[:200])
+    if not lines:
+        return
     readme = os.path.join("reels", "README.md")
     body = open(readme, encoding="utf-8").read() if os.path.exists(readme) else ""
     body = body.split("\n## 댓글용 한 줄")[0].rstrip()
