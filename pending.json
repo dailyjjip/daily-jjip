@@ -1,0 +1,122 @@
+{
+  "category": "사회",
+  "kicker": "청주 중학교 딥페이크",
+  "headline": "사흘 뒤, 수사는 두 갈래",
+  "big_number": "3일",
+  "big_label": "적발 3일 뒤, 수사 대상이 입원",
+  "what": [
+    "청주 중학생이 여학생 딥페이크를 만들어 유포한 정황으로 수사받는다.",
+    "사안이 알려진 지 3일 뒤, 그 학생이 또래 2명에게 폭행당해 입원했다.",
+    "경찰은 제작·유포 사건과 폭행 사건을 나란히 수사 중이다."
+  ],
+  "numbers": [
+    {
+      "value": "1명",
+      "label": "교육청 집계 가해 학생"
+    },
+    {
+      "value": "5명",
+      "label": "맘카페 주장 인원"
+    },
+    {
+      "value": "2명",
+      "label": "폭행 가담 또래"
+    }
+  ],
+  "details": [
+    {
+      "head": "영상통화 캡처",
+      "body": "여러 여학생과 영상통화하며 캡처한 사진 등을 썼다고 경찰은 본다."
+    },
+    {
+      "head": "소문 5명, 집계 1명",
+      "body": "교육청은 채팅을 확인해 나머지 학생은 말린 쪽으로 파악했다."
+    },
+    {
+      "head": "폭행도 입건",
+      "body": "폭행한 2명도 불구속 입건됐고, 학폭 심의위원회 준비도 진행 중이다."
+    }
+  ],
+  "points": [
+    "딥페이크와 폭행, 수사 두 건",
+    "소문 5명, 교육청 집계는 1명",
+    "학폭 심의도 준비 중"
+  ],
+  "watch": [
+    {
+      "head": "경찰 수사 결과",
+      "body": "제작·유포 경위와 피해 범위를 경찰이 조사 중이다."
+    },
+    {
+      "head": "학폭 심의위",
+      "body": "학교가 심의위원회를 준비 중이라 처분 수위가 쟁점이다."
+    }
+  ],
+  "oneliner": "분노가 법보다 먼저 도착했다",
+  "debate": {
+    "question": "자녀 영상통화, 제한해야 할까?",
+    "a": "제한이 먼저",
+    "b": "교육이 먼저"
+  },
+  "image_queries": [
+    "middle school hallway students",
+    "police investigation smartphone evidence"
+  ],
+  "caption": "청주 중학교 딥페이크 사건, 지금 가장 많이 거론되는 이유가 있습니다. 여학생들의 영상통화 화면을 캡처해 딥페이크를 만들어 유포했다는 정황이 제기돼 한 남학생이 수사를 받고 있는데, 사안이 알려진 지 3일 뒤 그 학생이 또래 2명에게 폭행당해 입원했습니다. 경찰은 두 사건을 모두 수사 중이고, 온라인에서 도는 '5명' 주장과 교육청이 파악한 가해 학생 1명 사이에는 차이가 있습니다. 확인된 사실과 소문을 구분해 보려면 저장해 두고 주변에도 공유해 주세요.",
+  "hashtags": [
+    "#딥페이크",
+    "#청주중학교",
+    "#학교폭력",
+    "#디지털성범죄"
+  ],
+  "sources": [
+    "연합뉴스",
+    "매일신문",
+    "헤럴드경제"
+  ],
+  "topic_key": "청주 딥페이크 폭행",
+  "source_title": "중학교서 여학생들 딥페이크 영상 만든 남학생 집단폭행 당해 - 연합뉴스",
+  "source_link": "https://news.google.com/rss/articles/CBMiW0FVX3lxTFBkalFFYUFhelc5X09HcHBkX2JZLTd1cDZHM0JTamY1eklWNFlqbjNuV2VLZVNWZEtZbjZXUWloZnViRy1pX2dwRTJPTFdfcWtZekQwNG1HNjNvZnfSAWBBVV95cUxQNnV4NGhtUE5rNV81MnpFdUdpY0RxRXNBZXhpTjB2YVhuazZHS3JfMkh6d3R3ajRoNVRvMllpcDJSRURkLWZ5NjRpSlp4WHY2Y09sUkp6UnpxSEEtaU9WcVM?oc=5",
+  "stamp": "20261022_1457",
+  "issue_no": 41,
+  "review": [
+    {
+      "cover_ok": true,
+      "body_ok": false,
+      "text_ok": false,
+      "banned": false,
+      "issues": [
+        "2번 장 사진은 미국식 제복 경찰이 휴대폰을 보는 일반 스톡 이미지이고, 'CRIME SCENE DO NOT CROSS' 테이프가 살인·강력 사건 현장을 연상시킨다. 딥페이크 유포와 폭행 사건과의 연관이 약하다.",
+        "표지 큰 글자 '적발에서 보복 폭행까지'는 폭행의 동기를 '보복'으로 단정하는데, 본문에는 이 동기가 확인된 내용으로 없다.",
+        "캡션이 '여학생들의 영상통화 화면을 캡처해 딥페이크를 만들어 유포한 정황으로'라는 정황 단서를 빼고 제작·유포를 사실처럼 단정한다. 본문 2번 장은 '정황'으로 표현하고 있어 서로 모순된다."
+      ]
+    },
+    {
+      "cover_ok": true,
+      "body_ok": false,
+      "text_ok": true,
+      "banned": false,
+      "issues": [
+        "2장 사진은 살인 현장을 연상시키는 미니어처 감식 장면(흰 방호복, 증거 표지, 바닥의 붉은 얼룩이 있는 노란 물체)이라, 딥페이크 유포와 폭행 사건 기사와 맞지 않고 사망 사건으로 오해될 수 있습니다. 'POLIZEI' 라벨이 붙은 독일식 장면이라 국내 수사 기사와도 거리가 있습니다.",
+        "사진 출처 표기(Alexas_Fotos / Pixabay)는 있으나, 주제와 직접 맞지 않는 일반 스톡 사진이라는 점은 그대로 남아 있습니다."
+      ]
+    },
+    {
+      "cover_ok": true,
+      "body_ok": true,
+      "text_ok": false,
+      "banned": false,
+      "issues": [
+        "캡션의 '한 남학생'은 제공된 기사 요약 어디에도 없는 성별 정보를 단정한 것입니다. '학생' 또는 '가해 학생'으로 고쳐야 합니다."
+      ]
+    }
+  ],
+  "images": [
+    "20261022_1457/01.jpg",
+    "20261022_1457/02.jpg",
+    "20261022_1457/03.jpg",
+    "20261022_1457/04.jpg",
+    "20261022_1457/05.jpg",
+    "20261022_1457/06.jpg"
+  ]
+}
