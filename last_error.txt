@@ -1,9 +1,7 @@
 Traceback (most recent call last):
   File "/home/runner/work/daily-jjip/daily-jjip/main.py", line 1483, in <module>
     {"generate": generate, "publish": publish, "stats": stats, "repost": repost, "reel_only": reel_only, "reel_publish": reel_publish, "comment_lines": comment_lines,
-  File "/home/runner/work/daily-jjip/daily-jjip/main.py", line 1227, in generate
-    d = pick_issue(fetch_news(), history)
-        ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-  File "/home/runner/work/daily-jjip/daily-jjip/main.py", line 223, in pick_issue
-    raise ValueError("여러 번 시도했지만 JSON을 받지 못했습니다")
-ValueError: 여러 번 시도했지만 JSON을 받지 못했습니다
+  File "/home/runner/work/daily-jjip/daily-jjip/main.py", line 1428, in comment_lines
+    lines = json.loads(txt[txt.index("["): txt.rindex("]") + 1])
+                           ^^^^^^^^^^^^^^
+ValueError: substring not found
