@@ -1,4 +1,4 @@
-name: 전용 릴스 제작 (하루 1회, 운영자가 음악 붙여 게시)
+name: 전용 릴스 (하루 1회 자동 제작·게시)
 
 on:
   schedule:
@@ -24,6 +24,7 @@ jobs:
           ANTHROPIC_API_KEY: ${{ secrets.ANTHROPIC_API_KEY }}
           PEXELS_API_KEY: ${{ secrets.PEXELS_API_KEY }}
           PIXABAY_API_KEY: ${{ secrets.PIXABAY_API_KEY }}
+          REEL_AUTOPUBLISH: ${{ vars.REEL_AUTOPUBLISH || 'true' }}   # 운영자 지시 10/22: 릴스도 자동 게시
         run: python main.py reel_only
       - name: 댓글용 한 줄 3개 (운영자가 남의 인기 게시물에 직접 붙여넣기)
         continue-on-error: true
@@ -38,7 +39,7 @@ jobs:
           git commit -qm "reel: $(date -u +%Y%m%d_%H%M)" || true
           git pull -q --rebase && git push -q
           sleep 20
-      - name: 2) 릴스 자동 게시 (REEL_AUTOPUBLISH=true일 때만)
+      - name: 2) 릴스 자동 게시 (피드 그리드 제외, 검수 통과분만)
         if: hashFiles('reel_pending.json') != ''
         env:
           IG_USER_ID: ${{ secrets.IG_USER_ID }}
