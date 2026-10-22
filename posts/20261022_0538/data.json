@@ -1,0 +1,99 @@
+{
+ "category": "경제",
+ "kicker": "금리 동결의 반전",
+ "headline": "동결인데 안 끝났다",
+ "big_number": "3.0%",
+ "big_label": "한은 기준금리 동결",
+ "what": [
+  "한은이 22일 기준금리를 연 3.0%로 동결했다.",
+  "7·8월 0.25%p씩 올린 뒤 처음 숨을 골랐다.",
+  "7명 전원 찬성했지만 추가 인상 여지는 남겼다."
+ ],
+ "numbers": [
+  {
+   "value": "0.25%p×2",
+   "label": "7·8월 연속 인상"
+  },
+  {
+   "value": "3% 내외",
+   "label": "한은이 본 물가"
+  },
+  {
+   "value": "1,320원대",
+   "label": "1,500원대서 하락"
+  }
+ ],
+ "details": [
+  {
+   "head": "인상 뒤 첫 숨 고르기",
+   "body": "7·8월 인상 효과와 중동사태 불확실성을 점검하려는 동결이다."
+  },
+  {
+   "head": "매파적 동결",
+   "body": "물가·집값·성장세가 여전해 긴축 기조는 그대로라는 해석이다."
+  },
+  {
+   "head": "환율이 길을 열었다",
+   "body": "7월 1,500원대였던 환율이 1,320원대로 내려 부담을 덜었다."
+  }
+ ],
+ "points": [
+  "동결은 인상의 끝이 아니다",
+  "물가 3%대와 집값이 변수다",
+  "환율 안정이 숨 돌릴 틈을 줬다"
+ ],
+ "watch": [
+  {
+   "head": "11월 금통위",
+   "body": "올해 마지막 회의다. 인상 재개 전망이 우세하다."
+  },
+  {
+   "head": "물가·집값 흐름",
+   "body": "10월 물가는 3% 내외 전망. 집값이 인상 시기를 좌우한다."
+  }
+ ],
+ "oneliner": "멈춘 건 금리일 뿐, 압박은 계속",
+ "debate": {
+  "question": "11월 인상 전, 대출 갈아탈까?",
+  "a": "고정금리로 갈아탄다",
+  "b": "변동 그대로 버턴다"
+ },
+ "image_queries": [
+  "Bank of Korea building Seoul",
+  "Korean won banknotes calculator"
+ ],
+ "caption": "한국은행 기준금리 동결, 대출 이자는 이제 괜찮을까요? 한은은 22일 기준금리를 연 3.0%로 동결했습니다. 7·8월 두 차례 올린 뒤 숨을 고른 것이고, 물가와 집값 부담이 남아 있어 11월 인상 재개 전망도 나옵니다. 변동금리 대출이 있다면 다음 금통위 전에 내 이자 구조를 점검해 보세요. 나중에 다시 보도록 저장하고, 대출 있는 친구에게 공유해 주세요.",
+ "hashtags": [
+  "#기준금리동결",
+  "#한국은행",
+  "#대출금리",
+  "#금통위"
+ ],
+ "sources": [
+  "파이낸셜뉴스",
+  "뉴스핌",
+  "헤럴드경제"
+ ],
+ "topic_key": "한은 기준금리 동결",
+ "source_title": "한은, 기준금리 연 3.0% 동결‥긴축 속도 조절 - MBC 뉴스",
+ "source_link": "https://news.google.com/rss/articles/CBMidEFVX3lxTE1IQWYwSndyLVN1VGhwczBMT3dyZWE0WThtcThFS3VoLWFBRENXMXVZNUFOemxMRmxBTnZLYUxKZlhNeFRSbFpVeVhNRjdLQnZ6Mm1CS2ladEFMeF90elQ2bWVYUzNUUm4zOTVQRUM5RnNNaUxq0gF0QVVfeXFMTWRHZnVURGFISXdsY3YzSVNxNXhzM3lEMi1laURubDlHbjhWRGljX1dEb0NjUUtHaFB1VWgzdFRJcTVwYVdxcTZRVlR1Z2ZGNV9uRTNyNVNabW1GT0RzNGdpWjcyZE9MamVmOWVJQXNUNzFwMVE?oc=5",
+ "stamp": "20261022_0538",
+ "issue_no": 38,
+ "review": [
+  {
+   "cover_ok": true,
+   "body_ok": true,
+   "text_ok": true,
+   "banned": false,
+   "issues": []
+  }
+ ],
+ "images": [
+  "20261022_0538/01.jpg",
+  "20261022_0538/02.jpg",
+  "20261022_0538/03.jpg",
+  "20261022_0538/04.jpg",
+  "20261022_0538/05.jpg",
+  "20261022_0538/06.jpg"
+ ]
+}
