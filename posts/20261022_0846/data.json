@@ -1,0 +1,99 @@
+{
+ "category": "IT",
+ "kicker": "호주 무인잠수정",
+ "headline": "승조원 0명, 드론 24기+",
+ "big_number": "24기+",
+ "big_label": "한 척에 실리는 드론 최소치",
+ "what": [
+  "호주 무인잠수정 '고스트 샤크'가 수면으로 떠올랐다.",
+  "덮개가 열리고 발사관이 솟더니 드론이 날아올랐다.",
+  "미 방산기업 안두릴이 21일 첫 영상을 공개했다."
+ ],
+ "numbers": [
+  {
+   "value": "12발",
+   "label": "기뢰 최대 탑재"
+  },
+  {
+   "value": "24기+",
+   "label": "드론 최소 탑재"
+  },
+  {
+   "value": "0명",
+   "label": "탑승 승조원"
+  }
+ ],
+ "details": [
+  {
+   "head": "수면 위 발사 장면",
+   "body": "덮개가 열리고 12개 발사관이 선 뒤 드론이 사출됐다."
+  },
+  {
+   "head": "기뢰·물자·드론",
+   "body": "기뢰 부설, 해저 보급품 비축, 정찰·타격 드론 발사를 맡는다."
+  },
+  {
+   "head": "다음 무대는 샌디에이고",
+   "body": "공개된 탑재 장비는 이번 주 AUKUS 훈련에 투입된다."
+  }
+ ],
+ "points": [
+  "잠수정이 드론 모함이 됐다",
+  "기뢰·보급·타격을 한 척에",
+  "제원은 아직 베일 속"
+ ],
+ "watch": [
+  {
+   "head": "AUKUS 훈련 투입",
+   "body": "샌디에이고 앞바다 훈련에서 어떤 성능을 보일지 지켜볼 대목."
+  },
+  {
+   "head": "비공개 제원",
+   "body": "길이·최고속도·항속거리는 아직 공개되지 않았다."
+  }
+ ],
+ "oneliner": "숨는 배가 이제 눈과 이빨을 날린다",
+ "debate": {
+  "question": "우리 세금, 무인 무기에 써도 될까?",
+  "a": "병력 아끼니 찬성",
+  "b": "통제 불안해 반대"
+ },
+ "image_queries": [
+  "unmanned submarine drone launch",
+  "autonomous underwater vehicle navy"
+ ],
+ "caption": "고스트 샤크 드론 발사 영상이 공개됐습니다. 미국 안두릴이 호주 해군과 만든 무인잠수정이 수면 위로 올라와 12개 발사관에서 드론을 쏘아 올리는 장면입니다. 호주 당국은 이 잠수정이 기뢰 최대 12발과 드론 최소 24기를 실을 수 있다고 밝혔고, 길이·속도·항속거리 같은 제원은 아직 공개되지 않았습니다. 사람 없는 잠수정이 어디까지 할 수 있을지, 저장해 두고 다음 소식을 함께 지켜보세요.",
+ "hashtags": [
+  "#고스트샤크",
+  "#무인잠수정",
+  "#안두릴",
+  "#드론"
+ ],
+ "sources": [
+  "연합뉴스",
+  "재경일보",
+  "The War Zone"
+ ],
+ "topic_key": "고스트샤크 드론 발사",
+ "source_title": "[포착] 물 위로 쑥 올라오더니 드론 발사…호주 무인잠수정 ‘고스트샤크’ 영상 공개 - 나우뉴스",
+ "source_link": "https://news.google.com/rss/articles/CBMicEFVX3lxTE53RWpya3pyLVpjWHlDOVVuQ0ZaRjg1V2J5dXpXeU5VUlBWWXgzSHBtaU9vd2pMbmtMUlR0UzBGN0phTUFlYVJhaG9HQkt2RU9wY2Q1a2FDQjkwYzFVQkJac2VZcHA1Tk1FV1N3UVR6Mno?oc=5",
+ "stamp": "20261022_0846",
+ "issue_no": 39,
+ "review": [
+  {
+   "cover_ok": true,
+   "body_ok": true,
+   "text_ok": true,
+   "banned": false,
+   "issues": []
+  }
+ ],
+ "images": [
+  "20261022_0846/01.jpg",
+  "20261022_0846/02.jpg",
+  "20261022_0846/03.jpg",
+  "20261022_0846/04.jpg",
+  "20261022_0846/05.jpg",
+  "20261022_0846/06.jpg"
+ ]
+}
