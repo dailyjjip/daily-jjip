@@ -1,9 +1,9 @@
 Traceback (most recent call last):
-  File "/home/runner/work/daily-jjip/daily-jjip/main.py", line 1065, in <module>
-    {"generate": generate, "publish": publish, "stats": stats, "repost": repost, "reel_only": reel_only,
-  File "/home/runner/work/daily-jjip/daily-jjip/main.py", line 951, in publish
-    post_id = ig_publish([f"{IMAGE_BASE_URL}/{p}" for p in d["images"]], caption)
-              ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-  File "/home/runner/work/daily-jjip/daily-jjip/main.py", line 795, in ig_publish
-    raise RuntimeError(f"슬라이드 업로드 실패: {u} {r}")
-RuntimeError: 슬라이드 업로드 실패: https://raw.githubusercontent.com/dailyjjip/daily-jjip/main/posts/20261019_0342/01.jpg {'error': {'message': 'Only photo or video can be accepted as media type.', 'type': 'OAuthException', 'code': 9004, 'error_subcode': 2207052, 'is_transient': False, 'error_user_title': "Media download has failed. The media URI doesn't meet our requirements.", 'error_user_msg': 'The media could not be fetched from this URI: https://raw.githubusercontent.com/dailyjjip/daily-jjip/main/posts/20261019_0342/01.jpg.Please check the limitations section in our development document for more information: https://developers.facebook.com/docs/instagram-platform/instagram-graph-api/reference/ig-user/media#creating', 'fbtrace_id': 'AVXosTq6iGrZHhh5HcsZmWG'}}
+  File "/home/runner/work/daily-jjip/daily-jjip/main.py", line 1483, in <module>
+    {"generate": generate, "publish": publish, "stats": stats, "repost": repost, "reel_only": reel_only, "reel_publish": reel_publish, "comment_lines": comment_lines,
+  File "/home/runner/work/daily-jjip/daily-jjip/main.py", line 1227, in generate
+    d = pick_issue(fetch_news(), history)
+        ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/runner/work/daily-jjip/daily-jjip/main.py", line 223, in pick_issue
+    raise ValueError("여러 번 시도했지만 JSON을 받지 못했습니다")
+ValueError: 여러 번 시도했지만 JSON을 받지 못했습니다
