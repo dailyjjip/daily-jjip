@@ -362,5 +362,12 @@
   "headline": "1분 완판, 3만대뿐",
   "topic_key": "아이폰 듀오 출시",
   "category": "IT"
+ },
+ {
+  "date": "20261023_0840",
+  "kind": "carousel",
+  "headline": "패치보다 노크가 4일 빨랐다",
+  "topic_key": "PHP2Shell 취약점",
+  "category": "IT"
  }
 ]
