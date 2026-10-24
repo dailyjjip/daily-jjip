@@ -1,0 +1,115 @@
+{
+ "category": "사회",
+ "kicker": "AI 커닝 의혹 발칵",
+ "headline": "'99점' 자랑 한 줄에 600명 전원 재시험",
+ "big_number": "600명",
+ "big_label": "전원 대면 재시험",
+ "what": [
+  "건국대 온라인 교양 중간고사가 통째로 무효가 됐다.",
+  "한 학생의 'AI로 99점' 자랑글이 발단이며, 부정행위 여부는 확인 중이다.",
+  "재시험은 12월 14일, 기말고사와 같은 날 대면으로 본다."
+ ],
+ "numbers": [
+  {
+   "value": "600여명",
+   "label": "재시험 대상 수강생"
+  },
+  {
+   "value": "99점",
+   "label": "자랑글 속 점수"
+  },
+  {
+   "value": "12월 14일",
+   "label": "재시험·기말 날짜"
+  }
+ ],
+ "details": [
+  {
+   "head": "시작은 자랑글",
+   "body": "학생이 대학 익명 커뮤니티에 AI로 99점 받았다고 올렸다. 사실 여부는 확인 중이다."
+  },
+  {
+   "head": "감독은 있었다",
+   "body": "화상회의 등으로 실시간 감독했다. 글이 사실이라면 감독을 피한 셈이다."
+  },
+  {
+   "head": "전원이 다시 본다",
+   "body": "의혹 학생만이 아니라 수강생 전원이 대상, 기말도 대면이다."
+  }
+ ],
+ "points": [
+  "비대면 시험, 'AI 뚫렸다' 주장 나와",
+  "무효 대상은 의혹 학생 아닌 전원",
+  "기말고사까지 대면으로 전환"
+ ],
+ "watch": [
+  {
+   "head": "12월 14일 대면 시험",
+   "body": "중간고사 재시험과 기말고사를 같은 날 치른다."
+  },
+  {
+   "head": "징계 여부",
+   "body": "부정행위 확인 시 학칙대로 엄정 대처하겠다는 입장이다."
+  }
+ ],
+ "oneliner": "'99점' 자랑 한 줄에 시험 통째로 무효",
+ "debate": {
+  "question": "전원 재시험, 공정한가?",
+  "a": "불가피한 조치",
+  "b": "의혹 학생 외 수강생 부담"
+ },
+ "image_queries": [
+  "university students exam hall",
+  "student using laptop online exam"
+ ],
+ "caption": "건국대 AI 커닝 의혹 재시험 논란, 지금 대학가가 들썩이고 있어요. 건국대 온라인 교양 중간고사에서 한 학생이 AI로 99점을 받았다는 글을 올렸고, 담당 교수는 시험을 무효로 했습니다. 부정행위 여부는 아직 확인 중입니다. 수강생 600여 명은 12월 14일 기말고사 당일에 대면으로 재시험을 봅니다. 의혹이 있는 학생만 따로 보는 방식이 아니라 전원이 대상이라 의견이 갈립니다. 여러분 생각이 궁금하다면 저장하고 친구에게 공유해 주세요.",
+ "hashtags": [
+  "#건국대",
+  "#AI부정행위",
+  "#대면재시험",
+  "#비대면시험"
+ ],
+ "sources": [
+  "세계일보",
+  "강원도민일보",
+  "인사이트"
+ ],
+ "topic_key": "건국대 AI 재시험",
+ "source_title": "“AI 써서 99점” 자랑글에 발칵…건국대, 600명 대면 재시험 - 동아일보",
+ "source_link": "https://news.google.com/rss/articles/CBMidkFVX3lxTE91TkRsRW5ZOXdYVE9MSF9QZ2VpODhxWS1qdUVBbGFSLUVUSGZPU3JISVI5VDB3UW1XdDNqb3RDd3h6SUpSczk3MEdldXBLZ1dRS3Q3YzZoNklpcGMwVEFkWlFWT3p6MHFtNHFRX1FaSzBGUFU3NXfSAWZBVV95cUxOLWNoUTFRR3lHdF9IX3laTzNZQVBvOFRSVzlRVTBmbS1hZWlRMUZTazVjZjUwSFJLNllMUXNsX21oT1ZaRlhqYThzX1NzU29yaWw5ZU0teDhKanVPTmRTTUE5M2dSdXc?oc=5",
+ "stamp": "20261024_0309",
+ "issue_no": 49,
+ "review": [
+  {
+   "cover_ok": true,
+   "body_ok": true,
+   "text_ok": false,
+   "banned": false,
+   "issues": [
+    "'비대면 시험이 AI에 뚫렸다'(3장 요약·4장 01)는 AI 부정행위가 확인된 사실처럼 단정한다. 실제로는 익명 커뮤니티의 자랑글이 발단이고 부정행위 여부는 확인 중이다.",
+    "'감독은 있었다 ... AI 활용을 막지 못했다'(3장)도 AI 사용을 확정된 사실로 쓴다. 근거는 같은 자랑글이다.",
+    "'무효가 됐다'는 교수의 조치 자체는 사실이지만, 그 근거가 AI 부정행위로 읽히도록 쓰여 있어 표지와 본문이 확인되지 않은 부정행위를 단정하는 인상을 준다. '의혹'·'주장' 등으로 표현을 수정해야 한다."
+   ]
+  },
+  {
+   "cover_ok": true,
+   "body_ok": true,
+   "text_ok": false,
+   "banned": false,
+   "issues": [
+    "에디터 한 줄 '정직하게 본 점수까지 함께 무효가 됐다'는 나머지 수강생이 정직하게 치렀다는 사실을 단정하는데, 기사에서는 확인된 내용이 아니다. 부정행위 여부는 아직 확인 중이라고 되어 있다.",
+    "토론 선택지 B '정직한 학생 피해'도 같은 전제를 깔고 있어 확인되지 않은 사실을 전제로 한 질문이 된다."
+   ]
+  },
+  {
+   "cover_ok": true,
+   "body_ok": true,
+   "text_ok": true,
+   "banned": false,
+   "issues": [
+    "표지와 본문 2장에 같은 사진이 반복되어 있다(규정 위반은 아니지만 시각적 다양성이 떨어진다).",
+    "표지 큰 숫자는 '600명', 세부 내용은 '600여명'으로 표기가 달라 통일이 필요하다."
+   ]
+  }
+ ]
+}
