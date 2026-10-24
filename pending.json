@@ -1,0 +1,117 @@
+{
+  "category": "경제",
+  "kicker": "창사 58년 첫 파업?",
+  "headline": "28차 협상, 간극 4.6%p",
+  "big_number": "4.6%p",
+  "big_label": "기본급 인상률 격차",
+  "what": [
+    "포스코 노조가 11월 2일부터 무기한 파업을 예고했다.",
+    "23일 사장까지 나선 28차 본교섭이 결렬됐다.",
+    "파업이 현실화하면 창사 이후 첫 파업 기록이 된다."
+  ],
+  "numbers": [
+    {
+      "value": "7.1%",
+      "label": "노조 기본급 요구"
+    },
+    {
+      "value": "2.5%",
+      "label": "사측 최종 제시"
+    },
+    {
+      "value": "500만원",
+      "label": "사측 일시금 총액"
+    }
+  ],
+  "details": [
+    {
+      "head": "노조가 원하는 것",
+      "body": "기본급 7.1%, 격려금 600%, 우리사주 50주, 명절상여금 200%"
+    },
+    {
+      "head": "사측의 최종안",
+      "body": "기본급 2.5%, 일시금 500만원. 정액 8만3000원 상당"
+    },
+    {
+      "head": "파업 전 쟁의 수위",
+      "body": "26일부터 일부 조합원 퇴근 후 돌발 대응 제한, 2일 오후 7시 파업"
+    }
+  ],
+  "points": [
+    "28차 협상도 결렬",
+    "7.1% vs 2.5%, 격차 4.6%p",
+    "무기한 파업은 11월 2일"
+  ],
+  "watch": [
+    {
+      "head": "26일 쟁의 시작",
+      "body": "노조가 일부 조합원 대상 쟁의 수위를 먼저 높인다"
+    },
+    {
+      "head": "비상조업 가동",
+      "body": "사측은 생산계획 조정, 협력업체·물류 파급 우려"
+    }
+  ],
+  "oneliner": "쟁점은 월급보다 사기진작 보상의 크기",
+  "debate": {
+    "question": "협상 결렬, 파업은 정당한 수단?",
+    "a": "정당한 권리",
+    "b": "협상이 먼저"
+  },
+  "image_queries": [
+    "steel mill furnace night",
+    "labor union workers rally"
+  ],
+  "caption": "포스코 무기한 파업 예고, 핵심은 기본급 인상률 4.6%p 격차입니다. 노조는 7.1%를 요구했고 사측은 2.5%를 최종안으로 내놨습니다. 사장까지 나선 28차 본교섭이 결렬되면서 11월 2일 오후 7시부터 무기한 파업이 예고됐습니다. 철강 공급망과 포항 지역 경제에 미칠 영향이 변수입니다. 나중에 다시 보려면 저장하고, 주변에도 공유해 주세요.",
+  "hashtags": [
+    "#포스코파업",
+    "#포스코",
+    "#임금협상",
+    "#무기한파업"
+  ],
+  "sources": [
+    "쿠키뉴스",
+    "아주경제",
+    "뉴스핌"
+  ],
+  "topic_key": "포스코 무기한 파업",
+  "source_title": "포스코 임금교섭 결렬…노조 11월 2일 무기한 파업 예고 - 비건뉴스",
+  "source_link": "https://news.google.com/rss/articles/CBMiZkFVX3lxTFBtclVhTHZpLUNHU1E4TzdWczdVOFYwQkNOczFEZkFmX09ZQVFDTXN0U2FOUnJwX21HWDRkcXJLQnZLNkR1ZmZmcmZfYTN1QXdETElsb0VyY2FYeHZjMWl3X1RUUWlTZw?oc=5",
+  "stamp": "20261024_2345",
+  "issue_no": 52,
+  "review": [
+    {
+      "cover_ok": true,
+      "body_ok": false,
+      "text_ok": true,
+      "banned": false,
+      "issues": [
+        "2번 본문 사진은 포스코 노조 파업과 무관한 해외 시위 장면(머리스카프를 쓴 여성 군중)으로, 기사 상황을 보여주거나 연상시키지 못합니다. 제철소 사진 등 기사 주제에 맞는 이미지로 교체해야 합니다."
+      ]
+    },
+    {
+      "cover_ok": true,
+      "body_ok": false,
+      "text_ok": true,
+      "banned": false,
+      "issues": [
+        "2장(본문 사진)은 영문 팻말이 보이는 해외 시위 장면으로, 포스코 노조 파업과 직접 관련이 없는 일반 스톡 사진이라 주제와 맞지 않습니다."
+      ]
+    },
+    {
+      "cover_ok": true,
+      "body_ok": true,
+      "text_ok": true,
+      "banned": false,
+      "issues": []
+    }
+  ],
+  "images": [
+    "20261024_2345/01.jpg",
+    "20261024_2345/02.jpg",
+    "20261024_2345/03.jpg",
+    "20261024_2345/04.jpg",
+    "20261024_2345/05.jpg",
+    "20261024_2345/06.jpg"
+  ]
+}
