@@ -1,0 +1,108 @@
+{
+ "category": "경제",
+ "kicker": "ETF 순매수 사상 최대",
+ "headline": "5500 폭락에도 80조 쓸어담았다",
+ "big_number": "80조",
+ "big_label": "개인 ETF 순매수(올해)",
+ "what": [
+  "코스피는 6월 9000선에서 5500대로 내려왔다.",
+  "그 사이 개인은 ETF를 80조 원어치 넘게 순매수했다.",
+  "작년 한 해 순매수액 35조 원의 두 배를 넘겼다."
+ ],
+ "numbers": [
+  {
+   "value": "80조원",
+   "label": "개인 ETF 순매수"
+  },
+  {
+   "value": "2배+",
+   "label": "작년 연간 대비"
+  },
+  {
+   "value": "33개월",
+   "label": "연속 월간 순매수"
+  }
+ ],
+ "details": [
+  {
+   "head": "주식 매수의 80%",
+   "body": "같은 기간 개인 주식 순매수 100조 원의 80%에 맞먹는 규모다."
+  },
+  {
+   "head": "하반기엔 식었다",
+   "body": "상반기 61조 원이 들어왔지만 하반기 약 4개월은 19조 원에 그쳤다."
+  },
+  {
+   "head": "외국인도 10조 돌파",
+   "body": "외국인 순매수는 10조 6808억 원으로 작년 1조 6622억 원의 6배를 넘었다."
+  }
+ ],
+ "points": [
+  "코스피 9000→5500대",
+  "개인 ETF 80조, 작년의 2배+",
+  "하반기 매수 속도는 둔화"
+ ],
+ "watch": [
+  {
+   "head": "연말 100조 가나",
+   "body": "월평균 8조 원 속도면 연말 100조 원에 육박한다는 전망이 나온다."
+  },
+  {
+   "head": "레버리지 순매수 복귀",
+   "body": "규제 후 순매도하던 단일레버리지 14종, 이달 3154억 순매수로 전환."
+  }
+ ],
+ "oneliner": "종목 고르기 대신 시장 통째로 샀다",
+ "debate": {
+  "question": "폭락장, ETF 계속 사시겠어요?",
+  "a": "계속 담는다",
+  "b": "일단 쉬어간다"
+ },
+ "image_queries": [
+  "korean stock market trading screen",
+  "investor checking stock app smartphone"
+ ],
+ "caption": "ETF 순매수 사상 최대, 개인 80조 돌파 소식입니다. 코스피가 6월 9000선에서 5500대로 내려왔는데도 개인의 ETF 순매수는 올해 80조 원을 넘겼고, 이는 작년 한 해 순매수액 35조 원의 두 배가 넘는 규모입니다. 외국인 순매수도 10조 6808억 원으로 작년의 6배를 넘었습니다. 내 포트폴리오와 비교해 보고 싶다면 저장해 두고 친구에게도 공유해 보세요.",
+ "hashtags": [
+  "#ETF",
+  "#코스피",
+  "#개인투자자",
+  "#재테크"
+ ],
+ "sources": [
+  "연합뉴스",
+  "아주경제",
+  "디지털타임스"
+ ],
+ "topic_key": "개인 ETF 순매수",
+ "source_title": "증시 부진에도…올해 ETF 개인 80조, 외인 10조 순매수 - 연합뉴스TV",
+ "source_link": "https://news.google.com/rss/articles/CBMiZ0FVX3lxTE1zMWg2QzFxOTRwZWswby1ob3ZBLWRLZXItVzVwSEtSZVVDaEttandsa1RxRzU1eWNWMl9MbGRwMndqZE9seFZucGYxR2hxXzRqbGFJeXp1ZjZjT3pnTVBiUU5xRjQxem8?oc=5",
+ "stamp": "20261025_0536",
+ "issue_no": 54,
+ "review": [
+  {
+   "cover_ok": true,
+   "body_ok": true,
+   "text_ok": false,
+   "banned": false,
+   "issues": [
+    "캡션에 '외국인도 10조 원 넘게 사들였지만 하반기 들어 매수 강도는 다소 약해졌습니다'라는 문장이 있으나, 카드뉴스 본문에는 외국인의 하반기 둔화 내용이 없고 하반기 둔화는 개인 순매수에 대해서만 나와 있어 본문에 근거가 없는 주장이다."
+   ]
+  },
+  {
+   "cover_ok": true,
+   "body_ok": true,
+   "text_ok": true,
+   "banned": false,
+   "issues": []
+  }
+ ],
+ "images": [
+  "20261025_0536/01.jpg",
+  "20261025_0536/02.jpg",
+  "20261025_0536/03.jpg",
+  "20261025_0536/04.jpg",
+  "20261025_0536/05.jpg",
+  "20261025_0536/06.jpg"
+ ]
+}
