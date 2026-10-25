@@ -1,0 +1,91 @@
+{
+ "category": "경제",
+ "kicker": "강남 1호 재초환",
+ "headline": "같은 집, 값은 5.5억 차",
+ "big_number": "5.5억",
+ "big_label": "같은 84㎡ 매물 가격차",
+ "what": [
+  "서초구가 반포 현대 재건축 부담금을 연내 부과하겠다고 밝혔다.",
+  "근거는 5년 소멸시효. 국토부는 2029년까지 가능하다고 본다.",
+  "트리니원 84㎡는 부담금 주체에 따라 57억·51.5억에 나왔다."
+ ],
+ "numbers": [
+  {
+   "value": "5.5억",
+   "label": "같은 평형 호가 차이"
+  },
+  {
+   "value": "5년",
+   "label": "서초구 시효 해석"
+  },
+  {
+   "value": "46곳",
+   "label": "서울 부과 예상 단지"
+  }
+ ],
+ "details": [
+  {
+   "head": "첫 부과 단지",
+   "body": "실제 부과 단지는 아직 0곳. 반포 현대가 첫 사례 후보다."
+  },
+  {
+   "head": "시한 해석 충돌",
+   "body": "서초구는 5년 시효 기준, 국토부는 2024년 개정법 시행 후 5년."
+  },
+  {
+   "head": "이중가격 현실화",
+   "body": "트리니원 부담금은 2020년 가구당 평균 4.02억 통보, 7억설도."
+  }
+ ],
+ "points": [
+  "시효 해석, 서초구와 국토부 충돌",
+  "같은 집 호가가 5.5억 갈렸다",
+  "조합은 소송 불사 입장"
+ ],
+ "watch": [
+  {
+   "head": "연내 부과 여부",
+   "body": "올해 안에 실제 부과가 이뤄질지가 첫 분기점이다."
+  },
+  {
+   "head": "소송·시효 공방",
+   "body": "조합 소송이 예고됐다. 시효 해석은 법정에서 가려질 수 있다."
+  }
+ ],
+ "oneliner": "집값 말고 '누가 내냐'가 가격이 됐다",
+ "debate": {
+  "question": "재초환 부담금, 유지해야 할까?",
+  "a": "유지해야 한다",
+  "b": "폐지해야 한다"
+ },
+ "image_queries": [
+  "banpo apartment complex seoul",
+  "apartment sale contract keys"
+ ],
+ "caption": "재건축 초과이익환수제 부담금이 강남에서 처음 현실이 될 수 있습니다. 서초구는 반포 현대에 올해 안에 부담금을 부과하겠다는 입장이고, 국토부는 2029년까지 가능하다고 봅니다. 그 사이 반포 래미안 트리니원에서는 같은 84㎡가 부담금을 누가 내느냐에 따라 57억과 51억5천만원으로 갈렸습니다. 내 집 마련을 고민한다면 저장해 두고, 주변과 공유해 보세요.",
+ "hashtags": [
+  "#재건축초과이익환수제",
+  "#재초환",
+  "#반포아파트",
+  "#부동산"
+ ],
+ "sources": [
+  "연합뉴스",
+  "서울경제TV",
+  "글로벌이코노믹"
+ ],
+ "topic_key": "반포 재초환 부담금",
+ "source_title": "\"5년 시효\" 서초구, '강남 1호' 재건축초과이익 부담금 연내 부과 예고…시장 '발칵' - KBC광주방송",
+ "source_link": "https://news.google.com/rss/articles/CBMiYEFVX3lxTE1qZHVzTjVXU01ubDNjNlgwNUVGQXBVc011VEJqcG5aTHlRUS1uell0cmRTNE9mdkl5aXJsWHFzOEZrR2ZZcGJ1WXlNUGFfdHBEVFU4WjNFZ3J6bERFcnZzTA?oc=5",
+ "stamp": "20261025_0310",
+ "issue_no": 54,
+ "review": [
+  {
+   "cover_ok": true,
+   "body_ok": true,
+   "text_ok": true,
+   "banned": false,
+   "issues": []
+  }
+ ]
+}
