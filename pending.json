@@ -1,0 +1,108 @@
+{
+  "category": "경제",
+  "kicker": "3분기 GDP 속보",
+  "headline": "나라는 벌었는데 지갑은?",
+  "big_number": "18.8%",
+  "big_label": "실질 GDI 전년 대비",
+  "what": [
+    "한은이 3분기 성장률 1.0%를 발표했다.",
+    "8월 전망 0.3%의 3배를 넘긴 깜짝 성적이다.",
+    "그런데 민간소비는 0.2% 줄며 뒷걸음쳤다."
+  ],
+  "numbers": [
+    {
+      "value": "1.0%",
+      "label": "3분기 GDP 성장률"
+    },
+    {
+      "value": "18.8%",
+      "label": "실질 GDI 전년比"
+    },
+    {
+      "value": "-0.2%",
+      "label": "민간소비 전기比"
+    }
+  ],
+  "details": [
+    {
+      "head": "소득이 더 뛴 이유",
+      "body": "반도체 수출 교역조건이 좋아지며 GDI가 GDP보다 훨씬 크게 늘었다."
+    },
+    {
+      "head": "소비만 마이너스",
+      "body": "소비 빼고 전 항목이 성장했다. 승용차·가전·서비스 소비가 함께 줄었다."
+    },
+    {
+      "head": "49년 만의 기록",
+      "body": "GDI는 전기比 3.4%로 약 49년 만에 가장 높은 증가율을 기록했다."
+    }
+  ],
+  "points": [
+    "성장률은 전망의 3배",
+    "소득은 49년 만의 최고",
+    "소비는 3년 9개월 만에 후퇴"
+  ],
+  "watch": [
+    {
+      "head": "11월 한은 결정",
+      "body": "연간 성장률 전망 상향 폭과 기준금리 결정에 관심이 쏠린다."
+    },
+    {
+      "head": "소비 회복 여부",
+      "body": "4분기에도 소비가 뒷걸음칠지, 반도체 쏠림이 이어질지가 변수다."
+    }
+  ],
+  "oneliner": "숫자는 반도체가 벌고, 장바구니는 따로 논다",
+  "debate": {
+    "question": "경기 좋다는데 지갑은 어떤가요?",
+    "a": "아끼는 중",
+    "b": "평소대로"
+  },
+  "image_queries": [
+    "container port cargo cranes korea",
+    "semiconductor wafer factory clean room"
+  ],
+  "caption": "3분기 GDP 성장률이 1.0%로 나오며 한은 전망 0.3%를 세 배 넘게 웃돌았습니다. 실질 GDI는 전년 동기보다 18.8% 늘었는데, 민간소비는 오히려 0.2% 줄었습니다. 반도체가 끌어올린 성장과 가계가 체감하는 경기 사이의 간극이 이번 발표의 핵심입니다. 11월 한은의 전망과 금리 결정에 나올 변화를 지켜보려면 저장해 두고 친구에게도 공유해 보세요.",
+  "hashtags": [
+    "#3분기GDP",
+    "#경제성장률",
+    "#한국은행",
+    "#민간소비"
+  ],
+  "sources": [
+    "뉴스핌",
+    "헤럴드경제",
+    "아시아투데이"
+  ],
+  "topic_key": "3분기 GDP 성장률",
+  "source_title": "3분기 GDP 전기비 1.0%↑·GDI 3.4%↑…성장세 확대(상보) - 연합인포맥스",
+  "source_link": "https://news.google.com/rss/articles/CBMicEFVX3lxTFBidHFrbzd1bWNBVUR1c1V0TmRlTE1yMFA5UDZhVXRPMkxiMzV3Qi1oemhrd0tJSXlEd1lrMER1R3BtdGYzbnBoMWIzWVZZUGRiV3VnRWo5VXN4TFBhMkF2Vm1hTGNaMUJBZ1JScmZ1UmY?oc=5",
+  "stamp": "20261026_2336",
+  "issue_no": 61,
+  "review": [
+    {
+      "cover_ok": true,
+      "body_ok": false,
+      "text_ok": true,
+      "banned": false,
+      "issues": [
+        "2장(본문 사진)의 컨테이너선 선체에 'EVERGREEN' 상표가 크게 보이는데, 기사는 GDP·GDI·반도체 수출 지표이고 특정 해운사와 무관하다. 기사와 관계없는 상표가 두드러지므로 불합격. 교체가 필요하다(예: 항만 크레인·컨테이너 야적장 등 무상표 이미지)."
+      ]
+    },
+    {
+      "cover_ok": true,
+      "body_ok": true,
+      "text_ok": true,
+      "banned": false,
+      "issues": []
+    }
+  ],
+  "images": [
+    "20261026_2336/01.jpg",
+    "20261026_2336/02.jpg",
+    "20261026_2336/03.jpg",
+    "20261026_2336/04.jpg",
+    "20261026_2336/05.jpg",
+    "20261026_2336/06.jpg"
+  ]
+}
