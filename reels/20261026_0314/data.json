@@ -1,0 +1,91 @@
+{
+ "category": "생활",
+ "kicker": "성실 납부의 역설",
+ "headline": "냈더니 2.8조 깎였다",
+ "big_number": "2.8조",
+ "big_label": "5년간 깎인 기초연금",
+ "what": [
+  "국민연금 받는다고 깎인 기초연금, 5년 누적 2조8293억",
+  "감액액은 2021년 3001억에서 2025년 8925억으로",
+  "감액 대상자는 38만9천 명에서 84만2천 명으로 늘었다"
+ ],
+ "numbers": [
+  {
+   "value": "84.2만명",
+   "label": "2025 감액 대상자"
+  },
+  {
+   "value": "22.6%",
+   "label": "동시 수급자 중 비율"
+  },
+  {
+   "value": "9.6만원",
+   "label": "월평균 감액액"
+  }
+ ],
+ "details": [
+  {
+   "head": "깎이는 기준",
+   "body": "2025년 국민연금 월 51만4천 원 초과부터 감액 대상"
+  },
+  {
+   "head": "저소득층에 몰렸다",
+   "body": "감액자의 80.5%가 국민연금 월 100만 원 이하 수급자"
+  },
+  {
+   "head": "깎인 뒤 받는 돈",
+   "body": "감액자 평균 21만4천 원, 전체 동시 수급자는 28만7천 원"
+  }
+ ],
+ "points": [
+  "5년간 2.8조 감액",
+  "대상자 2배, 비율 22.6%",
+  "감액자 80%는 월 100만 이하"
+ ],
+ "watch": [
+  {
+   "head": "개선안 나올까",
+   "body": "남인순 의원이 감액제도 개선방안 필요성 강조"
+  },
+  {
+   "head": "올해 기준선",
+   "body": "2026년 감액 기준선은 월 52만4550원 수준"
+  }
+ ],
+ "oneliner": "더 오래 낸 사람이 더 크게 체감한다",
+ "debate": {
+  "question": "연금 많이 받으면 기초연금 감액?",
+  "a": "형평상 감액 필요",
+  "b": "낸 만큼 온전히 지급"
+ },
+ "image_queries": [
+  "korean elderly woman counting cash",
+  "korean senior citizens walking park"
+ ],
+ "caption": "기초연금 감액 이유, 알고 계셨나요? 국민연금을 받는다는 이유로 깎인 기초연금이 최근 5년간 2조8293억 원으로 집계됐습니다. 감액 대상자는 2025년 84만2천 명으로, 동시 수급자의 22.6%입니다. 대상자의 80.5%는 국민연금 월 100만 원 이하 수급자였습니다. 부모님 연금과 직결되는 이야기라 저장하고 가족에게 공유해 보세요.",
+ "hashtags": [
+  "#기초연금",
+  "#국민연금",
+  "#기초연금감액",
+  "#노후준비"
+ ],
+ "sources": [
+  "연합뉴스",
+  "뉴스1",
+  "헤럴드경제"
+ ],
+ "topic_key": "기초연금 연계감액",
+ "source_title": "국민연금 연계 감액 제도로 5년 간 깎인 기초연금 2.8조 원 - 연합뉴스TV",
+ "source_link": "https://news.google.com/rss/articles/CBMiZ0FVX3lxTE1wcjlEUjNkYmNaUXU1ZlhINl80cWIweFgwc0xic0IwWG5ILTBscGd6QTU3cjIzVG0tVnNzRmtja1gyUE1oNU9LQ2lraXFhand5d2RjTkVnZmllRkFVa184aGM2N1RLaFk?oc=5",
+ "stamp": "20261026_0314",
+ "issue_no": 59,
+ "review": [
+  {
+   "cover_ok": true,
+   "body_ok": true,
+   "text_ok": true,
+   "banned": false,
+   "issues": []
+  }
+ ]
+}

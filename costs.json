@@ -1699,5 +1699,41 @@
 "in": 6023,
 "out": 1038,
 "search": 0
+},
+{
+"at": "2026-10-26T03:14:43",
+"purpose": "carousel",
+"usd": 0.1885,
+"krw": 273,
+"in": 37651,
+"out": 3704,
+"search": 2
+},
+{
+"at": "2026-10-26T03:14:51",
+"purpose": "photo_pick",
+"usd": 0.0126,
+"krw": 18,
+"in": 1716,
+"out": 494,
+"search": 0
+},
+{
+"at": "2026-10-26T03:15:00",
+"purpose": "review",
+"usd": 0.0376,
+"krw": 55,
+"in": 5939,
+"out": 1319,
+"search": 0
+},
+{
+"at": "2026-10-26T03:15:21",
+"purpose": "comment_lines",
+"usd": 0.0369,
+"krw": 54,
+"in": 3195,
+"out": 1821,
+"search": 0
 }
 ]
