@@ -1,0 +1,102 @@
+{
+ "category": "연예",
+ "kicker": "13년 만의 단콘 논란",
+ "headline": "3분 매진, 진짜 분모는 어디에?",
+ "big_number": "3분",
+ "big_label": "예매 시작 후 매진",
+ "what": [
+  "이승기가 13년 만에 정식 단독 콘서트를 열었다.",
+  "예매 3분 만에 매진돼 공연이 하루 추가됐다.",
+  "그런데 판매 좌석 수는 아직 확인되지 않았다."
+ ],
+ "numbers": [
+  {
+   "value": "3분",
+   "label": "예매 후 매진 시간"
+  },
+  {
+   "value": "13년",
+   "label": "정식 단콘 공백"
+  },
+  {
+   "value": "미공개",
+   "label": "판매 좌석·축소 규모"
+  }
+ ],
+ "details": [
+  {
+   "head": "좌석이 줄면 생기는 일",
+   "body": "판매 좌석이 적다면 같은 수요여도 매진은 더 빨라질 수 있다."
+  },
+  {
+   "head": "기획사의 설명",
+   "body": "더 받기보다 쾌적한 관람 환경에 무게를 뒀다는 입장."
+  },
+  {
+   "head": "아직 모르는 숫자",
+   "body": "판매 좌석 수와 객석 축소 여부·규모는 확인되지 않았다."
+  }
+ ],
+ "points": [
+  "3분 매진은 사실이다",
+  "좌석 수는 아직 미확인이다",
+  "의도 단정은 이르다"
+ ],
+ "watch": [
+  {
+   "head": "정확한 좌석 수",
+   "body": "판매 좌석과 객석 운영 기준이 공개될지가 관건이다."
+  },
+  {
+   "head": "추가 회차 운영",
+   "body": "향후 공연의 좌석 운영과 공지 방식에 관심이 쏠린다."
+  }
+ ],
+ "oneliner": "비운 의자도 티켓 파워일까",
+ "debate": {
+  "question": "분모 안 밝힌 매진 기록, 인정?",
+  "a": "3분 매진 자체는 사실",
+  "b": "분모 밝혀야 기록"
+ },
+ "image_queries": [
+  "concert hall audience seats",
+  "singer on stage concert"
+ ],
+ "caption": "이승기 콘서트 3분 매진 논란, 핵심은 판매 좌석 수입니다. 13년 만의 단독 콘서트는 예매 3분 만에 매진됐고 공연이 하루 추가됐습니다. 다만 판매 좌석 수와 객석 축소 여부·규모는 확인되지 않았습니다. 기획사는 더 받기보다 쾌적한 관람 환경에 무게를 뒀다는 입장입니다. 좌석이 적으면 매진이 빨라질 수 있지만, 이를 의도적 부풀림으로 단정할 근거는 아직 없습니다. 매진 기록을 어떻게 읽을지 저장해 두고 친구와 이야기해 보세요.",
+ "hashtags": [
+  "#이승기",
+  "#이승기콘서트",
+  "#3분매진",
+  "#콘서트매진"
+ ],
+ "sources": [
+  "스포츠경향",
+  "미디어파인",
+  "MK스포츠"
+ ],
+ "topic_key": "이승기 콘서트 객석",
+ "source_title": "이승기, 13년 만의 단독콘서트 '3분 매진' 알고 보니…객석 10% 이상 줄였다 [SC이슈] - 조선일보",
+ "source_link": "https://news.google.com/rss/articles/CBMilAFBVV95cUxNRThhdExrcFpyQ2hfeW9ERzFWY0tyWTdfVWtKa0F0Zl9aYnJSNWpONVpUdVpCLV9TVjZjckVFZzVXX0piOUhDTnlCSW9heXBHRlVlZVVzU1MtLWc2YjRBSzByckNId0J3cE5xV0xXSTQwZmU4M2RhcWFibVJnRDFXT0hFRXV3MWxZRjdtTkJmMUpOVklv?oc=5",
+ "stamp": "20261027_0314",
+ "issue_no": 62,
+ "review": [
+  {
+   "cover_ok": true,
+   "body_ok": true,
+   "text_ok": false,
+   "banned": false,
+   "issues": [
+    "본문 2장과 요약은 '좌석이 공식 객석보다 10% 이상 적었다'를 확정 사실로 쓰는데, 3장은 '실제 판매 좌석 수와 줄인 규모는 확인되지 않았다'고 적어 서로 모순됨",
+    "캡션은 기획사가 10% 이상 적게 배치했다고 밝혔다고 쓰지만, 3장은 기획사가 '쾌적한 관람 환경에 무게를 뒀다'는 입장만 전하고 감축 규모는 미확인이라고 함. 확인되지 않은 감축률을 사실처럼 단정함",
+    "표지·제목의 '전석 매진'과 본문의 '좌석이 10% 이상 적었다'가 결합되면, 감축 규모가 확정된 것처럼 읽힐 수 있음"
+   ]
+  },
+  {
+   "cover_ok": true,
+   "body_ok": true,
+   "text_ok": true,
+   "banned": false,
+   "issues": []
+  }
+ ]
+}
