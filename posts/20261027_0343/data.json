@@ -1,0 +1,117 @@
+{
+ "category": "경제",
+ "kicker": "코스피 사이드카",
+ "headline": "서류 한 장이 불씨, 외국인·유가가 기름",
+ "big_number": "+4.5%",
+ "big_label": "장중 코스피 상승폭",
+ "what": [
+  "코스피가 27일 장중 4% 넘게 뛰며 5700선을 되찾았다.",
+  "오전 10시 13분 매수 사이드카까지 발동됐다.",
+  "불쏘시개 중 하나는 미국 AI 기업 앤트로픽의 IPO 신고서였다."
+ ],
+ "numbers": [
+  {
+   "value": "5.05%",
+   "label": "발동 당시 선물 상승률"
+  },
+  {
+   "value": "26번째",
+   "label": "올해 매수 사이드카 발동"
+  },
+  {
+   "value": "1300%",
+   "label": "앤트로픽 매출 증가"
+  }
+ ],
+ "details": [
+  {
+   "head": "신고서가 보여준 것",
+   "body": "상반기 매출 162.9억 달러, 영업손실은 21.4억에서 6.9억 달러로 줄었다."
+  },
+  {
+   "head": "한국이 반응한 이유",
+   "body": "신고서가 HBM 공급처로 삼성·SK하이닉스·마이크론을 언급했다."
+  },
+  {
+   "head": "유가도 한몫",
+   "body": "이란·사우디 회담 기대에 유가가 진정돼 금리 부담도 내려갔다."
+  }
+ ],
+ "points": [
+  "신고서 한 장이 증시를 흔들었다",
+  "외국인 매수·유가 진정이 거들었다",
+  "앤트로픽 영업적자는 3분의 2 넘게 줄었다"
+ ],
+ "watch": [
+  {
+   "head": "FOMC·빅테크 실적",
+   "body": "이번 주 FOMC와 MS·알파벳·아마존 실적이 다음 방향을 가른다."
+  },
+  {
+   "head": "추가 주주환원",
+   "body": "증권가는 삼성·SK하이닉스 추가 환원을 최대 120조로 본다."
+  }
+ ],
+ "oneliner": "내 계좌의 날씨는 미국 서류가 정한다",
+ "debate": {
+  "question": "급등장, 지금 들어갈까?",
+  "a": "지금 담는다",
+  "b": "눌림 기다린다"
+ },
+ "image_queries": [
+  "seoul stock exchange trading screen",
+  "semiconductor wafer factory worker"
+ ],
+ "caption": "27일 코스피는 장중 4% 넘게 올라 5700선을 되찾았고, 오전 10시 13분 매수 사이드카가 발동됐습니다. 이 급등의 불씨는 미국 AI 기업 앤트로픽의 IPO 신고서였습니다. 신고서에서 매출 급증과 적자 축소가 확인됐고, HBM 공급처로 삼성전자·SK하이닉스 등이 언급되며 한국 반도체주가 반응했습니다. 여기에 외국인 매수와 유가 진정이 겹쳐 힘을 보탰습니다. 이번 주 FOMC와 빅테크 실적이 다음 변수이니 저장해두고 비교해 보세요.",
+ "hashtags": [
+  "#코스피",
+  "#사이드카",
+  "#앤트로픽",
+  "#반도체주"
+ ],
+ "sources": [
+  "뉴시스",
+  "헤럴드경제",
+  "뉴스웍스"
+ ],
+ "topic_key": "코스피 매수 사이드카",
+ "source_title": "[속보] 코스피 4%대 급등‥매수 사이드카 발동 - MBC 뉴스",
+ "source_link": "https://news.google.com/rss/articles/CBMidEFVX3lxTE9wemIzZXBhd3REU3dpRjc5bndPbjVRdlU4cHptRkdIWFdOUmZNNG8zX09fV1pxWDlfSFNRSHE0b19oMzl1LUFhQ0RsdExXenY4d0NpdmJWVG1YN2xMTkRMbkdDVkJfSS1IXzFldFdrbEdDeXcw0gF0QVVfeXFMTzhDSlhkeEJKQTF2a0MyWkg1cUtVelA1NHBrSHk1S0VCVVFqTVc1SjZSS255MXZEYTFRanQwRl90VjdYLTNEOXZHVWw2dk1hSnEwTUpiOXpkVGkxWVZNZ3JiSHhybmpDbl8wbUpacjBSQlhwNDA?oc=5",
+ "stamp": "20261027_0343",
+ "issue_no": 62,
+ "review": [
+  {
+   "cover_ok": true,
+   "body_ok": true,
+   "text_ok": false,
+   "banned": false,
+   "issues": [
+    "3장의 '올해 매수 사이드카 26번째'와 5장의 '올해 사이드카만 53번째'가 함께 나와 독자가 혼동할 수 있음. 53번째가 매수·매도를 합친 수치인지 본문에 설명이 없어 모순처럼 보임"
+   ]
+  },
+  {
+   "cover_ok": true,
+   "body_ok": true,
+   "text_ok": false,
+   "banned": false,
+   "issues": [
+    "캡션은 '코스피 급등 이유는 앤트로픽 IPO 신고서였습니다'라고 단정하지만, 4번 장은 '외국인 매수·유가 진정이 거들었다'고 써서 원인이 여러 개였다고 본문과 모순됩니다. 캡션을 여러 요인 중 하나였다는 식으로 고쳐야 합니다."
+   ]
+  },
+  {
+   "cover_ok": true,
+   "body_ok": true,
+   "text_ok": true,
+   "banned": false,
+   "issues": []
+  }
+ ],
+ "images": [
+  "20261027_0343/01.jpg",
+  "20261027_0343/02.jpg",
+  "20261027_0343/03.jpg",
+  "20261027_0343/04.jpg",
+  "20261027_0343/05.jpg",
+  "20261027_0343/06.jpg"
+ ]
+}
