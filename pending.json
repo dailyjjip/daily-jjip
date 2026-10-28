@@ -1,0 +1,99 @@
+{
+  "category": "연예",
+  "kicker": "13년 만의 내한",
+  "headline": "무대 없이 온 비버의 서울",
+  "big_number": "13년",
+  "big_label": "마지막 내한 공연 이후",
+  "what": [
+    "저스틴 비버가 아내 헤일리와 13년 만에 서울을 찾았다.",
+    "목적은 콘서트가 아닌 성수동 브랜드 팝업이었다.",
+    "3박 4일을 보내고 26일 LA로 출국했다."
+  ],
+  "numbers": [
+    {
+      "value": "13년",
+      "label": "2013 내한 이후"
+    },
+    {
+      "value": "9시간",
+      "label": "오픈 전부터 대기 줄"
+    },
+    {
+      "value": "3박 4일",
+      "label": "서울 체류 기간"
+    }
+  ],
+  "details": [
+    {
+      "head": "성수동 팝업이 이유",
+      "body": "브랜드 스카이라크의 국내 첫 팝업이 22~25일 성수동에서 열렸다."
+    },
+    {
+      "head": "탁구 치는 브랜드 대표",
+      "body": "팝업 현장 탁구대에서 관계자들과 탁구 치는 모습을 SNS에 올렸다."
+    },
+    {
+      "head": "입국 당일 삼계탕",
+      "body": "입국한 날 오후 안국동 미쉐린 선정 삼계탕집에서 포착됐다."
+    }
+  ],
+  "points": [
+    "13년 만의 방한, 목적은 브랜드",
+    "줄은 새벽부터, 식사는 삼계탕",
+    "트레이닝복 차림의 서울 탐방"
+  ],
+  "watch": [
+    {
+      "head": "팝업은 이미 종료",
+      "body": "팝업은 25일에 끝났고 부부는 26일 출국했다."
+    },
+    {
+      "head": "다음 내한은 언제?",
+      "body": "공연 계획은 확인되지 않았다. 브랜드의 후속 행보가 관건이다."
+    }
+  ],
+  "oneliner": "공연 대신 팝업, 팬심이 매출 동선이 됐다",
+  "debate": {
+    "question": "좋아하는 스타, 공연 vs 팝업?",
+    "a": "콘서트가 낫다",
+    "b": "팝업도 좋다"
+  },
+  "image_queries": [
+    "Seongsu-dong popup store Seoul",
+    "samgyetang ginseng chicken soup"
+  ],
+  "caption": "저스틴 비버 내한 소식, 13년 만이라 더 크게 화제입니다. 이번 방한의 이유는 콘서트가 아니라 성수동 브랜드 팝업이었습니다. 오픈 9시간 전부터 줄이 생겼고, 입국 당일 안국동 삼계탕집에서 포착됐습니다. 3박 4일 일정을 마치고 26일 출국했습니다. 저장해 두고 친구와 공유해 보세요.",
+  "hashtags": [
+    "#저스틴비버",
+    "#비버내한",
+    "#성수동팝업",
+    "#삼계탕"
+  ],
+  "sources": [
+    "뉴스1",
+    "스포티비뉴스",
+    "인사이트"
+  ],
+  "topic_key": "저스틴 비버 내한",
+  "source_title": "고깃집 가고 삼계탕 먹방... 저스틴 비버 부부의 서울 탐방 - 조선일보",
+  "source_link": "https://news.google.com/rss/articles/CBMilAFBVV95cUxOU2hNand2NDhGbDJNZF9Gc1d4UHBCS0ZxeS13Z09vNm4ya1F2anBLS1VwQllpWWt4aWhhbVBramxCZDFYbGxpdXVjS0tmeHkxU1VtMjNiNlgtNFQyTE8zZWVoOFN1RHpIQXJfaXFJR1p4bTZOWUluNEpPY2s5T3FyQU5IS0xhZVhGMkN6dWdSanFONF9s?oc=5",
+  "stamp": "20261028_1048",
+  "issue_no": 66,
+  "review": [
+    {
+      "cover_ok": true,
+      "body_ok": true,
+      "text_ok": true,
+      "banned": false,
+      "issues": []
+    }
+  ],
+  "images": [
+    "20261028_1048/01.jpg",
+    "20261028_1048/02.jpg",
+    "20261028_1048/03.jpg",
+    "20261028_1048/04.jpg",
+    "20261028_1048/05.jpg",
+    "20261028_1048/06.jpg"
+  ]
+}
