@@ -1,0 +1,102 @@
+{
+ "category": "경제",
+ "kicker": "전세 갱신의 반전",
+ "headline": "갱신 13건 중 1건, 월세 폭탄 평균 38만원",
+ "big_number": "1/13",
+ "big_label": "전세 갱신 중 월세 추가",
+ "what": [
+  "서울 전세 갱신 4만9629건 중 3803건에 월세가 붙었다",
+  "비율은 7.7%, 새로 생긴 월세는 평균 38만원이다",
+  "전세 매물 감소와 보증금 부담이 배경으로 꼽힌다"
+ ],
+ "numbers": [
+  {
+   "value": "7.7%",
+   "label": "월세 붙은 갱신 비율"
+  },
+  {
+   "value": "38만원",
+   "label": "평균 새 월세"
+  },
+  {
+   "value": "81.6%",
+   "label": "보증금 안 줄어든 비율"
+  }
+ ],
+ "details": [
+  {
+   "head": "보증금 그대로 68%",
+   "body": "68.2%가 보증금 유지에 월세만 추가. 평균 28만7000원."
+  },
+  {
+   "head": "관악구 연 1440만원",
+   "body": "신림동 59㎡, 보증금 5억2500만원 그대로에 월세 120만원 갱신."
+  },
+  {
+   "head": "법의 선: 5% 상한",
+   "body": "갱신권 쓰면 인상 5% 이내. 월세 전환은 세입자 동의 필요."
+  }
+ ],
+ "points": [
+  "갱신 13건 중 1건꼴로 월세 추가",
+  "평균 월 38만원, 연 456만원",
+  "보증금 부담이 월세로 이동"
+ ],
+ "watch": [
+  {
+   "head": "갱신권 소진 이후",
+   "body": "갱신권 쓴 뒤 재계약은 시세를 반영해 부담이 더 커질 수 있다."
+  },
+  {
+   "head": "월세화 속도",
+   "body": "월세 전환 비중이 1분기 6.8%에서 3분기 8.1%로 상승."
+  }
+ ],
+ "oneliner": "목돈 대신 고정비를 고르는 갱신",
+ "debate": {
+  "question": "재계약에 월세 붙으면 남을까, 떠날까?",
+  "a": "월세 내고 남는다",
+  "b": "이사 간다"
+ },
+ "image_queries": [
+  "seoul apartment complex aerial",
+  "korean couple reviewing rental contract"
+ ],
+ "caption": "전세 갱신 월세 전환, 이제 남의 일이 아닙니다. 서울 전세 갱신 4만9629건 중 3803건(7.7%)에 월세가 새로 붙었고, 새로 생긴 월세는 평균 38만원입니다. 월세가 붙은 3803건 가운데 68.2%는 보증금은 그대로인데 매달 나가는 돈만 늘어난 계약이었습니다. 여러분이라면 월세를 내고 남을까요, 이사를 택할까요? 재계약을 앞둔 친구에게 공유하고 저장해 두세요.",
+ "hashtags": [
+  "#전세",
+  "#월세",
+  "#전세갱신",
+  "#주거비"
+ ],
+ "sources": [
+  "메트로서울",
+  "한국경제",
+  "머니투데이"
+ ],
+ "topic_key": "전세 갱신 월세",
+ "source_title": "전세 갱신했더니 월세 생겼다… 매달 38만원 더 낸다 - Chosunbiz",
+ "source_link": "https://news.google.com/rss/articles/CBMimAFBVV95cUxPaVZvRy1sUU12Z1pxODVDQjRNUUdYMkZiS3U1RXhPVnZrX3pNbGhjNDNOODBwcWhRdm02RWVWT2lfTnY0Ym5mMW9mTURGeUp6b2RKZ0Z1YzJ3aXVsQVlESTg2cTkzZFdzeU5ZdU1KbmJSY3BWNDlhMjRRSGhmb3hLSWNTUUFCQUZ6SmZrbmlTLVc3SlJIZEc5b9IBrAFBVV95cUxNTzROOUg4QzJ2bV9kczZxV3d0ZVFsU2dEZ1F1LWxNX004VVMybkhaN1VRU0dTMjZINHFrM05zdzI0bUdlY3Q5SVdkVjVIeHMxaVpMeVZSY2tuaWo4eGNPZ211RmF3bTNVRmxsYzMxWkN6b0stb01qeGN0SlZwak1GQTBDRk9xQy1zVWhwdDRJMkEzSWhHb004M0FZeG9DR0xXY0dUajJHdzB4VXFz?oc=5",
+ "stamp": "20261029_0324",
+ "issue_no": 68,
+ "review": [
+  {
+   "cover_ok": true,
+   "body_ok": true,
+   "text_ok": false,
+   "banned": false,
+   "issues": [
+    "캡션의 '전체의 68.2%를 차지했습니다'는 오류입니다. 슬라이드 3의 68.2%는 월세가 붙은 3803건 중의 비율이므로, 전체 갱신 4만9629건을 기준으로 한 것처럼 읽히는 표현은 수치와 모순됩니다.",
+    "캡션의 '올해 서울 아파트 전세 갱신'은 원문의 '서울 전세 갱신'(아파트 한정 아님)과 범위가 달라 확인되지 않은 한정을 덧붙인 것입니다.",
+    "표지 제목 '보증금 그대론데 월세 38만원'은 평균 38만원이 월세가 붙은 7.7% 계약에만 해당한다는 조건이 빠져 전체 전세 계약에 월세 38만원이 일반적인 것처럼 오해될 수 있습니다."
+   ]
+  },
+  {
+   "cover_ok": true,
+   "body_ok": true,
+   "text_ok": true,
+   "banned": false,
+   "issues": []
+  }
+ ]
+}
