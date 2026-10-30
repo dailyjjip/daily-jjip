@@ -1,0 +1,109 @@
+{
+ "category": "연예",
+ "kicker": "불가리 포토타임 논란",
+ "headline": "손짓 한 번에 CEO 앞 결례 vs 억까, 반응 정반대",
+ "big_number": "1번",
+ "big_label": "논란으로 번진 장원영의 손짓",
+ "what": [
+  "28일 청담동 불가리 전시 프리뷰 포토타임에서 벌어진 일.",
+  "장원영이 김지원을 옆자리로 부르는 장면이 퍼졌다.",
+  "일부는 CEO 앞 결례 아니냐고 지적했다."
+ ],
+ "numbers": [
+  {
+   "value": "3명",
+   "label": "포토타임 참석자"
+  },
+  {
+   "value": "10/28",
+   "label": "행사 날짜"
+  },
+  {
+   "value": "2갈래",
+   "label": "엇갈린 누리꾼 반응"
+  }
+ ],
+ "details": [
+  {
+   "head": "논란의 장면",
+   "body": "김지원이 왼쪽을 돌아보자 장원영이 '언니'라며 손짓했다."
+  },
+  {
+   "head": "현장 분위기",
+   "body": "장원영이 사과의 뜻을 전하자 CEO는 괜찮다는 듯 팔을 펼쳤다."
+  },
+  {
+   "head": "갈린 시선",
+   "body": "결례라는 지적과 억지 논란이라는 반박이 맞섰다."
+  }
+ ],
+ "points": [
+  "현장 소통이 온라인 논란으로",
+  "CEO는 팔을 펼쳐 넘겼다",
+  "결례냐 억까냐로 갈렸다"
+ ],
+ "watch": [
+  {
+   "head": "공식 입장 여부",
+   "body": "소속사나 브랜드 측 입장이 나올지가 변수다."
+  },
+  {
+   "head": "포토타임 매너 논쟁",
+   "body": "공식 석상 포토타임 에티켓 논쟁으로 번질지 주목."
+  }
+ ],
+ "oneliner": "결례와 배려 사이, 프레임 한 컷",
+ "debate": {
+  "question": "포토타임 자리 이동, 결례일까?",
+  "a": "결례일 수 있다",
+  "b": "과한 해석이다"
+ },
+ "image_queries": [
+  "photographers red carpet photocall",
+  "luxury jewelry exhibition seoul"
+ ],
+ "caption": "장원영 불가리 포토타임 논란, 무슨 일이었을까요? 28일 서울 청담동 불가리 전시 프리뷰 행사에서 장원영이 김지원을 옆자리로 부르는 장면이 온라인에서 퍼졌습니다. 일부는 CEO 앞에서 결례가 아니냐고 했고, 다른 쪽은 현장 소통을 지나치게 확대 해석한다고 맞섰어요. 여러분 생각은 어느 쪽인가요? 저장해두고 친구와 의견을 나눠보세요.",
+ "hashtags": [
+  "#장원영",
+  "#불가리",
+  "#아이브",
+  "#김지원"
+ ],
+ "sources": [
+  "스포츠경향"
+ ],
+ "topic_key": "장원영 불가리 포토타임",
+ "source_title": "“불가리 CEO에 결례?” 장원영, 포토타임 해프닝에 때아닌 ‘억까’ - 스포츠경향",
+ "source_link": "https://news.google.com/rss/articles/CBMiXkFVX3lxTE4zdExuRGh2Z2c5SWJRcFh3bHhGWkVoejUzQ1BMTV93MFl1cjBUWW1VaXNsRlpOQUhnNUJQaS15SGRaR3JYNjEyQS11cEFGYVhmaU5fa1BqNEpjX1hlb0HSAWNBVV95cUxQcDRiT0lUbFE0YjQ1UG9yYnF2WGFXbzRFaFFqOUNiZ2VUdWF6cElzTDI4VWoyekc4TkNkNzkzZzVyREZtZEIwLWpDTG1aRFpXSnlJRENhWTdTbnpuTmVoX2VSOFU?oc=5",
+ "stamp": "20261030_0323",
+ "issue_no": 71,
+ "review": [
+  {
+   "cover_ok": true,
+   "body_ok": false,
+   "text_ok": false,
+   "banned": false,
+   "issues": [
+    "2번 장 사진은 카메라를 든 일반 스톡 인물 사진(Pixabay)으로, 실제 불가리 행사나 해당 인물들과 무관해 주제와 맞지 않는다.",
+    "표지의 '12번?'은 본문 어디에도 근거가 없고, 본문은 '손짓 한 번'으로 설명해 제목·숫자가 서로 어긋난다. '누리꾼이 체감한 이동 횟수'라는 라벨만으로는 이 모순이 해소되지 않는다."
+   ]
+  },
+  {
+   "cover_ok": true,
+   "body_ok": true,
+   "text_ok": false,
+   "banned": false,
+   "issues": [
+    "표지 큰 라벨 '논란을 키운 장원영의 손짓'은 장원영의 행동이 논란을 키웠다고 단정하는 표현이다. 본문은 '일부는 지적했다'와 '억지 논란이라는 반박'을 나란히 제시하므로 사실처럼 단정하면 안 된다. 예: '논란으로 번진 장원영의 손짓'처럼 확인된 사실만 쓰는 것이 안전하다.",
+    "사진이 없는 텍스트 카드만 있어 표지와 본문 이미지 판정은 통과시켰다."
+   ]
+  },
+  {
+   "cover_ok": true,
+   "body_ok": true,
+   "text_ok": true,
+   "banned": false,
+   "issues": []
+  }
+ ]
+}

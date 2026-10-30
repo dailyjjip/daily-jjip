@@ -2446,5 +2446,86 @@
 "in": 6039,
 "out": 1008,
 "search": 0
+},
+{
+"at": "2026-10-30T03:23:56",
+"purpose": "carousel",
+"usd": 0.1922,
+"krw": 279,
+"in": 40283,
+"out": 3424,
+"search": 2
+},
+{
+"at": "2026-10-30T03:24:03",
+"purpose": "photo_pick",
+"usd": 0.0159,
+"krw": 23,
+"in": 1722,
+"out": 714,
+"search": 0
+},
+{
+"at": "2026-10-30T03:24:11",
+"purpose": "review",
+"usd": 0.0403,
+"krw": 58,
+"in": 5976,
+"out": 1492,
+"search": 0
+},
+{
+"at": "2026-10-30T03:24:19",
+"purpose": "fix_text",
+"usd": 0.0312,
+"krw": 45,
+"in": 1261,
+"out": 1830,
+"search": 0
+},
+{
+"at": "2026-10-30T03:24:25",
+"purpose": "photo_pick",
+"usd": 0.0137,
+"krw": 20,
+"in": 903,
+"out": 733,
+"search": 0
+},
+{
+"at": "2026-10-30T03:24:43",
+"purpose": "review",
+"usd": 0.0379,
+"krw": 55,
+"in": 5982,
+"out": 1329,
+"search": 0
+},
+{
+"at": "2026-10-30T03:24:51",
+"purpose": "fix_text",
+"usd": 0.0315,
+"krw": 46,
+"in": 1287,
+"out": 1841,
+"search": 0
+},
+{
+"at": "2026-10-30T03:24:58",
+"purpose": "review",
+"usd": 0.0342,
+"krw": 50,
+"in": 5996,
+"out": 1084,
+"search": 0
+},
+{
+"at": "2026-10-30T03:25:20",
+"purpose": "comment_lines",
+"usd": 0.0392,
+"krw": 57,
+"in": 2273,
+"out": 2161,
+"search": 0
 }
 ]
