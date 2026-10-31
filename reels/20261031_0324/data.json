@@ -1,0 +1,111 @@
+{
+ "category": "스포츠",
+ "kicker": "가디언이 본 한국 축구",
+ "headline": "압수수색까지 간 대표팀",
+ "big_number": "7번",
+ "big_label": "가디언이 묶은 두 7번",
+ "what": [
+  "가디언이 30일 한국 축구 내분을 집중 조명했다.",
+  "월드컵 조별리그 탈락 후 감독·회장 사퇴, 협회 압수수색.",
+  "베테랑·신예 갈등설에 주장 손흥민 입지까지 거론된다."
+ ],
+ "numbers": [
+  {
+   "value": "34세",
+   "label": "손흥민 현재 나이"
+  },
+  {
+   "value": "7번",
+   "label": "호날두와 같은 번호"
+  },
+  {
+   "value": "9~10월",
+   "label": "내분설 확산 시기"
+  }
+ ],
+ "details": [
+  {
+   "head": "시작은 월드컵 탈락",
+   "body": "조별리그 탈락 이후 베테랑과 젊은 선수 사이 긴장이 커졌다는 보도."
+  },
+  {
+   "head": "쌓여온 잡음 목록",
+   "body": "2701호 사건, 탁구 게이트, 96라인 은퇴 소동이 다시 소환됐다."
+  },
+  {
+   "head": "영국의 비유",
+   "body": "가디언은 손흥민과 호날두를 나란히 놓고 분열의 위험을 짚었다."
+  }
+ ],
+ "points": [
+  "탈락 후폭풍이 압수수색까지",
+  "갈등설의 중심엔 세대 문제",
+  "해외 매체까지 위기 보도"
+ ],
+ "watch": [
+  {
+   "head": "새 감독 선임",
+   "body": "정식 사령탑 부임 뒤 세대교체 착수해야 한다는 업계 지적."
+  },
+  {
+   "head": "주장 완장 향방",
+   "body": "가디언이 주장 손흥민의 불확실한 미래를 쟁점으로 꼽았다."
+  }
+ ],
+ "oneliner": "내분설의 진짜 쟁점은 승패 아닌 소통",
+ "debate": {
+  "question": "위기의 팀, 베테랑이냐 세대교체냐",
+  "a": "베테랑 중심",
+  "b": "세대교체 우선"
+ },
+ "image_queries": [
+  "south korea national football team",
+  "football stadium empty seats"
+ ],
+ "caption": "축구대표팀 내분설, 이번엔 영국 가디언까지 나섰습니다. 월드컵 조별리그 탈락 이후 감독·회장 사퇴와 협회 압수수색이 이어졌고, 베테랑과 젊은 선수 사이 갈등설이 다시 불붙었어요. 가디언은 손흥민과 호날두를 나란히 놓고 대표팀 분열의 위험을 짚었습니다. 확인된 사실과 설을 구분해서 보고 싶다면 저장하고 친구와 공유해 주세요.",
+ "hashtags": [
+  "#축구대표팀",
+  "#손흥민",
+  "#내분설",
+  "#가디언"
+ ],
+ "sources": [
+  "스타뉴스",
+  "포포투",
+  "뉴시스"
+ ],
+ "topic_key": "축구대표팀 내분설",
+ "source_title": "\"손흥민, 호날두처럼 분열 초래\" 국제망신 된 축구대표팀 내분설 - 조선일보",
+ "source_link": "https://news.google.com/rss/articles/CBMigwFBVV95cUxQdUxuQm9pWGx3QzdUSkhDTHZlejJxMFF6elVFV1dzR1ZIRzdxYS14OXZ2Z3hqQVVKQjA5MjZ2RjVNWGk5UlA2cHFtQ2JYOHB6UFI4WUlBZHlXRWY1bUprRzdKT2kwdFhvYUhQemxYeUg0VGRjSUtEaHhfc0RwclRBcGpqUQ?oc=5",
+ "stamp": "20261031_0324",
+ "issue_no": 74,
+ "review": [
+  {
+   "cover_ok": true,
+   "body_ok": false,
+   "text_ok": true,
+   "banned": false,
+   "issues": [
+    "2장 사진은 독일 국기 무늬 축구공이 크게 보이는 일반 스톡 이미지라 한국 대표팀 내분·협회 압수수색 기사와 직접 관련이 없고, 한국과 독일의 대결로 오해될 수 있습니다. 한국 대표팀이나 협회 관련 사진으로 교체해야 합니다."
+   ]
+  },
+  {
+   "cover_ok": true,
+   "body_ok": false,
+   "text_ok": true,
+   "banned": false,
+   "issues": [
+    "2장 사진은 일반 스톡 축구공 이미지로, 한국 대표팀 내분 기사와 직접 연결되는 장면이 아니다. 독일 국기가 그려진 공이 함께 있어 독일전 등 다른 맥락으로 읽힐 여지도 있다."
+   ]
+  },
+  {
+   "cover_ok": true,
+   "body_ok": true,
+   "text_ok": false,
+   "banned": false,
+   "issues": [
+    "표지 제목 '압수수색까지 간 대표팀'은 대표팀 자체가 압수수색을 당한 것처럼 읽힐 수 있다. 본문에 따르면 압수수색 대상은 협회이므로 '협회 압수수색' 등으로 주어를 분명히 해야 한다."
+   ]
+  }
+ ]
+}
