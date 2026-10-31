@@ -1,0 +1,99 @@
+{
+  "category": "경제",
+  "kicker": "AI 쇼크가 번진 하루",
+  "headline": "1.6조 팔 때 개인은 샀다",
+  "big_number": "-5.7%",
+  "big_label": "장중 최대 낙폭",
+  "what": [
+    "30일 코스피가 3.48% 내린 5730.74로 마감했다.",
+    "알파벳·아마존·인텔 실적에 AI 수익성 의심이 번졌다.",
+    "SK하이닉스는 7%, 삼성전자는 3%대 떨어졌다."
+  ],
+  "numbers": [
+    {
+      "value": "-5.7%",
+      "label": "장중 최대 낙폭"
+    },
+    {
+      "value": "1.6조",
+      "label": "외국인 순매도"
+    },
+    {
+      "value": "6200억",
+      "label": "개인 순매수"
+    }
+  ],
+  "details": [
+    {
+      "head": "10시 5분, 사이드카",
+      "body": "선물 급락으로 매도 사이드카가 발동, 11거래일 만이다."
+    },
+    {
+      "head": "누가 팔고 누가 샀나",
+      "body": "외국인 1.6조 매도, 개인 6200억·기관 7400억 매수"
+    },
+    {
+      "head": "진원지는 미국 빅테크",
+      "body": "인텔은 다음 분기 매출 전망이 예상을 밑돌며 급락했다."
+    }
+  ],
+  "points": [
+    "코스피 -3.48%, 장중 -5.7%",
+    "외국인 매도, 개인·기관 매수",
+    "AI 수익성 의심이 불씨"
+  ],
+  "watch": [
+    {
+      "head": "외국인 매도 지속 여부",
+      "body": "4거래일 만에 순매도 전환, 다음 장 흐름이 관건."
+    },
+    {
+      "head": "AI 투자 수익성 논란",
+      "body": "빅테크 실적이 AI 투자비를 정당화할지 시장이 재확인 중."
+    }
+  ],
+  "oneliner": "사이드카는 브레이크, 지지선은 아님",
+  "debate": {
+    "question": "급락장, 지금 담을까?",
+    "a": "저점 매수",
+    "b": "현금 관망"
+  },
+  "image_queries": [
+    "stock market dealing room screens",
+    "seoul stock exchange red chart"
+  ],
+  "caption": "코스피 급락 이유는 미국 빅테크 실적 충격이었습니다. 30일 코스피는 3.48% 내린 5730.74로 마감했고, 장중에는 낙폭이 5.7%까지 벌어져 매도 사이드카가 발동됐습니다. 외국인이 약 1.6조원을 팔 때 개인과 기관은 물량을 받아냈고, 시장의 시선은 AI 투자 수익성으로 옮겨가고 있습니다. 월요일 장 전에 흐름을 다시 확인하고 싶다면 저장해 두세요.",
+  "hashtags": [
+    "#코스피급락",
+    "#반도체주",
+    "#사이드카",
+    "#주식시황"
+  ],
+  "sources": [
+    "뉴스핌",
+    "이투데이",
+    "전자신문"
+  ],
+  "topic_key": "코스피 AI쇼크 급락",
+  "source_title": "코스피 3.48% 급락…삼성전자 3%·SK하이닉스 7%↓ - 한국경제",
+  "source_link": "https://news.google.com/rss/articles/CBMiWkFVX3lxTE81a1NTQkMxZGxreVdCVlphRHctNjBPdHMxX0tnOEt5ZXVET3hYWEd6MTdpSE1hTVFoX2RIYnBGeVBRWVZRc0I4UWZZNWlVRkdNS0dXckdvOFJSZw?oc=5",
+  "stamp": "20261031_0351",
+  "issue_no": 74,
+  "review": [
+    {
+      "cover_ok": true,
+      "body_ok": true,
+      "text_ok": true,
+      "banned": false,
+      "issues": []
+    }
+  ],
+  "images": [
+    "20261031_0351/01.jpg",
+    "20261031_0351/02.jpg",
+    "20261031_0351/03.jpg",
+    "20261031_0351/04.jpg",
+    "20261031_0351/05.jpg",
+    "20261031_0351/06.jpg"
+  ]
+}
