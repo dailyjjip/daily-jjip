@@ -663,5 +663,12 @@
   "headline": "1조달러의 절반은 칩 하나",
   "topic_key": "수출 1조달러",
   "category": "경제"
+ },
+ {
+  "date": "20261101_1041",
+  "kind": "carousel",
+  "headline": "2분이면 걸그룹 센터",
+  "topic_key": "AI 걸그룹 춤 합성",
+  "category": "IT"
  }
 ]
