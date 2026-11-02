@@ -1012,20 +1012,35 @@ HEALTH = "health.json"
 COSTS = "costs.json"
 KRW_PER_USD = 1450
 MONTHLY_BUDGET_KRW = int(os.getenv("MONTHLY_BUDGET_KRW", "45000"))  # 30일 예산 5만원 중 안전 여유 5천원
-# 추정 단가(USD): 실제 청구액은 Console 기준. 주간 보고에서 차이를 점검.
-PRICE_IN, PRICE_OUT, PRICE_SEARCH = 3 / 1e6, 15 / 1e6, 10 / 1000
+# 추정 단가(USD/토큰): 실제 청구액은 Console 기준. 주간 보고에서 차이를 점검.
+# 11/2 보정(운영자 승인): 예전엔 모든 호출을 $3/$15로 계산해 실제보다 약 2배 높게 잡혔음.
+#   Sonnet 5.5 $2/$10, Haiku 5.5 $0.10/$0.50 (프롬프트 10만 토큰 초과 시 $0.50/$2.50). 모르는 모델은 보수적으로 $3/$15.
+PRICE_SEARCH = 10 / 1000
+PRICES = {  # 모델 접두어: (입력, 출력, 10만 토큰 초과 시 입력, 출력)
+    "claude-sonnet-5-5": (2 / 1e6, 10 / 1e6, 2 / 1e6, 10 / 1e6),
+    "claude-haiku-5-5": (0.10 / 1e6, 0.50 / 1e6, 0.50 / 1e6, 2.50 / 1e6),
+}
+PRICE_DEFAULT = (3 / 1e6, 15 / 1e6, 3 / 1e6, 15 / 1e6)
+
+
+def price_for(model, prompt_tokens):
+    p = next((v for k, v in PRICES.items() if (model or "").startswith(k)), PRICE_DEFAULT)
+    return (p[2], p[3]) if prompt_tokens > 100_000 else (p[0], p[1])
 
 
 def log_cost(msg, purpose):
     try:
         u = msg.usage
         searches = getattr(getattr(u, "server_tool_use", None), "web_search_requests", 0) or 0
-        usd = (u.input_tokens * PRICE_IN + u.output_tokens * PRICE_OUT + searches * PRICE_SEARCH
-               + (getattr(u, "cache_read_input_tokens", 0) or 0) * PRICE_IN * 0.1)
+        cache_read = getattr(u, "cache_read_input_tokens", 0) or 0
+        cache_write = getattr(u, "cache_creation_input_tokens", 0) or 0
+        p_in, p_out = price_for(getattr(msg, "model", ""), u.input_tokens + cache_read + cache_write)
+        usd = (u.input_tokens * p_in + u.output_tokens * p_out + searches * PRICE_SEARCH
+               + cache_read * p_in * 0.1 + cache_write * p_in * 1.25)
         items = json.load(open(COSTS, encoding="utf-8")) if os.path.exists(COSTS) else []
         items.append({"at": datetime.datetime.utcnow().isoformat(timespec="seconds"), "purpose": purpose,
                       "usd": round(usd, 4), "krw": round(usd * KRW_PER_USD), "in": u.input_tokens,
-                      "out": u.output_tokens, "search": searches})
+                      "out": u.output_tokens, "search": searches, "model": getattr(msg, "model", "")})
         json.dump(items[-2000:], open(COSTS, "w", encoding="utf-8"), ensure_ascii=False, indent=0)
     except Exception as e:
         print("비용 기록 실패:", e)
@@ -1036,7 +1051,8 @@ def spend_30d_krw():
         return 0
     cut = (datetime.datetime.utcnow() - datetime.timedelta(days=30)).isoformat()
     return sum(x["krw"] for x in json.load(open(COSTS, encoding="utf-8")) if x["at"] >= cut)
-DAILY_CAP = int(os.getenv("DAILY_CAP", "0")) or (6 if (datetime.datetime.utcnow() + datetime.timedelta(hours=9)).strftime("%Y%m%d") <= "20261025" else 3)  # 하루 최대 생성 수 (집중 기간 6, 이후 3)
+_KST_TODAY = (datetime.datetime.utcnow() + datetime.timedelta(hours=9)).strftime("%Y%m%d")
+DAILY_CAP = int(os.getenv("DAILY_CAP", "0")) or (6 if _KST_TODAY <= "20261025" else 3 if _KST_TODAY <= "20261102" else 2)  # 하루 최대 생성 수 (집중 기간 6, 10/26~ 3, 11/3~ 2: 운영자 승인 11/2)
 
 
 def load_health():
