@@ -3991,5 +3991,35 @@
 "search": 0,
 "model": "claude-haiku-5-5",
 "repriced": "20261102"
+},
+{
+"at": "2026-11-02T23:43:08",
+"purpose": "carousel",
+"usd": 0.1365,
+"krw": 198,
+"in": 37999,
+"out": 4050,
+"search": 2,
+"model": "claude-sonnet-5-5"
+},
+{
+"at": "2026-11-02T23:43:17",
+"purpose": "photo_pick",
+"usd": 0.0006,
+"krw": 1,
+"in": 1723,
+"out": 844,
+"search": 0,
+"model": "claude-haiku-5-5"
+},
+{
+"at": "2026-11-02T23:43:26",
+"purpose": "review",
+"usd": 0.0014,
+"krw": 2,
+"in": 6081,
+"out": 1550,
+"search": 0,
+"model": "claude-haiku-5-5"
 }
 ]
