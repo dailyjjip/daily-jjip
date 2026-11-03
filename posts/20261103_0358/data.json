@@ -1,0 +1,109 @@
+{
+ "category": "생활",
+ "kicker": "김장철 역설",
+ "headline": "배추는 뚝, 새우젓은 쑥 김장값 엇갈려",
+ "big_number": "640억",
+ "big_label": "역대 최대 김장 할인 예산",
+ "what": [
+  "정부가 김장철 농수산물 할인에 640억 원을 쏟는다.",
+  "배추·무 생산이 늘어 가격이 평년보다 크게 내렸다.",
+  "김장 담그는 가구는 줄어 한 포기 더 담그기 캠페인도 연다."
+ ],
+ "numbers": [
+  {
+   "value": "-23.5%",
+   "label": "배추 소비자가 1년새"
+  },
+  {
+   "value": "+25.8%",
+   "label": "새우젓 1년새"
+  },
+  {
+   "value": "58.6%",
+   "label": "직접 김장 비율"
+  }
+ ],
+ "details": [
+  {
+   "head": "풍년의 역설",
+   "body": "가을배추 생산은 18.5% 늘고 김장배추 수요는 9.1% 줄 전망이다."
+  },
+  {
+   "head": "도매가 평년 대비",
+   "body": "2일 도매가 배추 포기당 1738원, 평년보다 37.5% 낮다."
+  },
+  {
+   "head": "농할상품권 한도",
+   "body": "농할상품권 20% 할인, 한도 10만 원. 할인 기간은 11월 9일~12월 6일."
+  }
+ ],
+ "points": [
+  "배추·무는 풍년, 가격 하락",
+  "새우젓은 25.8% 올랐다",
+  "할인은 11월 9일~12월 6일"
+ ],
+ "watch": [
+  {
+   "head": "할인 체감 여부",
+   "body": "정부가 할인이 실제 소비자가격에 반영되는지 점검한다."
+  },
+  {
+   "head": "농가의 요구",
+   "body": "전농은 배추 1500㏊ 시장 격리를 요구하고 있다."
+  }
+ ],
+ "oneliner": "김장값은 배추 한 가지로 안 정해진다",
+ "debate": {
+  "question": "올해 김장, 직접 담그시겠어요?",
+  "a": "직접 담근다",
+  "b": "사 먹는다"
+ },
+ "image_queries": [
+  "napa cabbage kimchi making",
+  "korean market cabbage vegetables"
+ ],
+ "caption": "김장 비용 2026, 올해는 얼마나 들까요? 정부가 김장철 농수산물 할인에 역대 최대인 640억 원을 투입합니다. 배추 소비자가격은 1년 전보다 23.5% 내렸지만 새우젓은 25.8% 올라, 재료마다 가격 방향이 엇갈립니다. 장보기 전에 저장해 두고, 김장 계획이 있는 가족과 공유해 보세요.",
+ "hashtags": [
+  "#김장비용",
+  "#배추값",
+  "#김장철할인",
+  "#장바구니물가"
+ ],
+ "sources": [
+  "SBS Biz",
+  "한국일보",
+  "중앙이코노미뉴스"
+ ],
+ "topic_key": "김장철 할인 640억",
+ "source_title": "정부, 김장철 농수산물 640억원 할인 지원‥최대 50% 할인 - MBC 뉴스",
+ "source_link": "https://news.google.com/rss/articles/CBMidEFVX3lxTE1WUTVUTm1wOVRVbWEwT0Rqc0N4Zi1wSHpHdWtOcFBBczFRM05kQ1FTeUtNV3V5dXo2a1JTR043cHdDSmZxWnlrRk9kZElpdmxCd2M4cFpDTFBfR2xScXFtLW5rdlNfSU9PVFJqc2wzMnlwT1M10gF0QVVfeXFMTmJsbnJ4dGdjUzVhcnhLZGtSRUJpQmdubHhtRjRTeEVzeTUxQW40M2ZOX3p1ZXUxMzl3U2s5UHNUM1luYnJ0QWg2X2JwRTVPQTkzZENrWHRkc1NKcmk4bHBzVzFoZVk5Z2tFSUZjcEctMnpwT0U?oc=5",
+ "stamp": "20261103_0358",
+ "issue_no": 83,
+ "review": [
+  {
+   "cover_ok": true,
+   "body_ok": true,
+   "text_ok": false,
+   "banned": false,
+   "issues": [
+    "3장 '농할상품권 20% 할인, 한도 10만 원. 일반은 9~15일 구매.'와 4장 '할인은 9일부터 다음 달 6일'의 기간 관계가 불명확합니다. 두 기간이 같은 할인인지, 일반 구매 기간이 따로 있는지 본문만으로는 알 수 없어 모순처럼 읽힐 수 있습니다.",
+    "4장 '할인은 9일부터 다음 달 6일'에는 시작 월이 빠져 있어 독자가 기간을 특정하기 어렵습니다."
+   ]
+  },
+  {
+   "cover_ok": true,
+   "body_ok": true,
+   "text_ok": true,
+   "banned": false,
+   "issues": []
+  }
+ ],
+ "images": [
+  "20261103_0358/01.jpg",
+  "20261103_0358/02.jpg",
+  "20261103_0358/03.jpg",
+  "20261103_0358/04.jpg",
+  "20261103_0358/05.jpg",
+  "20261103_0358/06.jpg"
+ ]
+}
