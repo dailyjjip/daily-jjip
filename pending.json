@@ -1,0 +1,121 @@
+{
+  "category": "IT",
+  "kicker": "유럽 마트 냉장고 해킹 확산",
+  "headline": "시원해야 할 냉장고가 50도로 뒤집혔다",
+  "big_number": "50도",
+  "big_label": "마트 냉장고 조작 온도",
+  "what": [
+    "프랑스 마트 냉장고 온도가 50도로 조작됐다.",
+    "피해국은 최소 11개국으로 늘었다.",
+    "배후와 동기는 아직 확인되지 않았다."
+  ],
+  "numbers": [
+    {
+      "value": "700여곳",
+      "label": "프랑스 피해 점포"
+    },
+    {
+      "value": "11개국",
+      "label": "최소 피해 국가"
+    },
+    {
+      "value": "40곳",
+      "label": "벨기에 델레이즈 피해"
+    }
+  ],
+  "details": [
+    {
+      "head": "열쇠는 인터넷 연결",
+      "body": "원격 관리용으로 연결된 구형 설비의 보안 패치 공백이 원인으로 지목된다."
+    },
+    {
+      "head": "해커가 쓴 제상 기능",
+      "body": "벨기에에선 성에 제거 기능을 원격 조작해 온도를 올렸다."
+    },
+    {
+      "head": "한국 마트는 어떨까",
+      "body": "이마트는 점포별 독립 제어, 롯데마트는 쇼케이스별 관리라고 자체 설명했다."
+    }
+  ],
+  "points": [
+    "냉장고도 해킹 대상이 됐다",
+    "원인으로 지목된 건 구형 설비의 연결",
+    "국내 마트는 점포·쇼케이스별 관리를 설명"
+  ],
+  "watch": [
+    {
+      "head": "추가 공격 가능성",
+      "body": "EU는 이번 사태가 단발성이 아니라며 공동 대응을 논의 중이다."
+    },
+    {
+      "head": "배후 확인 여부",
+      "body": "공격 주체와 동기는 미확인, 벨기에 검찰이 수사에 착수했다."
+    }
+  ],
+  "oneliner": "스마트해서 편한 냉장고, 스마트해서 뚫렸다",
+  "debate": {
+    "question": "마트 냉장고, 인터넷 연결 필요할까?",
+    "a": "원격 관리 필요",
+    "b": "연결 끊는 게 안전"
+  },
+  "image_queries": [
+    "empty supermarket refrigerator shelves",
+    "supermarket frozen food aisle"
+  ],
+  "caption": "유럽 마트 냉장고 해킹, 왜 이렇게 번졌을까요? 프랑스에서 마트 냉장고 온도를 50도로 조작한 사건이 시작돼 피해국이 최소 11개국으로 늘었습니다. 원격 관리를 위해 인터넷에 연결해 둔 구형 설비가 원인으로 지목되고 있어요. 이마트는 점포별 독립 제어, 롯데마트는 쇼케이스별 관리를 자체 설명으로 내놨습니다. 장 보러 가기 전에 한 번 더 떠올리도록 저장해 두고 공유해 보세요.",
+  "hashtags": [
+    "#냉장고해킹",
+    "#유럽마트해킹",
+    "#사이버공격",
+    "#이마트"
+  ],
+  "sources": [
+    "이투데이",
+    "재경일보",
+    "아시아경제"
+  ],
+  "topic_key": "유럽 냉장고 해킹",
+  "source_title": "영국·독일도 냉장고 온도 50도로‥유럽 11개국 번진 마트 해킹 - MBC 뉴스",
+  "source_link": "https://news.google.com/rss/articles/CBMidEFVX3lxTE1jTHBtRmoySHllNGFGb3pLaXlsNEpCMTlPMi1HakpHb0l1dDNrU1pMU2pIeTFPSnRXWkJackVyd011NlJ2S3NRenNyN1F0U1ZsQnNFYklHS1RUMWl3d2J4RnpJS1ZyNGJxVTVLazZON3NhTnVh0gF0QVVfeXFMTlhQTEQ5NEVDMHFyMHlFN0R1WG9mbEJ6QU5BMVpNcGNCY2NrN1lsUzdBbDdKWUNSVDl6VGRhNF9Vb0ZkcjZSUjBFOUxrejUyTWNLRFFjOVRBbzI0bXVGdUMtMU5lNUloaUwwQ1JYenZtZ282YUQ?oc=5",
+  "stamp": "20261104_0359",
+  "issue_no": 85,
+  "review": [
+    {
+      "cover_ok": false,
+      "body_ok": true,
+      "text_ok": false,
+      "banned": false,
+      "issues": [
+        "표지 사진에 기사와 무관한 코카콜라 상표가 보이고, 사진 속 인물도 기사와 직접 관련 없는 일반 스톡 인물로 보여 기사 상황을 드러내지 못함.",
+        "요약 02 '원인은 구형 설비의 연결'은 본문 '원인으로 지목된다'보다 단정적이라 확인되지 않은 원인을 사실처럼 단정함.",
+        "요약 03 '국내 유통업계는 위험 낮다'는 판단을 확정 결론으로 제시하지만, 본문은 이마트·롯데마트의 자체 설명만 전달함.",
+        "표지 제목은 '냉동고', 본문 큰 숫자 라벨은 '마트 냉장고'로 표기가 엇갈림."
+      ]
+    },
+    {
+      "cover_ok": false,
+      "body_ok": true,
+      "text_ok": false,
+      "banned": false,
+      "issues": [
+        "표지 사진은 기사와 무관한 일반 스톡 모델 인물이 중심이다. 마트 냉장고 진열대가 배경으로 보이지만, 해킹 사건을 보여주지 않는 인물 사진이라 기사 연상력이 약하다.",
+        "본문 캡션에 '이마트와 롯데마트는 ... 확산 위험이 낮다고 밝혔습니다'라는 문장이 있으나, 본문 3장은 이마트가 '점포별 독립 제어', 롯데마트가 '쇼케이스별 관리'라고 설명했다고만 적고 있다. 확산 위험이 낮다는 발언은 원문에 없어 기업 입장을 과장·왜곡했다."
+      ]
+    },
+    {
+      "cover_ok": true,
+      "body_ok": true,
+      "text_ok": true,
+      "banned": false,
+      "issues": []
+    }
+  ],
+  "images": [
+    "20261104_0359/01.jpg",
+    "20261104_0359/02.jpg",
+    "20261104_0359/03.jpg",
+    "20261104_0359/04.jpg",
+    "20261104_0359/05.jpg",
+    "20261104_0359/06.jpg"
+  ]
+}
