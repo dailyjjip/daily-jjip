@@ -1,0 +1,99 @@
+{
+  "category": "경제",
+  "kicker": "코스피 롤러코스터",
+  "headline": "종가엔 없던 406p",
+  "big_number": "406p",
+  "big_label": "하루 장중 고저 격차",
+  "what": [
+    "4일 코스피가 5828에서 5421까지 밀렸다.",
+    "외국인은 하루에 2.5조원어치를 팔았다.",
+    "그래도 종가는 0.62% 오른 5683.80이었다."
+  ],
+  "numbers": [
+    {
+      "value": "2.5조",
+      "label": "외국인 순매도"
+    },
+    {
+      "value": "+0.62%",
+      "label": "4일 최종 등락"
+    },
+    {
+      "value": "-3.59%",
+      "label": "전날 코스피 급락"
+    }
+  ],
+  "details": [
+    {
+      "head": "장중 궤적",
+      "body": "시가 5786, 고점 5828, 저점 5421. 시가보다 약 364p 밀렸다."
+    },
+    {
+      "head": "방아쇠",
+      "body": "미 중간선거 개표 결과가 전해지며 하락 전환했다."
+    },
+    {
+      "head": "받쳐준 쪽",
+      "body": "외국인이 던진 물량을 개인과 기관이 받아냈다."
+    }
+  ],
+  "points": [
+    "종가는 평온, 장중은 폭풍",
+    "외국인 매도를 국내 자금이 흡수",
+    "AI 투자 불안은 아직 진행형"
+  ],
+  "watch": [
+    {
+      "head": "외국인 수급",
+      "body": "순매도가 이어질지가 다음 변동성의 열쇠다."
+    },
+    {
+      "head": "AI 투자 수익성",
+      "body": "빅테크 자금조달 부담이 증시 핵심 변수로 꼽힌다."
+    }
+  ],
+  "oneliner": "종가만 보면 그날의 공포를 놓친다",
+  "debate": {
+    "question": "장중 폭락 때 사시겠어요?",
+    "a": "저점 매수",
+    "b": "일단 관망"
+  },
+  "image_queries": [
+    "korea stock trading screen",
+    "stock market dealing room"
+  ],
+  "caption": "코스피 장중 400포인트 출렁인 이유가 궁금하다면 이 숫자부터 보자. 4일 코스피는 5828에서 5421까지 오르내렸지만 결국 0.62% 오른 5683.80에 마감했다. 외국인은 2.5조원 넘게 팔았고 개인과 기관이 그 물량을 받아냈다. 미국 중간선거 결과와 AI 투자 수익성 우려가 겹친 하루였다. 다음 변동장에서 비교할 수 있게 저장해 두자.",
+  "hashtags": [
+    "#코스피",
+    "#증시",
+    "#외국인매도",
+    "#주식"
+  ],
+  "sources": [
+    "THE Biz",
+    "산경투데이",
+    "서울경제TV"
+  ],
+  "topic_key": "코스피 장중 400p 출렁",
+  "source_title": "400포인트 넘게 출렁인 코스피…AI 투자에는 경고등, 관세 압박은 그대로 - KBS 뉴스",
+  "source_link": "https://news.google.com/rss/articles/CBMiW0FVX3lxTE5BeXVSVU9seGVheF9MRjV1bEl6bWx0dldFazUwb0UwM3JTeXAzSndQSUtPOER3NEVOVFlMTGtjMDlvcnNCb3hndm1tVmtMdXFucTQ3UlRVWV9iVTQ?oc=5",
+  "stamp": "20261104_2346",
+  "issue_no": 86,
+  "review": [
+    {
+      "cover_ok": true,
+      "body_ok": true,
+      "text_ok": true,
+      "banned": false,
+      "issues": []
+    }
+  ],
+  "images": [
+    "20261104_2346/01.jpg",
+    "20261104_2346/02.jpg",
+    "20261104_2346/03.jpg",
+    "20261104_2346/04.jpg",
+    "20261104_2346/05.jpg",
+    "20261104_2346/06.jpg"
+  ]
+}
