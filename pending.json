@@ -1,0 +1,99 @@
+{
+  "category": "경제",
+  "kicker": "검은 목요일, 반도체 패닉",
+  "headline": "코스피 300p 증발한 날",
+  "big_number": "-5.28%",
+  "big_label": "코스피 하루 낙폭",
+  "what": [
+    "5일 코스피가 5.28% 급락해 5383.80에 마감했다.",
+    "간밤 나스닥은 5.52%, 반도체지수는 12%대 하락했다.",
+    "AI 데이터센터 규제 우려가 반도체주에 번졌다."
+  ],
+  "numbers": [
+    {
+      "value": "3.4조",
+      "label": "외국인 순매도"
+    },
+    {
+      "value": "-7.57%",
+      "label": "삼성전자 종가"
+    },
+    {
+      "value": "29번째",
+      "label": "올해 매도 사이드카"
+    }
+  ],
+  "details": [
+    {
+      "head": "오른 종목도 있었다",
+      "body": "현대차·기아·KB금융·셀트리온은 상승했다."
+    },
+    {
+      "head": "대형주만 크게 맞았다",
+      "body": "대형주 -5.79%, 중형주 -0.88%, 소형주 -1.32%."
+    },
+    {
+      "head": "아직 안 끝났다",
+      "body": "6일 프리장서 삼성전자 -10%대, 하이닉스 -12%대."
+    }
+  ],
+  "points": [
+    "코스피 -5.28%, 사이드카 발동",
+    "뉴욕發 AI 규제 우려가 방아쇠",
+    "반도체 쏠림이 낙폭을 키웠다"
+  ],
+  "watch": [
+    {
+      "head": "코스피 5200선",
+      "body": "5200선 하회 여부가 변동성의 핵심 변수로 꼽힌다."
+    },
+    {
+      "head": "외국인 수급",
+      "body": "삼성전자·하이닉스 투자심리와 외국인 매도 진정 여부."
+    }
+  ],
+  "oneliner": "급락의 크기는 내 비중이 정한다",
+  "debate": {
+    "question": "급락한 반도체, 지금 줍는다?",
+    "a": "지금 담는다",
+    "b": "더 지켜본다"
+  },
+  "image_queries": [
+    "trader watching red stock screen",
+    "semiconductor wafer factory worker"
+  ],
+  "caption": "코스피 급락 이유는 간밤 뉴욕증시에서 시작됐습니다. 5일 코스피는 5.28% 떨어졌고, 삼성전자는 7.57%, SK하이닉스는 9.46% 내렸습니다. 같은 날 현대차·기아·KB금융·셀트리온은 올라 업종별로 희비가 갈렸습니다. 내 계좌에서 반도체가 차지하는 비중을 확인하고 싶다면 저장해 두세요.",
+  "hashtags": [
+    "#코스피급락",
+    "#삼성전자",
+    "#SK하이닉스",
+    "#나스닥"
+  ],
+  "sources": [
+    "서울신문",
+    "신아일보",
+    "파이낸셜뉴스"
+  ],
+  "topic_key": "코스피 5% 급락",
+  "source_title": "‘블루웨이브 쇼크’에 코스피 급락…삼전 7%↓·하닉 9%↓ - 한겨레",
+  "source_link": "https://news.google.com/rss/articles/CBMiZ0FVX3lxTFA2QmdsLUhfcGVqeWw5ejBIRFVGemxETG1ud0N1SjRtMTdIeDhvSnNINjh2ank0dGVXeHJxaHpoVFduVERybHdFWXZ4RjZwdjVTZTRRcVR0TEkzTFZ6MF9mRlJwOHNuTTA?oc=5",
+  "stamp": "20261105_2349",
+  "issue_no": 88,
+  "review": [
+    {
+      "cover_ok": true,
+      "body_ok": true,
+      "text_ok": true,
+      "banned": false,
+      "issues": []
+    }
+  ],
+  "images": [
+    "20261105_2349/01.jpg",
+    "20261105_2349/02.jpg",
+    "20261105_2349/03.jpg",
+    "20261105_2349/04.jpg",
+    "20261105_2349/05.jpg",
+    "20261105_2349/06.jpg"
+  ]
+}
