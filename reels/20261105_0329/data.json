@@ -1,0 +1,110 @@
+{
+ "category": "사회",
+ "kicker": "소득 기준 없이 우선이라고요?",
+ "headline": "26개 중 20개, 소득 잣대는 無",
+ "big_number": "20/26",
+ "big_label": "소득 기준 없는 우대사업",
+ "what": [
+  "유치원 다문화 우선모집을 두고 SNS 논쟁이 번졌다.",
+  "서울·울산은 맞벌이를 우선모집 대상에 넣지 않는다.",
+  "정부는 어린이집 우선입소 기준 재검토에 착수했다."
+ ],
+ "numbers": [
+  {
+   "value": "20/26",
+   "label": "소득 기준 없는 사업"
+  },
+  {
+   "value": "100점",
+   "label": "어린이집 입소 배점"
+  },
+  {
+   "value": "65.8%",
+   "label": "월소득 300만↑ 가구"
+  }
+ ],
+ "details": [
+  {
+   "head": "발단은 SNS 글 한 편",
+   "body": "3일 스레드 글이 도화선. 사실 확인은 안 된 개인의 주장이다"
+  },
+  {
+   "head": "순위표 속 다문화",
+   "body": "서울은 4순위 이하, 울산은 5순위. 맞벌이는 대상 밖이다"
+  },
+  {
+   "head": "반대편 목소리",
+   "body": "수급 가정 당사자는 언어·교육 격차로 지원이 절실하다고 반박"
+  }
+ ],
+ "points": [
+  "쟁점은 소득 기준 없는 우선권",
+  "맞벌이는 우선모집 대상 밖",
+  "정부, 입소 배점 재검토 착수"
+ ],
+ "watch": [
+  {
+   "head": "입소 배점 개편안",
+   "body": "교육부가 소득 기준 도입과 배점 차등화 등을 검토 중"
+  },
+  {
+   "head": "아이돌봄 가점 조정",
+   "body": "성평등부가 가점 기준 손질 추진, 부처 차원 변경 가능"
+  }
+ ],
+ "oneliner": "‘누구냐’보다 ‘얼마나 필요하냐’의 문제",
+ "debate": {
+  "question": "우선입학, 소득 기준 넣어야?",
+  "a": "소득 기준 필요",
+  "b": "일괄 우선 유지"
+ },
+ "image_queries": [
+  "kindergarten children classroom",
+  "parents daycare entrance morning"
+ ],
+ "caption": "다문화 우선입학 논란, 왜 이렇게 뜨거울까요? 서울시가 확인한 다문화가족 우대사업 26개 중 20개에는 소득 기준이 없고, 어린이집 입소 배점은 소득과 무관하게 100점입니다. 서울·울산 유치원 우선모집에서 맞벌이는 별도 대상이 아니라는 점도 불씨가 됐어요. 다만 이번 발단 글은 개인 SNS 주장이고, 정부는 기준 재검토에 들어갔습니다. 나중에 다시 볼 수 있게 저장하고, 주변과 공유해 보세요.",
+ "hashtags": [
+  "#다문화우선입학",
+  "#유치원우선모집",
+  "#어린이집입소",
+  "#역차별논란"
+ ],
+ "sources": [
+  "아시아경제",
+  "매일신문",
+  "서울경제"
+ ],
+ "topic_key": "다문화 우선입학 논란",
+ "source_title": "“자가에 차 두 대인데 중국인이라고 우선입학?”…다문화가정 혜택 논란 - 매일경제",
+ "source_link": "https://news.google.com/rss/articles/CBMiVEFVX3lxTE02ZkQwcXFUMWl6RmZ4S01MVHJLNlZKV3NDRkg0TUdVeFViZFBSVDI5a25ldFRxS1kyclhoWklwdm85VHp2QXVrR2o2Qi1KbnhIT21Vag?oc=5",
+ "stamp": "20261105_0329",
+ "issue_no": 87,
+ "review": [
+  {
+   "cover_ok": true,
+   "body_ok": false,
+   "text_ok": true,
+   "banned": false,
+   "issues": [
+    "본문 사진은 유치원 앞에서 찍은 일반 스톡 아동 사진으로, 다문화 가정이나 우선입학 논쟁과 직접 연결되지 않아 주제와 무관한 인물 사진으로 보입니다."
+   ]
+  },
+  {
+   "cover_ok": true,
+   "body_ok": false,
+   "text_ok": false,
+   "banned": false,
+   "issues": [
+    "2장 본문 사진은 부모와 아기의 역광 실루엣 일반 스톡 이미지로, 다문화·맞벌이 우선입학 기사 내용과 직접 관련이 없다.",
+    "표지 kicker '자가+차 2대인데 우선?'은 본문에 없는 자산 기준을 암시해 독자가 사실과 다르게 오해할 수 있다. 본문의 쟁점은 소득 기준 유무다."
+   ]
+  },
+  {
+   "cover_ok": true,
+   "body_ok": true,
+   "text_ok": true,
+   "banned": false,
+   "issues": []
+  }
+ ]
+}
