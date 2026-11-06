@@ -4601,5 +4601,55 @@
 "out": 1606,
 "search": 0,
 "model": "claude-haiku-5-5"
+},
+{
+"at": "2026-11-06T23:43:01",
+"purpose": "carousel",
+"usd": 0.1455,
+"krw": 211,
+"in": 42359,
+"out": 4076,
+"search": 2,
+"model": "claude-sonnet-5-5"
+},
+{
+"at": "2026-11-06T23:43:06",
+"purpose": "photo_pick",
+"usd": 0.0004,
+"krw": 1,
+"in": 1727,
+"out": 380,
+"search": 0,
+"model": "claude-haiku-5-5"
+},
+{
+"at": "2026-11-06T23:43:13",
+"purpose": "review",
+"usd": 0.0012,
+"krw": 2,
+"in": 6068,
+"out": 1205,
+"search": 0,
+"model": "claude-haiku-5-5"
+},
+{
+"at": "2026-11-06T23:43:22",
+"purpose": "fix_text",
+"usd": 0.0013,
+"krw": 2,
+"in": 1253,
+"out": 2267,
+"search": 0,
+"model": "claude-haiku-5-5"
+},
+{
+"at": "2026-11-06T23:43:30",
+"purpose": "review",
+"usd": 0.0015,
+"krw": 2,
+"in": 6092,
+"out": 1786,
+"search": 0,
+"model": "claude-haiku-5-5"
 }
 ]
