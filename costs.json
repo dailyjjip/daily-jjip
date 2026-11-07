@@ -4651,5 +4651,105 @@
 "out": 1786,
 "search": 0,
 "model": "claude-haiku-5-5"
+},
+{
+"at": "2026-11-07T03:28:50",
+"purpose": "carousel",
+"usd": 0.1418,
+"krw": 206,
+"in": 41572,
+"out": 3865,
+"search": 2,
+"model": "claude-sonnet-5-5"
+},
+{
+"at": "2026-11-07T03:28:57",
+"purpose": "photo_pick",
+"usd": 0.0006,
+"krw": 1,
+"in": 1736,
+"out": 828,
+"search": 0,
+"model": "claude-haiku-5-5"
+},
+{
+"at": "2026-11-07T03:29:06",
+"purpose": "review",
+"usd": 0.0014,
+"krw": 2,
+"in": 6023,
+"out": 1517,
+"search": 0,
+"model": "claude-haiku-5-5"
+},
+{
+"at": "2026-11-07T03:29:13",
+"purpose": "fix_text",
+"usd": 0.0011,
+"krw": 2,
+"in": 1447,
+"out": 1862,
+"search": 0,
+"model": "claude-haiku-5-5"
+},
+{
+"at": "2026-11-07T03:29:18",
+"purpose": "photo_pick",
+"usd": 0.0005,
+"krw": 1,
+"in": 1745,
+"out": 676,
+"search": 0,
+"model": "claude-haiku-5-5"
+},
+{
+"at": "2026-11-07T03:29:25",
+"purpose": "review",
+"usd": 0.0013,
+"krw": 2,
+"in": 6031,
+"out": 1344,
+"search": 0,
+"model": "claude-haiku-5-5"
+},
+{
+"at": "2026-11-07T03:29:32",
+"purpose": "fix_text",
+"usd": 0.0011,
+"krw": 2,
+"in": 1385,
+"out": 1854,
+"search": 0,
+"model": "claude-haiku-5-5"
+},
+{
+"at": "2026-11-07T03:29:38",
+"purpose": "review",
+"usd": 0.0011,
+"krw": 2,
+"in": 6039,
+"out": 1044,
+"search": 0,
+"model": "claude-haiku-5-5"
+},
+{
+"at": "2026-11-07T03:29:51",
+"purpose": "comment_lines",
+"usd": 0.0007,
+"krw": 1,
+"in": 1822,
+"out": 1072,
+"search": 0,
+"model": "claude-haiku-5-5"
+},
+{
+"at": "2026-11-07T03:29:57",
+"purpose": "comment_lines",
+"usd": 0.0006,
+"krw": 1,
+"in": 1822,
+"out": 898,
+"search": 0,
+"model": "claude-haiku-5-5"
 }
 ]
