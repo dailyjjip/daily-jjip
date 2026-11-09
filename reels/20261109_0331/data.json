@@ -1,0 +1,91 @@
+{
+ "category": "연예",
+ "kicker": "17만 원짜리 뒤통수",
+ "headline": "VIP석이 시야제한석보다 비쌌다",
+ "big_number": "+2.2만",
+ "big_label": "VIP-시야제한석 가격차",
+ "what": [
+  "악뮤가 7일 강릉 스피드스케이팅장에서 콘서트를 열었다.",
+  "플로어 VIP석 일부 관객이 무대·전광판이 안 보였다고 주장했다.",
+  "환불 요구가 이어지지만 9일 오전까지 악뮤 측 입장은 없다."
+ ],
+ "numbers": [
+  {
+   "value": "17.6만원",
+   "label": "플로어 VIP석 가격"
+  },
+  {
+   "value": "2.2만원",
+   "label": "시야제한석보다 비쌈"
+  },
+  {
+   "value": "4곳",
+   "label": "후속 공연 우려 도시"
+  }
+ ],
+ "details": [
+  {
+   "head": "단차 없는 평지 좌석",
+   "body": "플로어 의자가 높낮이 없이 놓여 앞사람에 가렸다는 후기"
+  },
+  {
+   "head": "앞사람이 일어서자",
+   "body": "스탠딩이 시작되자 전광판까지 가려졌다는 증언"
+  },
+  {
+   "head": "환불은 어렵다는 안내",
+   "body": "예매 안내에 시야 방해 환불 불가가 포함된 것으로 알려짐"
+  }
+ ],
+ "points": [
+  "VIP가 시야제한석보다 2만2천 원 비쌌다",
+  "단차 없는 플로어 구조가 쟁점",
+  "환불 불가 안내와 현장 불만이 충돌"
+ ],
+ "watch": [
+  {
+   "head": "악뮤 측 공식 입장",
+   "body": "9일 오전까지 사과·환불·보상안은 나오지 않은 상태"
+  },
+  {
+   "head": "후속 공연 좌석",
+   "body": "부산·대전·대구·광주 공연도 시야 우려가 제기됨"
+  }
+ ],
+ "oneliner": "비싼 자리의 값은 가까움이 아니라 시야다",
+ "debate": {
+  "question": "17만 원 VIP석, 시야 나빠도 환불 불가?",
+  "a": "환불해야 한다",
+  "b": "고지했으니 불가"
+ },
+ "image_queries": [
+  "concert floor seats crowd",
+  "speed skating arena concert stage"
+ ],
+ "caption": "악뮤 강릉 콘서트 VIP석 논란, 핵심은 가격표입니다. 7일 공연에서 17만 6천 원 VIP석은 15만 4천 원 시야제한석보다 2만 2천 원 비쌌는데, 일부 관객이 무대와 전광판이 안 보였다고 주장했습니다. 예매 안내에는 시야 방해로 인한 환불이 어렵다는 내용이 있는 것으로 알려졌고, 9일 오전까지 악뮤 측의 공식 입장은 없었습니다. 다음 공연 예매 전에 좌석 구조부터 확인하고 싶다면 저장해 두고 친구에게도 공유하세요.",
+ "hashtags": [
+  "#악뮤",
+  "#악뮤콘서트",
+  "#콘서트환불",
+  "#VIP석논란"
+ ],
+ "sources": [
+  "헤럴드경제",
+  "머니투데이",
+  "재경일보"
+ ],
+ "topic_key": "악뮤 강릉 콘서트",
+ "source_title": "악뮤 강릉 콘서트 시야 제한 논란…“17만 원 VIP석도 안 보여” - 동아일보",
+ "source_link": "https://news.google.com/rss/articles/CBMidkFVX3lxTE8ybEZHY2RrQURRZzBCcFVkdWh0cTlGOEhNdVh3dWhkc1h6T09uQTl4SW5BenJpQmdnb3IzTllSbS1zUU1FVFBta0dCRV9LVnN2ckNIY1U3b3BwSlhaVV8zeVpDdVlnREdXMnFKeDgtNHRFdUFYZnfSAWZBVV95cUxOcGUxalViQ01rbTFvaU5jV0MyRG5Da0Q5UWdZZm1lQUFKMlhiYlV6a3VJWEpCYWtXdExVa2hwb2pyTDYyaXBoeGluSTExVUI1WFFRRHNkQ2c5TjlrclFvZExSUmhLTVE?oc=5",
+ "stamp": "20261109_0331",
+ "issue_no": 95,
+ "review": [
+  {
+   "cover_ok": true,
+   "body_ok": true,
+   "text_ok": true,
+   "banned": false,
+   "issues": []
+  }
+ ]
+}
