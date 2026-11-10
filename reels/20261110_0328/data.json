@@ -1,0 +1,91 @@
+{
+ "category": "연예",
+ "kicker": "수능 3주 전 강의 중단",
+ "headline": "공지 7일 뒤, 제작발표회",
+ "big_number": "7일",
+ "big_label": "강의 중단 공지→행사 참석",
+ "what": [
+  "수능 3주 전, 강사 이도가 남은 강의 중단을 공지했다.",
+  "일주일 뒤 넷플릭스 예능 제작발표회에 참석해 논란이 됐다.",
+  "11월 9일 이투스가 수강생에게 공식 사과문을 올렸다."
+ ],
+ "numbers": [
+  {
+   "value": "3주",
+   "label": "중단 선언 때 수능까지"
+  },
+  {
+   "value": "7일",
+   "label": "공지~행사 간격"
+  },
+  {
+   "value": "10일",
+   "label": "사과 시점 수능까지"
+  }
+ ],
+ "details": [
+  {
+   "head": "건강 사유 공지",
+   "body": "10월 29일 자필 편지로 의료진 권고를 들어 남은 강의 중단을 알렸다."
+  },
+  {
+   "head": "11월 5일 행사",
+   "body": "넷플릭스 '데블스 플랜: 데드 어게인' 제작발표회 참석, 유튜브 개설 알림."
+  },
+  {
+   "head": "이투스의 설명",
+   "body": "협의한 일정이 강사 사정으로 지켜지지 못했다며 사과, 질문 게시판은 닫았다."
+  }
+ ],
+ "points": [
+  "수능 3주 전 강의 중단 공지",
+  "일주일 뒤 예능 행사 참석",
+  "이투스 사과, 본인 입장은 아직"
+ ],
+ "watch": [
+  {
+   "head": "이도 본인 입장",
+   "body": "사과문에 예능 출연 경위 언급이 없어 본인 해명 여부가 관건."
+  },
+  {
+   "head": "수강생 후속 대응",
+   "body": "강의 중단으로 불편을 겪은 수강생에 대한 이투스의 추가 조치 여부."
+  }
+ ],
+ "oneliner": "문제는 건강이 아닌 설명의 빈칸",
+ "debate": {
+  "question": "건강 휴식 중 외부 활동, 괜찮다?",
+  "a": "활동은 별개다",
+  "b": "휴식 취지 어긋나"
+ },
+ "image_queries": [
+  "student studying night desk korea",
+  "press conference stage cameras flash"
+ ],
+ "caption": "이도 강의 중단 논란, 왜 이렇게 뜨거울까요? 수능 3주 전 건강을 이유로 남은 강의를 멈추겠다고 공지한 지 일주일 만에 넷플릭스 예능 제작발표회에 참석한 사실이 알려졌습니다. 이투스는 11월 9일 공식 사과문을 냈지만 예능 출연 경위에는 언급이 없었습니다. 건강 사유의 휴식과 외부 활동, 어디까지 허용돼야 할까요? 저장해두고 친구와 의견을 나눠보세요.",
+ "hashtags": [
+  "#이도",
+  "#이투스",
+  "#수능",
+  "#강의중단"
+ ],
+ "sources": [
+  "엑스포츠뉴스",
+  "스포츠경향",
+  "세계뉴스통신"
+ ],
+ "topic_key": "이도 강의 중단",
+ "source_title": "이투스, ’강의 중단 후 예능’ 이도 논란 사과…당사자는 침묵 - 연합뉴스TV",
+ "source_link": "https://news.google.com/rss/articles/CBMiZ0FVX3lxTE0zS2hXU0dNRFBMUEczMU85SGZRNG1LOUlPX0hUR0ZfLVNDcUtuWVk3MUFGcnM0Ui1CTGJhZDlLaHRHYmZiTG8wMC1QQ1ZJLWZ1NjFnSUJCcTlCMGFCT1pNVzFPZ1NEM2M?oc=5",
+ "stamp": "20261110_0328",
+ "issue_no": 97,
+ "review": [
+  {
+   "cover_ok": true,
+   "body_ok": true,
+   "text_ok": true,
+   "banned": false,
+   "issues": []
+  }
+ ]
+}
