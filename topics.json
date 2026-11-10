@@ -852,5 +852,12 @@
   "headline": "공지 7일 뒤, 제작발표회",
   "topic_key": "이도 강의 중단",
   "category": "연예"
+ },
+ {
+  "date": "20261110_0403",
+  "kind": "carousel",
+  "headline": "AI 무료, 하루 2장까지?",
+  "topic_key": "갤럭시 AI 유료화",
+  "category": "IT"
  }
 ]
