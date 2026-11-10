@@ -1,0 +1,99 @@
+{
+ "category": "경제",
+ "kicker": "모건스탠리의 두 얼굴",
+ "headline": "목표가는 깎고 이익은 올렸다",
+ "big_number": "-38%",
+ "big_label": "SK하이닉스 목표가 하락폭",
+ "what": [
+  "모건스탠리가 9일 삼성전자·SK하이닉스 목표가를 내렸다.",
+  "SK하이닉스 260만→160만원, 삼성전자 38.1만→30.9만원.",
+  "그런데 내년 영업이익 전망은 오히려 올렸다."
+ ],
+ "numbers": [
+  {
+   "value": "-38%",
+   "label": "SK하이닉스 목표가"
+  },
+  {
+   "value": "-19%",
+   "label": "삼성전자 목표가"
+  },
+  {
+   "value": "53→28%",
+   "label": "하이닉스 장기 이익률"
+  }
+ ],
+ "details": [
+  {
+   "head": "깎은 이유는 2028년",
+   "body": "2028년 이후 공급이 늘며 호황이 꺾일 수 있다고 봤다."
+  },
+  {
+   "head": "단기 실적은 상향",
+   "body": "내년 영업이익 전망 삼성 약 688조, 하이닉스 약 468조원."
+  },
+  {
+   "head": "노무라는 정반대",
+   "body": "노무라는 삼성 67만·하이닉스 470만원 목표가를 유지했다."
+  }
+ ],
+ "points": [
+  "목표가는 깎고 이익 전망은 올렸다",
+  "갈림길은 공급이 수요를 따라잡는 시점",
+  "노무라는 하이닉스 470만원 유지"
+ ],
+ "watch": [
+  {
+   "head": "2028년 공급 변수",
+   "body": "모건은 2027년 말 신규 설비 가동으로 공급 완화를 본다."
+  },
+  {
+   "head": "외국인 수급 복귀",
+   "body": "10일 외국인이 코스피 4010억원 순매수, 8거래일 만이다."
+  }
+ ],
+ "oneliner": "같은 호황, 달력만 다르게 읽었다",
+ "debate": {
+  "question": "반도체 주식, 지금 담을까?",
+  "a": "담는다",
+  "b": "기다린다"
+ },
+ "image_queries": [
+  "stock market trading screen seoul",
+  "semiconductor chip wafer factory"
+ ],
+ "caption": "모건스탠리 삼성전자 SK하이닉스 목표가 하향, 왜 나왔을까? SK하이닉스는 260만원에서 160만원으로 38%, 삼성전자는 38만1000원에서 30만9000원으로 19% 낮췄습니다. 그런데 내년 영업이익 전망은 오히려 올렸고, 노무라증권은 하이닉스 470만원을 유지해 시각이 극단적으로 갈렸습니다. 쟁점은 2028년 이후 공급이 수요를 따라잡는 시점입니다. 반도체 투자 전에 다시 보려면 저장해 두세요.",
+ "hashtags": [
+  "#삼성전자",
+  "#SK하이닉스",
+  "#모건스탠리",
+  "#반도체"
+ ],
+ "sources": [
+  "이투데이",
+  "파이낸셜뉴스",
+  "전자신문"
+ ],
+ "topic_key": "모건스탠리 목표가 하향",
+ "source_title": "모건스탠리 '반도체 저승사자', 삼전닉스 30만9천원·160만원으로 하향 - 연합뉴스",
+ "source_link": "https://news.google.com/rss/articles/CBMiW0FVX3lxTFB0LTYyTTRMdzdRMGxIRDhIY0F1V05xYlNnS0EzN3laX08zUmhyUHFEMUNHYlFXRXJJSjhkWkZ3WXBBUWJEckE1c1FJR0dyQzJjcUZHQkU1TjBJZGPSAWBBVV95cUxNYnVuemtzQm5Id2p5WXI5UHF2Sk9mNmtlcDhnSVRfU2hHRkNJb0h1T19hZGExbG5UVnBfekl4cWl4b251NndtbHQ2eFhsSjNHS1FLV2I2cXJCVWh3UmxBQzI?oc=5",
+ "stamp": "20261110_2342",
+ "issue_no": 98,
+ "review": [
+  {
+   "cover_ok": true,
+   "body_ok": true,
+   "text_ok": true,
+   "banned": false,
+   "issues": []
+  }
+ ],
+ "images": [
+  "20261110_2342/01.jpg",
+  "20261110_2342/02.jpg",
+  "20261110_2342/03.jpg",
+  "20261110_2342/04.jpg",
+  "20261110_2342/05.jpg",
+  "20261110_2342/06.jpg"
+ ]
+}
