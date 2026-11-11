@@ -1,0 +1,109 @@
+{
+  "category": "경제",
+  "kicker": "유류세 인하 연장",
+  "headline": "122원 깎은 방패, 2개월 더 버틴다",
+  "big_number": "122원",
+  "big_label": "휘발유 L당 인하 폭",
+  "what": [
+    "정부가 이달 말 끝날 유류세 인하를 2개월 연장했다.",
+    "휘발유 15%, 경유·부탄 25% 인하율은 그대로다.",
+    "새 종료 시한은 내년 1월 31일, 시행은 12월 1일부터다."
+  ],
+  "numbers": [
+    {
+      "value": "122원",
+      "label": "휘발유 L당 인하액"
+    },
+    {
+      "value": "0.8%p",
+      "label": "물가 억제 정책효과"
+    },
+    {
+      "value": "약 40%",
+      "label": "7월 대비 국제유가"
+    }
+  ],
+  "details": [
+    {
+      "head": "L당 세금 698원",
+      "body": "인하 후 휘발유 유류세는 698원, 경유는 436원, 부탄은 152원이다."
+    },
+    {
+      "head": "5월부터 같은 수준",
+      "body": "인하율은 5월부터 동일하게 적용돼 왔다. 종료 대신 유지를 택했다."
+    },
+    {
+      "head": "10월 물가 2.8%",
+      "body": "최고가격제·유류세 인하 효과가 0.8%p. 없었다면 3.6%라는 분석."
+    }
+  ],
+  "points": [
+    "유류세 인하 2개월 연장",
+    "휘발유 122원·경유 145원 유지",
+    "정책 효과 0.8%p, 물가 2.8%"
+  ],
+  "watch": [
+    {
+      "head": "12차 최고가격",
+      "body": "14일 0시 적용분을 13일 오후 6시에 발표한다."
+    },
+    {
+      "head": "1월 31일 이후",
+      "body": "환원 시 기름값 급등과 물가 압력 우려가 변수다."
+    }
+  ],
+  "oneliner": "내릴 땐 쉽고, 끊을 땐 어렵다",
+  "debate": {
+    "question": "유류세 인하, 계속 가야 할까?",
+    "a": "계속 유지",
+    "b": "이제 환원"
+  },
+  "image_queries": [
+    "gas station fuel pump korea",
+    "car refueling gasoline price sign"
+  ],
+  "caption": "유류세 인하 연장, 내 주유비는 어떻게 될까? 정부는 이달 말 끝날 인하 조치를 내년 1월 31일까지 2개월 더 잇기로 했고, 휘발유는 15%, 경유와 부탄은 25% 인하율을 유지합니다. 10월 소비자물가는 2.8%였는데, 최고가격제와 유류세 인하 같은 정책 효과가 0.8%p로 집계됐고 없었다면 3.6%(3%대 중반)까지 갈 수 있었다는 분석입니다. 인하 연장 이후의 기름값이 궁금하다면 저장해 두고, 주유할 때마다 떠올릴 친구에게 공유하세요.",
+  "hashtags": [
+    "#유류세인하",
+    "#기름값",
+    "#휘발유가격",
+    "#소비자물가"
+  ],
+  "sources": [
+    "인사이트",
+    "한국경제",
+    "파이낸셜뉴스"
+  ],
+  "topic_key": "유류세 인하 연장",
+  "source_title": "유류세 인하 내년 1월까지 2개월 연장‥\"유류비 부담 경감\" - MBC 뉴스",
+  "source_link": "https://news.google.com/rss/articles/CBMidEFVX3lxTE5icTU2TTdFZGJLc1lUbE9qaWRpSXZmbllaUnJOT21HRTRzN3FCdEwzMy1jNm1NU1pQTUx5SV81QmxuWTZuWXNIZmoyc3ZDWlRSTXFQVG54Q1E1RXFnbkNzZ1RQTUxQbHNPM2lQV0pnVVRsMmlZ0gF0QVVfeXFMTV8xdEdLbzd6WFp0b2g5b3FuXzFOMWJIMWJvY3NhY21BZnVDdzM4eGtpeVJ6X01zY3JIbWtjMjBLejBJR1ByRTJmbm5GWEU2UW9yNWZQczNYSFJGc1lSR0ZyNUo1X19abzlYVGc3cklrTVpvb3A?oc=5",
+  "stamp": "20261111_0401",
+  "issue_no": 99,
+  "review": [
+    {
+      "cover_ok": true,
+      "body_ok": true,
+      "text_ok": false,
+      "banned": false,
+      "issues": [
+        "본문 '없었다면 3%대 후반'은 2.8%에 0.8%p를 더한 3.6%와 맞지 않음. 3.6%는 3%대 중반에 가까우므로 '3%대 중반' 또는 '3.6%'로 고치거나 출처 표현을 그대로 옮기는 것이 안전함.",
+        "표지 주유기 사진의 가격 표시가 달러 형식(\"Unleaded\" 3.42.9)이라 원화 기사와 시각적으로 어긋남. 기사 주제와 연상은 맞으므로 중대한 문제는 아님."
+      ]
+    },
+    {
+      "cover_ok": true,
+      "body_ok": true,
+      "text_ok": true,
+      "banned": false,
+      "issues": []
+    }
+  ],
+  "images": [
+    "20261111_0401/01.jpg",
+    "20261111_0401/02.jpg",
+    "20261111_0401/03.jpg",
+    "20261111_0401/04.jpg",
+    "20261111_0401/05.jpg",
+    "20261111_0401/06.jpg"
+  ]
+}
