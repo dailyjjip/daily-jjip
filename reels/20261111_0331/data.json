@@ -1,0 +1,91 @@
+{
+ "category": "경제",
+ "kicker": "청약 부정 354건 적발",
+ "headline": "의사 부부는 354건 중 1건",
+ "big_number": "94.4%",
+ "big_label": "위장전입 비중",
+ "what": [
+  "국토부가 청약 당첨자 2만5000가구를 들여다봤다.",
+  "의심 사례 354건 전부가 수사 의뢰 대상이다.",
+  "고소득 의사 부부의 '가짜 퇴사'가 화제가 됐다."
+ ],
+ "numbers": [
+  {
+   "value": "354건",
+   "label": "부정청약 의심"
+  },
+  {
+   "value": "334건",
+   "label": "위장전입"
+  },
+  {
+   "value": "40.5%",
+   "label": "적발 증가율"
+  }
+ ],
+ "details": [
+  {
+   "head": "공고일의 허점",
+   "body": "공고일 직전 퇴사, 직후 재입사로 소득 기준을 맞췄다."
+  },
+  {
+   "head": "조사는 줄었는데",
+   "body": "점검 가구는 3000 줄었지만 적발은 102건 늘었다."
+  },
+  {
+   "head": "촘촘해진 그물",
+   "body": "자녀 직장 소재지와 전월세 내역까지 교차 대조했다."
+  }
+ ],
+ "points": [
+  "위장전입이 전체의 94.4%",
+  "조사 가구 줄었는데 적발은 증가",
+  "확정 땐 계약 취소·10년 제한"
+ ],
+ "watch": [
+  {
+   "head": "수사 결과",
+   "body": "354건 전부 수사 의뢰, 확정되면 최대 징역 3년."
+  },
+  {
+   "head": "추가 조사",
+   "body": "혼인·임신·장애 등 자격 위조 여부도 계속 조사한다."
+  }
+ ],
+ "oneliner": "화제는 퇴사, 숫자는 전입이 말한다",
+ "debate": {
+  "question": "청약 소득, 공고일 하루만 볼까?",
+  "a": "공고일 기준 유지",
+  "b": "기간 평균으로 판단"
+ },
+ "image_queries": [
+  "seoul apartment complex construction",
+  "couple reviewing apartment contract"
+ ],
+ "caption": "부정청약 354건 적발, 화제의 의사 부부 위장퇴사는 사실 전체의 일부일 뿐입니다. 국토부가 서울 등 43개 단지, 2만5000가구를 점검한 결과 354건을 적발했고, 이 중 334건(94.4%)이 위장전입이었습니다. 위장퇴사는 1건이었습니다. 부정청약으로 확정되면 계약 취소와 계약금 몰수, 10년간 청약 자격 제한까지 이어질 수 있습니다. 나중에 다시 보고 싶다면 저장하고, 청약 준비 중인 친구에게 공유해 주세요.",
+ "hashtags": [
+  "#부정청약",
+  "#위장퇴사",
+  "#신혼부부특공",
+  "#청약"
+ ],
+ "sources": [
+  "서울신문",
+  "세계일보",
+  "SBS"
+ ],
+ "topic_key": "부정청약 354건",
+ "source_title": "‘퇴사 뒤 재입사’ 꼼수… 의사부부 등 부정청약 354건 적발 - 동아일보",
+ "source_link": "https://news.google.com/rss/articles/CBMid0FVX3lxTFBvaC1HdUhma0RJX2FOR2FkdmF6aHBtamlEMzE1aTJ0RkhTb2JmVVF1cGd4OWlxT0NzMjFfcEZINmZsVjVZX0xjWVh2b1pieWVSbnRYZV9tekM0cDJjWjNib0xramgteXJmQk5wSXVtbXBHRF82T2dR0gFmQVVfeXFMUHFheU1TN1hDT1gxNzlpbkdRbEVaN1NxT2M3RTk0Z0Q4alA0YmVCOWRlOE1Na0ZpWWtPazBiTnJIelIyQ01mc19LQUpvSnptbGZ1eUtScnJRdHJHWUpQdTNsSWJVanpn?oc=5",
+ "stamp": "20261111_0331",
+ "issue_no": 99,
+ "review": [
+  {
+   "cover_ok": true,
+   "body_ok": true,
+   "text_ok": true,
+   "banned": false,
+   "issues": []
+  }
+ ]
+}
