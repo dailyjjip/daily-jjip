@@ -1,0 +1,99 @@
+{
+  "category": "국제",
+  "kicker": "엔비디아 스캔들 파장",
+  "headline": "10조 의혹, 청구서는 한국?",
+  "big_number": "75억 달러",
+  "big_label": "우회 유출 의혹 칩 규모",
+  "what": [
+    "디인포메이션이 10조원대 엔비디아 칩 우회 공급 의혹을 보도했다.",
+    "로이터는 독자 검증을 못 했고, 공식 확인된 위반은 아직 없다.",
+    "미 의회는 이를 계기로 대중 칩 규제 3법을 밀고 있다."
+  ],
+  "numbers": [
+    {
+      "value": "75억달러",
+      "label": "의혹 속 칩 규모"
+    },
+    {
+      "value": "24만 개",
+      "label": "H100 등 칩 수량"
+    },
+    {
+      "value": "3법",
+      "label": "의회 추진 규제법"
+    }
+  ],
+  "details": [
+    {
+      "head": "의혹의 구조",
+      "body": "중국·싱가포르·말레이시아를 잇는 기업망을 썼다는 보도다."
+    },
+    {
+      "head": "상무부 지연 논란",
+      "body": "의혹을 알고도 제재를 두 달 미뤘다는 정황이 거론됐다."
+    },
+    {
+      "head": "한국에 닿는 파장",
+      "body": "매치법이 강화되면 삼성·SK 중국 공장 장비 반입이 막힐 수 있다."
+    }
+  ],
+  "points": [
+    "10조 칩 우회 의혹 보도",
+    "확인된 위반은 아직 없음",
+    "미 의회 규제 3법 가속"
+  ],
+  "watch": [
+    {
+      "head": "국방수권법 포함 여부",
+      "body": "3개 법안이 NDAA 협상에서 살아남을지가 관건이다."
+    },
+    {
+      "head": "엔비디아 내부 조사",
+      "body": "엔비디아 이사회 조사와 미 상무부 대응이 변수다."
+    }
+  ],
+  "oneliner": "한 명의 의혹이 공급망 지도를 바꾼다",
+  "debate": {
+    "question": "미국의 칩 규제 강화, 찬성? 반대?",
+    "a": "찬성: 안보 우선",
+    "b": "반대: 수출길 막힘"
+  },
+  "image_queries": [
+    "nvidia gpu chips data center",
+    "semiconductor factory cleanroom"
+  ],
+  "caption": "엔비디아 AI칩 중국 우회 의혹, 왜 한국까지 번질까요? 10조원대 칩이 중국으로 흘러갔다는 보도가 나왔고, 미 의회는 규제 3법에 속도를 내고 있습니다. 다만 로이터는 독자 검증을 못 했고 공식 확인된 위반은 아직 없습니다. 이 규제가 삼성·SK 중국 공장에 닿을 수 있다는 점이 한국에는 핵심 변수입니다. 나중에 다시 보도록 저장하고 공유해 두세요.",
+  "hashtags": [
+    "#엔비디아",
+    "#젠슨황",
+    "#반도체수출규제",
+    "#삼성SK하이닉스"
+  ],
+  "sources": [
+    "서울신문",
+    "뉴데일리",
+    "파이낸셜뉴스"
+  ],
+  "topic_key": "젠슨 황 앨리스 황",
+  "source_title": "앨리스 황 뒤엔 가족 간첩단?…\"10조원대 엔비디아 칩, 중국 공급 관여\" - 조선일보",
+  "source_link": "https://news.google.com/rss/articles/CBMigwFBVV95cUxPcXZ3cXRIRmtLZnFMdlV4QUZLajBhcU5WdkpkenBoczRoMjJnbnRPcXlyN3NoZ1hTdVhkbXNLRFZza1ZNd2haRU9vRXVGUzZZdmYxOXFTWEFta0xydFBvR0N4SFZ0Q0liT0FJbWhtLVJBSTc3b3JDbURYSjk2TFZJUDVzMA?oc=5",
+  "stamp": "20261111_2354",
+  "issue_no": 100,
+  "review": [
+    {
+      "cover_ok": true,
+      "body_ok": true,
+      "text_ok": true,
+      "banned": false,
+      "issues": []
+    }
+  ],
+  "images": [
+    "20261111_2354/01.jpg",
+    "20261111_2354/02.jpg",
+    "20261111_2354/03.jpg",
+    "20261111_2354/04.jpg",
+    "20261111_2354/05.jpg",
+    "20261111_2354/06.jpg"
+  ]
+}
