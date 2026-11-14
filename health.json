@@ -134,6 +134,11 @@
    "at": "2026-11-12T04:05:10",
    "kind": "review_photo_drop",
    "detail": "AI 업종에서 청년은 줄고 50대는 늘었다"
+  },
+  {
+   "at": "2026-11-14T03:30:26",
+   "kind": "publish_fail",
+   "detail": "reel 릴스 처리 실패: {'status_code': 'ERROR', 'status': 'ERROR', 'id': '18084695633453315'}"
   }
  ]
 }
