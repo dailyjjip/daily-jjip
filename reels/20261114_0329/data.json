@@ -1,0 +1,91 @@
+{
+ "category": "연예",
+ "kicker": "가수 없는 멜론 1위",
+ "headline": "1위 목소리는 AI였다",
+ "big_number": "5개월",
+ "big_label": "발매 뒤 1위까지",
+ "what": [
+  "13일 오후 5시, 멜론 TOP100 1위가 바뀌었다.",
+  "리센느 신곡을 밀어낸 건 AI 보컬 곡이었다.",
+  "가사는 사람이 쓰고 작곡·노래는 수노 AI가 맡았다."
+ ],
+ "numbers": [
+  {
+   "value": "5개월",
+   "label": "발매 후 1위까지"
+  },
+  {
+   "value": "66%",
+   "label": "30·40대 청취 비중"
+  },
+  {
+   "value": "2위",
+   "label": "통합 뮤직100 순위"
+  }
+ ],
+ "details": [
+  {
+   "head": "팬덤 없이 역주행",
+   "body": "6월 23일 발매. 숏폼 입소문으로 10월 2일 18위, 이달 초 2위까지 올랐다."
+  },
+  {
+   "head": "공감이 만든 숫자",
+   "body": "청취자는 30대 36%, 40대 30%. 어른의 현실을 담은 가사가 공감을 샀다."
+  },
+  {
+   "head": "1위인데 저작권료는?",
+   "body": "한국음악저작권협회에 등록이 안 돼 작사·작곡 저작권료를 받지 못한다."
+  }
+ ],
+ "points": [
+  "AI 보컬 곡이 멜론 1위",
+  "통합 차트는 2위, 1위는 시간대 기준",
+  "인기와 수익 구조는 별개"
+ ],
+ "watch": [
+  {
+   "head": "통합차트 순위",
+   "body": "멜론 1위가 일간·주간 차트에서도 이어질지 지켜볼 대목."
+  },
+  {
+   "head": "저작권 기준 논의",
+   "body": "AI 창작물에서 인간 기여를 어디까지 인정할지 기준 마련이 과제다."
+  }
+ ],
+ "oneliner": "팬덤 없이 3040의 재생이 올렸다",
+ "debate": {
+  "question": "AI가 부른 노래, 1위 인정?",
+  "a": "인정, 노래는 노래",
+  "b": "구분해야 한다"
+ },
+ "image_queries": [
+  "smartphone music chart app",
+  "headphones listening music night"
+ ],
+ "caption": "AI 노래 멜론 1위, 어떻게 가능했을까? 13일 오후 5시 기준 멜론 TOP100 1위는 AI 보컬 곡 머무르의 '꿈꾸던 어른이 되었나요?'였습니다. 리센느 신곡을 제쳤고, 청취자의 66%는 30·40대였습니다. 다만 통합 뮤직100에서는 2위였고, 저작권협회 미등록으로 저작권료도 받지 못하는 상태입니다. 'AI 노래도 1위로 인정할까?' 여러분의 생각은 댓글로 남기고, 저장해서 공유해 주세요.",
+ "hashtags": [
+  "#AI노래",
+  "#멜론1위",
+  "#머무르",
+  "#리센느"
+ ],
+ "sources": [
+  "동아일보",
+  "헤럴드경제",
+  "스타뉴스"
+ ],
+ "topic_key": "AI 노래 멜론 1위",
+ "source_title": "리센느 제치고 멜론 1위 오른 이 노래…AI가 불렀다 - 동아일보",
+ "source_link": "https://news.google.com/rss/articles/CBMidkFVX3lxTE5nUjdLcngxWVY1ZzZ1YlhGdkI5Qm9LaGd5MWsxRWx6ZzRkRG1oUGU1S2R2Smdqc2ozT0QzMmdvQXBnekpIVEw0MTRnbkZ5blpzTFFYR3Y3LXdrOVhyaEwwN1I3d0ZYdmNXV2RXZVljamM2cWZWUEHSAWZBVV95cUxOXzV0QUlYREd1NV9QZXpKV0x2M2pkQWNSaVQ5M2FTaFVyMUdTbEs5WjVkOC1GZS1qNVRfX1I3ck9zYXJDQTRURVR1VlB6dVhydGVhZ3czdmN1Z3d3Rm9PRE9zWmFXZVE?oc=5",
+ "stamp": "20261114_0329",
+ "issue_no": 105,
+ "review": [
+  {
+   "cover_ok": true,
+   "body_ok": true,
+   "text_ok": true,
+   "banned": false,
+   "issues": []
+  }
+ ]
+}
