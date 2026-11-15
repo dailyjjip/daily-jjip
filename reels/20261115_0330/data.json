@@ -1,0 +1,91 @@
+{
+ "category": "사회",
+ "kicker": "세무사 수석 자백",
+ "headline": "감독관 2명 앞, 397.5점",
+ "big_number": "397.5",
+ "big_label": "400점 만점 1차 점수",
+ "what": [
+  "세무사 시험 수석 합격자가 AI 부정행위를 자백했다.",
+  "초소형 카메라로 문제를 찍고 AI 답을 폰으로 봤다고 한다.",
+  "경찰은 자수서를 접수하고 광역수사단에 사건을 배당했다."
+ ],
+ "numbers": [
+  {
+   "value": "397.5점",
+   "label": "1차 시험 점수"
+  },
+  {
+   "value": "663점",
+   "label": "2차 800점 만점 중"
+  },
+  {
+   "value": "2명",
+   "label": "시험실 감독위원"
+  }
+ ],
+ "details": [
+  {
+   "head": "코앞에서 못 잡았다",
+   "body": "감독위원 2명 배치, 좌석은 1차 둘째 줄·2차 첫째 줄 중앙이었다."
+  },
+  {
+   "head": "회계사 시험까지",
+   "body": "공인회계사 1차에서도 같은 수법을 썼다고 시인했다."
+  },
+  {
+   "head": "뒤늦게 뒤집힌 해명",
+   "body": "의혹 땐 '찍는 것도 기술'이라 했으나, 거짓 해명이었다고 인정했다."
+  }
+ ],
+ "points": [
+  "397.5점, 감독 코앞의 빈틈",
+  "초소형 카메라+AI+스마트폰",
+  "경찰 수사, 합격 취소 논의"
+ ],
+ "watch": [
+  {
+   "head": "합격증 효력 중단",
+   "body": "재정경제부가 합격증 효력 중단을 논의 중이다."
+  },
+  {
+   "head": "수능 단속 강화",
+   "body": "19일 수능 전국 1,312개 시험장에 전담요원 배치."
+  }
+ ],
+ "oneliner": "AI가 뚫은 건 시험지가 아니라 신뢰",
+ "debate": {
+  "question": "AI 시대, 시험 공정성 해법은?",
+  "a": "감독·반입 강화",
+  "b": "시험 방식 개편"
+ },
+ "image_queries": [
+  "exam hall students desks",
+  "tiny camera smartphone AI"
+ ],
+ "caption": "세무사 시험 수석 AI 부정행위 자백이 오늘 가장 뜨겁습니다. 400점 만점에 397.5점을 받은 수석 합격자가 초소형 카메라와 생성형 AI로 1·2차는 물론 공인회계사 1차까지 부정행위를 했다고 시인하고 경찰에 자수했습니다. 감독위원 2명이 있던 시험실에서 적발되지 않았다는 점에서 감독 체계 논란도 커지고 있습니다. 시험 공정성, 어디서부터 손봐야 할까요? 저장해 두고 친구와 공유해 의견을 나눠보세요.",
+ "hashtags": [
+  "#세무사시험",
+  "#AI부정행위",
+  "#시험공정성",
+  "#오늘뉴스"
+ ],
+ "sources": [
+  "한국경제",
+  "경향신문",
+  "헤럴드경제"
+ ],
+ "topic_key": "세무사 수석 AI 부정행위",
+ "source_title": "세무사 수석 충격 자백…\"초소형 카메라로 문제 찍어 AI로 전송\" - 한국경제",
+ "source_link": "https://news.google.com/rss/articles/CBMiWkFVX3lxTE1qTl9jNkYtb2hIbnJlRmJ2YWZCLWZVRHhFM091WHcwOHBPLWVBcm1wRHN3TTJMV3YzVHg2Tlk5djFESU5rM2FabFhKV28weVk1XzF2ODVZWWdoUQ?oc=5",
+ "stamp": "20261115_0330",
+ "issue_no": 107,
+ "review": [
+  {
+   "cover_ok": true,
+   "body_ok": true,
+   "text_ok": true,
+   "banned": false,
+   "issues": []
+  }
+ ]
+}
