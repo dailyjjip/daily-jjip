@@ -139,6 +139,16 @@
    "at": "2026-11-14T03:30:26",
    "kind": "publish_fail",
    "detail": "reel 릴스 처리 실패: {'status_code': 'ERROR', 'status': 'ERROR', 'id': '18084695633453315'}"
+  },
+  {
+   "at": "2026-11-16T11:11:43",
+   "kind": "review_photo_drop",
+   "detail": "게임은 아직인데 1.6조 매출 추산"
+  },
+  {
+   "at": "2026-11-16T11:11:53",
+   "kind": "review_photo_drop",
+   "detail": "게임은 아직인데 1.6조 매출 추산"
   }
  ]
 }
