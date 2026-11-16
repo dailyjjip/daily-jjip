@@ -1,0 +1,101 @@
+{
+ "category": "스포츠",
+ "kicker": "FA 시장 17일 개장",
+ "headline": "연봉 5억 우승 타자, 몸값 200억?!",
+ "big_number": "200억?",
+ "big_label": "구자욱 몸값 일각 전망",
+ "what": [
+  "KBO가 16일 FA 승인 선수 22명을 공시했다.",
+  "삼성 우승 주역 구자욱·원태인이 시장에 나왔다.",
+  "우승 직후 나온 몸값 전망에 댓글 여론이 갈렸다."
+ ],
+ "numbers": [
+  {
+   "value": "22명",
+   "label": "FA 승인 선수"
+  },
+  {
+   "value": "5억",
+   "label": "구자욱 올해 연봉"
+  },
+  {
+   "value": "200억",
+   "label": "일각의 몸값 전망"
+  }
+ ],
+ "details": [
+  {
+   "head": "연봉 5억의 역설",
+   "body": "5년 120억 계약이 끝난 구자욱은 올해 연봉 5억으로 첫 FA에 나선다."
+  },
+  {
+   "head": "A등급의 보상 규정",
+   "body": "A등급 영입 땐 연봉 300%, 또는 200%에 보상선수 1명을 내줘야 한다."
+  },
+  {
+   "head": "우승 직후 갈린 여론",
+   "body": "한쪽은 거품을 빼라고, 다른 쪽은 우승 공로를 인정하라고 맞선다."
+  }
+ ],
+ "points": [
+  "FA 시장 17일 개장, 22명 출격",
+  "구자욱·원태인 몸값 전망 논쟁",
+  "A등급 6명, 구단별 영입 최대 3명"
+ ],
+ "watch": [
+  {
+   "head": "17일 협상 시작",
+   "body": "원소속팀과 타 구단, 해외 구단 모두와 계약 협상이 가능해진다."
+  },
+  {
+   "head": "해외 진출 변수",
+   "body": "두 선수가 해외 무대 도전 가능성도 열어둔 상태다."
+  }
+ ],
+ "oneliner": "숫자보다 센 건 우승 직후의 타이밍.",
+ "debate": {
+  "question": "우승 주역에 200억 지급, 찬성?",
+  "a": "그 정도 가치 있다",
+  "b": "거품이다"
+ },
+ "image_queries": [
+  "korean baseball stadium crowd",
+  "baseball batter swinging stadium"
+ ],
+ "caption": "구자욱 원태인 FA 몸값 논쟁이 시작됐어요. KBO가 16일 FA 승인 선수 22명을 공시했고, 17일부터 모든 구단과 협상할 수 있습니다. 구자욱은 올해 연봉 5억 원에 타격왕, 한국시리즈 MVP까지 했는데, 일각에서는 200억 원대 전망이 나옵니다. 이는 실제 계약이 아니라 전망입니다. 우승 직후 \"거품이다\"와 \"그 정도 가치가 있다\"로 댓글이 갈렸습니다. 당신의 생각은 어느 쪽인지 저장해 두고 친구와 공유해 보세요.",
+ "hashtags": [
+  "#프로야구FA",
+  "#구자욱",
+  "#원태인",
+  "#삼성라이온즈"
+ ],
+ "sources": [
+  "한겨레",
+  "MK스포츠",
+  "신아일보"
+ ],
+ "topic_key": "구자욱 원태인 FA",
+ "source_title": "“1~2년 안에 이런 FA 선수 없다”…구자욱·원태인 쟁탈전 시작 - 한겨레",
+ "source_link": "https://news.google.com/rss/articles/CBMiZ0FVX3lxTE9MbW9TVWFjclpsaGlEUDBMb0NDZmN0Z1ltUHlpR2FLd3M3Tl9DUlN0anFnbGxvOHBlS01GamxjTVpjREpJMndnVl80NHVEMzVtZ0hvUVdDaUdBalpwWEhvVTFUZXlXMzQ?oc=5",
+ "stamp": "20261116_1011",
+ "issue_no": 109,
+ "review": [
+  {
+   "cover_ok": true,
+   "body_ok": false,
+   "text_ok": false,
+   "banned": false,
+   "issues": [
+    "2장 사진은 LA 다저스타디움 등 미국 MLB 구장 풍경으로, KBO FA 시장과 삼성 선수들을 다루는 기사와 직접 관련이 없어 주제와 맞지 않습니다.",
+    "표지 kicker '오늘 개장'(2026.11.16 기준)과 요약 '17일 개장'이 모순됩니다. 개장일을 하나로 통일해야 합니다."
+   ]
+  },
+  {
+   "cover_ok": true,
+   "body_ok": true,
+   "text_ok": true,
+   "banned": false,
+   "issues": []
+  }
+ ]
+}
