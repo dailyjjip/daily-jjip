@@ -1,0 +1,91 @@
+{
+ "category": "스포츠",
+ "kicker": "FA 1호 계약의 반전",
+ "headline": "아무도 못 데려가는 FA",
+ "big_number": "+13억",
+ "big_label": "옵션 포기하고 더 받았다",
+ "what": [
+  "두산이 17일 양의지와 2년 최대 55억 FA 계약을 발표했다.",
+  "기존 계약의 옵션 42억을 버리고 FA를 선언한 결과다.",
+  "계약금 40억·연봉 10억·인센티브 5억 구조다."
+ ],
+ "numbers": [
+  {
+   "value": "55억",
+   "label": "2년 최대 총액"
+  },
+  {
+   "value": "63억",
+   "label": "이적 보상금 규모"
+  },
+  {
+   "value": "290억",
+   "label": "FA 누적 역대 2위"
+  }
+ ],
+ "details": [
+  {
+   "head": "무늬만 FA",
+   "body": "올해 연봉 42억 기준 이적 보상금이 63억이라 타 구단이 감당하기 어려웠다."
+  },
+  {
+   "head": "옵션 42억 vs 55억",
+   "body": "옵션을 썼다면 최대 42억, FA 재계약으로 최대 13억을 더 받았다."
+  },
+  {
+   "head": "두산의 숨은 계산",
+   "body": "FA 계약 선수는 자동 보호돼 두산은 보호선수 한 자리를 아꼈다."
+  }
+ ],
+ "points": [
+  "옵션 대신 FA로 13억 더",
+  "경쟁 없는 FA, 39세 55억",
+  "보호선수 한 자리도 챙겼다"
+ ],
+ "watch": [
+  {
+   "head": "두산의 FA 행보",
+   "body": "구단은 이후 FA 시장에서도 전력 보강에 나서겠다고 밝혔다."
+  },
+  {
+   "head": "40대 포수 체력",
+   "body": "계약 기간 체력 관리와 수비 부담 조절이 과제로 꼽힌다."
+  }
+ ],
+ "oneliner": "경쟁자는 타 구단이 아니라 옵션 조항",
+ "debate": {
+  "question": "39세 포수 55억, 적정할까?",
+  "a": "적정하다",
+  "b": "과하다"
+ },
+ "image_queries": [
+  "baseball catcher crouching stadium",
+  "baseball team contract press conference"
+ ],
+ "caption": "양의지 FA 55억 계약, 숫자만 보면 평범한 재계약이 아닙니다. 39세 포수는 42억짜리 옵션을 포기하고 FA를 선언했고, 결과는 최대 13억이 더 붙은 2년 55억이었습니다. 올해 연봉 기준 이적 보상금이 63억이라 타 구단이 데려가기 어려운 구조였다는 점이 반전입니다. 나이와 몸값, 어디까지 인정할 수 있을까요? 저장해두고 친구와 같이 이야기해보세요.",
+ "hashtags": [
+  "#양의지",
+  "#FA계약",
+  "#두산베어스",
+  "#프로야구"
+ ],
+ "sources": [
+  "스포츠경향",
+  "서울신문",
+  "스포티비뉴스"
+ ],
+ "topic_key": "양의지 FA 재계약",
+ "source_title": "“두산서 은퇴하고 싶었다” 39살 양의지, 2년 최대 55억 FA 계약 - 한겨레",
+ "source_link": "https://news.google.com/rss/articles/CBMiZ0FVX3lxTE93MnZadTNMYlZNdER6aV9wZ25KcVVINzFhZXFPVnZkMFJBaXNkVVdLY3hvNGl4UmctcUo0bTBWbHZLdEVkaXlqV0hGMlVMTndpY3E5V2NsZUI2bVZTNXhSdWVnaTZ1a28?oc=5",
+ "stamp": "20261117_1109",
+ "issue_no": 111,
+ "review": [
+  {
+   "cover_ok": true,
+   "body_ok": true,
+   "text_ok": true,
+   "banned": false,
+   "issues": []
+  }
+ ]
+}
