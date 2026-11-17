@@ -1,0 +1,120 @@
+{
+  "category": "연예",
+  "kicker": "그래미 본상 후보",
+  "headline": "숏폼 역주행, 그래미 본상까지",
+  "big_number": "3위",
+  "big_label": "빌보드 핫100 최고순위",
+  "what": [
+    "제니가 '드라큘라'로 그래미 본상 후보에 올랐다.",
+    "부문은 '올해의 레코드'와 '베스트 팝 듀오/그룹'.",
+    "경쟁자는 테일러 스위프트, 브루노 마스 등이다."
+  ],
+  "numbers": [
+    {
+      "value": "2개",
+      "label": "그래미 후보 부문"
+    },
+    {
+      "value": "2월 7일",
+      "label": "제69회 시상식"
+    },
+    {
+      "value": "12월 10일",
+      "label": "최종 투표 시작"
+    }
+  ],
+  "details": [
+    {
+      "head": "역주행의 출발점",
+      "body": "지난해 10월 테임 임팔라 솔로곡, 올해 2월 제니 리믹스 공개."
+    },
+    {
+      "head": "숏폼이 만든 3위",
+      "body": "리믹스가 숏폼에서 확산되며 핫100 최고 3위까지 올랐다."
+    },
+    {
+      "head": "투표하는 사람들",
+      "body": "그래미는 대중 투표가 아닌 레코딩 아카데미 회원 투표로 정한다."
+    }
+  ],
+  "points": [
+    "숏폼 역주행이 본상 후보로",
+    "경쟁자는 스위프트·마스·딘",
+    "승부는 회원 투표에서 결정"
+  ],
+  "watch": [
+    {
+      "head": "최종 투표",
+      "body": "12월 10일부터 내년 1월 7일까지 회원 투표가 진행된다."
+    },
+    {
+      "head": "시상식 D-day",
+      "body": "내년 2월 7일 LA 크립토닷컴 아레나에서 열린다."
+    }
+  ],
+  "oneliner": "그래미 투표함엔 조회수가 없다",
+  "debate": {
+    "question": "새 노래 발견 루트는 어디?",
+    "a": "숏폼·릴스",
+    "b": "차트·추천 목록"
+  },
+  "image_queries": [
+    "Jennie Blackpink stage performance",
+    "Grammy gramophone trophy"
+  ],
+  "caption": "제니 그래미 후보 소식, 숏폼에서 시작된 역주행 곡 '드라큘라'가 그래미 본상 '올해의 레코드' 후보에 올랐어요. 지난해 10월 테임 임팔라의 솔로곡으로 나온 노래가 올해 2월 제니 리믹스로 숏폼에서 확산돼 빌보드 핫100 최고 3위까지 갔습니다. 다만 그래미 수상작은 대중 투표가 아닌 레코딩 아카데미 회원 투표로 정해져요. 최종 투표는 12월 10일부터 내년 1월 7일까지, 시상식은 내년 2월 7일입니다. 나중에 다시 보고 싶다면 저장, 친구와 이야기하고 싶다면 공유해 주세요.",
+  "hashtags": [
+    "#제니",
+    "#그래미",
+    "#드라큘라",
+    "#블랙핑크"
+  ],
+  "sources": [
+    "한국경제",
+    "서울경제",
+    "헤럴드경제"
+  ],
+  "topic_key": "제니 그래미 후보",
+  "source_title": "제니, ‘드라큘라’로 그래미 ‘올해의 레코드’ 등 2개 부문 후보에 - 동아일보",
+  "source_link": "https://news.google.com/rss/articles/CBMidkFVX3lxTE9nYXMwRXhCVVN2WHpiOUZIVUxqaEEycVhkRTBYc3NwRjVYUFFLSFd3VW9vTi01SkowQm4yM2dVRmtMTnkzOXZNXzFBak0xaVJ4b2YwZThqR016czhIQUJnZmZBWlhZNDNpR1ZoYjhIWTJwQ01jMVHSAWZBVV95cUxOS2NmYlJnbnJaUF9neDJRcE1qY3hQLURRTVlfaXV6ZFpwUm9nYkJUbHZ0T0tfLVJVYjlibEdkclVZUXJtN2U3RzE4YUh5cllDcnBtZW11RGhxaUZwTElvbHphYm9QOHc?oc=5",
+  "stamp": "20261117_1148",
+  "issue_no": 111,
+  "review": [
+    {
+      "cover_ok": false,
+      "body_ok": false,
+      "text_ok": true,
+      "banned": false,
+      "issues": [
+        "표지 사진은 기사 주인공인 제니가 아닌 남성 가수의 무대 사진이라 기사 내용과 맞지 않고, 독자가 제니 기사를 다른 인물 기사로 오해할 수 있음",
+        "본문 2장 사진은 기사와 직접 관련 없는 일반 스톡 공연장 관객 사진이라 주제를 보여주지 못함",
+        "본문 텍스트(3위, 2개 부문, 12월 10일 투표 시작, 2월 7일 시상식, 회원 투표)는 서로 모순 없이 일치하고 문장도 잘리지 않음"
+      ]
+    },
+    {
+      "cover_ok": false,
+      "body_ok": true,
+      "text_ok": true,
+      "banned": false,
+      "issues": [
+        "표지 사진은 무대에서 노래하는 남성 가수의 일반 스톡 사진이라 기사 주인공(제니)과 무관하며, 보는 사람이 사진 속 인물을 기사 대상으로 오해할 수 있음.",
+        "본문 2번 사진(축음기 레코드)은 '올해의 레코드' 주제와 연결되므로 문제 없다고 판단함."
+      ]
+    },
+    {
+      "cover_ok": true,
+      "body_ok": true,
+      "text_ok": true,
+      "banned": false,
+      "issues": []
+    }
+  ],
+  "images": [
+    "20261117_1148/01.jpg",
+    "20261117_1148/02.jpg",
+    "20261117_1148/03.jpg",
+    "20261117_1148/04.jpg",
+    "20261117_1148/05.jpg",
+    "20261117_1148/06.jpg"
+  ]
+}
