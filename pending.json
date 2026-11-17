@@ -1,0 +1,99 @@
+{
+  "category": "경제",
+  "kicker": "코스피 5000 사수전",
+  "headline": "곳간 329조, 지수는 휘청",
+  "big_number": "5008",
+  "big_label": "17일 코스피 시초가",
+  "what": [
+    "코스피가 5008.09로 출발해 장중 5000선을 내줬다.",
+    "전날 미국 반도체지수는 5.3% 급락했다.",
+    "18일 새벽 엔비디아 실적이 단기 분수령이다."
+  ],
+  "numbers": [
+    {
+      "value": "-3.59%",
+      "label": "16일 코스피 하락률"
+    },
+    {
+      "value": "-5.3%",
+      "label": "미 반도체지수 하락"
+    },
+    {
+      "value": "329조",
+      "label": "삼성·하이닉스 현금"
+    }
+  ],
+  "details": [
+    {
+      "head": "전날 미국발 충격",
+      "body": "엔비디아 -4.1%, 마이크론 -7.6%, AMD -5.6%로 AI주가 줄하락."
+    },
+    {
+      "head": "겹친 악재",
+      "body": "중국 우회 수입 차단에 2028 HBM 출하 30% 하향 전망까지."
+    },
+    {
+      "head": "곳간은 역대급",
+      "body": "삼성·하이닉스 현금 329조, 1년 새 193조 늘었지만 주가는 눌렸다."
+    }
+  ],
+  "points": [
+    "5000선 방어전, 실적 직전",
+    "AI 투자 위축 우려가 눌렀다",
+    "현금 329조도 심리는 못 막았다"
+  ],
+  "watch": [
+    {
+      "head": "엔비디아 3분기 실적",
+      "body": "18일 새벽 발표. 매출 전망치 1080억 달러 상회가 관건."
+    },
+    {
+      "head": "외국인 수급",
+      "body": "외국인 3일째 순매도, 5000선 지지 여부가 변수."
+    }
+  ],
+  "oneliner": "곳간이 차도 주가는 미래를 먼저 계산한다",
+  "debate": {
+    "question": "5000선 아래면 추가 매수?",
+    "a": "저가 매수",
+    "b": "관망"
+  },
+  "image_queries": [
+    "stock market trading screen",
+    "semiconductor chip wafer factory"
+  ],
+  "caption": "코스피 5000선 위태, 왜 이렇게 흔들릴까? 17일 코스피는 5008.09로 출발해 장중 5000선 아래로 밀렸고, 엔비디아 실적 발표(18일 새벽)와 중국 AI 반도체 우회 수입 차단 같은 악재가 한꺼번에 겹쳤습니다. 삼성전자·SK하이닉스의 현금은 329조 원으로 1년 새 193조 원 늘었는데도, 시장은 과거 실적보다 AI 수요가 이어질지를 보고 있습니다. 내일 새벽 발표를 앞두고 지금 내 포트폴리오를 점검해 보세요. 나중에 다시 보도록 저장하고, 주식하는 친구에게 공유해 주세요.",
+  "hashtags": [
+    "#코스피",
+    "#엔비디아",
+    "#삼성전자",
+    "#주식시황"
+  ],
+  "sources": [
+    "글로벌이코노믹",
+    "아시아경제",
+    "이투데이"
+  ],
+  "topic_key": "코스피 5000 위태",
+  "source_title": "코스피, 엔비디아 실적 발표 앞두고 1.81% 내린 5008.09 출발 - 조선일보",
+  "source_link": "https://news.google.com/rss/articles/CBMigAFBVV95cUxNajdqbFpKTW14Rm5QR0h2cGVLMUF1dkJtU0dKaXRDZW9CQXAxV3hXYXlPRDZNM1dXejRJcjBYeGdEUVRNQjV4MWdodEN5Q0tySFlOUk9OZUNPdERvcHJjN0N2RG1tWEpoQlJ4SFFoZGx1UDhnRWpYamt3M1dGV1lGUQ?oc=5",
+  "stamp": "20261117_0504",
+  "issue_no": 110,
+  "review": [
+    {
+      "cover_ok": true,
+      "body_ok": true,
+      "text_ok": true,
+      "banned": false,
+      "issues": []
+    }
+  ],
+  "images": [
+    "20261117_0504/01.jpg",
+    "20261117_0504/02.jpg",
+    "20261117_0504/03.jpg",
+    "20261117_0504/04.jpg",
+    "20261117_0504/05.jpg",
+    "20261117_0504/06.jpg"
+  ]
+}
