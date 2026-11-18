@@ -1,0 +1,99 @@
+{
+ "category": "생활",
+ "kicker": "롯데월드타워 모스부호",
+ "headline": "안부 한 줄에 빛도 하루",
+ "big_number": "259억km",
+ "big_label": "지구에서 보이저 1호까지",
+ "what": [
+  "롯데월드타워가 17일 밤 황금빛 모스 부호를 켰다.",
+  "NASA 보이저 1호의 '1광일' 도달을 기념하는 캠페인이다.",
+  "국내 건축물 중 유일하게 참여했다."
+ ],
+ "numbers": [
+  {
+   "value": "259억km",
+   "label": "1광일 거리"
+  },
+  {
+   "value": "49년",
+   "label": "발사 후 걸린 시간"
+  },
+  {
+   "value": "7시16분",
+   "label": "18일 도달 예상"
+  }
+ ],
+ "details": [
+  {
+   "head": "1광일의 뜻",
+   "body": "빛이 하루 동안 가는 거리, 인류가 만든 물체론 첫 도달"
+  },
+  {
+   "head": "빛으로 쓴 VGR",
+   "body": "V는 점점점선, G는 선선점, R은 점선점이다."
+  },
+  {
+   "head": "30분마다 1분",
+   "body": "오후 7~10시 매 정각·30분, 2700K 황금빛으로 점멸."
+  }
+ ],
+ "points": [
+  "259억km, 빛도 하루 걸린다",
+  "1977년 발사, 49년의 비행",
+  "서울의 불빛이 먼저 인사했다"
+ ],
+ "watch": [
+  {
+   "head": "18일 오후 7시16분",
+   "body": "한국시간 기준 NASA 예상 도달 시점"
+  },
+  {
+   "head": "글로벌 점등 동참",
+   "body": "뉴욕 엠파이어 스테이트·시애틀 스페이스 니들도 참여"
+  }
+ ],
+ "oneliner": "가장 먼 이웃에게 켠 현관등",
+ "debate": {
+  "question": "우주 탐사 예산 늘려야 할까?",
+  "a": "늘려야 한다",
+  "b": "지금도 충분"
+ },
+ "image_queries": [
+  "lotte world tower seoul night",
+  "voyager 1 spacecraft deep space"
+ ],
+ "caption": "롯데월드타워 보이저 1호 모스 부호, 17일 밤 서울 잠실에서 실제로 켜졌습니다. 1977년 발사된 보이저 1호가 약 49년 만에 지구에서 빛이 하루 가는 거리인 259억km, 즉 1광일 지점에 닿는 걸 기념하는 NASA 글로벌 캠페인이에요. 타워는 오후 7시부터 10시까지 30분마다 약 1분간 황금빛으로 보이저의 약자 V·G·R을 깜빡였고, NASA의 도달 예상 시각은 한국시간 18일 오후 7시 16분입니다. 우주로 보내는 안부가 궁금하다면 저장하고 친구에게 공유해 보세요.",
+ "hashtags": [
+  "#롯데월드타워",
+  "#보이저1호",
+  "#NASA",
+  "#모스부호"
+ ],
+ "sources": [
+  "파이낸셜뉴스",
+  "문화일보",
+  "헤럴드경제"
+ ],
+ "topic_key": "보이저 1광일",
+ "source_title": "[기업] 롯데월드타워, 259억km 밖 보이저1호에 모스 부호 - YTN",
+ "source_link": "https://news.google.com/rss/articles/CBMiXkFVX3lxTE9VbEhkdjZtWTZQenlUTlBfLXBfUXJtMWt6ZDJCMWQzZDNBYVV5dFVjc3lwaWl1TUxWb2FTSENXcjU5RERVMjRmQVNSY2ZUR2ludnZOSjBjQm1PQnFlWnc?oc=5",
+ "stamp": "20261118_1136",
+ "issue_no": 113,
+ "review": [
+  {
+   "cover_ok": true,
+   "body_ok": true,
+   "text_ok": true,
+   "banned": false,
+   "issues": []
+  }
+ ],
+ "images": [
+  "20261118_1136/01.jpg",
+  "20261118_1136/02.jpg",
+  "20261118_1136/03.jpg",
+  "20261118_1136/04.jpg",
+  "20261118_1136/05.jpg",
+  "20261118_1136/06.jpg"
+ ]
+}
