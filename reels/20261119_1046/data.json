@@ -1,0 +1,101 @@
+{
+ "category": "사회",
+ "kicker": "수능 스마트기기 단속",
+ "headline": "98명 적발, 시험 중 실사용은 5건",
+ "big_number": "98명",
+ "big_label": "스마트기기 부정행위 적발",
+ "what": [
+  "19일 수능에서 스마트기기 부정행위 98명이 적발됐다.",
+  "정부는 사상 처음 위급재난문자를 세 차례 보냈다.",
+  "같은 날 AI는 공개 시험지의 국어·수학을 몇 분 만에 풀었다."
+ ],
+ "numbers": [
+  {
+   "value": "98명",
+   "label": "전체 적발자"
+  },
+  {
+   "value": "5건",
+   "label": "시험 중 실제 활용"
+  },
+  {
+   "value": "49명",
+   "label": "재난문자 적발"
+  }
+ ],
+ "details": [
+  {
+   "head": "재난문자 3회",
+   "body": "오전 8시30분 31명, 오후 2시21분 11명, 2시57분 7명 적발."
+  },
+  {
+   "head": "달라진 시험장",
+   "body": "감독관 8만3400여명이 안경 확인·단추 스티커, 와이파이도 중단."
+  },
+  {
+   "head": "AI는 몇 분",
+   "body": "수험생은 국어 80분·수학 100분, AI는 공개 시험지를 몇 분 만에 풀었다."
+  }
+ ],
+ "points": [
+  "적발 98명, 실제 사용 5건",
+  "재난문자로만 49명 적발",
+  "AI는 몇 분, 수험생은 국·수 180분"
+ ],
+ "watch": [
+  {
+   "head": "징계 심의",
+   "body": "심의위 1차 처분 후 이의제기를 거쳐 12월 11일 성적 발표 전 마무리."
+  },
+  {
+   "head": "경찰 수사",
+   "body": "중대 사안은 경찰에 인계, 촬영·외부 통신 여부를 수사할 예정."
+  }
+ ],
+ "oneliner": "이제 시험은 실력보다 신뢰를 감독한다",
+ "debate": {
+  "question": "재난문자 수능 감독, 적절했나?",
+  "a": "공정 위해 필요",
+  "b": "과한 대응"
+ },
+ "image_queries": [
+  "korean students exam classroom",
+  "smart glasses exam cheating",
+  "smartphone emergency alert screen"
+ ],
+ "caption": "수능 스마트기기 부정행위 적발 98명, 그런데 시험 도중 실제 기기 활용은 5건이었어요. 정부는 사상 처음 위급재난문자를 세 차례 보냈고 이 문자로만 49명이 걸렸습니다. 같은 날 AI는 공개된 시험지의 국어·수학을 몇 분 만에 풀어 감독 방식에 대한 질문도 커졌어요. 공정을 위한 감시, 어디까지가 적당할까요? 저장해두고 친구들과 댓글로 의견 나눠보세요.",
+ "hashtags": [
+  "#수능",
+  "#AI커닝",
+  "#수능부정행위",
+  "#재난문자"
+ ],
+ "sources": [
+  "경향신문",
+  "파이낸셜뉴스",
+  "한국경제"
+ ],
+ "topic_key": "수능 AI 커닝",
+ "source_title": "[속보] 교육부 \"스마트 기기 부정행위 98명 적발\" - 조선일보",
+ "source_link": "https://news.google.com/rss/articles/CBMihwFBVV95cUxQQy1RQlhETUtUVWR5Q0oxblpFUVFNOUp4a2EtOFRKRDdVYTc3MDhGSWt3Y0QyU3FkQVUtRHhXZjQxNndHcjNQR3dkV2tSUnNuZVluNW1RU0tTa2VpS1V5ZVRISkpzZ1ZMczZFRThOR3RTOEZhMlRKZ3VfMXVKNzlIRkR3Y0NwZW8?oc=5",
+ "stamp": "20261119_1046",
+ "issue_no": 115,
+ "review": [
+  {
+   "cover_ok": true,
+   "body_ok": true,
+   "text_ok": false,
+   "banned": false,
+   "issues": [
+    "표지 키커 '수능 AI 커닝 단속'은 적발자 98명이 AI를 썼다고 오해하게 만들 수 있음. 본문상 98명은 스마트기기 부정행위이고, AI는 같은 날 공개 시험지를 따로 푼 사례라 구분이 필요함"
+   ]
+  },
+  {
+   "cover_ok": true,
+   "body_ok": true,
+   "text_ok": true,
+   "banned": false,
+   "issues": []
+  }
+ ]
+}
