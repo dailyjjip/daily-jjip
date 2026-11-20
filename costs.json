@@ -6691,5 +6691,35 @@
 "out": 1723,
 "search": 0,
 "model": "claude-haiku-5-5"
+},
+{
+"at": "2026-11-20T03:58:40",
+"purpose": "carousel",
+"usd": 0.1429,
+"krw": 207,
+"in": 40813,
+"out": 4126,
+"search": 2,
+"model": "claude-sonnet-5-5"
+},
+{
+"at": "2026-11-20T03:58:46",
+"purpose": "photo_pick",
+"usd": 0.0004,
+"krw": 1,
+"in": 1721,
+"out": 435,
+"search": 0,
+"model": "claude-haiku-5-5"
+},
+{
+"at": "2026-11-20T03:58:53",
+"purpose": "review",
+"usd": 0.0012,
+"krw": 2,
+"in": 6070,
+"out": 1172,
+"search": 0,
+"model": "claude-haiku-5-5"
 }
 ]
