@@ -1,0 +1,99 @@
+{
+ "category": "스포츠",
+ "kicker": "삼성화재배 결승",
+ "headline": "AI의 1%, 사람이 뒤집다",
+ "big_number": "1%",
+ "big_label": "최종국 AI 승률 최저점",
+ "what": [
+  "변상일 9단이 삼성화재배 결승 최종국을 이겼다.",
+  "AI 승률이 1%까지 떨어졌다가 90%를 넘었다.",
+  "1국을 내주고 2·3국을 따낸 2승 1패 역전이다."
+ ],
+ "numbers": [
+  {
+   "value": "1%→90%",
+   "label": "최종국 AI 승률 변화"
+  },
+  {
+   "value": "3억원",
+   "label": "우승 상금"
+  },
+  {
+   "value": "15번째",
+   "label": "첫 우승까지 도전 횟수"
+  }
+ ],
+ "details": [
+  {
+   "head": "두 번의 1% 위기",
+   "body": "8강 일본 후쿠오카전도 AI 승률 1%서 뒤집었다"
+  },
+  {
+   "head": "속기파의 실수",
+   "body": "리친청은 1시간 남기고 돌 던졌고, 변상일은 초읽기까지 갔다"
+  },
+  {
+   "head": "신진서 넘고 결승",
+   "body": "준결승에서 한국 1인자 신진서 9단을 꺾고 올라왔다"
+  }
+ ],
+ "points": [
+  "AI 1%도 끝이 아니었다",
+  "15번째 도전서 첫 삼성화재배",
+  "한국, 통산 15승으로 중국 추월"
+ ],
+ "watch": [
+  {
+   "head": "중국 추격전",
+   "body": "최근 3년 중국에 내준 컵을 되찾았다. 다음 세계대회가 시험대"
+  },
+  {
+   "head": "메이저 4승 도전",
+   "body": "춘란배·LG배·삼성화재배에 이은 다음 도전"
+  }
+ ],
+ "oneliner": "1%는 상대 실수를 기다린 시간이었다",
+ "debate": {
+  "question": "승률 1%라면 끝까지 갈까?",
+  "a": "끝까지 간다",
+  "b": "깔끔히 접는다"
+ },
+ "image_queries": [
+  "baduk board stones close",
+  "go game professional players"
+ ],
+ "caption": "변상일 삼성화재배 우승, AI 승률 1%에서 뒤집은 과정이 화제입니다. 1국을 내주고 2·3국을 내리 이겨 15번째 도전 끝에 생애 첫 삼성화재배 정상에 올랐습니다. 최종국에서 AI가 본 승률은 1%까지 내려갔다가 90%를 넘겼고, 빠르게 두는 상대 리친청의 실수가 흐름을 바꿨습니다. 포기하기 직전의 순간이 떠오를 때 꺼내 보도록 저장하고, 친구에게도 공유해 보세요.",
+ "hashtags": [
+  "#변상일",
+  "#삼성화재배",
+  "#바둑",
+  "#AI승률"
+ ],
+ "sources": [
+  "스포츠경향",
+  "한국경제",
+  "연합뉴스"
+ ],
+ "topic_key": "변상일 삼성화재배 우승",
+ "source_title": "변상일, AI ‘승률 1%’ 예측 뒤집고 삼성화재배 우승 - 한겨레",
+ "source_link": "https://news.google.com/rss/articles/CBMiY0FVX3lxTE55alp4dmh2cFVrbVFiNXFFOURmSm53cXlmeWNNOG8wVjBFa1ZzRk9zVVotd0ZNYTVmVUFqcUY4STJ6a1pTU255ckJQTWRPMFR2ZUt1Q1NkYTJ3WFlZLUlpMmRwVQ?oc=5",
+ "stamp": "20261120_1132",
+ "issue_no": 117,
+ "review": [
+  {
+   "cover_ok": true,
+   "body_ok": true,
+   "text_ok": true,
+   "banned": false,
+   "issues": []
+  }
+ ],
+ "images": [
+  "20261120_1132/01.jpg",
+  "20261120_1132/02.jpg",
+  "20261120_1132/03.jpg",
+  "20261120_1132/04.jpg",
+  "20261120_1132/05.jpg",
+  "20261120_1132/06.jpg"
+ ]
+}
