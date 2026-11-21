@@ -1,0 +1,99 @@
+{
+ "category": "경제",
+ "kicker": "비트코인 7주 연속 하락",
+ "headline": "안전자산? 나스닥 쌍둥이였다",
+ "big_number": "-53%",
+ "big_label": "지난해 10월 최고가 대비",
+ "what": [
+  "비트코인이 4개월 만에 6만 달러 아래로 밀렸다.",
+  "주간 기준 7주 연속 하락, 2022년 이후 최장이다.",
+  "일주일 새 14% 빠졌고 장중 5만8천 달러대를 찍었다."
+ ],
+ "numbers": [
+  {
+   "value": "-14%",
+   "label": "최근 일주일 낙폭"
+  },
+  {
+   "value": "5.8억달러",
+   "label": "하루 ETF 순유출"
+  },
+  {
+   "value": "0.69",
+   "label": "나스닥100 상관계수"
+  }
+ ],
+ "details": [
+  {
+   "head": "ETF에서 돈이 샌다",
+   "body": "하루 5억8200만 달러가 빠졌고 지난달 말 이후 누적 41억 달러다."
+  },
+  {
+   "head": "안전자산 간판 흔들",
+   "body": "나스닥100과의 상관계수가 0.69까지 올라 위험자산 성격이 짙어졌다."
+  },
+  {
+   "head": "악재가 한꺼번에",
+   "body": "금리 인상 우려, 앤트로픽 상장, 바이낸스 해킹이 겹쳤다."
+  }
+ ],
+ "points": [
+  "7주 연속 하락, 4년 만에 최장",
+  "고점 대비 절반 아래로 추락",
+  "ETF 자금과 나스닥이 변수"
+ ],
+ "watch": [
+  {
+   "head": "ETF 자금 흐름",
+   "body": "순유출이 이어질지 순유입으로 돌아설지가 반등의 열쇠."
+  },
+  {
+   "head": "연준·나스닥 향방",
+   "body": "금리 인상 우려와 AI 기술주 매도세가 이어지면 동조 하락 가능."
+  }
+ ],
+ "oneliner": "분산투자용으로 샀다면, 분산이 안 된 것.",
+ "debate": {
+  "question": "6만 달러 붕괴, 지금 담을까?",
+  "a": "분할 매수",
+  "b": "관망"
+ },
+ "image_queries": [
+  "bitcoin price chart falling",
+  "crypto trader red screen"
+ ],
+ "caption": "비트코인 6만 달러 붕괴 이유, 한 가지로 설명되지 않습니다. 비트코인은 4개월 만에 6만 달러 아래로 내려가 7주 연속 하락했고, 지난해 10월 최고가의 절반 아래입니다. 현물 ETF에서는 하루 5억8200만 달러가 빠져나갔고, 나스닥100과의 상관계수는 0.69까지 올랐습니다. 안전자산이라는 이름표가 아직 유효한지 따져볼 때입니다. 저장해 두고 내 포트폴리오와 비교해 보세요.",
+ "hashtags": [
+  "#비트코인",
+  "#비트코인하락",
+  "#가상자산",
+  "#재테크"
+ ],
+ "sources": [
+  "파이낸셜뉴스",
+  "EBN",
+  "글로벌이코노믹"
+ ],
+ "topic_key": "비트코인 6만달러 붕괴",
+ "source_title": "7주 연속 하락세 탄 비트코인...지난해 고점 대비 '반토막' - YTN",
+ "source_link": "https://news.google.com/rss/articles/CBMib0FVX3lxTFBURlRva0hoelZDclZmeE1ZTVN1ZURXUEM1OU9tR28teWtMakRhRy0wUUpMREZhbHFYSmdMVm4zUXlsZ1dYUVFNX0M1SFd5ZmZ4QjJuWmFMY1gwVzVEU2VEQS14VnVLdmU3LVg3aWQwRQ?oc=5",
+ "stamp": "20261121_0357",
+ "issue_no": 118,
+ "review": [
+  {
+   "cover_ok": true,
+   "body_ok": true,
+   "text_ok": true,
+   "banned": false,
+   "issues": []
+  }
+ ],
+ "images": [
+  "20261121_0357/01.jpg",
+  "20261121_0357/02.jpg",
+  "20261121_0357/03.jpg",
+  "20261121_0357/04.jpg",
+  "20261121_0357/05.jpg",
+  "20261121_0357/06.jpg"
+ ]
+}
