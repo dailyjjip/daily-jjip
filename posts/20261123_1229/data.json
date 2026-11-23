@@ -1,0 +1,108 @@
+{
+ "category": "연예",
+ "kicker": "빌보드 200 1위",
+ "headline": "1위의 98%는 스트리밍 아닌 구매",
+ "big_number": "98%",
+ "big_label": "유닛 중 앨범 판매 비중",
+ "what": [
+  "에이티즈가 신보로 빌보드 200 1위, 통산 네 번째.",
+  "미국 첫 주 19만5000유닛 중 19만1000이 앨범 판매.",
+  "스트리밍 404만 회는 겨우 4000유닛으로 환산됐다."
+ ],
+ "numbers": [
+  {
+   "value": "19.5만",
+   "label": "미국 첫 주 유닛"
+  },
+  {
+   "value": "205만장",
+   "label": "한터 첫 주 판매"
+  },
+  {
+   "value": "-14.5%",
+   "label": "전작 대비 미국 유닛"
+  }
+ ],
+ "details": [
+  {
+   "head": "98%가 앨범 구매",
+   "body": "순수 앨범 판매 19만1000장, 스트리밍은 4000장 환산."
+  },
+  {
+   "head": "32종 CD·바이닐",
+   "body": "빌보드는 포토카드·포스터 구성과 일부 친필 사인반이 실적을 받쳤다고 설명했다."
+  },
+  {
+   "head": "미국은 줄고 한국은 늘고",
+   "body": "미국 유닛은 전작보다 14.5% 줄고, 한터 초동은 약 9% 늘었다."
+  }
+ ],
+ "points": [
+  "1위는 사실상 앨범 구매전",
+  "스트리밍 환산은 4000유닛",
+  "미국 줄고 국내는 200만 돌파"
+ ],
+ "watch": [
+  {
+   "head": "내달 13일 컴백",
+   "body": "내달 13일 컴백 예고, 미국 유닛 반등 여부가 관건."
+  },
+  {
+   "head": "미국 소비 체력",
+   "body": "앨범 판매 의존도를 낮추고 스트리밍을 늘릴지 주목."
+  }
+ ],
+ "oneliner": "차트는 듣는 순위가 아니라 사는 순위",
+ "debate": {
+  "question": "같은 앨범 여러 장, 나라면?",
+  "a": "팬심이니 구매",
+  "b": "한 장이면 충분"
+ },
+ "image_queries": [
+  "kpop group concert stage",
+  "vinyl records album collection"
+ ],
+ "caption": "에이티즈 빌보드 200 1위, 숫자를 뜯어보면 포인트가 따로 있습니다. 미국 첫 주 19만5000유닛 중 19만1000이 앨범 판매였고, 스트리밍 404만 회는 4000유닛으로 환산됐어요. 미국 유닛은 전작보다 줄었지만 한국 초동은 205만 장으로 200만 장을 넘겼습니다. 1위의 속사정이 궁금했다면 저장하고 친구에게 공유해 보세요.",
+ "hashtags": [
+  "#에이티즈",
+  "#빌보드200",
+  "#ATEEZ",
+  "#KPOP"
+ ],
+ "sources": [
+  "파이낸셜뉴스",
+  "톱스타뉴스",
+  "경향신문"
+ ],
+ "topic_key": "에이티즈 빌보드 200",
+ "source_title": "그룹 에이티즈, 미 ‘빌보드 200’ 1위…통산 네 번째 기록 - 경향신문",
+ "source_link": "https://news.google.com/rss/articles/CBMirAFBVV95cUxNcEp3UlBiNG5FTzZHdWQ4X01RaU4zUmNFZm95Vzg0ajZfTWhtV0RtLTc4T1VtaU04WEdYQVlvek9jd2JDbk1WTjQ2dXVxbzBNRE13NjNWM3hiTmZpcE83RVEyd21YTVg0SDBvMDZfY0RFUUlZVkk0Ri05TU8wc0pOZ3EzUXo5SDlWeUZ0VXBxa1ZhX2J5cTRmcG1QazFlQXYzT2FZdEthYWxBcnZB0gFfQVVfeXFMTTRsaXd3V2V6ZTFHV3lSZ2N0ZTdkNURINDd3cGl2UTRVb3E2OGhFYVZJeGJvZnVBd3lNa2NGbF9yYjQ4Nk95bm40bTRqV2lYSGFnZUVhQ3d4MXJ0eGRDZkk?oc=5",
+ "stamp": "20261123_1229",
+ "issue_no": 123,
+ "review": [
+  {
+   "cover_ok": true,
+   "body_ok": true,
+   "text_ok": false,
+   "banned": false,
+   "issues": [
+    "캡션의 '한국 초동은 205만 장으로 처음 200만을 넘겼습니다'는 '처음'이라는 기록을 확인할 근거가 본문·슬라이드에 없는 단정적 주장입니다. '200만 장을 넘겼습니다'처럼 확인된 사실만 쓰거나 '처음'을 삭제해야 합니다."
+   ]
+  },
+  {
+   "cover_ok": true,
+   "body_ok": true,
+   "text_ok": true,
+   "banned": false,
+   "issues": []
+  }
+ ],
+ "images": [
+  "20261123_1229/01.jpg",
+  "20261123_1229/02.jpg",
+  "20261123_1229/03.jpg",
+  "20261123_1229/04.jpg",
+  "20261123_1229/05.jpg",
+  "20261123_1229/06.jpg"
+ ]
+}
