@@ -1111,5 +1111,12 @@
   "headline": "두 번째 달, 키는 2m",
   "topic_key": "지구 두번째 달",
   "category": "IT"
+ },
+ {
+  "date": "20261123_0343",
+  "kind": "carousel",
+  "headline": "이틀 만에 10.4% 증발",
+  "topic_key": "코스피 사이드카 증안펀드",
+  "category": "경제"
  }
 ]
