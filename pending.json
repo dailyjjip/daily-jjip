@@ -1,0 +1,118 @@
+{
+  "category": "IT",
+  "kicker": "AI 비서 vs 고객센터",
+  "headline": "AI가 걸면 끊는 4곳, 정작 SKT는 AI 비서를 예고",
+  "big_number": "20만+",
+  "big_label": "한 달 만에 피클 MAU",
+  "what": [
+    "SKT·KT·LGU+·네이버가 외부 AI 에이전트의 상담을 막았다.",
+    "AI가 위임받아 전화해도 본인확인이 먼저다.",
+    "대표 사례는 출시 한 달 된 AI 비서 '피클'."
+  ],
+  "numbers": [
+    {
+      "value": "20만+",
+      "label": "피클 월간 이용자"
+    },
+    {
+      "value": "1개월",
+      "label": "피클 출시 후 경과"
+    },
+    {
+      "value": "4곳",
+      "label": "응대 제한 기업"
+    }
+  ],
+  "details": [
+    {
+      "head": "SKT의 방식",
+      "body": "AI가 전화하면 가입자 연락처만 받고, 상담사가 본인에게 되전화."
+    },
+    {
+      "head": "네이버의 방식",
+      "body": "AI가 'AI입니다'라고 밝히면 상담을 진행하지 않는다."
+    },
+    {
+      "head": "방패와 창",
+      "body": "SKT는 다음 달 피클과 비슷한 AI 서비스 '에이닷올' 출시를 예고."
+    }
+  ],
+  "points": [
+    "AI 대리 전화, 일단 차단",
+    "통신사 측은 본인확인·책임 불분명을 이유로 든다",
+    "에디터 시각: 규칙 정비보다 서비스가 앞선다"
+  ],
+  "watch": [
+    {
+      "head": "에이닷올 출시",
+      "body": "SKT가 다음 달 에이닷올을 내놓으면 기준 논란이 커질 수 있다."
+    },
+    {
+      "head": "대리인 기준",
+      "body": "AI의 법적 대리 권한 확인 체계가 마련될지가 변수다."
+    }
+  ],
+  "oneliner": "문 닫은 이유, 보안일까 경쟁일까",
+  "debate": {
+    "question": "내 AI가 대신 전화해도 될까?",
+    "a": "대신 걸어도 OK",
+    "b": "본인만 통화해야"
+  },
+  "image_queries": [
+    "customer service call center headset",
+    "smartphone AI assistant app"
+  ],
+  "caption": "AI 에이전트 전화 상담 거부, 무슨 일일까? SKT·KT·LG유플러스·네이버가 이용자 대신 전화를 거는 외부 AI의 고객센터 상담을 막았습니다. 통신사 측이 든 이유는 본인확인과 법적 대리인 기준이 불분명하다는 것인데, 정작 SKT는 다음 달 비슷한 AI 서비스 '에이닷올' 출시를 예고했습니다. 대신 전화해 주는 AI, 여러분은 맡기시겠어요? 나중에 볼 수 있게 저장하고 친구에게도 공유해 보세요.",
+  "hashtags": [
+    "#AI에이전트",
+    "#피클",
+    "#고객센터",
+    "#통신사"
+  ],
+  "sources": [
+    "한국경제",
+    "ZDNet Korea",
+    "조선일보"
+  ],
+  "topic_key": "AI 에이전트 전화 응대 거부",
+  "source_title": "[단독] 통신3사·네이버, AI 에이전트 전화 응대 거부키로 - 조선일보",
+  "source_link": "https://news.google.com/rss/articles/CBMigwFBVV95cUxQQnQ1dzJXeUxDSTJwQV9rSEhMQ0RRSDZZczZVbXBMaGxpQlBtQk4wVnJyc1ZsbEhoM0xzUVNuRWhYaDNxa3JKaFY4bm5ZM2ZmMUtvRWV5TGtVbFlYQVloYnVTVTBwdjRFZ09qYXBvTkpIOVhZbE4zbWI1cGVacjh2TVlLOA?oc=5",
+  "stamp": "20261124_0657",
+  "issue_no": 124,
+  "review": [
+    {
+      "cover_ok": true,
+      "body_ok": true,
+      "text_ok": false,
+      "banned": false,
+      "issues": [
+        "3번 슬라이드의 '2배+ 병원 상담 소요시간'은 무엇 대비 2배인지(기존 상담 대비, AI 상담 대비 등) 본문과 캡션에 설명이 없어 독자가 수치를 잘못 해석할 수 있습니다."
+      ]
+    },
+    {
+      "cover_ok": true,
+      "body_ok": true,
+      "text_ok": false,
+      "banned": false,
+      "issues": [
+        "4번 장 '이유는 본인확인·책임 불분명'이 통신사가 밝힌 입장인지 표시되지 않고 사실처럼 단정되어 있음. '통신사 측은 본인확인·책임 불분명을 이유로 든다'처럼 출처를 명시해야 함.",
+        "4번 장 '규칙 없이 서비스만 앞섰다'는 확인되지 않은 평가를 사실처럼 제시하고 있음. 에디토리얼 의견임을 드러내거나 표현을 완화해야 함."
+      ]
+    },
+    {
+      "cover_ok": true,
+      "body_ok": true,
+      "text_ok": true,
+      "banned": false,
+      "issues": []
+    }
+  ],
+  "images": [
+    "20261124_0657/01.jpg",
+    "20261124_0657/02.jpg",
+    "20261124_0657/03.jpg",
+    "20261124_0657/04.jpg",
+    "20261124_0657/05.jpg",
+    "20261124_0657/06.jpg"
+  ]
+}
