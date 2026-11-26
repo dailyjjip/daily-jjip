@@ -1,9 +1,9 @@
 Traceback (most recent call last):
   File "/home/runner/work/daily-jjip/daily-jjip/main.py", line 1506, in <module>
     {"generate": generate, "publish": publish, "stats": stats, "repost": repost, "reel_only": reel_only, "reel_publish": reel_publish, "comment_lines": comment_lines,
-  File "/home/runner/work/daily-jjip/daily-jjip/main.py", line 1480, in reel_publish
-    rid = ig_publish_reel(f"{base_url}/{stamp}/reel.mp4", build_caption(d), f"{base_url}/{stamp}/01.jpg")
-          ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-  File "/home/runner/work/daily-jjip/daily-jjip/main.py", line 968, in ig_publish_reel
-    raise RuntimeError(f"릴스 처리 실패: {st}")
-RuntimeError: 릴스 처리 실패: {'status_code': 'ERROR', 'status': 'ERROR', 'id': '18084695633453315'}
+  File "/home/runner/work/daily-jjip/daily-jjip/main.py", line 1284, in publish
+    post_id = ig_publish([f"{IMAGE_BASE_URL}/{p}" for p in d["images"]], caption)
+              ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/runner/work/daily-jjip/daily-jjip/main.py", line 983, in ig_publish
+    raise RuntimeError(f"슬라이드 업로드 실패: {u} {r}")
+RuntimeError: 슬라이드 업로드 실패: https://raw.githubusercontent.com/dailyjjip/daily-jjip/main/posts/20261126_0520/04.jpg {'error': {'message': 'Only photo or video can be accepted as media type.', 'type': 'OAuthException', 'code': 9004, 'error_subcode': 2207052, 'is_transient': False, 'error_user_title': "Media download has failed. The media URI doesn't meet our requirements.", 'error_user_msg': 'The media could not be fetched from this URI: https://raw.githubusercontent.com/dailyjjip/daily-jjip/main/posts/20261126_0520/04.jpg.Please check the limitations section in our development document for more information: https://developers.facebook.com/docs/instagram-platform/instagram-graph-api/reference/ig-user/media#creating', 'fbtrace_id': 'ApNf7NdUSsmk6muYbH0Zssp'}}
