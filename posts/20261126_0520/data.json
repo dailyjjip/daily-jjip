@@ -1,0 +1,110 @@
+{
+ "category": "경제",
+ "kicker": "3분기 가계동향",
+ "headline": "월급은 올랐는데 지갑은 ↓",
+ "big_number": "-2.1%",
+ "big_label": "3분기 가계 실질소득",
+ "what": [
+  "국가데이터처가 26일 3분기 가계동향을 발표했다.",
+  "월평균 소득은 548만원으로 1년 전보다 0.8% 늘었다.",
+  "물가를 반영하면 2.1% 감소, 10분기 만의 마이너스다."
+ ],
+ "numbers": [
+  {
+   "value": "+0.8%",
+   "label": "명목소득 증가율"
+  },
+  {
+   "value": "+5.1%",
+   "label": "가계지출 증가율"
+  },
+  {
+   "value": "-11.2%",
+   "label": "가계 흑자액"
+  }
+ ],
+ "details": [
+  {
+   "head": "월급은 올랐다",
+   "body": "근로소득 +3.6%. 쿠폰 기저효과로 공적이전은 15.4% 감소."
+  },
+  {
+   "head": "범인은 고정비",
+   "body": "이자 11%, 세금 8%, 가구 간 이전지출 30% 증가."
+  },
+  {
+   "head": "하위 20%는 적자",
+   "body": "1분위는 월 34만3천원 적자, 소비성향은 132.3%."
+  }
+ ],
+ "points": [
+  "월급은 올랐지만 고정비가 더 올랐다",
+  "쓸 수 있는 돈은 1.7% 줄었다",
+  "저소득층일수록 적자 폭이 컸다"
+ ],
+ "watch": [
+  {
+   "head": "사업소득 흐름",
+   "body": "카드 소비 둔화 속 사업소득 1.4% 감소, 다음 분기에도 이어질지가 관건."
+  },
+  {
+   "head": "정부 민생 대책",
+   "body": "기초생활보장·긴급복지 강화, 일자리·서민금융·주거 프로젝트 추진."
+  }
+ ],
+ "oneliner": "월급보다 무서운 건 빠져나가는 고정비다.",
+ "debate": {
+  "question": "고정비 줄이기 vs 부수입 늘리기?",
+  "a": "고정비부터 줄인다",
+  "b": "수입부터 늘린다"
+ },
+ "image_queries": [
+  "korean household counting money",
+  "seoul traditional market shoppers"
+ ],
+ "caption": "가계 실질소득 감소, 숫자로 보면 더 선명합니다. 올해 3분기 가구 월평균 소득은 548만원으로 0.8% 늘었지만, 물가를 반영하면 2.1% 줄었습니다. 지출은 5.1% 늘고 이자·세금 같은 고정비가 커지면서 가계 흑자액은 11.2% 감소했습니다. 월급이 올라도 지갑이 얇아지는 이유가 여기에 있습니다. 저장해두고 이번 달 고정비부터 점검해 보세요.",
+ "hashtags": [
+  "#가계소득",
+  "#실질소득",
+  "#물가",
+  "#재테크"
+ ],
+ "sources": [
+  "헤럴드경제",
+  "서울경제",
+  "이투데이"
+ ],
+ "topic_key": "3분기 가계 실질소득",
+ "source_title": "3분기 가계 실질소득 2.1% 감소...3년여 만에 최대폭 감소 - YTN",
+ "source_link": "https://news.google.com/rss/articles/CBMib0FVX3lxTE9DN1V2M0txcy0teml3cV92TloyMzItOVE5aU1XM3plMUtEenhDdUtwczJpWnpOVVIycGRQcFFQNWJyWkJoRDBEZmtLSF9VN0hYVTI3cTBVWllMX2ZyZDVyQnc1ZkhwNDBnQnlWME8xMA?oc=5",
+ "stamp": "20261126_0520",
+ "issue_no": 128,
+ "review": [
+  {
+   "cover_ok": false,
+   "body_ok": true,
+   "text_ok": true,
+   "banned": false,
+   "issues": [
+    "표지 사진이 폴란드 즈워티(20 złotych) 지폐여서 한국 가계동향 기사와 맞지 않는다. 'NARODOWY BANK POLSKI' 등 외국 중앙은행 글자가 크게 보여 기사 대상과 혼동을 줄 수 있다.",
+    "본문 2장(노인의 손에 동전)은 저소득·생활고 주제와 맞아 문제없다.",
+    "제목, 숫자, 본문 요약, 캡션 사이에 모순이나 잘린 문장은 확인되지 않았다."
+   ]
+  },
+  {
+   "cover_ok": true,
+   "body_ok": true,
+   "text_ok": true,
+   "banned": false,
+   "issues": []
+  }
+ ],
+ "images": [
+  "20261126_0520/01.jpg",
+  "20261126_0520/02.jpg",
+  "20261126_0520/03.jpg",
+  "20261126_0520/04.jpg",
+  "20261126_0520/05.jpg",
+  "20261126_0520/06.jpg"
+ ]
+}
