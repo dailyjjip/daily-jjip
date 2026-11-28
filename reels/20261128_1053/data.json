@@ -1,0 +1,91 @@
+{
+ "category": "경제",
+ "kicker": "14.9억 계약의 함정",
+ "headline": "14.9억에 샀는데 대출 4억",
+ "big_number": "2억 차이",
+ "big_label": "한도는 KB시세로 결정",
+ "what": [
+  "14.9억에 계약해도 주담대는 4억일 수 있다",
+  "한도 기준은 계약가가 아니라 KB시세다",
+  "KB시세 15억 초과 땐 6억에서 4억으로 줄어든다"
+ ],
+ "numbers": [
+  {
+   "value": "14.9억",
+   "label": "금호현대 59㎡ 호가"
+  },
+  {
+   "value": "15.3억",
+   "label": "같은 평형 KB시세"
+  },
+  {
+   "value": "16.15억",
+   "label": "10일 체결 신고가"
+  }
+ ],
+ "details": [
+  {
+   "head": "계약가의 배신",
+   "body": "대출 심사는 실거래가가 아닌 신청 시점의 KB시세로 한도를 정한다"
+  },
+  {
+   "head": "한 달의 공백",
+   "body": "계약 후 신청까지 약 한 달. 이때 시세가 15억 밑으로 안 내려가면 4억"
+  },
+  {
+   "head": "15억 경계선 쏠림",
+   "body": "서울 14.9억~15억 거래 581건, 15억 초과~15.1억은 74건"
+  }
+ ],
+ "points": [
+  "계약가보다 KB시세가 먼저",
+  "15억 경계는 대출 2억 차이",
+  "계약 전 KB시세부터 확인"
+ ],
+ "watch": [
+  {
+   "head": "매주 금요일 시세",
+   "body": "KB시세는 매주 금요일 갱신, 신청 시점 값으로 한도 결정"
+  },
+  {
+   "head": "추가 축소 논쟁",
+   "body": "한도 추가 축소설은 금융위가 부인, LH 사장은 축소 주장"
+  }
+ ],
+ "oneliner": "가격표보다 무서운 건 시세표",
+ "debate": {
+  "question": "대출 한도, 시세 기준이 맞다?",
+  "a": "시세 기준 합리적",
+  "b": "계약가 기준이 공정"
+ },
+ "image_queries": [
+  "seoul apartment complex",
+  "bank loan consultation desk"
+ ],
+ "caption": "주담대 한도 KB시세 기준, 모르고 계약하면 2억이 날아갑니다. 서울 성동구의 한 59㎡는 호가가 14.9억이고 최근 거래가는 16.15억인데, KB시세가 15.3억이라 주담대는 최대 4억입니다. 대출 한도는 계약가가 아니라 신청 시점의 KB시세로 정해지고, KB시세는 매주 금요일 바뀝니다. 계약서에 도장 찍기 전에 KB시세부터 확인하세요. 집 살 계획이 있는 친구에게 공유하고, 나중에 볼 수 있게 저장해두세요.",
+ "hashtags": [
+  "#주담대한도",
+  "#KB시세",
+  "#아파트대출",
+  "#부동산"
+ ],
+ "sources": [
+  "매일경제",
+  "뉴스1",
+  "헤럴드경제"
+ ],
+ "topic_key": "주담대 KB시세 한도",
+ "source_title": "아파트 매매 계약 칼같이 딱 14.9억 맞췄는데…“주담대는 왜 4억만?” - 매일경제",
+ "source_link": "https://news.google.com/rss/articles/CBMiWEFVX3lxTE91Vm1qQmF2ek96aTV4Q3lOWDA3VXVGUHZMMU1yQVVHSkhCdmw4TUFXTlBMRUZLTFIzb1p1cWpLVmpORUtmTG9TY0NFT0NVWnp6WVkwWkNWd1I?oc=5",
+ "stamp": "20261128_1053",
+ "issue_no": 132,
+ "review": [
+  {
+   "cover_ok": true,
+   "body_ok": true,
+   "text_ok": true,
+   "banned": false,
+   "issues": []
+  }
+ ]
+}
